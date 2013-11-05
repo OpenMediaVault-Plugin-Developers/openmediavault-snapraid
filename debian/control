@@ -6,6 +6,6 @@ Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
 
 Package: openmediavault-snapraid
-Architecture: all
+Architecture: amd64
 Depends: openmediavault (>= 0.5.14)
 Description: snapraid plugin for OpenMediaVault.

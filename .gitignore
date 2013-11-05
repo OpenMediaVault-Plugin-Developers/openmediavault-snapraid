@@ -50,9 +50,11 @@ Desktop.ini
 .DS_Store
 
 # Files created by building the deb package
-debian/openmediavault-mysql
+debian/openmediavault-snapraid
 debian/files
 debian/*.debhelper.log
 debian/*.debhelper
 debian/*substvars
 /sqlbuddy
+/snapraid-4.4/
+/usr/local/bin

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-04 14:41-0500\n"
+"POT-Creation-Date: 2013-11-05 08:02-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,65 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
--e msgid "Are you sure you want to reset the root password?"
-msgstr "Are you sure you want to reset the root password?"
+-e msgid "Add content volume"
+msgstr "Add content volume"
 
--e msgid "Bind address"
-msgstr "Bind address"
+-e msgid "Add data volume"
+msgstr "Add data volume"
 
--e msgid "<br />Password will reset to:  openmediavault<br /><br />To change the password, use the management site and change root user on host localhost.<br /><br />"
-msgstr "<br />Password will reset to:  openmediavault<br /><br />To change the password, use the management site and change root user on host localhost.<br /><br />"
+-e msgid "Add exclusion"
+msgstr "Add exclusion"
 
--e msgid "Confirmation"
-msgstr "Confirmation"
+-e msgid "Are you sure you want to scrub?"
+msgstr "Are you sure you want to scrub?"
+
+-e msgid "Are you sure you want to sync?"
+msgstr "Are you sure you want to sync?"
+
+-e msgid "Block Size"
+msgstr "Block Size"
+
+-e msgid "Block size in KiB"
+msgstr "Block size in KiB"
+
+-e msgid "Content"
+msgstr "Content"
 
 -e msgid "Data"
 msgstr "Data"
 
--e msgid "Enable"
-msgstr "Enable"
+-e msgid "Edit exclusion"
+msgstr "Edit exclusion"
 
--e msgid "Enable networking"
-msgstr "Enable networking"
+-e msgid "Exclude"
+msgstr "Exclude"
 
--e msgid "Enable SQL management site"
-msgstr "Enable SQL management site"
+-e msgid "Excludes"
+msgstr "Excludes"
 
--e msgid "Extra options"
-msgstr "Extra options"
+-e msgid "Excludes hidden files and directories"
+msgstr "Excludes hidden files and directories"
 
--e msgid "Extra options for [mysqld] section of MySQL configuration."
-msgstr "Extra options for [mysqld] section of MySQL configuration."
+-e msgid "Information"
+msgstr "Information"
 
--e msgid "For more advanced usage try <a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a>"
-msgstr "For more advanced usage try <a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a>"
+-e msgid "No Hidden"
+msgstr "No Hidden"
 
--e msgid "IP address to listen on. Use 0.0.0.0 for all host IPs."
-msgstr "IP address to listen on. Use 0.0.0.0 for all host IPs."
+-e msgid "Parity"
+msgstr "Parity"
 
--e msgid "Launch management site"
-msgstr "Launch management site"
+-e msgid "Parity root"
+msgstr "Parity root"
 
--e msgid "Management"
-msgstr "Management"
+-e msgid "Q-Parity"
+msgstr "Q-Parity"
 
--e msgid "MySQL"
-msgstr "MySQL"
+-e msgid "QParity root"
+msgstr "QParity root"
 
--e msgid "Port"
-msgstr "Port"
+-e msgid "Scrub"
+msgstr "Scrub"
 
--e msgid "Port to listen on."
-msgstr "Port to listen on."
-
--e msgid "Reset MySQL root password"
-msgstr "Reset MySQL root password"
-
--e msgid "Reset Password"
-msgstr "Reset Password"
-
--e msgid "Resetting MySQL root password."
-msgstr "Resetting MySQL root password."
+-e msgid "Scrub?"
+msgstr "Scrub?"
 
 -e msgid "Select a volume ..."
 msgstr "Select a volume ..."
@@ -83,18 +86,21 @@ msgstr "Select a volume ..."
 -e msgid "Settings"
 msgstr "Settings"
 
--e msgid "Show tab containing Management frame"
-msgstr "Show tab containing Management frame"
+-e msgid "SnapRAID"
+msgstr "SnapRAID"
 
--e msgid "SQL data root"
-msgstr "SQL data root"
+-e msgid "Sync"
+msgstr "Sync"
 
--e msgid "SQL data volume"
-msgstr "SQL data volume"
+-e msgid "Sync?"
+msgstr "Sync?"
 
--e msgid "SQL management site"
-msgstr "SQL management site"
+-e msgid "Volume"
+msgstr "Volume"
 
--e msgid "Warning: If Your MySQL data volume is set to use a non-data volume it may result in loss of data in the event of a disk failure. It is recommmended that you change this before using MySQL."
-msgstr "Warning: If Your MySQL data volume is set to use a non-data volume it may result in loss of data in the event of a disk failure. It is recommmended that you change this before using MySQL."
+-e msgid "Volume to use for Parity storage. It must NOT be on a data disk"
+msgstr "Volume to use for Parity storage. It must NOT be on a data disk"
+
+-e msgid "Volume to use for Q-Parity storage (equivalent of RAID 6). It must NOT be on a data disk or the parity disk. (OPTIONAL)"
+msgstr "Volume to use for Q-Parity storage (equivalent of RAID 6). It must NOT be on a data disk or the parity disk. (OPTIONAL)"
 
