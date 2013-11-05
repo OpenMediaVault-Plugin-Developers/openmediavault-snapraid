@@ -218,6 +218,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
+        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
+        $deviceDir = $xmlConfig->get($xpath);
+        $deviceDir = $deviceDir['dir'];
+
+        $contentRoot = "{$deviceDir}/.content";
+        $params['contentroot'] = $contentRoot;
+
         // Prepare the configuration object.
         $object = array(
             "uuid"          => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
@@ -227,13 +234,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
         // Set the configuration object.
         $success = FALSE;
-
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
-        $deviceDir = $xmlConfig->get($xpath);
-        $deviceDir = $deviceDir['dir'];
-
-        $contentRoot = "{$deviceDir}/.content";
-        $params['contentroot'] = $contentRoot;
 
         // Append the configuration object.
         $success = $xmlConfig->set("//services/snapraid/contents", array("content" => $object));
@@ -350,6 +350,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
+        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
+        $deviceDir = $xmlConfig->get($xpath);
+        $deviceDir = $deviceDir['dir'];
+
+        $params['dataroot'] = "{$deviceDir}";
+
         // Prepare the configuration object.
         $object = array(
             "uuid"          => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
@@ -359,12 +365,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
         // Set the configuration object.
         $success = FALSE;
-
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
-        $deviceDir = $xmlConfig->get($xpath);
-        $deviceDir = $deviceDir['dir'];
-
-        $params['dataroot'] = "{$deviceDir}";
 
         // Append the configuration object.
         $success = $xmlConfig->set("//services/snapraid/datas", array("data" => $object));
