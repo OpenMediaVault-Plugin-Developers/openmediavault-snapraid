@@ -296,6 +296,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         if(is_null($objects)) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
+        
+        /*
         // Add additional data informations.
         foreach($objects as $objectk => &$objectv) {
             $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $objectv['mntentref']);
@@ -304,7 +306,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
             $objectv['dataroot'] = "{$deviceDir}";
         }
-
+        */
+        
         // Filter the result.
         return $this->applyFilter($objects, $params['start'],
             $params['limit'], $params['sortfield'], $params['sortdir']);
@@ -345,6 +348,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "type"       : "object",
             "properties" : {
                 "uuid"          : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "name"          : { "type" : "string" },
                 "mntentref"     : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
                 "dataroot"      : { "type" : "string" }
             }
@@ -359,6 +363,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"          => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "name"          => $params['name'],
             "mntentref"     => $params['mntentref'],
             "dataroot"      => $params['dataroot']
         );

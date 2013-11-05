@@ -51,11 +51,11 @@ done
 index=$(omv_config_get_count "//services/snapraid/datas/data")
 while [ ${index} -gt 0 ]; do
 
-    mntentref=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/mntentref")
+    name=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/name")
     dataroot=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/dataroot")
 
     if [ "${dataroot}" != "" ]; then
-        echo "disk ${mntentref} ${dataroot}" >> ${SNAPRAID_CONFIG}
+        echo "disk ${name} ${dataroot}" >> ${SNAPRAID_CONFIG}
     fi
 
     index=$(( ${index} - 1 ))
