@@ -120,8 +120,8 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
 	columns: [{
 		text: _("Volume"),
 		sortable: true,
-		dataIndex: "contentvol",
-		stateId: "contentvol"
+		dataIndex: "dataroot",
+		stateId: "dataroot"
 	}],
 
 	initComponent: function () {
@@ -133,7 +133,7 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
 					idProperty: "uuid",
 					fields: [
 						{ name: "uuid", type: "string" },
-						{ name: "datavol", type: "string" }
+						{ name: "dataroot", type: "string" }
 					]
 				}),
 				proxy: {
