@@ -1,0 +1,11 @@
+#!/bin/sh
+
+rm -f usr/local/bin/snapraid
+wget http://sourceforge.net/projects/snapraid/files/snapraid-4.4.tar.gz/download -O snapraid-4.4.tar.gz
+tar xzf snapraid-4.4.tar.gz
+/bin/rm -f snapraid-4.4.tar.gz
+cd snapraid-4.4
+./configure
+make
+cp snapraid ../usr/local/bin/
+rm -rf snapraid-4.4

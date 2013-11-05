@@ -1,0 +1,37 @@
+#!/bin/sh
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+case "$1" in
+configure)
+
+    if ! omv_config_exists "/config/services/snapraid"; then
+        echo "Initial configuration."
+        object="<parity>0</parity>"
+        object="${object}<mntentref></mntentref>"
+        object="${object}<qparity></qparity>"
+        object="${object}<qmntentref></qmntentref>"
+        object="${object}<blocksize>256</blocksize>"
+        object="${object}<nohidden>0</nohidden>"
+        object="${object}<contents></contents>"
+        object="${object}<datas></datas>"
+        object="${object}<excludes></excludes>"
+        omv_config_add_element "/config/services" "snapraid" "${object}" true
+    fi
+
+    omv_install_fixperms
+    ;;
+abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+*)
+    echo "postinst called with unknown argument" >&2
+    exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0

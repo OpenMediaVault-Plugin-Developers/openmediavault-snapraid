@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# Copyright (C)      2013 OpenMediaVault Plugin Developers
+#
+# This file is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This file is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file. If not, see <http://www.gnu.org/licenses/>.
+
+set -e
+
+. /etc/default/openmediavault
+. /usr/share/openmediavault/scripts/helper-functions
+
+SNAPRAID_CONFIG="/etc/snapraid.conf";
+
+# Create snapraid config file
+cat <<EOF > ${SNAPRAID_CONFIG}
+
+EOF
+
+xmlstarlet sel -t -m "//services/snapraid" \
+    -i "parity != ''" -v "concat('parity ', parity)" -n -b \
+    -i "qparity != ''" -v "concat('q-parity ', qparity)" -n -b \
+    -i "blocksize != ''" -v "concat('block_size ', blocksize)" -n -b \
+    -i "nohidden[. = '1']" -o "nohidden" -b \
+${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
+
+# Process content
+index=$(omv_config_get_count "//services/snapraid/contents/content")
+while [ ${index} -gt 0 ]; do
+
+    contentroot=$(omv_config_get "//services/snapraid/contents/content[position()=${index}]/contentroot")
+
+    if [ "${contentroot}" != "" ]; then
+        echo "content ${contentroot}" >> ${SNAPRAID_CONFIG}
+    fi
+
+    index=$(( ${index} - 1 ))
+done
+
+# Process data
+index=$(omv_config_get_count "//services/snapraid/datas/data")
+while [ ${index} -gt 0 ]; do
+
+    mntentref=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/mntentref")
+    dataroot=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/dataroot")
+
+    if [ "${dataroot}" != "" ]; then
+        echo "disk ${mntentref} ${dataroot}" >> ${SNAPRAID_CONFIG}
+    fi
+
+    index=$(( ${index} - 1 ))
+done
+
+# Process excludes
+index=$(omv_config_get_count "//services/snapraid/excludes/exclude")
+while [ ${index} -gt 0 ]; do
+
+    exclusion=$(omv_config_get "//services/snapraid/excludes/exclude[position()=${index}]/exclusion")
+
+    if [ "${exclusion}" != "" ]; then
+        echo "exclude ${exclusion}" >> ${SNAPRAID_CONFIG}
+    fi
+
+    index=$(( ${index} - 1 ))
+done

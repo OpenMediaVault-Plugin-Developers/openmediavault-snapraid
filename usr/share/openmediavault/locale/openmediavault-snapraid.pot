@@ -1,0 +1,100 @@
+# openmediavault-snapraid
+# Copyright (C) 2013
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-snapraid\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-04 14:41-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+-e msgid "Are you sure you want to reset the root password?"
+msgstr "Are you sure you want to reset the root password?"
+
+-e msgid "Bind address"
+msgstr "Bind address"
+
+-e msgid "<br />Password will reset to:  openmediavault<br /><br />To change the password, use the management site and change root user on host localhost.<br /><br />"
+msgstr "<br />Password will reset to:  openmediavault<br /><br />To change the password, use the management site and change root user on host localhost.<br /><br />"
+
+-e msgid "Confirmation"
+msgstr "Confirmation"
+
+-e msgid "Data"
+msgstr "Data"
+
+-e msgid "Enable"
+msgstr "Enable"
+
+-e msgid "Enable networking"
+msgstr "Enable networking"
+
+-e msgid "Enable SQL management site"
+msgstr "Enable SQL management site"
+
+-e msgid "Extra options"
+msgstr "Extra options"
+
+-e msgid "Extra options for [mysqld] section of MySQL configuration."
+msgstr "Extra options for [mysqld] section of MySQL configuration."
+
+-e msgid "For more advanced usage try <a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a>"
+msgstr "For more advanced usage try <a href='http://www.mysql.com/products/workbench/'>MySQL Workbench</a>"
+
+-e msgid "IP address to listen on. Use 0.0.0.0 for all host IPs."
+msgstr "IP address to listen on. Use 0.0.0.0 for all host IPs."
+
+-e msgid "Launch management site"
+msgstr "Launch management site"
+
+-e msgid "Management"
+msgstr "Management"
+
+-e msgid "MySQL"
+msgstr "MySQL"
+
+-e msgid "Port"
+msgstr "Port"
+
+-e msgid "Port to listen on."
+msgstr "Port to listen on."
+
+-e msgid "Reset MySQL root password"
+msgstr "Reset MySQL root password"
+
+-e msgid "Reset Password"
+msgstr "Reset Password"
+
+-e msgid "Resetting MySQL root password."
+msgstr "Resetting MySQL root password."
+
+-e msgid "Select a volume ..."
+msgstr "Select a volume ..."
+
+-e msgid "Settings"
+msgstr "Settings"
+
+-e msgid "Show tab containing Management frame"
+msgstr "Show tab containing Management frame"
+
+-e msgid "SQL data root"
+msgstr "SQL data root"
+
+-e msgid "SQL data volume"
+msgstr "SQL data volume"
+
+-e msgid "SQL management site"
+msgstr "SQL management site"
+
+-e msgid "Warning: If Your MySQL data volume is set to use a non-data volume it may result in loss of data in the event of a disk failure. It is recommmended that you change this before using MySQL."
+msgstr "Warning: If Your MySQL data volume is set to use a non-data volume it may result in loss of data in the event of a disk failure. It is recommmended that you change this before using MySQL."
+

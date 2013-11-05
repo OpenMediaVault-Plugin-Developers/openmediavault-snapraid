@@ -1,0 +1,11 @@
+Source: openmediavault-snapraid
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.3
+
+Package: openmediavault-snapraid
+Architecture: all
+Depends: openmediavault (>= 0.5.14)
+Description: snapraid plugin for OpenMediaVault.
