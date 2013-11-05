@@ -391,7 +391,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         return $object;
     }
 
-    public function getexcludes($params, $context) {
+    public function getExcludeList($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
@@ -420,7 +420,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $params['sortfield'], $params['sortdir']);
     }
 
-    public function getexclude($params, $context) {
+    public function getExclude($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
