@@ -35,8 +35,9 @@ xmlstarlet sel -t -m "//services/snapraid" \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
 
 # Process content
-index=$(omv_config_get_count "//services/snapraid/contents/content")
-while [ ${index} -gt 0 ]; do
+count=$(omv_config_get_count "//services/snapraid/contents/content")
+index=0
+while [ ${index} -lt ${count} ]; do
 
     contentroot=$(omv_config_get "//services/snapraid/contents/content[position()=${index}]/contentroot")
 
@@ -44,12 +45,13 @@ while [ ${index} -gt 0 ]; do
         echo "content ${contentroot}" >> ${SNAPRAID_CONFIG}
     fi
 
-    index=$(( ${index} - 1 ))
+    index=$(( ${index} + 1 ))
 done
 
 # Process data
-index=$(omv_config_get_count "//services/snapraid/datas/data")
-while [ ${index} -gt 0 ]; do
+count=$(omv_config_get_count "//services/snapraid/datas/data")
+index=0
+while [ ${index} -lt ${count} ]; do
 
     name=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/name")
     dataroot=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/dataroot")
@@ -58,12 +60,13 @@ while [ ${index} -gt 0 ]; do
         echo "disk ${name} ${dataroot}" >> ${SNAPRAID_CONFIG}
     fi
 
-    index=$(( ${index} - 1 ))
+    index=$(( ${index} + 1 ))
 done
 
 # Process excludes
-index=$(omv_config_get_count "//services/snapraid/excludes/exclude")
-while [ ${index} -gt 0 ]; do
+count=$(omv_config_get_count "//services/snapraid/excludes/exclude")
+index=0
+while [ ${index} -lt ${count} ]; do
 
     exclusion=$(omv_config_get "//services/snapraid/excludes/exclude[position()=${index}]/exclusion")
 
@@ -71,5 +74,5 @@ while [ ${index} -gt 0 ]; do
         echo "exclude ${exclusion}" >> ${SNAPRAID_CONFIG}
     fi
 
-    index=$(( ${index} - 1 ))
+    index=$(( ${index} + 1 ))
 done

@@ -117,13 +117,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $params['qmntentref'] = "";
         }
 
-		// Get the existing configuration object.
-		$xpath = "//services/snapraid";
-		$oldObject = $xmlConfig->get($xpath);
-		if(is_null($oldObject)) {
-			throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-		}
-        
+        // Get the existing configuration object.
+        $xpath = "//services/snapraid";
+        $oldObject = $xmlConfig->get($xpath);
+        if(is_null($oldObject)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        }
+
         // Prepare configuration data
         $object = array(
             "mntentref"     => $params['mntentref'],
@@ -169,15 +169,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $objects = $xmlConfig->getList($xpath);
         if(is_null($objects)) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
-        // Add additional content informations.
-        foreach($objects as $objectk => &$objectv) {
-            $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $objectv['mntentref']);
-            $deviceDir = $xmlConfig->get($xpath);
-            $deviceDir = $deviceDir['dir'];
-
-            $contentRoot = "{$deviceDir}/.content";
-            $objectv['contentroot'] = $contentRoot;
         }
 
         // Filter the result.
@@ -303,18 +294,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         if(is_null($objects)) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
-        
-        /*
-        // Add additional data informations.
-        foreach($objects as $objectk => &$objectv) {
-            $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $objectv['mntentref']);
-            $deviceDir = $xmlConfig->get($xpath);
-            $deviceDir = $deviceDir['dir'];
 
-            $objectv['dataroot'] = "{$deviceDir}";
-        }
-        */
-        
         // Filter the result.
         return $this->applyFilter($objects, $params['start'],
             $params['limit'], $params['sortfield'], $params['sortdir']);
