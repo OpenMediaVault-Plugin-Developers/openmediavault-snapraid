@@ -117,6 +117,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $params['qmntentref'] = "";
         }
 
+		// Get the existing configuration object.
+		$xpath = "//services/snapraid";
+		$oldObject = $xmlConfig->get($xpath);
+		if(is_null($oldObject)) {
+			throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+		}
+        
         // Prepare configuration data
         $object = array(
             "mntentref"     => $params['mntentref'],
