@@ -72,6 +72,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Modify result data
         $object['nohidden'] = boolval($object['nohidden']);
 
+        unset($object['contents']);
+        unset($object['datas']);
+        unset($object['excludes']);
+
         return $object;
     }
 
@@ -101,12 +105,17 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $parityRoot = "{$deviceDir}/parity.file";
         $params['parity'] = $parityRoot;
 
-        $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['qmntentref']);
-        $deviceDir = $xmlConfig->get($xpath);
-        $deviceDir = $deviceDir['dir'];
+        if ( $params['qmntentref'] != "" ) {
+            $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['qmntentref']);
+            $deviceDir = $xmlConfig->get($xpath);
+            $deviceDir = $deviceDir['dir'];
 
-        $qparityRoot = "{$deviceDir}/qparity.file";
-        $params['qparity'] = $qparityRoot;
+            $qparityRoot = "{$deviceDir}/qparity.file";
+            $params['qparity'] = $qparityRoot;
+        } else {
+            $params['qparity'] = "";
+            $params['qmntentref'] = "";
+        }
 
         // Prepare configuration data
         $object = array(
@@ -115,8 +124,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "qmntentref"    => $params['qmntentref'],
             "qparity"       => $params['qparity'],
             "blocksize"     => intval($params['blocksize']),
-            "nohidden"      => array_boolval($params, 'nohidden')
+            "nohidden"      => array_boolval($params, 'nohidden'),
+            "contents"      => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
+            "datas"         => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
+            "excludes"      => isset($oldObject['excludes']) ? $oldObject['excludes'] : array()
         );
+
 
         // Set configuration object
         if (false === $xmlConfig->replace($this->getXPath(), $object))

@@ -48,7 +48,7 @@ Ext.define("OMV.module.admin.service.snapraid.Exclude", {
 	getFormItems: function() {
 		return [{
 			xtype: "textfield",
-			name: "exclude",
+			name: "exclusion",
 			fieldLabel: _("Exclude"),
 			allowBlank: false
 		}];
@@ -78,8 +78,8 @@ Ext.define("OMV.module.admin.service.snapraid.Excludes", {
 	columns: [{
 		text: _("Exclude"),
 		sortable: true,
-		dataIndex: "exclude",
-		stateId: "exclude"
+		dataIndex: "exclusion",
+		stateId: "exclusion"
 	}],
 
 	initComponent: function() {
@@ -91,7 +91,7 @@ Ext.define("OMV.module.admin.service.snapraid.Excludes", {
 					idProperty: "uuid",
 					fields: [
 						{ name: "uuid", type: "string" },
-						{ name: "exclude", type: "string" }
+						{ name: "exclusion", type: "string" }
 					]
 				}),
 				proxy: {

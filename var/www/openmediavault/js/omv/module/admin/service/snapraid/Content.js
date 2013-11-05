@@ -55,7 +55,7 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
 	getFormItems: function () {
 		return [{
             xtype         : "combo",
-            name          : "contentvol",
+            name          : "mntentref",
             fieldLabel    : _("Content"),
             emptyText     : _("Select a volume ..."),
             allowBlank    : false,
@@ -87,6 +87,13 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
                     property  : "devicefile"
                 }]
             })
+        },{
+                xtype      : "textfield",
+                name       : "contentroot",
+                fieldLabel : _("Content root"),
+                allowNone  : true,
+                readOnly   : true,
+                hidden     : true
         }];
 	}
 });

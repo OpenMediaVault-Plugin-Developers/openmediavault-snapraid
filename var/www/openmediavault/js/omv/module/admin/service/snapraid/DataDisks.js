@@ -55,7 +55,7 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
 	getFormItems: function () {
 		return [{
             xtype         : "combo",
-            name          : "datavol",
+            name          : "mntentref",
             fieldLabel    : _("Data"),
             emptyText     : _("Select a volume ..."),
             allowBlank    : false,
@@ -87,6 +87,12 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
                     property  : "devicefile"
                 }]
             })
+        },{
+                xtype      : "textfield",
+                name       : "dataroot",
+                fieldLabel : _("Data root"),
+                allowNone  : true,
+                readOnly   : true
         }];
 	}
 });
@@ -173,7 +179,7 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-	id: "contents",
+	id: "datalist",
 	path: "/service/snapraid",
 	text: _("Data"),
 	position: 30,
