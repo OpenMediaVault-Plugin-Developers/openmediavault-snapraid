@@ -21,24 +21,20 @@
 // require("js/omv/workspace/panel/Panel.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Info", {
-	extend: "Ext.panel.Panel",
+    extend: "Ext.panel.Panel",
 
-	initComponent: function() {
-		var me = this;
+    initComponent: function() {
+        var me = this;
 
-		me.html = "Default username:  admin";
-		me.html += "<br />";
-		me.html += "Default password:  openmediavault";
-		me.html += "<br /><br />";
-
-		me.callParent(arguments);
-	}
+        me.html = "<a href='http://snapraid.sourceforge.net/manual.html'>SnapRAID user manual</a>";
+        me.callParent(arguments);
+    }
 });
 
 OMV.WorkspaceManager.registerPanel({
-	id: "info",
-	path: "/service/snapraid",
-	text: _("Information"),
-	position: 50,
-	className: "OMV.module.admin.service.snapraid.Info"
+    id: "info",
+    path: "/service/snapraid",
+    text: _("Information"),
+    position: 50,
+    className: "OMV.module.admin.service.snapraid.Info"
 });

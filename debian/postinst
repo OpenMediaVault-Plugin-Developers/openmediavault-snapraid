@@ -12,6 +12,7 @@ configure)
         echo "Initial configuration."
         object="<parity>0</parity>"
         object="${object}<mntentref></mntentref>"
+        object="${object}<useqparity>0</useqparity>"
         object="${object}<qparity></qparity>"
         object="${object}<qmntentref></qmntentref>"
         object="${object}<blocksize>256</blocksize>"

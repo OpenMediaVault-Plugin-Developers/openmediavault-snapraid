@@ -15,7 +15,7 @@ install:
 	/bin/sh create_pot
 	dh_installdirs
 	dh_install
-	
+
 binary-indep: install omv_clean_scm
 	dh_testdir
 	dh_testroot

@@ -33,26 +33,26 @@
  * @derived OMV.workspace.window.Form
  */
 Ext.define("OMV.module.admin.service.snapraid.Exclude", {
-	extend: "OMV.workspace.window.Form",
-	requires: [
-		"OMV.workspace.window.plugin.ConfigObject"
-	],
+    extend: "OMV.workspace.window.Form",
+    requires: [
+        "OMV.workspace.window.plugin.ConfigObject"
+    ],
 
-	rpcService: "SnapRaid",
-	rpcGetMethod: "getExclude",
-	rpcSetMethod: "setExclude",
-	plugins: [{
-		ptype: "configobject"
-	}],
+    rpcService: "SnapRaid",
+    rpcGetMethod: "getExclude",
+    rpcSetMethod: "setExclude",
+    plugins: [{
+        ptype: "configobject"
+    }],
 
-	getFormItems: function() {
-		return [{
-			xtype: "textfield",
-			name: "exclusion",
-			fieldLabel: _("Exclude"),
-			allowBlank: false
-		}];
-	}
+    getFormItems: function() {
+        return [{
+            xtype: "textfield",
+            name: "exclusion",
+            fieldLabel: _("Exclude"),
+            allowBlank: false
+        }];
+    }
 });
 
 /**
@@ -60,102 +60,102 @@ Ext.define("OMV.module.admin.service.snapraid.Exclude", {
  * @derived OMV.workspace.grid.Panel
  */
 Ext.define("OMV.module.admin.service.snapraid.Excludes", {
-	extend: "OMV.workspace.grid.Panel",
-	requires: [
-		"OMV.Rpc",
-		"OMV.data.Store",
-		"OMV.data.Model",
-		"OMV.data.proxy.Rpc",
-		"OMV.util.Format"
-	],
-	uses: [
-		"OMV.module.admin.service.snapraid.Exclude"
-	],
-	
-	hidePagingToolbar: false,
-	stateful: true,
-	stateId: "a982a76d-6804-4632-b31b-8b48c0ea6dde",
-	columns: [{
-		text: _("Exclude"),
-		sortable: true,
-		dataIndex: "exclusion",
-		stateId: "exclusion"
-	}],
+    extend: "OMV.workspace.grid.Panel",
+    requires: [
+        "OMV.Rpc",
+        "OMV.data.Store",
+        "OMV.data.Model",
+        "OMV.data.proxy.Rpc",
+        "OMV.util.Format"
+    ],
+    uses: [
+        "OMV.module.admin.service.snapraid.Exclude"
+    ],
 
-	initComponent: function() {
-		var me = this;
-		Ext.apply(me, {
-			store: Ext.create("OMV.data.Store", {
-				autoLoad: true,
-				model: OMV.data.Model.createImplicit({
-					idProperty: "uuid",
-					fields: [
-						{ name: "uuid", type: "string" },
-						{ name: "exclusion", type: "string" }
-					]
-				}),
-				proxy: {
-					type: "rpc",
-					rpcData: {
-						service: "SnapRaid",
-						method: "getExcludeList"
-					}
-				}
-			})
-		});
-		me.callParent(arguments);
-	},
+    hidePagingToolbar: false,
+    stateful: true,
+    stateId: "a982a76d-6804-4632-b31b-8b48c0ea6dde",
+    columns: [{
+        text: _("Exclude"),
+        sortable: true,
+        dataIndex: "exclusion",
+        stateId: "exclusion"
+    }],
 
-	onAddButton: function() {
-		var me = this;
-		Ext.create("OMV.module.admin.service.snapraid.Exclude", {
-			title: _("Add exclusion"),
-			uuid: OMV.UUID_UNDEFINED,
-			listeners: {
-				scope: me,
-				submit: function() {
-					this.doReload();
-				}
-			}
-		}).show();
-	},
+    initComponent: function() {
+        var me = this;
+        Ext.apply(me, {
+            store: Ext.create("OMV.data.Store", {
+                autoLoad: true,
+                model: OMV.data.Model.createImplicit({
+                    idProperty: "uuid",
+                    fields: [
+                        { name: "uuid", type: "string" },
+                        { name: "exclusion", type: "string" }
+                    ]
+                }),
+                proxy: {
+                    type: "rpc",
+                    rpcData: {
+                        service: "SnapRaid",
+                        method: "getExcludeList"
+                    }
+                }
+            })
+        });
+        me.callParent(arguments);
+    },
 
-	onEditButton: function() {
-		var me = this;
-		var record = me.getSelected();
-		Ext.create("OMV.module.admin.service.snapraid.Exclude", {
-			title: _("Edit exclusion"),
-			uuid: record.get("uuid"),
-			listeners: {
-				scope: me,
-				submit: function() {
-					this.doReload();
-				}
-			}
-		}).show();
-	},
+    onAddButton: function() {
+        var me = this;
+        Ext.create("OMV.module.admin.service.snapraid.Exclude", {
+            title: _("Add exclusion"),
+            uuid: OMV.UUID_UNDEFINED,
+            listeners: {
+                scope: me,
+                submit: function() {
+                    this.doReload();
+                }
+            }
+        }).show();
+    },
 
-	doDeletion: function(record) {
-		var me = this;
-		OMV.Rpc.request({
-			scope: me,
-			callback: me.onDeletion,
-			rpcData: {
-				service: "SnapRaid",
-				method: "deleteExclude",
-				params: {
-					uuid: record.get("uuid")
-				}
-			}
-		});
-	}
+    onEditButton: function() {
+        var me = this;
+        var record = me.getSelected();
+        Ext.create("OMV.module.admin.service.snapraid.Exclude", {
+            title: _("Edit exclusion"),
+            uuid: record.get("uuid"),
+            listeners: {
+                scope: me,
+                submit: function() {
+                    this.doReload();
+                }
+            }
+        }).show();
+    },
+
+    doDeletion: function(record) {
+        var me = this;
+        OMV.Rpc.request({
+            scope: me,
+            callback: me.onDeletion,
+            rpcData: {
+                service: "SnapRaid",
+                method: "deleteExclude",
+                params: {
+                    uuid: record.get("uuid")
+                }
+            }
+        });
+    }
 
 });
 
 OMV.WorkspaceManager.registerPanel({
-	id: "excludes",
-	path: "/service/snapraid",
-	text: _("Excludes"),
-	position: 40,
-	className: "OMV.module.admin.service.snapraid.Excludes"
+    id: "excludes",
+    path: "/service/snapraid",
+    text: _("Excludes"),
+    position: 40,
+    className: "OMV.module.admin.service.snapraid.Excludes"
 });

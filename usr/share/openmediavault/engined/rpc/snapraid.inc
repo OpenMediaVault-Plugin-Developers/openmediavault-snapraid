@@ -101,6 +101,27 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
+        if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['mntentref']}']")) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("This volume is already in use by content."));
+        }
+
+        if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['mntentref']}']")) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("This volume is already in use by data."));
+        }
+
+        if ( $params['useqparity'] === true ) {
+            if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['qmntentref']}']")) {
+                throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                    gettext("This volume is already in use by content."));
+            }
+
+            if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['qmntentref']}']")) {
+                throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                    gettext("This volume is already in use by data."));
+            }
+        }
         $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
         $deviceDir = $xmlConfig->get($xpath);
         $deviceDir = $deviceDir['dir'];
@@ -223,6 +244,11 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 "contentroot"   : { "type" : "string" }
             }
         }');
+
+        if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['mntentref']}']")) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("This volume has already been added."));
+        }
 
         $parity = $xmlConfig->get("//services/snapraid/mntentref");
         $useqparity = $xmlConfig->get("//services/snapraid/useqparity");
@@ -362,6 +388,11 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 "dataroot"      : { "type" : "string" }
             }
         }');
+
+        if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['mntentref']}']")) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("This volume has already been added."));
+        }
 
         $parity = $xmlConfig->get("//services/snapraid/mntentref");
         $useqparity = $xmlConfig->get("//services/snapraid/useqparity");

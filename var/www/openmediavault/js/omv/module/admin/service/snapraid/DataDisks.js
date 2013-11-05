@@ -33,32 +33,32 @@
  * @derived OMV.workspace.window.Form
  */
 Ext.define("OMV.module.admin.service.snapraid.Data", {
-	extend: "OMV.workspace.window.Form",
-	uses: [
-		"OMV.form.field.SharedFolderComboBox",
-		"OMV.workspace.window.plugin.ConfigObject"
-	],
+    extend: "OMV.workspace.window.Form",
+    uses: [
+        "OMV.form.field.SharedFolderComboBox",
+        "OMV.workspace.window.plugin.ConfigObject"
+    ],
 
-	rpcService: "SnapRaid",
-	rpcGetMethod: "getData",
-	rpcSetMethod: "setData",
-	plugins: [{
-		ptype: "configobject"
-	}],
+    rpcService: "SnapRaid",
+    rpcGetMethod: "getData",
+    rpcSetMethod: "setData",
+    plugins: [{
+        ptype: "configobject"
+    }],
 
-	/**
-	 * The class constructor.
-	 * @fn constructor
-	 * @param uuid The UUID of the database/configuration object. Required.
-	 */
+    /**
+     * The class constructor.
+     * @fn constructor
+     * @param uuid The UUID of the database/configuration object. Required.
+     */
 
-	getFormItems: function () {
-		return [{
-			xtype: "textfield",
-			name: "name",
-			fieldLabel: _("Name"),
-			allowBlank: false
-		},{
+    getFormItems: function () {
+        return [{
+            xtype: "textfield",
+            name: "name",
+            fieldLabel: _("Name"),
+            allowBlank: false
+        },{
             xtype         : "combo",
             name          : "mntentref",
             fieldLabel    : _("Data"),
@@ -100,7 +100,7 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
                 readOnly   : true,
                 hidden     : true
         }];
-	}
+    }
 });
 
 /**
@@ -108,92 +108,92 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
  * @derived OMV.workspace.grid.Panel
  */
 Ext.define("OMV.module.admin.service.snapraid.DataList", {
-	extend: "OMV.workspace.grid.Panel",
-	requires: [
-		"OMV.Rpc",
-		"OMV.data.Store",
-		"OMV.data.Model",
-		"OMV.data.proxy.Rpc"
-	],
-	uses: [
-		"OMV.module.admin.service.snapraid.Data"
-	],
+    extend: "OMV.workspace.grid.Panel",
+    requires: [
+        "OMV.Rpc",
+        "OMV.data.Store",
+        "OMV.data.Model",
+        "OMV.data.proxy.Rpc"
+    ],
+    uses: [
+        "OMV.module.admin.service.snapraid.Data"
+    ],
 
-	hidePagingToolbar: false,
+    hidePagingToolbar: false,
     hideEditButton: true,
-	stateful: true,
-	stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
-	columns: [{
-		text: _("Name"),
-		sortable: true,
-		dataIndex: "name",
-		stateId: "name"
-	},{
-		text: _("Volume"),
-		sortable: true,
-		dataIndex: "dataroot",
-		stateId: "dataroot"
-	}],
+    stateful: true,
+    stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
+    columns: [{
+        text: _("Name"),
+        sortable: true,
+        dataIndex: "name",
+        stateId: "name"
+    },{
+        text: _("Volume"),
+        sortable: true,
+        dataIndex: "dataroot",
+        stateId: "dataroot"
+    }],
 
-	initComponent: function () {
-		var me = this;
-		Ext.apply(me, {
-			store: Ext.create("OMV.data.Store", {
-				autoLoad: true,
-				model: OMV.data.Model.createImplicit({
-					idProperty: "uuid",
-					fields: [
-						{ name: "uuid", type: "string" },
+    initComponent: function () {
+        var me = this;
+        Ext.apply(me, {
+            store: Ext.create("OMV.data.Store", {
+                autoLoad: true,
+                model: OMV.data.Model.createImplicit({
+                    idProperty: "uuid",
+                    fields: [
+                        { name: "uuid", type: "string" },
                         { name: "name", type: "string" },
-						{ name: "dataroot", type: "string" }
-					]
-				}),
-				proxy: {
-					type: "rpc",
-					rpcData: {
-						service: "SnapRaid",
-						method: "getDataList"
-					}
-				}
-			})
-		});
-		me.callParent(arguments);
-	},
+                        { name: "dataroot", type: "string" }
+                    ]
+                }),
+                proxy: {
+                    type: "rpc",
+                    rpcData: {
+                        service: "SnapRaid",
+                        method: "getDataList"
+                    }
+                }
+            })
+        });
+        me.callParent(arguments);
+    },
 
-	onAddButton: function () {
-		var me = this;
-		Ext.create("OMV.module.admin.service.snapraid.Data", {
-			title: _("Add data volume"),
-			uuid: OMV.UUID_UNDEFINED,
-			listeners: {
-				scope: me,
-				submit: function () {
-					this.doReload();
-				}
-			}
-		}).show();
-	},
+    onAddButton: function () {
+        var me = this;
+        Ext.create("OMV.module.admin.service.snapraid.Data", {
+            title: _("Add data volume"),
+            uuid: OMV.UUID_UNDEFINED,
+            listeners: {
+                scope: me,
+                submit: function () {
+                    this.doReload();
+                }
+            }
+        }).show();
+    },
 
-	doDeletion: function (record) {
-		var me = this;
-		OMV.Rpc.request({
-			scope: me,
-			callback: me.onDeletion,
-			rpcData: {
-				service: "SnapRaid",
-				method: "deleteData",
-				params: {
-					uuid: record.get("uuid")
-				}
-			}
-		});
-	}
+    doDeletion: function (record) {
+        var me = this;
+        OMV.Rpc.request({
+            scope: me,
+            callback: me.onDeletion,
+            rpcData: {
+                service: "SnapRaid",
+                method: "deleteData",
+                params: {
+                    uuid: record.get("uuid")
+                }
+            }
+        });
+    }
 });
 
 OMV.WorkspaceManager.registerPanel({
-	id: "datalist",
-	path: "/service/snapraid",
-	text: _("Data"),
-	position: 30,
-	className: "OMV.module.admin.service.snapraid.DataList"
+    id: "datalist",
+    path: "/service/snapraid",
+    text: _("Data"),
+    position: 30,
+    className: "OMV.module.admin.service.snapraid.DataList"
 });

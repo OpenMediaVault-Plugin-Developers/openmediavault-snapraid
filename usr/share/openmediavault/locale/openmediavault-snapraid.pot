@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-05 08:10-0500\n"
+"POT-Creation-Date: 2013-11-05 14:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,26 +26,44 @@ msgstr "Add data volume"
 -e msgid "Add exclusion"
 msgstr "Add exclusion"
 
--e msgid "Are you sure you want to scrub?"
-msgstr "Are you sure you want to scrub?"
-
--e msgid "Are you sure you want to sync?"
-msgstr "Are you sure you want to sync?"
-
 -e msgid "Block Size"
 msgstr "Block Size"
 
 -e msgid "Block size in KiB"
 msgstr "Block size in KiB"
 
+-e msgid "<br />"
+msgstr "<br />"
+
+-e msgid "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
+msgstr "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
+
+-e msgid "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
+msgstr "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
+
+-e msgid "Check"
+msgstr "Check"
+
+-e msgid "Commands"
+msgstr "Commands"
+
 -e msgid "Content"
 msgstr "Content"
+
+-e msgid "Content root"
+msgstr "Content root"
 
 -e msgid "Data"
 msgstr "Data"
 
+-e msgid "Data root"
+msgstr "Data root"
+
 -e msgid "Edit exclusion"
 msgstr "Edit exclusion"
+
+-e msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr "Enables second drive for parity. This is equivalent to RAID 6."
 
 -e msgid "Exclude"
 msgstr "Exclude"
@@ -58,6 +76,9 @@ msgstr "Excludes hidden files and directories"
 
 -e msgid "Information"
 msgstr "Information"
+
+-e msgid "Name"
+msgstr "Name"
 
 -e msgid "No Hidden"
 msgstr "No Hidden"
@@ -77,9 +98,6 @@ msgstr "QParity root"
 -e msgid "Scrub"
 msgstr "Scrub"
 
--e msgid "Scrub?"
-msgstr "Scrub?"
-
 -e msgid "Select a volume ..."
 msgstr "Select a volume ..."
 
@@ -89,18 +107,30 @@ msgstr "Settings"
 -e msgid "SnapRAID"
 msgstr "SnapRAID"
 
+-e msgid "SnapRAID check"
+msgstr "SnapRAID check"
+
+-e msgid "SnapRAID scrub"
+msgstr "SnapRAID scrub"
+
+-e msgid "SnapRAID sync"
+msgstr "SnapRAID sync"
+
 -e msgid "Sync"
 msgstr "Sync"
 
--e msgid "Sync?"
-msgstr "Sync?"
+-e msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />"
+msgstr "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />"
+
+-e msgid "Use Q-Parity"
+msgstr "Use Q-Parity"
 
 -e msgid "Volume"
 msgstr "Volume"
 
--e msgid "Volume to use for Parity storage. It must NOT be on a data disk"
-msgstr "Volume to use for Parity storage. It must NOT be on a data disk"
+-e msgid "Volume to use for Parity storage. It must NOT be on a data disk."
+msgstr "Volume to use for Parity storage. It must NOT be on a data disk."
 
--e msgid "Volume to use for Q-Parity storage (equivalent of RAID 6). It must NOT be on a data disk or the parity disk. (OPTIONAL)"
-msgstr "Volume to use for Q-Parity storage (equivalent of RAID 6). It must NOT be on a data disk or the parity disk. (OPTIONAL)"
+-e msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
+msgstr "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
 
