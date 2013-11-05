@@ -26,7 +26,7 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
     initComponent: function() {
         var me = this;
 
-        me.html = "<a href='http://snapraid.sourceforge.net/manual.html'>SnapRAID user manual</a>";
+        me.html = "<a href='http://snapraid.sourceforge.net/manual.html' target=_blank>SnapRAID user manual</a>";
         me.callParent(arguments);
     }
 });
