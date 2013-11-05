@@ -54,8 +54,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('setExclude');
         $this->registerMethod('deleteExclude');
 
-        $this->registerMethod('doSync');
-        $this->registerMethod('doScrub');
+        $this->registerMethod('executeSync');
+        $this->registerMethod('executeScrub');
+        $this->registerMethod('executeCheck');
     }
 
     public function getSettings($params, $context) {
@@ -70,7 +71,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
 
         // Modify result data
-        $object['nohidden'] = boolval($object['nohidden']);
+        $object['useqparity']   = boolval($object['useqparity']);
+        $object['nohidden']     = boolval($object['nohidden']);
 
         unset($object['contents']);
         unset($object['datas']);
@@ -91,8 +93,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "properties" : {
                 "parity"        : { "type" : "string" },
                 "mntentref"     : { "type" : "string" },
-                "qparity"       : { "type" : "string" },
-                "qmntentref"    : { "type" : "string" },
+                "useqparity"    : { "type" : "boolean" },
+                "qparity"       : { "type" : "string", "optional" : true },
+                "qmntentref"    : { "type" : "string", "optional" : true },
                 "blocksize"     : { "type" : "integer" },
                 "nohidden"      : { "type" : "boolean" }
             }
@@ -105,7 +108,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $parityRoot = "{$deviceDir}/parity.file";
         $params['parity'] = $parityRoot;
 
-        if ( $params['qmntentref'] != "" ) {
+        if ( ($params['qmntentref'] != "") && $params['useqparity'] === true ) {
+            if ( $params['qmntentref'] == $params['mntentref'] ) {
+                throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                    gettext("Parity and Q-Parity cannot be the same."));
+            }
+
             $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['qmntentref']);
             $deviceDir = $xmlConfig->get($xpath);
             $deviceDir = $deviceDir['dir'];
@@ -128,6 +136,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $object = array(
             "mntentref"     => $params['mntentref'],
             "parity"        => $params['parity'],
+            "useqparity"    => array_boolval($params, 'useqparity'),
             "qmntentref"    => $params['qmntentref'],
             "qparity"       => $params['qparity'],
             "blocksize"     => intval($params['blocksize']),
@@ -136,7 +145,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "datas"         => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
             "excludes"      => isset($oldObject['excludes']) ? $oldObject['excludes'] : array()
         );
-
 
         // Set configuration object
         if (false === $xmlConfig->replace($this->getXPath(), $object))
@@ -215,6 +223,20 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 "contentroot"   : { "type" : "string" }
             }
         }');
+
+        $parity = $xmlConfig->get("//services/snapraid/mntentref");
+        $useqparity = $xmlConfig->get("//services/snapraid/useqparity");
+        $qparity = $xmlConfig->get("//services/snapraid/qmntentref");
+
+        if ( $params['mntentref'] == $parity ) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
+        }
+
+        if ( $useqparity != 0 && $params['mntentref'] == $qparity ) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("Q-Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
+        }
 
         $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
         $deviceDir = $xmlConfig->get($xpath);
@@ -340,6 +362,20 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 "dataroot"      : { "type" : "string" }
             }
         }');
+
+        $parity = $xmlConfig->get("//services/snapraid/mntentref");
+        $useqparity = $xmlConfig->get("//services/snapraid/useqparity");
+        $qparity = $xmlConfig->get("//services/snapraid/qmntentref");
+
+        if ( $params['mntentref'] == $parity ) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
+        }
+
+        if ( $useqparity != 0 && $params['mntentref'] == $qparity ) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("Q-Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
+        }
 
         $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
         $deviceDir = $xmlConfig->get($xpath);
@@ -514,39 +550,93 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "org.openmediavault.services.snapraid.excludes.exclude");
     }
 
-    public function doSync($params, $context) {
+    public function executeSync($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
-        $xpath = "//services/snapraid";
-        $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
         }
 
-        $cmd = "sudo /usr/local/bin/snapraid sync 2>&1";
-        if(0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid sync", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
         }
     }
 
-    public function doScrub($params, $context) {
+    public function executeScrub($params, $context) {
         global $xmlConfig;
 
         // Validate the RPC caller context.
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
-        $xpath = "//services/snapraid";
-        $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
         }
 
-        $cmd = "sudo /usr/local/bin/snapraid scrub 2>&1";
-        if(0 !== $this->exec($cmd, $output)) {
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid scrub", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function executeCheck($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid check", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
         }
     }
 

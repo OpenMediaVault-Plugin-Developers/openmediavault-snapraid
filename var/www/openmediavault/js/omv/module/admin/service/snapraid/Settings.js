@@ -32,6 +32,23 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
         "OMV.data.Store"
     ],
 
+    plugins: [{
+        ptype        : "linkedfields",
+        correlations : [{
+            name : [
+                "qmntentref",
+                "qparity"
+            ],
+            conditions : [{
+                name  : "useqparity",
+                value : true
+            }],
+            properties : [
+                "enabled"
+            ]
+        }]
+    }],
+
     rpcService   : "SnapRaid",
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
@@ -81,7 +98,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 }),
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("Volume to use for Parity storage. It must NOT be on a data disk")
+                    text  : _("Volume to use for Parity storage. It must NOT be on a data disk.")
                 }]
             },{
                 xtype      : "textfield",
@@ -89,6 +106,15 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 fieldLabel : _("Parity root"),
                 allowNone  : true,
                 readOnly   : true
+            },{
+                xtype      : "checkbox",
+                name       : "useqparity",
+                fieldLabel : _("Use Q-Parity"),
+                checked    : false,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Enables second drive for parity. This is equivalent to RAID 6.")
+                }]
             },{
                 xtype         : "combo",
                 name          : "qmntentref",
@@ -125,7 +151,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 }),
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("Volume to use for Q-Parity storage (equivalent of RAID 6). It must NOT be on a data disk or the parity disk. (OPTIONAL)")
+                    text  : _("Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk.")
                 }]
             },{
                 xtype      : "textfield",
@@ -156,62 +182,90 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     ptype : "fieldinfo",
                     text  : _("Excludes hidden files and directories")
                 }]
+            }]
+        },{
+            xtype    : "fieldset",
+            title    : _("Commands"),
+            defaults : {
+                labelSeparator : ""
+            },
+            items : [{
+                border : false,
+                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />")
             },{
                 xtype   : "button",
                 name    : "sync",
                 text    : _("Sync"),
                 scope   : this,
-                handler : function() {
-                    OMV.MessageBox.show({
-                        title   : _("Sync?"),
-                        msg     : _("Are you sure you want to sync?"),
-                        buttons : Ext.Msg.YESNO,
-                        fn      : function(answer) {
-                            if (answer !== "yes")
-                               return;
-
-                            OMV.Rpc.request({
-                                scope       : me,
-                                relayErrors : false,
-                                rpcData     : {
-                                    service : "SnapRaid",
-                                    method  : "doSync"
-                                }
-                            });
-                        },
-                        scope : me,
-                        icon  : Ext.Msg.QUESTION
-                    });
-                }
+                handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
+            },{
+                border : false,
+                html   : _("<br /><br />Scrubs the array, checking for silent errors.<br /><br />")
             },{
                 xtype   : "button",
                 name    : "scrub",
                 text    : _("Scrub"),
                 scope   : this,
-                handler : function() {
-                    OMV.MessageBox.show({
-                        title   : _("Scrub?"),
-                        msg     : _("Are you sure you want to scrub?"),
-                        buttons : Ext.Msg.YESNO,
-                        fn      : function(answer) {
-                            if (answer !== "yes")
-                               return;
-
-                            OMV.Rpc.request({
-                                scope       : me,
-                                relayErrors : false,
-                                rpcData     : {
-                                    service : "SnapRaid",
-                                    method  : "doScrub"
-                                }
-                            });
-                        },
-                        scope : me,
-                        icon  : Ext.Msg.QUESTION
-                    });
-                }
+                handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
+            },{
+                border : false,
+                html   : _("<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />")
+            },{
+                xtype   : "button",
+                name    : "check",
+                text    : _("Check"),
+                scope   : this,
+                handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
+            },{
+                border : false,
+                html   : _("<br />")
             }]
         }];
+    },
+
+    onSyncButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title: _("SnapRAID sync"),
+            rpcService: "SnapRaid",
+            rpcMethod: "executeSync",
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
+    },
+
+    onScrubButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title: _("SnapRAID scrub"),
+            rpcService: "SnapRaid",
+            rpcMethod: "executeScrub",
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
+    },
+
+    onCheckButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title: _("SnapRAID check"),
+            rpcService: "SnapRaid",
+            rpcMethod: "executeCheck",
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
     }
 });
 

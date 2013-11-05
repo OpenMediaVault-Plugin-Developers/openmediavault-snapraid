@@ -34,6 +34,8 @@ xmlstarlet sel -t -m "//services/snapraid" \
     -i "nohidden[. = '1']" -o "nohidden" -b \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
 
+#echo "content /var/snapraid/content" >> ${SNAPRAID_CONFIG}
+
 # Process content
 count=$(omv_config_get_count "//services/snapraid/contents/content")
 index=0
