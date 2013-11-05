@@ -37,7 +37,7 @@ ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
 # Process content
 count=$(omv_config_get_count "//services/snapraid/contents/content")
 index=0
-while [ ${index} -lt ${count} ]; do
+while [ ${index} -le ${count} ]; do
 
     contentroot=$(omv_config_get "//services/snapraid/contents/content[position()=${index}]/contentroot")
 
@@ -51,7 +51,7 @@ done
 # Process data
 count=$(omv_config_get_count "//services/snapraid/datas/data")
 index=0
-while [ ${index} -lt ${count} ]; do
+while [ ${index} -le ${count} ]; do
 
     name=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/name")
     dataroot=$(omv_config_get "//services/snapraid/datas/data[position()=${index}]/dataroot")
@@ -66,7 +66,7 @@ done
 # Process excludes
 count=$(omv_config_get_count "//services/snapraid/excludes/exclude")
 index=0
-while [ ${index} -lt ${count} ]; do
+while [ ${index} -le ${count} ]; do
 
     exclusion=$(omv_config_get "//services/snapraid/excludes/exclude[position()=${index}]/exclusion")
 
