@@ -54,9 +54,15 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('setExclude');
         $this->registerMethod('deleteExclude');
 
+        $this->registerMethod('getIncludeList');
+        $this->registerMethod('getInclude');
+        $this->registerMethod('setInclude');
+        $this->registerMethod('deleteInclude');
+
         $this->registerMethod('executeSync');
         $this->registerMethod('executeScrub');
         $this->registerMethod('executeCheck');
+        $this->registerMethod('executeDiff');
     }
 
     public function getSettings($params, $context) {
@@ -77,6 +83,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         unset($object['contents']);
         unset($object['datas']);
         unset($object['excludes']);
+        unset($object['includes']);
 
         return $object;
     }
@@ -164,7 +171,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "nohidden"      => array_boolval($params, 'nohidden'),
             "contents"      => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
             "datas"         => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
-            "excludes"      => isset($oldObject['excludes']) ? $oldObject['excludes'] : array()
+            "excludes"      => isset($oldObject['excludes']) ? $oldObject['excludes'] : array(),
+            "includes"      => isset($oldObject['includes']) ? $oldObject['includes'] : array()
         );
 
         // Set configuration object
@@ -425,8 +433,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Set the configuration object.
         $success = FALSE;
 
-        // Append the configuration object.
-        $success = $xmlConfig->set("//services/snapraid/datas", array("data" => $object));
+        if($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) {
+            // Append object to configuration.
+            $success = $xmlConfig->set("//services/snapraid/datas", array("data" => $object));
+        } else {
+            // Update existing configuration object.
+            $success = $xmlConfig->replace("//services/snapraid/datas/data[uuid='{$params['uuid']}']", $object);
+        }
 
         if(FALSE === $success) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
@@ -581,6 +594,124 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "org.openmediavault.services.snapraid.excludes.exclude");
     }
 
+    public function getIncludeList($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "start"     : { "type" : "integer" },
+                "limit"     : { '.$GLOBALS['OMV_JSONSCHEMA_COUNTFIELD'].' },
+                "sortfield" : { '.$GLOBALS['OMV_JSONSCHEMA_SORTFIELD'].' },
+                "sortdir"   : { '.$GLOBALS['OMV_JSONSCHEMA_SORTDIR'].' }
+            }
+        }');
+
+        // Get configuration data.
+        $xpath = "//services/snapraid/includes/include";
+        $objects = $xmlConfig->getList($xpath);
+        if(is_null($objects)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        }
+
+        // Filter the result.
+        return $this->applyFilter($objects, $params['start'], $params['limit'],
+            $params['sortfield'], $params['sortdir']);
+    }
+
+    public function getInclude($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array("role" => OMV_ROLE_ADMINISTRATOR));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' }
+            }
+        }');
+
+          // Get the configuration object.
+        $xpath = sprintf("//services/snapraid/includes/include[uuid='%s']", $params['uuid']);
+        $object = $xmlConfig->get($xpath);
+        if(is_null($object)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        }
+
+        return $object;
+    }
+
+    public function setInclude($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid"      : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "inclusion" : { "type" : "string" }
+            }
+        }');
+
+        // Prepare configuration data.
+        $object = array(
+            "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "inclusion" => $params['inclusion']
+        );
+
+        // Set the configuration data.
+        $success = FALSE;
+        if($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) {
+            // Append object to configuration.
+            $success = $xmlConfig->set("//services/snapraid/includes", array("include" => $object));
+        } else {
+            // Update existing configuration object.
+            $success = $xmlConfig->replace("//services/snapraid/includes/include[uuid='{$params['uuid']}']", $object);
+        }
+
+        if(FALSE === $success) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
+        }
+
+        // Notify configuration changes.
+        $dispatcher = &OMVNotifyDispatcher::getInstance();
+        $dispatcher->notify(($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ?
+            OMV_NOTIFY_CREATE : OMV_NOTIFY_MODIFY,
+            "org.openmediavault.services.snapraid.includes.include", $object);
+
+        // Return the configuration object.
+        return $object;
+    }
+
+    public function deleteInclude($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, '{
+            "type"       : "object",
+            "properties" : {
+                "uuid" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' }
+            }
+        }');
+
+        // Delete the configuration object.
+        $xpath = sprintf("//services/snapraid/includes/include[uuid='%s']", $params['uuid']);
+        return $this->deleteConfigObjectByPath($xpath,
+            "org.openmediavault.services.snapraid.includes.include");
+    }
+
     public function executeSync($params, $context) {
         global $xmlConfig;
 
@@ -671,6 +802,132 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         }
     }
 
+    public function executeDiff($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid diff", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function getParityCandidates($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Get a list of mount points, except bind mounts.
+        $xpath = "//system/fstab/mntent[(contains(ext4))]";
+        $objects = $xmlConfig->getList($xpath);
+        if(is_null($objects)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        }
+
+        // Get the filesystem details for each mount point.
+        $result = array();
+        foreach($objects as $objectk => $objectv) {
+            $fs = new OMVFilesystem($objectv['fsname']);
+            if(!$fs->exists()) {
+                continue;
+            }
+
+            // Skip the filesystems that are not mounted at the moment.
+            if(FALSE === $fs->isMounted())
+                continue;
+
+            // Get some filesystem details.
+            $devicefile = $fs->getDeviceFile();
+            $label = $fs->getLabel();
+
+            // Prepare result object.
+            $object = array(
+                "uuid"        => $objectv['uuid'],
+                "devicefile"  => $devicefile,
+                "description" => !empty($label) ? $label : $devicefile
+            );
+
+            // Get some more filesystem details if possible.
+            if(FALSE !== ($fsStats = $fs->getStatistics())) {
+                $object['description'] = sprintf(
+                    gettext("%s (%s available)"), $object['description'],
+                    binary_format($fsStats['available']));
+            }
+
+            $result[] = $object;
+        }
+
+        return $result;
+    }
+
+    public function getCandidates($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Get a list of mount points, except bind mounts.
+        $xpath = "//system/fstab/mntent[not(contains(opts,'bind'))]";
+        $objects = $xmlConfig->getList($xpath);
+        if(is_null($objects)) {
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
+        }
+
+        // Get the filesystem details for each mount point.
+        $result = array();
+        foreach($objects as $objectk => $objectv) {
+            $fs = new OMVFilesystem($objectv['fsname']);
+            if(!$fs->exists())
+                continue;
+
+            // Skip the filesystems that are not mounted at the moment.
+            if(FALSE === $fs->isMounted())
+                continue;
+
+            // Get some filesystem details.
+            $devicefile = $fs->getDeviceFile();
+            $label = $fs->getLabel();
+
+            // Prepare result object.
+            $object = array(
+                "uuid"        => $objectv['uuid'],
+                "devicefile"  => $devicefile,
+                "description" => !empty($label) ? $label : $devicefile
+            );
+
+            // Get some more filesystem details if possible.
+            if(FALSE !== ($fsStats = $fs->getStatistics())) {
+                $object['description'] = sprintf(
+                    gettext("%s (%s available)"), $object['description'],
+                    binary_format($fsStats['available']));
+            }
+
+            $result[] = $object;
+        }
+
+        return $result;
+    }
 }
 
 // Register the RPC service.

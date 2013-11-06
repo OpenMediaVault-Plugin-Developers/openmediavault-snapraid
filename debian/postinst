@@ -20,6 +20,7 @@ configure)
         object="${object}<contents></contents>"
         object="${object}<datas></datas>"
         object="${object}<excludes></excludes>"
+        object="${object}<includes></includes>"
         omv_config_add_element "/config/services" "snapraid" "${object}" true
     fi
 

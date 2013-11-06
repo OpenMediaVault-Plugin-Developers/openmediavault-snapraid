@@ -78,3 +78,17 @@ while [ ${index} -le ${count} ]; do
 
     index=$(( ${index} + 1 ))
 done
+
+# Process includes
+count=$(omv_config_get_count "//services/snapraid/includes/include")
+index=0
+while [ ${index} -le ${count} ]; do
+
+    inclusion=$(omv_config_get "//services/snapraid/includes/include[position()=${index}]/inclusion")
+
+    if [ "${inclusion}" != "" ]; then
+        echo "exclude ${inclusion}" >> ${SNAPRAID_CONFIG}
+    fi
+
+    index=$(( ${index} + 1 ))
+done

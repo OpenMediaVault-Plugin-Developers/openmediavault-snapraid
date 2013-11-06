@@ -120,7 +120,6 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
     ],
 
     hidePagingToolbar: false,
-    hideEditButton: true,
     stateful: true,
     stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns: [{
@@ -168,6 +167,21 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
             listeners: {
                 scope: me,
                 submit: function () {
+                    this.doReload();
+                }
+            }
+        }).show();
+    },
+
+    onEditButton: function() {
+        var me = this;
+        var record = me.getSelected();
+        Ext.create("OMV.module.admin.service.snapraid.Data", {
+            title: _("Edit data volume"),
+            uuid: record.get("uuid"),
+            listeners: {
+                scope: me,
+                submit: function() {
                     this.doReload();
                 }
             }

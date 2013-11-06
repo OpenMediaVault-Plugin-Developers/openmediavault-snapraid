@@ -86,8 +86,8 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     proxy : {
                         type : "rpc",
                         rpcData : {
-                            service : "ShareMgmt",
-                            method  : "getCandidates"
+                            service : "SnapRaid",
+                            method  : "getParityCandidates"
                         },
                         appendSortParams : false
                     },
@@ -103,7 +103,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype      : "textfield",
                 name       : "parity",
-                fieldLabel : _("Parity root"),
+                fieldLabel : _("Parity volume"),
                 allowNone  : true,
                 readOnly   : true
             },{
@@ -139,7 +139,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     proxy : {
                         type : "rpc",
                         rpcData : {
-                            service : "ShareMgmt",
+                            service : "SnapRaid",
                             method  : "getCandidates"
                         },
                         appendSortParams : false
@@ -156,7 +156,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype      : "textfield",
                 name       : "qparity",
-                fieldLabel : _("QParity root"),
+                fieldLabel : _("QParity volume"),
                 allowNone  : true,
                 readOnly   : true
             },{
@@ -218,6 +218,15 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
             },{
                 border : false,
+                html   : _("<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />")
+            },{
+                xtype   : "button",
+                name    : "check",
+                text    : _("Diff"),
+                scope   : this,
+                handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
+            },{
+                border : false,
                 html   : _("<br />")
             }]
         }];
@@ -259,6 +268,21 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             title: _("SnapRAID check"),
             rpcService: "SnapRaid",
             rpcMethod: "executeCheck",
+            listeners: {
+                scope: me,
+                exception: function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
+    },
+
+    onDiffButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title: _("SnapRAID diff"),
+            rpcService: "SnapRaid",
+            rpcMethod: "executeDiff",
             listeners: {
                 scope: me,
                 exception: function(wnd, error) {
