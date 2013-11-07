@@ -56,12 +56,12 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
         return [{
             xtype: "textfield",
             name: "name",
-            fieldLabel: _("Name"),
+            fieldLabel: _("Volume"),
             allowBlank: false
         },{
             xtype         : "combo",
             name          : "mntentref",
-            fieldLabel    : _("Data"),
+            fieldLabel    : _("Path"),
             emptyText     : _("Select a volume ..."),
             allowBlank    : false,
             allowNone     : false,
@@ -123,12 +123,12 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
     stateful: true,
     stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns: [{
-        text: _("Name"),
+        text: _("Volume"),
         sortable: true,
         dataIndex: "name",
         stateId: "name"
     },{
-        text: _("Volume"),
+        text: _("Path"),
         sortable: true,
         dataIndex: "dataroot",
         stateId: "dataroot"

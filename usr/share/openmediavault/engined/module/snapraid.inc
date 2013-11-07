@@ -63,6 +63,10 @@ class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyLi
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
             "org.openmediavault.services.snapraid.excludes.exclude",
             array($this, "setDirty"));
+        $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            "org.openmediavault.services.snapraid.includes.include",
+            array($this, "setDirty"));
     }
 }
 

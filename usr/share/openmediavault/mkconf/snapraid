@@ -65,6 +65,13 @@ while [ ${index} -le ${count} ]; do
     index=$(( ${index} + 1 ))
 done
 
+# Add default excludes
+echo "exclude *.bak" >> ${SNAPRAID_CONFIG}
+echo "exclude *.unrecoverable" >> ${SNAPRAID_CONFIG}
+echo "exclude /tmp/" >> ${SNAPRAID_CONFIG}
+echo "exclude /lost+found/" >> ${SNAPRAID_CONFIG}
+echo "exclude .content" >> ${SNAPRAID_CONFIG}
+
 # Process excludes
 count=$(omv_config_get_count "//services/snapraid/excludes/exclude")
 index=0

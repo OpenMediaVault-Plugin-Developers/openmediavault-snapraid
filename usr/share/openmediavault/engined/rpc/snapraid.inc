@@ -63,6 +63,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('executeScrub');
         $this->registerMethod('executeCheck');
         $this->registerMethod('executeDiff');
+
+        $this->registerMethod('getParityCandidates');
+        $this->registerMethod('getCandidates');
     }
 
     public function getSettings($params, $context) {
@@ -839,7 +842,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
         // Get a list of mount points, except bind mounts.
-        $xpath = "//system/fstab/mntent[(contains(ext4))]";
+        $xpath = "//system/fstab/mntent[(contains(type,'ext4'))]";
         $objects = $xmlConfig->getList($xpath);
         if(is_null($objects)) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-05 14:26-0500\n"
+"POT-Creation-Date: 2013-11-06 14:48-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,9 @@ msgstr "Add data volume"
 -e msgid "Add exclusion"
 msgstr "Add exclusion"
 
+-e msgid "Add inclusion"
+msgstr "Add inclusion"
+
 -e msgid "Block Size"
 msgstr "Block Size"
 
@@ -37,6 +40,9 @@ msgstr "<br />"
 
 -e msgid "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
 msgstr "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
+
+-e msgid "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
+msgstr "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
 
 -e msgid "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
 msgstr "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
@@ -59,8 +65,17 @@ msgstr "Data"
 -e msgid "Data root"
 msgstr "Data root"
 
+-e msgid "Diff"
+msgstr "Diff"
+
+-e msgid "Edit data volume"
+msgstr "Edit data volume"
+
 -e msgid "Edit exclusion"
 msgstr "Edit exclusion"
+
+-e msgid "Edit inclusion"
+msgstr "Edit inclusion"
 
 -e msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr "Enables second drive for parity. This is equivalent to RAID 6."
@@ -74,6 +89,12 @@ msgstr "Excludes"
 -e msgid "Excludes hidden files and directories"
 msgstr "Excludes hidden files and directories"
 
+-e msgid "Include"
+msgstr "Include"
+
+-e msgid "Includes"
+msgstr "Includes"
+
 -e msgid "Information"
 msgstr "Information"
 
@@ -86,14 +107,14 @@ msgstr "No Hidden"
 -e msgid "Parity"
 msgstr "Parity"
 
--e msgid "Parity root"
-msgstr "Parity root"
+-e msgid "Parity volume"
+msgstr "Parity volume"
 
 -e msgid "Q-Parity"
 msgstr "Q-Parity"
 
--e msgid "QParity root"
-msgstr "QParity root"
+-e msgid "QParity volume"
+msgstr "QParity volume"
 
 -e msgid "Scrub"
 msgstr "Scrub"
@@ -109,6 +130,9 @@ msgstr "SnapRAID"
 
 -e msgid "SnapRAID check"
 msgstr "SnapRAID check"
+
+-e msgid "SnapRAID diff"
+msgstr "SnapRAID diff"
 
 -e msgid "SnapRAID scrub"
 msgstr "SnapRAID scrub"
