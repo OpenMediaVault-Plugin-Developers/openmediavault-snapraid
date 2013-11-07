@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-07 07:12-0500\n"
+"POT-Creation-Date: 2013-11-07 07:29-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,12 @@ msgstr "<br /><br />Checks all the files and the redundancy data. All the files 
 
 -e msgid "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
 msgstr "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
+
+-e msgid "<br /><br />Prints a report of the status of the array.<br /><br />"
+msgstr "<br /><br />Prints a report of the status of the array.<br /><br />"
+
+-e msgid "<br /><br />Restore the last backup/snapshot.<br /><br />"
+msgstr "<br /><br />Restore the last backup/snapshot.<br /><br />"
 
 -e msgid "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
 msgstr "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
@@ -89,6 +95,9 @@ msgstr "Excludes"
 -e msgid "Excludes hidden files and directories"
 msgstr "Excludes hidden files and directories"
 
+-e msgid "Fix"
+msgstr "Fix"
+
 -e msgid "Include"
 msgstr "Include"
 
@@ -134,11 +143,20 @@ msgstr "SnapRAID check"
 -e msgid "SnapRAID diff"
 msgstr "SnapRAID diff"
 
+-e msgid "SnapRAID fix"
+msgstr "SnapRAID fix"
+
 -e msgid "SnapRAID scrub"
 msgstr "SnapRAID scrub"
 
+-e msgid "SnapRAID status"
+msgstr "SnapRAID status"
+
 -e msgid "SnapRAID sync"
 msgstr "SnapRAID sync"
+
+-e msgid "Status"
+msgstr "Status"
 
 -e msgid "Sync"
 msgstr "Sync"
