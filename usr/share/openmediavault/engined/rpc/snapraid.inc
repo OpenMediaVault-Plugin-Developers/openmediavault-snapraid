@@ -60,6 +60,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('setInclude');
         $this->registerMethod('deleteInclude');
 
+        $this->registerMethod('getCommands');
         $this->registerMethod('executeSync');
         $this->registerMethod('executeScrub');
         $this->registerMethod('executeCheck');
@@ -718,6 +719,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "org.openmediavault.services.snapraid.includes.include");
     }
 
+    public function getCommands($params, $context) {
+
+    }
+    
     public function executeSync($params, $context) {
         global $xmlConfig;
 

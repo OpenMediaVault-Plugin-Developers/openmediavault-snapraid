@@ -22,6 +22,7 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
+// require("js/omv/workspace/window/plugin/ConfigObject.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Commands", {
     extend : "OMV.workspace.form.Panel",
@@ -29,6 +30,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
         "OMV.data.Model",
         "OMV.data.Store"
     ],
+
+    rpcService   : "SnapRaid",
+    rpcGetMethod : "getCommands",
 
     getFormItems : function() {
         var me = this;
