@@ -34,6 +34,7 @@ xmlstarlet sel -t -m "//services/snapraid" \
     -i "nohidden[. = '1']" -o "nohidden" -b \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
 
+# Add default content
 #echo "content /var/snapraid/content" >> ${SNAPRAID_CONFIG}
 
 # Process content
@@ -94,7 +95,7 @@ while [ ${index} -le ${count} ]; do
     inclusion=$(omv_config_get "//services/snapraid/includes/include[position()=${index}]/inclusion")
 
     if [ "${inclusion}" != "" ]; then
-        echo "exclude ${inclusion}" >> ${SNAPRAID_CONFIG}
+        echo "include ${inclusion}" >> ${SNAPRAID_CONFIG}
     fi
 
     index=$(( ${index} + 1 ))
