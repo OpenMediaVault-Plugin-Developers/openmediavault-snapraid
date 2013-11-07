@@ -37,6 +37,6 @@ OMV.WorkspaceManager.registerPanel({
     id: "info",
     path: "/service/snapraid",
     text: _("Information"),
-    position: 60,
+    position: 70,
     className: "OMV.module.admin.service.snapraid.Info"
 });

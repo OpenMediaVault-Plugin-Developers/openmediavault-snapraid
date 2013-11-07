@@ -56,7 +56,7 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
         return [{
             xtype         : "combo",
             name          : "mntentref",
-            fieldLabel    : _("Content"),
+            fieldLabel    : _("Path"),
             emptyText     : _("Select a volume ..."),
             allowBlank    : false,
             allowNone     : false,
@@ -119,7 +119,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
     stateful: true,
     stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns: [{
-        text: _("Volume"),
+        text: _("Path"),
         sortable: true,
         dataIndex: "contentroot",
         stateId: "contentroot"

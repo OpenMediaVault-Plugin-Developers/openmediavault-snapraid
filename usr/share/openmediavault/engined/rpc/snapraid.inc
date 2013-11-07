@@ -3,6 +3,7 @@
 /**
  * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
  * Copyright (C)      2013 OpenMediaVault Plugin Developers
+ * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,6 +64,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('executeScrub');
         $this->registerMethod('executeCheck');
         $this->registerMethod('executeDiff');
+        $this->registerMethod('executeStatus');
+        $this->registerMethod('executeFix');
 
         $this->registerMethod('getParityCandidates');
         $this->registerMethod('getCandidates');
@@ -826,6 +829,66 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
             $cmd = "/bin/su";
             $cmdArgs = array("-c", "/usr/local/bin/snapraid diff", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function executeStatus($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid status", "root");
+            if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
+                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
+            }
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function executeFix($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/bin/su";
+            $cmdArgs = array("-c", "/usr/local/bin/snapraid fix", "root");
             if(FALSE === $this->execve($cmd, $cmdArgs, $bgOutputFilename)) {
                 throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd." ".implode(" ", $cmdArgs), "");
             }

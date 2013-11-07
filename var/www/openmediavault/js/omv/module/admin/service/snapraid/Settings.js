@@ -54,8 +54,6 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
     rpcSetMethod : "setSettings",
 
     getFormItems : function() {
-        var me = this;
-
         return [{
             xtype    : "fieldset",
             title    : _("Settings"),
@@ -183,113 +181,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     text  : _("Excludes hidden files and directories")
                 }]
             }]
-        },{
-            xtype    : "fieldset",
-            title    : _("Commands"),
-            defaults : {
-                labelSeparator : ""
-            },
-            items : [{
-                border : false,
-                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />")
-            },{
-                xtype   : "button",
-                name    : "sync",
-                text    : _("Sync"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
-            },{
-                border : false,
-                html   : _("<br /><br />Scrubs the array, checking for silent errors.<br /><br />")
-            },{
-                xtype   : "button",
-                name    : "scrub",
-                text    : _("Scrub"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
-            },{
-                border : false,
-                html   : _("<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />")
-            },{
-                xtype   : "button",
-                name    : "check",
-                text    : _("Check"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
-            },{
-                border : false,
-                html   : _("<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />")
-            },{
-                xtype   : "button",
-                name    : "check",
-                text    : _("Diff"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
-            },{
-                border : false,
-                html   : _("<br />")
-            }]
         }];
-    },
-
-    onSyncButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID sync"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeSync",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onScrubButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID scrub"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeScrub",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onCheckButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID check"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeCheck",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onDiffButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID diff"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeDiff",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
     }
 });
 
