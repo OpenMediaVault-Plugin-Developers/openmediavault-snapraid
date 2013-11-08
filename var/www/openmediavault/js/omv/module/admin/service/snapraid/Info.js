@@ -28,7 +28,7 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
 
         me.html = "<a href='http://snapraid.sourceforge.net/manual.html' target=_blank>SnapRAID user manual</a>";
         me.html += "<br /><br /><br />The following excludes are written to the snapraid config file by default:"
-        me.html += "<br /><ul><li>*.bak</li><li>*.unrecoverable</li><li>/tmp/</li><li>/lost+found/</li><li>.content</li></ul>"
+        me.html += "<br /><ul><li>*.bak</li><li>*.unrecoverable</li><li>/tmp/</li><li>lost+found/</li><li>.content</li><li>aquota.group</li><li>aquota.user</li></ul>"
         me.callParent(arguments);
     }
 });
