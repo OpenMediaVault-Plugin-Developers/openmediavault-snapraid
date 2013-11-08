@@ -16,6 +16,7 @@ configure)
         object="${object}<qparity></qparity>"
         object="${object}<qmntentref></qmntentref>"
         object="${object}<blocksize>256</blocksize>"
+        object="${object}<autosave>0</autosave>"
         object="${object}<nohidden>0</nohidden>"
         object="${object}<contents></contents>"
         object="${object}<datas></datas>"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-07 08:02-0500\n"
+"POT-Creation-Date: 2013-11-08 13:20-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,6 +28,12 @@ msgstr "Add exclusion"
 
 -e msgid "Add inclusion"
 msgstr "Add inclusion"
+
+-e msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+msgstr "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+
+-e msgid "Auto Save"
+msgstr "Auto Save"
 
 -e msgid "Block Size"
 msgstr "Block Size"
@@ -74,6 +80,9 @@ msgstr "Data root"
 -e msgid "Diff"
 msgstr "Diff"
 
+-e msgid "Edit content volume"
+msgstr "Edit content volume"
+
 -e msgid "Edit data volume"
 msgstr "Edit data volume"
 
@@ -106,6 +115,9 @@ msgstr "Includes"
 
 -e msgid "Information"
 msgstr "Information"
+
+-e msgid "Label"
+msgstr "Label"
 
 -e msgid "No Hidden"
 msgstr "No Hidden"

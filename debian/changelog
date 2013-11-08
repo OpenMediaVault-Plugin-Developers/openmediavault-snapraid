@@ -1,5 +1,5 @@
-openmediavault-snapraid (0.5.4) stable; urgency=low
+openmediavault-snapraid (0.5.5) stable; urgency=low
 
   * Initial release for OMV 0.5
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 05 Nov 2013 14:18:27 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 08 Nov 2013 13:17:27 -0500

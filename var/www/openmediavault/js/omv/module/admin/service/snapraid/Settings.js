@@ -172,6 +172,20 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     text  : _("Block size in KiB")
                 }]
             },{
+                xtype         : "numberfield",
+                name          : "autosave",
+                fieldLabel    : _("Auto Save"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 0,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
+                }]
+            },{
                 xtype      : "checkbox",
                 name       : "nohidden",
                 fieldLabel : _("No Hidden"),

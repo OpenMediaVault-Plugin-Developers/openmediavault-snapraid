@@ -25,6 +25,7 @@ require_once "openmediavault/error.inc";
 require_once "openmediavault/util.inc";
 require_once "openmediavault/rpcservice.inc";
 require_once "openmediavault/notify.inc";
+require_once("openmediavault/system.inc");
 
 class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
@@ -86,6 +87,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Modify result data
         $object['useqparity']   = boolval($object['useqparity']);
         $object['nohidden']     = boolval($object['nohidden']);
+        $object['autosave']     = intval($object['autosave']);
 
         unset($object['contents']);
         unset($object['datas']);
@@ -111,6 +113,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 "qparity"       : { "type" : "string", "optional" : true },
                 "qmntentref"    : { "type" : "string", "optional" : true },
                 "blocksize"     : { "type" : "integer" },
+                "autosave"      : { "type" : "integer" },
                 "nohidden"      : { "type" : "boolean" }
             }
         }');
@@ -175,6 +178,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "qmntentref"    => $params['qmntentref'],
             "qparity"       => $params['qparity'],
             "blocksize"     => intval($params['blocksize']),
+            "autosave"      => intval($params['autosave']),
             "nohidden"      => array_boolval($params, 'nohidden'),
             "contents"      => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
             "datas"         => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
@@ -215,8 +219,21 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
 
+        // Get filesystem label
+        $result = array();
+        foreach($objects as $objectk => $objectv) {
+            $fsname = $xmlConfig->get("//system/fstab/mntent[uuid='{$objectv['mntentref']}']");
+            $fs = new OMVFilesystem($fsname['fsname']);
+            $object = array(
+                "uuid" => $objectv['uuid'],
+                "label" => $fs->getLabel(),
+                "contentroot" => $objectv['contentroot']
+            );
+            $result[] = $object;
+        }
+
         // Filter the result.
-        return $this->applyFilter($objects, $params['start'],
+        return $this->applyFilter($result, $params['start'],
             $params['limit'], $params['sortfield'], $params['sortdir']);
     }
 
@@ -296,8 +313,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Set the configuration object.
         $success = FALSE;
 
-        // Append the configuration object.
-        $success = $xmlConfig->set("//services/snapraid/contents", array("content" => $object));
+        if($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) {
+            // Append object to configuration.
+            $success = $xmlConfig->set("//services/snapraid/contents", array("content" => $object));
+        } else {
+            // Update existing configuration object.
+            $success = $xmlConfig->replace("//services/snapraid/contents/content[uuid='{$params['uuid']}']", $object);
+        }
 
         if(FALSE === $success) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
@@ -358,8 +380,22 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
         }
 
+        // Get filesystem label
+        $result = array();
+        foreach($objects as $objectk => $objectv) {
+            $fsname = $xmlConfig->get("//system/fstab/mntent[uuid='{$objectv['mntentref']}']");
+            $fs = new OMVFilesystem($fsname['fsname']);
+            $object = array(
+                "uuid" => $objectv['uuid'],
+                "label" => $fs->getLabel(),
+                "volume" => $objectv['mntentref'],
+                "dataroot" => $objectv['dataroot']
+            );
+            $result[] = $object;
+        }
+
         // Filter the result.
-        return $this->applyFilter($objects, $params['start'],
+        return $this->applyFilter($result, $params['start'],
             $params['limit'], $params['sortfield'], $params['sortdir']);
     }
 
@@ -722,7 +758,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
     public function getCommands($params, $context) {
 
     }
-    
+
     public function executeSync($params, $context) {
         global $xmlConfig;
 

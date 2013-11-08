@@ -93,12 +93,12 @@ Ext.define("OMV.module.admin.service.snapraid.Data", {
                 }]
             })
         },{
-                xtype      : "textfield",
-                name       : "dataroot",
-                fieldLabel : _("Data root"),
-                allowNone  : true,
-                readOnly   : true,
-                hidden     : true
+            xtype      : "textfield",
+            name       : "dataroot",
+            fieldLabel : _("Data root"),
+            allowNone  : true,
+            readOnly   : true,
+            hidden     : true
         }];
     }
 });
@@ -123,10 +123,15 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
     stateful: true,
     stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns: [{
+        text: _("Label"),
+        sortable: true,
+        dataIndex: "label",
+        stateId: "label"
+    },{
         text: _("Volume"),
         sortable: true,
-        dataIndex: "name",
-        stateId: "name"
+        dataIndex: "volume",
+        stateId: "volume"
     },{
         text: _("Path"),
         sortable: true,
@@ -143,7 +148,8 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
                     idProperty: "uuid",
                     fields: [
                         { name: "uuid", type: "string" },
-                        { name: "name", type: "string" },
+                        { name: "label", type: "string" },
+                        { name: "volume", type: "string" },
                         { name: "dataroot", type: "string" }
                     ]
                 }),

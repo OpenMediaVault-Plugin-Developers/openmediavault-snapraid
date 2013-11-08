@@ -88,12 +88,12 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
                 }]
             })
         },{
-                xtype      : "textfield",
-                name       : "contentroot",
-                fieldLabel : _("Content root"),
-                allowNone  : true,
-                readOnly   : true,
-                hidden     : true
+            xtype      : "textfield",
+            name       : "contentroot",
+            fieldLabel : _("Content root"),
+            allowNone  : true,
+            readOnly   : true,
+            hidden     : true
         }];
     }
 });
@@ -115,10 +115,14 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
     ],
 
     hidePagingToolbar: false,
-    hideEditButton: true,
     stateful: true,
     stateId: "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns: [{
+        text: _("Label"),
+        sortable: true,
+        dataIndex: "label",
+        stateId: "label"
+    },{
         text: _("Path"),
         sortable: true,
         dataIndex: "contentroot",
@@ -134,6 +138,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
                     idProperty: "uuid",
                     fields: [
                         { name: "uuid", type: "string" },
+                        { name: "label", type: "string" },
                         { name: "contentroot", type: "string" }
                     ]
                 }),
@@ -157,6 +162,21 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
             listeners: {
                 scope: me,
                 submit: function () {
+                    this.doReload();
+                }
+            }
+        }).show();
+    },
+
+    onEditButton: function() {
+        var me = this;
+        var record = me.getSelected();
+        Ext.create("OMV.module.admin.service.snapraid.Content", {
+            title: _("Edit content volume"),
+            uuid: record.get("uuid"),
+            listeners: {
+                scope: me,
+                submit: function() {
                     this.doReload();
                 }
             }
