@@ -779,9 +779,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid sync";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
@@ -810,9 +808,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid scrub";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
@@ -841,9 +837,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid check";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
@@ -872,9 +866,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid diff";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
@@ -903,9 +895,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid status";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
@@ -934,9 +924,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid fix";
-            if(0 !== $this->exec($cmd, $output, $bgOutputFilename)) {
-                throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
-            }
+            $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
         } catch(Exception $e) {
