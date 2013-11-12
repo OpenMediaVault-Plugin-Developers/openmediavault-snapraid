@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-11 06:55-0500\n"
+"POT-Creation-Date: 2013-11-12 10:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,174 +17,177 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
--e msgid "Add content volume"
+msgid "Add content volume"
 msgstr "Add content volume"
 
--e msgid "Add data volume"
+msgid "Add data volume"
 msgstr "Add data volume"
 
--e msgid "Add exclusion"
+msgid "Add exclusion"
 msgstr "Add exclusion"
 
--e msgid "Add inclusion"
+msgid "Add inclusion"
 msgstr "Add inclusion"
 
--e msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
 msgstr "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
 
--e msgid "Auto Save"
+msgid "Auto Save"
 msgstr "Auto Save"
 
--e msgid "Block Size"
+msgid "Block Size"
 msgstr "Block Size"
 
--e msgid "Block size in KiB"
+msgid "Block size in KiB"
 msgstr "Block size in KiB"
 
--e msgid "<br />"
-msgstr "<br />"
-
--e msgid "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
-msgstr "<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />"
-
--e msgid "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
-msgstr "<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />"
-
--e msgid "<br /><br />Prints a report of the status of the array.<br /><br />"
-msgstr "<br /><br />Prints a report of the status of the array.<br /><br />"
-
--e msgid "<br /><br />Restore the last backup/snapshot.<br /><br />"
-msgstr "<br /><br />Restore the last backup/snapshot.<br /><br />"
-
--e msgid "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
-msgstr "<br /><br />Scrubs the array, checking for silent errors.<br /><br />"
-
--e msgid "Check"
+msgid "Check"
 msgstr "Check"
 
--e msgid "Commands"
+msgid "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
+msgstr "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
+
+msgid "Commands"
 msgstr "Commands"
 
--e msgid "Content"
+msgid "Content"
 msgstr "Content"
 
--e msgid "Content root"
+msgid "Content root"
 msgstr "Content root"
 
--e msgid "Data"
+msgid "Data"
 msgstr "Data"
 
--e msgid "Data root"
+msgid "Data root"
 msgstr "Data root"
 
--e msgid "Diff"
+msgid "Diff"
 msgstr "Diff"
 
--e msgid "Edit content volume"
+msgid "Edit content volume"
 msgstr "Edit content volume"
 
--e msgid "Edit data volume"
+msgid "Edit data volume"
 msgstr "Edit data volume"
 
--e msgid "Edit exclusion"
+msgid "Edit exclusion"
 msgstr "Edit exclusion"
 
--e msgid "Edit inclusion"
+msgid "Edit inclusion"
 msgstr "Edit inclusion"
 
--e msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr "Enables second drive for parity. This is equivalent to RAID 6."
 
--e msgid "Exclude"
+msgid "Exclude"
 msgstr "Exclude"
 
--e msgid "Excludes"
+msgid "Excludes"
 msgstr "Excludes"
 
--e msgid "Excludes hidden files and directories"
+msgid "Excludes hidden files and directories"
 msgstr "Excludes hidden files and directories"
 
--e msgid "Fix"
+msgid "Fix"
 msgstr "Fix"
 
--e msgid "Include"
+msgid "Include"
 msgstr "Include"
 
--e msgid "Includes"
+msgid "Includes"
 msgstr "Includes"
 
--e msgid "Information"
+msgid "Information"
 msgstr "Information"
 
--e msgid "Label"
+msgid "Label"
 msgstr "Label"
 
--e msgid "No Hidden"
+msgid "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
+msgstr "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
+
+msgid "No Hidden"
 msgstr "No Hidden"
 
--e msgid "Parity"
+msgid "Parity"
 msgstr "Parity"
 
--e msgid "Parity volume"
+msgid "Parity volume"
 msgstr "Parity volume"
 
--e msgid "Path"
+msgid "Path"
 msgstr "Path"
 
--e msgid "Q-Parity"
+msgid "Prints a report of the status of the array."
+msgstr "Prints a report of the status of the array."
+
+msgid "Q-Parity"
 msgstr "Q-Parity"
 
--e msgid "QParity volume"
+msgid "QParity volume"
 msgstr "QParity volume"
 
--e msgid "Scrub"
+msgid "Restore the last backup/snapshot."
+msgstr "Restore the last backup/snapshot."
+
+msgid "Scrub"
 msgstr "Scrub"
 
--e msgid "Select a volume ..."
+msgid "Scrubs the array, checking for silent errors."
+msgstr "Scrubs the array, checking for silent errors."
+
+msgid "Select a volume ..."
 msgstr "Select a volume ..."
 
--e msgid "Settings"
+msgid "Settings"
 msgstr "Settings"
 
--e msgid "SnapRAID"
+msgid "SnapRAID"
 msgstr "SnapRAID"
 
--e msgid "SnapRAID check"
+msgid "SnapRAID check"
 msgstr "SnapRAID check"
 
--e msgid "SnapRAID diff"
+msgid "SnapRAID diff"
 msgstr "SnapRAID diff"
 
--e msgid "SnapRAID fix"
+msgid "SnapRAID fix"
 msgstr "SnapRAID fix"
 
--e msgid "SnapRAID scrub"
+msgid "SnapRAID scrub"
 msgstr "SnapRAID scrub"
 
--e msgid "SnapRAID status"
+msgid "SnapRAID status"
 msgstr "SnapRAID status"
 
--e msgid "SnapRAID sync"
+msgid "SnapRAID sync"
 msgstr "SnapRAID sync"
 
--e msgid "Status"
+msgid "SnapRAID user manual"
+msgstr "SnapRAID user manual"
+
+msgid "Status"
 msgstr "Status"
 
--e msgid "Sync"
+msgid "Sync"
 msgstr "Sync"
 
--e msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />"
-msgstr "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />"
+msgid "The following excludes are written to the snapraid config file by default:"
+msgstr "The following excludes are written to the snapraid config file by default:"
 
--e msgid "Use Q-Parity"
+msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
+msgstr "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
+
+msgid "Use Q-Parity"
 msgstr "Use Q-Parity"
 
--e msgid "Volume"
+msgid "Volume"
 msgstr "Volume"
 
--e msgid "Volume to use for Parity storage. It must NOT be on a data disk."
+msgid "Volume to use for Parity storage. It must NOT be on a data disk."
 msgstr "Volume to use for Parity storage. It must NOT be on a data disk."
 
--e msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
+msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
 msgstr "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
 

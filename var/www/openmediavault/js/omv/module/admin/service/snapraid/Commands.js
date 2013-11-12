@@ -45,7 +45,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
             },
             items : [{
                 border : false,
-                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />")
+                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "sync",
@@ -54,7 +54,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br /><br />Scrubs the array, checking for silent errors.<br /><br />")
+                html   : "<br /><br />" + _("Scrubs the array, checking for silent errors.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "scrub",
@@ -63,7 +63,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br /><br />Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />")
+                html   : "<br /><br />" + _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "check",
@@ -72,7 +72,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br /><br />Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />")
+                html   : "<br /><br />" + _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "diff",
@@ -81,7 +81,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br /><br />Prints a report of the status of the array.<br /><br />")
+                html   : "<br /><br />" + _("Prints a report of the status of the array.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "status",
@@ -90,7 +90,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br /><br />Restore the last backup/snapshot.<br /><br />")
+                html   : "<br /><br />" + _("Restore the last backup/snapshot.") + "<br /><br />"
             },{
                 xtype   : "button",
                 name    : "fix",
@@ -99,7 +99,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 handler : Ext.Function.bind(me.onFixButton, me, [ me ])
             },{
                 border : false,
-                html   : _("<br />")
+                html   : "<br />"
             }]
         }];
     },
