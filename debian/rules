@@ -12,7 +12,6 @@ install:
 	dh_testroot
 	dh_prep
 	/bin/sh build_snapraid
-	/bin/sh create_pot
 	dh_installdirs
 	dh_install
 

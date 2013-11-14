@@ -22,15 +22,15 @@
 OMV_PACKAGE := $(shell pwd | sed 's|.*/||')
 OMV_POT_DIR := $(CURDIR)/usr/share/openmediavault/locale
 OMV_POT_FILE := $(OMV_PACKAGE).pot
-OMV_TRANSIFEX_PROJECT_SLUG := openmediavault
+OMV_TRANSIFEX_SLUG := $(OMV_PACKAGE)pot
 
 omv_pull_po:
 	tx --root="$(CURDIR)/../" pull --all \
-	  --resource=$(OMV_TRANSIFEX_PROJECT_SLUG).$(OMV_PACKAGE)
+	  --resource=$(OMV_PACKAGE).$(OMV_TRANSIFEX_SLUG)
 
 omv_push_pot:
 	tx --root="$(CURDIR)/../" push --source \
-	  --resource=$(OMV_TRANSIFEX_PROJECT_SLUG).$(OMV_PACKAGE)
+	  --resource=$(OMV_PACKAGE).$(OMV_TRANSIFEX_SLUG)
 
 omv_build_pot:
 	dh_testdir
@@ -56,4 +56,8 @@ omv_build_doc: debian/doxygen.conf
 	mkdir -p debian/doxygen
 	doxygen $<
 
+source: clean
+	dpkg-buildpackage -S -us -uc
+
 .PHONY: omv_pull_po omv_push_pot omv_build_pot omv_clean_scm omv_build_doc
+.PHONY: source

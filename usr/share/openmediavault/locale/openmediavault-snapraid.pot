@@ -1,5 +1,5 @@
-# openmediavault-snapraid
-# Copyright (C) 2013
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-12 10:12-0500\n"
+"POT-Creation-Date: 2013-11-14 11:40-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,177 +17,197 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "%s (%s available)"
+msgstr ""
+
 msgid "Add content volume"
-msgstr "Add content volume"
+msgstr ""
 
 msgid "Add data volume"
-msgstr "Add data volume"
+msgstr ""
 
 msgid "Add exclusion"
-msgstr "Add exclusion"
+msgstr ""
 
 msgid "Add inclusion"
-msgstr "Add inclusion"
-
-msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
-msgstr "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+msgstr ""
 
 msgid "Auto Save"
-msgstr "Auto Save"
+msgstr ""
+
+msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+msgstr ""
 
 msgid "Block Size"
-msgstr "Block Size"
+msgstr ""
 
 msgid "Block size in KiB"
-msgstr "Block size in KiB"
+msgstr ""
 
 msgid "Check"
-msgstr "Check"
+msgstr ""
 
 msgid "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
-msgstr "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
+msgstr ""
 
 msgid "Commands"
-msgstr "Commands"
+msgstr ""
 
 msgid "Content"
-msgstr "Content"
+msgstr ""
 
 msgid "Content root"
-msgstr "Content root"
+msgstr ""
 
 msgid "Data"
-msgstr "Data"
+msgstr ""
 
 msgid "Data root"
-msgstr "Data root"
+msgstr ""
 
 msgid "Diff"
-msgstr "Diff"
+msgstr ""
 
 msgid "Edit content volume"
-msgstr "Edit content volume"
+msgstr ""
 
 msgid "Edit data volume"
-msgstr "Edit data volume"
+msgstr ""
 
 msgid "Edit exclusion"
-msgstr "Edit exclusion"
+msgstr ""
 
 msgid "Edit inclusion"
-msgstr "Edit inclusion"
+msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr ""
 
 msgid "Exclude"
-msgstr "Exclude"
+msgstr ""
 
 msgid "Excludes"
-msgstr "Excludes"
+msgstr ""
 
 msgid "Excludes hidden files and directories"
-msgstr "Excludes hidden files and directories"
+msgstr ""
 
 msgid "Fix"
-msgstr "Fix"
+msgstr ""
 
 msgid "Include"
-msgstr "Include"
+msgstr ""
 
 msgid "Includes"
-msgstr "Includes"
+msgstr ""
 
 msgid "Information"
-msgstr "Information"
+msgstr ""
 
 msgid "Label"
-msgstr "Label"
+msgstr ""
 
 msgid "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
-msgstr "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
+msgstr ""
 
 msgid "No Hidden"
-msgstr "No Hidden"
+msgstr ""
 
 msgid "Parity"
-msgstr "Parity"
+msgstr ""
+
+msgid "Parity and Q-Parity cannot be the same."
+msgstr ""
+
+msgid "Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."
+msgstr ""
 
 msgid "Parity volume"
-msgstr "Parity volume"
+msgstr ""
 
 msgid "Path"
-msgstr "Path"
+msgstr ""
 
 msgid "Prints a report of the status of the array."
-msgstr "Prints a report of the status of the array."
+msgstr ""
 
 msgid "Q-Parity"
-msgstr "Q-Parity"
+msgstr ""
+
+msgid "Q-Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."
+msgstr ""
 
 msgid "QParity volume"
-msgstr "QParity volume"
+msgstr ""
 
 msgid "Restore the last backup/snapshot."
-msgstr "Restore the last backup/snapshot."
+msgstr ""
 
 msgid "Scrub"
-msgstr "Scrub"
+msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Scrubs the array, checking for silent errors."
+msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Select a volume ..."
+msgstr ""
 
 msgid "Settings"
-msgstr "Settings"
+msgstr ""
 
 msgid "SnapRAID"
-msgstr "SnapRAID"
+msgstr ""
 
 msgid "SnapRAID check"
-msgstr "SnapRAID check"
+msgstr ""
 
 msgid "SnapRAID diff"
-msgstr "SnapRAID diff"
+msgstr ""
 
 msgid "SnapRAID fix"
-msgstr "SnapRAID fix"
+msgstr ""
 
 msgid "SnapRAID scrub"
-msgstr "SnapRAID scrub"
+msgstr ""
 
 msgid "SnapRAID status"
-msgstr "SnapRAID status"
+msgstr ""
 
 msgid "SnapRAID sync"
-msgstr "SnapRAID sync"
+msgstr ""
 
 msgid "SnapRAID user manual"
-msgstr "SnapRAID user manual"
+msgstr ""
 
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 msgid "Sync"
-msgstr "Sync"
+msgstr ""
 
 msgid "The following excludes are written to the snapraid config file by default:"
-msgstr "The following excludes are written to the snapraid config file by default:"
+msgstr ""
+
+msgid "This volume has already been added."
+msgstr ""
+
+msgid "This volume is already in use by content."
+msgstr ""
+
+msgid "This volume is already in use by data."
+msgstr ""
 
 msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
-msgstr "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
+msgstr ""
 
 msgid "Use Q-Parity"
-msgstr "Use Q-Parity"
+msgstr ""
 
 msgid "Volume"
-msgstr "Volume"
+msgstr ""
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr "Volume to use for Parity storage. It must NOT be on a data disk."
+msgstr ""
 
 msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
-msgstr "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
-
+msgstr ""
