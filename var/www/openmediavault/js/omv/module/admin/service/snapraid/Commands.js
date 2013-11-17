@@ -49,7 +49,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
 				border: false,
-				html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.<br /><br />")
+				html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.) + "<br /><br />"
 			   },{
 				xtype   : "button",
 				name    : "sync",
@@ -64,7 +64,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
 				border : false,
-				html   : _("Scrubs the array, checking for silent errors.<br /><br />")
+				html   : _("Scrubs the array, checking for silent errors.) + "<br /><br />"
 			   },{
 				xtype   : "button",
 				name    : "scrub",
@@ -79,7 +79,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
 				border : false,
-				html   : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.<br /><br />")
+				html   : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.) + "<br /><br />"
 			   },{
 				xtype   : "button",
 				name    : "check",
@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
 				border : false,
-				html   : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.<br /><br />")
+				html   : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.) + "<br /><br />"
 			   },{
 				xtype   : "button",
 				name    : "diff",
@@ -109,7 +109,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
 				border : false,
-				html   : _("Prints a report of the status of the array.<br /><br />")
+				html   : _("Prints a report of the status of the array.) + "<br /><br />"
 			   },{
 				xtype   : "button",
 				name    : "status",
@@ -124,7 +124,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 			disabled: true,
 			items: [{
      				border : false,
-				html   : _("Restore the last backup/snapshot.<br /><br />")
+				html   : _("Restore the last backup/snapshot.) + "<br /><br />"
                         },{
 				xtype   : "button",
 				name    : "fix",
