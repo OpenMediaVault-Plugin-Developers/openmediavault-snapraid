@@ -49,7 +49,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                         disabled: true,
                         items: [{
                                 border: false,
-                            html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
+                                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
                            },{
                                 xtype   : "button",
                                 name    : "sync",
@@ -123,7 +123,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                         frame: false,
                         disabled: true,
                         items: [{
-                                     border : false,
+                                border : false,
                                 html   : _("Restore the last backup/snapshot.") + "<br /><br />"
                         },{
                                 xtype   : "button",
