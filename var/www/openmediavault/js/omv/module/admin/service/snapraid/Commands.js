@@ -39,7 +39,6 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 
         return [{
 		xtype    : "fieldset",
-		autoScroll: true,
 		frame: false,
 		border: false,
 		disabled: true,
