@@ -56,7 +56,10 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Sync"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
-                               }]
+                           },{
+				     border: false,
+				     html   : _("<br /")
+				     }]
                     },{
                         xtype: "fieldset",
                         title: _("Scrub"),
@@ -71,6 +74,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Scrub"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : _("<br /")
                                 }]
                    },{
                         xtype: "fieldset",
@@ -86,6 +92,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Check"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : _("<br /")
                                 }]
                    },{
                         xtype: "fieldset",
@@ -101,6 +110,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Diff"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : _("<br /")
                                 }]
                    },{
                         xtype: "fieldset",
@@ -116,6 +128,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Status"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : _("<br /")
                                 }]
                    },{
                         xtype: "fieldset",
@@ -131,6 +146,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 text    : _("Fix"),
                                 scope   : this,
                                 handler : Ext.Function.bind(me.onFixButton, me, [ me ])
+			   },{
+				     border: false,
+				     html   : _("<br /")
                                 }]
                    },{
                         border : false,
