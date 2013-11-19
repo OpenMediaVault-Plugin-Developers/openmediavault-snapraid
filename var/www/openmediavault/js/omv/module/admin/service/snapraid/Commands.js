@@ -148,11 +148,11 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onFixButton, me, [ me ])
 			   },{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
                                 }]
                    },{
                         border : false,
-                        html   : _("<br />")
+                        html   : "<br />"
             }]
         }];
     },
