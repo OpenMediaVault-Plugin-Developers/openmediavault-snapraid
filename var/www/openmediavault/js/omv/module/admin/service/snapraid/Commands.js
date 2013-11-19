@@ -58,7 +58,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
                            },{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
 				     }]
                     },{
                         xtype: "fieldset",
@@ -76,7 +76,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
 				},{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
                                 }]
                    },{
                         xtype: "fieldset",
@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
 				},{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
                                 }]
                    },{
                         xtype: "fieldset",
@@ -112,7 +112,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
 				},{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
                                 }]
                    },{
                         xtype: "fieldset",
@@ -130,7 +130,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                                 handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
 				},{
 				     border: false,
-				     html   : _("<br /")
+				     html   : "<br />"
                                 }]
                    },{
                         xtype: "fieldset",
