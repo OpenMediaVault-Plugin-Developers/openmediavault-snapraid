@@ -63,7 +63,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             items : [{
                 xtype         : "combo",
                 name          : "mntentref",
-                fieldLabel    : _("Parity"),
+                fieldLabel    : _("Parity Volume"),
                 emptyText     : _("Select a volume ..."),
                 allowBlank    : false,
                 allowNone     : false,
@@ -101,7 +101,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype      : "textfield",
                 name       : "parity",
-                fieldLabel : _("Parity volume"),
+                fieldLabel : _("Parity Path"),
                 allowNone  : true,
                 readOnly   : true
             },{
@@ -113,7 +113,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype         : "combo",
                 name          : "qmntentref",
-                fieldLabel    : _("Q-Parity"),
+                fieldLabel    : _("Q-Parity Volume"),
                 emptyText     : _("Select a volume ..."),
                 allowBlank    : true,
                 allowNone     : true,
@@ -151,7 +151,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype      : "textfield",
                 name       : "qparity",
-                fieldLabel : _("QParity volume"),
+                fieldLabel : _("QParity Path"),
                 allowNone  : true,
                 readOnly   : true
             },{
