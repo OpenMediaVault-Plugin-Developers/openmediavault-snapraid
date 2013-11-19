@@ -56,7 +56,7 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
         return [{
             xtype         : "combo",
             name          : "mntentref",
-            fieldLabel    : _("Path"),
+            fieldLabel    : _("Volume"),
             emptyText     : _("Select a volume ..."),
             allowBlank    : false,
             allowNone     : false,
@@ -157,7 +157,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
     onAddButton: function () {
         var me = this;
         Ext.create("OMV.module.admin.service.snapraid.Content", {
-            title: _("Add content volume"),
+            title: _("Add content path"),
             uuid: OMV.UUID_UNDEFINED,
             listeners: {
                 scope: me,
@@ -172,7 +172,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
         var me = this;
         var record = me.getSelected();
         Ext.create("OMV.module.admin.service.snapraid.Content", {
-            title: _("Edit content volume"),
+            title: _("Edit content path"),
             uuid: record.get("uuid"),
             listeners: {
                 scope: me,

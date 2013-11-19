@@ -29,10 +29,6 @@ require_once("openmediavault/system.inc");
 
 class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
-    private function getXPath() {
-        return "//services/snapraid";
-    }
-
     public function getName() {
         return 'SnapRaid';
     }
@@ -80,9 +76,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
 
         // Get configuration object
-        $object = $xmlConfig->get($this->getXPath());
+        $object = $xmlConfig->get("//services/snapraid");
         if (is_null($object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//services/snapraid");
 
         // Modify result data
         $object['useqparity']   = boolval($object['useqparity']);
@@ -187,8 +183,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         );
 
         // Set configuration object
-        if (false === $xmlConfig->replace($this->getXPath(), $object))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, $this->getXPath());
+        if (false === $xmlConfig->replace("//services/snapraid", $object))
+            throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, "//services/snapraid");
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
@@ -277,7 +273,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
-        if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['mntentref']}']")) {
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && 
+            TRUE === $xmlConfig->exists("//services/snapraid/contents/content[mntentref='{$params['mntentref']}']") ) {
+            
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume has already been added."));
         }
@@ -440,7 +438,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
-        if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['mntentref']}']")) {
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && 
+            TRUE === $xmlConfig->exists("//services/snapraid/datas/data[mntentref='{$params['mntentref']}']") ) {
+            
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume has already been added."));
         }
