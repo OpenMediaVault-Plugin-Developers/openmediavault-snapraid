@@ -1,24 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+# Cyryl Sochacki <cyrylsochacki@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-19 15:26-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2013-11-19 21:26+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/pl_PL/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pl_PL\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s dostępnych)"
 
 msgid "Add content path"
 msgstr ""
@@ -33,25 +34,29 @@ msgid "Add inclusion"
 msgstr ""
 
 msgid "Auto Save"
-msgstr ""
+msgstr "Auto zapis"
 
-msgid "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
+msgid ""
+"Automatically save the state when syncing after the specified amount of GiB "
+"is processed. Default value is 0, meaning disabled."
 msgstr ""
 
 msgid "Block Size"
-msgstr ""
+msgstr "Rozmiar bloku"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "Rozmiar bloku w KiB"
 
 msgid "Check"
-msgstr ""
+msgstr "Sprawdź"
 
-msgid "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
+msgid ""
+"Checks all the files and the redundancy data. All the files are hashed and "
+"compared with the snapshot saved in the previous 'sync' command."
 msgstr ""
 
 msgid "Commands"
-msgstr ""
+msgstr "Polecenia"
 
 msgid "Content"
 msgstr ""
@@ -66,7 +71,7 @@ msgid "Data root"
 msgstr ""
 
 msgid "Diff"
-msgstr ""
+msgstr "Różnica"
 
 msgid "Edit content path"
 msgstr ""
@@ -84,10 +89,10 @@ msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr ""
 
 msgid "Exclude"
-msgstr ""
+msgstr "Wyklucz"
 
 msgid "Excludes"
-msgstr ""
+msgstr "Wykluczone"
 
 msgid "Excludes hidden files and directories."
 msgstr ""
@@ -107,7 +112,9 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-msgid "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
+msgid ""
+"Lists all the files modified from the last 'sync' command that have to "
+"recompute their redundancy data."
 msgstr ""
 
 msgid "Name"
@@ -125,11 +132,13 @@ msgstr ""
 msgid "Parity and Q-Parity cannot be the same."
 msgstr ""
 
-msgid "Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."
+msgid ""
+"Parity is using this volume. Content cannot use the same volume as Parity or"
+" Q-Parity."
 msgstr ""
 
 msgid "Path"
-msgstr ""
+msgstr "Ścieżka"
 
 msgid "Prints a report of the status of the array."
 msgstr ""
@@ -137,7 +146,9 @@ msgstr ""
 msgid "Q-Parity Volume"
 msgstr ""
 
-msgid "Q-Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."
+msgid ""
+"Q-Parity is using this volume. Content cannot use the same volume as Parity "
+"or Q-Parity."
 msgstr ""
 
 msgid "QParity Path"
@@ -153,19 +164,19 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr ""
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "Wybierz dysk ..."
 
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "SnapRAID check"
-msgstr ""
+msgstr "sprawdź SnapRAID"
 
 msgid "SnapRAID diff"
-msgstr ""
+msgstr "różnice SnapRAID "
 
 msgid "SnapRAID fix"
 msgstr ""
@@ -183,12 +194,13 @@ msgid "SnapRAID user manual"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Sync"
-msgstr ""
+msgstr "Synchronizuj"
 
-msgid "The following excludes are written to the snapraid config file by default:"
+msgid ""
+"The following excludes are written to the snapraid config file by default:"
 msgstr ""
 
 msgid "This volume has already been added."
@@ -203,17 +215,21 @@ msgstr ""
 msgid "UUID"
 msgstr ""
 
-msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
+msgid ""
+"Updates the redundancy information. All the modified files in the disk array"
+" are read, and the redundancy data is recomputed."
 msgstr ""
 
 msgid "Use Q-Parity"
 msgstr ""
 
 msgid "Volume"
-msgstr ""
+msgstr "Dysk"
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
 msgstr ""
 
-msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
+msgid ""
+"Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
+"parity disk."
 msgstr ""

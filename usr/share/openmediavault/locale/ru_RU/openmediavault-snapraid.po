@@ -1,0 +1,235 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# артур Мудрых <arturmon82@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-snapraid\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-11-19 15:26-0600\n"
+"PO-Revision-Date: 2013-11-19 21:26+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "%s (%s available)"
+msgstr "%s (%s доступно)"
+
+msgid "Add content path"
+msgstr ""
+
+msgid "Add data volume"
+msgstr "Добавить том \"данные\""
+
+msgid "Add exclusion"
+msgstr "Добавить исключения"
+
+msgid "Add inclusion"
+msgstr "Добавить включения"
+
+msgid "Auto Save"
+msgstr "Авто сохранение"
+
+msgid ""
+"Automatically save the state when syncing after the specified amount of GiB "
+"is processed. Default value is 0, meaning disabled."
+msgstr "Автоматически сохранять состояние при синхронизации спустя заданное количество GiB обработанного. Значение по умолчанию равно 0, что означает, отключен."
+
+msgid "Block Size"
+msgstr "Размер блока"
+
+msgid "Block size in KiB"
+msgstr "Размер блока в KiB"
+
+msgid "Check"
+msgstr "Check"
+
+msgid ""
+"Checks all the files and the redundancy data. All the files are hashed and "
+"compared with the snapshot saved in the previous 'sync' command."
+msgstr "Проверяет все файлы и избыточность данных. Все файлы хэшируются и по сравниваются с снимком сохраненным в предыдущей команде «Sync»."
+
+msgid "Commands"
+msgstr "Команды"
+
+msgid "Content"
+msgstr "\"Содержимое\""
+
+msgid "Content root"
+msgstr "корень \"Содержимого\""
+
+msgid "Data"
+msgstr "\"Данные\""
+
+msgid "Data root"
+msgstr "Корень \"данных\""
+
+msgid "Diff"
+msgstr "Diff"
+
+msgid "Edit content path"
+msgstr ""
+
+msgid "Edit data volume"
+msgstr "Редактировать том \"данных\""
+
+msgid "Edit exclusion"
+msgstr "Редактировать исключения"
+
+msgid "Edit inclusion"
+msgstr "Редактировать включения"
+
+msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr "Включает второй диск для четности. Это равносильно RAID 6."
+
+msgid "Exclude"
+msgstr "Исключение"
+
+msgid "Excludes"
+msgstr "Исключения"
+
+msgid "Excludes hidden files and directories."
+msgstr ""
+
+msgid "Fix"
+msgstr "Fix"
+
+msgid "Include"
+msgstr "Включения"
+
+msgid "Includes"
+msgstr "Включения"
+
+msgid "Information"
+msgstr "Информация"
+
+msgid "Label"
+msgstr "Метка"
+
+msgid ""
+"Lists all the files modified from the last 'sync' command that have to "
+"recompute their redundancy data."
+msgstr "Список всех файлов, измененных с последнего «Sync», которые должны пересчитать их избыточность."
+
+msgid "Name"
+msgstr ""
+
+msgid "No Hidden"
+msgstr "Никаких скрытых"
+
+msgid "Parity Path"
+msgstr ""
+
+msgid "Parity Volume"
+msgstr ""
+
+msgid "Parity and Q-Parity cannot be the same."
+msgstr "\"Parity\" и \"Q-Parity\" не может быть одинаковым."
+
+msgid ""
+"Parity is using this volume. Content cannot use the same volume as Parity or"
+" Q-Parity."
+msgstr "\"Parity\" использует этот том. \"Содержимое\" не может использовать тот же том, \"Parity\" или \"Q-Parity\"."
+
+msgid "Path"
+msgstr "Путь"
+
+msgid "Prints a report of the status of the array."
+msgstr "Показать отчет о статусе массива."
+
+msgid "Q-Parity Volume"
+msgstr ""
+
+msgid ""
+"Q-Parity is using this volume. Content cannot use the same volume as Parity "
+"or Q-Parity."
+msgstr "\"Q-Parity\" использует этот том. \"Содержимое\" не может использовать тот же том, \"Parity\" или \"Q-Parity\"."
+
+msgid "QParity Path"
+msgstr ""
+
+msgid "Restore the last backup/snapshot."
+msgstr "Восстановить с последней резервной копии / снимка."
+
+msgid "Scrub"
+msgstr "Scrub"
+
+msgid "Scrubs the array, checking for silent errors."
+msgstr "Scrubs массива, проверка на скрытые ошибки."
+
+msgid "Select a volume ..."
+msgstr "Выберите том ..."
+
+msgid "Settings"
+msgstr "Настройки"
+
+msgid "SnapRAID"
+msgstr "SnapRAID"
+
+msgid "SnapRAID check"
+msgstr "SnapRAID проверка"
+
+msgid "SnapRAID diff"
+msgstr "SnapRAID diff"
+
+msgid "SnapRAID fix"
+msgstr "SnapRAID исправление"
+
+msgid "SnapRAID scrub"
+msgstr "SnapRAID скраб"
+
+msgid "SnapRAID status"
+msgstr "SnapRAID статус"
+
+msgid "SnapRAID sync"
+msgstr "SnapRAID синхронизация"
+
+msgid "SnapRAID user manual"
+msgstr "Инструкция SnapRAID"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Sync"
+msgstr "Sync"
+
+msgid ""
+"The following excludes are written to the snapraid config file by default:"
+msgstr "Следующие исключения записываются в конфигурационный файл snapraid по умолчанию:"
+
+msgid "This volume has already been added."
+msgstr "Этот том уже был добавлен."
+
+msgid "This volume is already in use by content."
+msgstr "Этот том уже используется под \"содержимое\"."
+
+msgid "This volume is already in use by data."
+msgstr "Этот том уже используются под \"данные\"."
+
+msgid "UUID"
+msgstr ""
+
+msgid ""
+"Updates the redundancy information. All the modified files in the disk array"
+" are read, and the redundancy data is recomputed."
+msgstr "Обновление информации об избыточности. Все изменения файлов в дисковом массиве читаются, и избыточность данных пересчитывается."
+
+msgid "Use Q-Parity"
+msgstr "Использовать \"Q-Parity\""
+
+msgid "Volume"
+msgstr "Том"
+
+msgid "Volume to use for Parity storage. It must NOT be on a data disk."
+msgstr "Том, чтобы использовать для хранения \"Parity\". Он не должен быть на диске \"данных\"."
+
+msgid ""
+"Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
+"parity disk."
+msgstr "Том, чтобы использовать для \"Q-Parity\". Он не должен быть диск с \"данными\" или диск \"Parity\"."
