@@ -38,68 +38,121 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
         var me = this;
 
         return [{
-            xtype    : "fieldset",
-            title    : _("Commands"),
-            defaults : {
-                labelSeparator : ""
-            },
-            items : [{
-                border : false,
-                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "sync",
-                text    : _("Sync"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br /><br />" + _("Scrubs the array, checking for silent errors.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "scrub",
-                text    : _("Scrub"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br /><br />" + _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "check",
-                text    : _("Check"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br /><br />" + _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "diff",
-                text    : _("Diff"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br /><br />" + _("Prints a report of the status of the array.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "status",
-                text    : _("Status"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br /><br />" + _("Restore the last backup/snapshot.") + "<br /><br />"
-            },{
-                xtype   : "button",
-                name    : "fix",
-                text    : _("Fix"),
-                scope   : this,
-                handler : Ext.Function.bind(me.onFixButton, me, [ me ])
-            },{
-                border : false,
-                html   : "<br />"
+                xtype    : "fieldset",
+                frame: false,
+                border: false,
+                disabled: true,
+                items : [{
+                        xtype: "fieldset",                
+                        title: _("Sync"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border: false,
+                                html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
+                           },{
+                                xtype   : "button",
+                                name    : "sync",
+                                text    : _("Sync"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
+                           },{
+				     border: false,
+				     html   : "<br />"
+				     }]
+                    },{
+                        xtype: "fieldset",
+                        title: _("Scrub"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border : false,
+                                html   : _("Scrubs the array, checking for silent errors.") + "<br /><br />"
+                           },{
+                                xtype   : "button",
+                                name    : "scrub",
+                                text    : _("Scrub"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : "<br />"
+                                }]
+                   },{
+                        xtype: "fieldset",
+                        title: _("Check"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border : false,
+                                html   : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.") + "<br /><br />"
+                           },{
+                                xtype   : "button",
+                                name    : "check",
+                                text    : _("Check"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : "<br />"
+                                }]
+                   },{
+                        xtype: "fieldset",
+                        title: _("Diff"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border : false,
+                                html   : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.") + "<br /><br />"
+                           },{
+                                xtype   : "button",
+                                name    : "diff",
+                                text    : _("Diff"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : "<br />"
+                                }]
+                   },{
+                        xtype: "fieldset",
+                        title: _("Status"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border : false,
+                                html   : _("Prints a report of the status of the array.") + "<br /><br />"
+                           },{
+                                xtype   : "button",
+                                name    : "status",
+                                text    : _("Status"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
+				},{
+				     border: false,
+				     html   : "<br />"
+                                }]
+                   },{
+                        xtype: "fieldset",
+                        title: _("Fix"),
+                        frame: false,
+                        disabled: true,
+                        items: [{
+                                border : false,
+                                html   : _("Restore the last backup/snapshot.") + "<br /><br />"
+                        },{
+                                xtype   : "button",
+                                name    : "fix",
+                                text    : _("Fix"),
+                                scope   : this,
+                                handler : Ext.Function.bind(me.onFixButton, me, [ me ])
+			   },{
+				     border: false,
+				     html   : "<br />"
+                                }]
+                   },{
+                        border : false,
+                        html   : "<br />"
             }]
         }];
     },
