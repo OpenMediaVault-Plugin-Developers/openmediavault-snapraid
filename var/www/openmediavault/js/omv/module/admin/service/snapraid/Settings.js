@@ -108,11 +108,8 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 xtype      : "checkbox",
                 name       : "useqparity",
                 fieldLabel : _("Use Q-Parity"),
-                checked    : false,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Enables second drive for parity. This is equivalent to RAID 6.")
-                }]
+                boxLabel: _("Enables second drive for parity. This is equivalent to RAID 6."),
+                checked    : false
             },{
                 xtype         : "combo",
                 name          : "qmntentref",
@@ -189,11 +186,8 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 xtype      : "checkbox",
                 name       : "nohidden",
                 fieldLabel : _("No Hidden"),
-                checked    : false,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Excludes hidden files and directories")
-                }]
+                boxLabel: _("Excludes hidden files and directories."),
+                checked    : false
             }]
         }];
     }
