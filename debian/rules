@@ -11,7 +11,7 @@ install:
 	dh_testdir
 	dh_testroot
 	dh_prep
-	/bin/sh build_snapraid
+#	/bin/sh build_snapraid
 	dh_installdirs
 	dh_install
 

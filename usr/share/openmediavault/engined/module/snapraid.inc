@@ -16,17 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-require_once "openmediavault/module.inc";
-require_once "openmediavault/config.inc";
-require_once "openmediavault/error.inc";
-require_once "openmediavault/util.inc";
-require_once "openmediavault/initscript.inc";
+require_once("openmediavault/module.inc");
+require_once("openmediavault/config.inc");
+require_once("openmediavault/error.inc");
+require_once("openmediavault/util.inc");
+require_once("openmediavault/initscript.inc");
+require_once("openmediavault/log.inc");
 
 class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyListener {
-
-    private function getXPath() {
-        return '//services/snapraid';
-    }
 
     public function getName() {
         return "snapraid";
@@ -35,10 +32,10 @@ class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyLi
     public function applyConfig() {
         global $xmlConfig;
 
-        $config = $xmlConfig->get($this->getXPath());
+        $config = $xmlConfig->get("//services/snapraid");
 
         if (is_null($config))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $this->getXPath());
+            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//services/snapraid");
 
         $cmd = "sudo omv-mkconf snapraid 2>&1";
 
@@ -73,3 +70,21 @@ class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyLi
 // Register module
 $moduleMgr = &OMVModuleMgr::getInstance();
 $moduleMgr->registerModule(new OMVModuleSnapRaid());
+
+// Register new logfile type
+OMVLogFile::registerType("snapraid", array(
+    "filename" => "snapraid.log",
+    "filepath" => "/var/log/snapraid.log",
+    "regex"    => "/(^(.*?)\s+(.*?)\s+(.*?))\s+(.*?)\s+(.*?):\s+(.*?)\[(.*?)\]:\s+(.*?):\s+\'(.*?)\'$/",
+    "columns"  => array(
+        "date"      => array(
+            "index"  => 1,
+            "func"   => create_function('$v', 'return strpdate($v,"Y/n/j G:i:s");')
+        ),
+        "component" => 7,
+        "event"     => 8,
+        "message"   => 9
+    )
+));
+
+?>
