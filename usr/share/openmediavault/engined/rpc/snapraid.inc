@@ -273,9 +273,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
-        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && 
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] &&
             TRUE === $xmlConfig->exists("//services/snapraid/contents/content[mntentref='{$params['mntentref']}']") ) {
-            
+
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume has already been added."));
         }
@@ -438,9 +438,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
-        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && 
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] &&
             TRUE === $xmlConfig->exists("//services/snapraid/datas/data[mntentref='{$params['mntentref']}']") ) {
-            
+
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume has already been added."));
         }
@@ -778,7 +778,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid sync";
+            $cmd = "/usr/local/bin/snapraid sync 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -807,7 +807,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid scrub";
+            $cmd = "/usr/local/bin/snapraid scrub 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -836,7 +836,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid check";
+            $cmd = "/usr/local/bin/snapraid check 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -865,7 +865,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid diff";
+            $cmd = "/usr/local/bin/snapraid diff 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -894,7 +894,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid status";
+            $cmd = "/usr/local/bin/snapraid status 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
@@ -923,7 +923,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = "/usr/local/bin/snapraid fix";
+            $cmd = "/usr/local/bin/snapraid fix 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
