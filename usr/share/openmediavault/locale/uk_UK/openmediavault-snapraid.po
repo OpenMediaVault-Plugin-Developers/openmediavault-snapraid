@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-19 15:26-0600\n"
-"PO-Revision-Date: 2013-11-19 21:26+0000\n"
+"POT-Creation-Date: 2013-11-20 15:32-0600\n"
+"PO-Revision-Date: 2013-11-20 21:32+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -58,6 +58,9 @@ msgstr ""
 msgid "Commands"
 msgstr "Команди"
 
+msgid "Component"
+msgstr ""
+
 msgid "Content"
 msgstr ""
 
@@ -69,6 +72,9 @@ msgstr "Дані"
 
 msgid "Data root"
 msgstr "Дані root"
+
+msgid "Date & Time"
+msgstr ""
 
 msgid "Diff"
 msgstr ""
@@ -86,6 +92,9 @@ msgid "Edit inclusion"
 msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr ""
+
+msgid "Event"
 msgstr ""
 
 msgid "Exclude"
@@ -115,6 +124,9 @@ msgstr ""
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
+msgstr ""
+
+msgid "Message"
 msgstr ""
 
 msgid "Name"

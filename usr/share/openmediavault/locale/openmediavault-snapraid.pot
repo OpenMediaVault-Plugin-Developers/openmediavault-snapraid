@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-19 15:26-0600\n"
+"POT-Creation-Date: 2013-11-20 15:32-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,6 +53,9 @@ msgstr ""
 msgid "Commands"
 msgstr ""
 
+msgid "Component"
+msgstr ""
+
 msgid "Content"
 msgstr ""
 
@@ -63,6 +66,9 @@ msgid "Data"
 msgstr ""
 
 msgid "Data root"
+msgstr ""
+
+msgid "Date & Time"
 msgstr ""
 
 msgid "Diff"
@@ -81,6 +87,9 @@ msgid "Edit inclusion"
 msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr ""
+
+msgid "Event"
 msgstr ""
 
 msgid "Exclude"
@@ -108,6 +117,9 @@ msgid "Label"
 msgstr ""
 
 msgid "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
+msgstr ""
+
+msgid "Message"
 msgstr ""
 
 msgid "Name"
