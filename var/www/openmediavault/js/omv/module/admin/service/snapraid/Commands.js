@@ -153,12 +153,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onSyncButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID sync"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeSync",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID sync"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeSync",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -168,12 +168,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onScrubButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID scrub"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeScrub",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID scrub"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeScrub",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -183,12 +183,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onCheckButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID check"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeCheck",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID check"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeCheck",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -198,12 +198,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onDiffButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID diff"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeDiff",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID diff"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeDiff",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -213,12 +213,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onStatusButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID status"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeStatus",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID status"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeStatus",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
@@ -228,12 +228,12 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     onFixButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
-            title: _("SnapRAID fix"),
-            rpcService: "SnapRaid",
-            rpcMethod: "executeFix",
-            listeners: {
-                scope: me,
-                exception: function(wnd, error) {
+            title      : _("SnapRAID fix"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeFix",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
                 }
             }
