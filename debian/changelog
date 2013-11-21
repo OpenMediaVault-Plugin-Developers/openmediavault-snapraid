@@ -3,7 +3,7 @@ openmediavault-snapraid (0.5.10) stable; urgency=low
   * Update to snapraid-5.0
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 20 Nov 2013 15:33:27 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 21 Nov 2013 08:24:27 -0500
 
 openmediavault-snapraid (0.5.9) stable; urgency=low
 
