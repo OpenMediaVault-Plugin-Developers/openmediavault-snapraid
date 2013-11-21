@@ -77,13 +77,10 @@ OMVLogFile::registerType("snapraid", array(
     "filepath" => "/var/log/snapraid.log",
     "regex"    => "/(^(.*?)\s+(.*?)\s+(.*?))\s+(.*?)\s+(.*?):\s+(.*?)\[(.*?)\]:\s+(.*?):\s+\'(.*?)\'$/",
     "columns"  => array(
-        "date"      => array(
-            "index"  => 1,
-            "func"   => create_function('$v', 'return strpdate($v,"Y/n/j G:i:s");')
-        ),
+        "date"      => 1,
         "component" => 7,
         "event"     => 8,
-        "message"   => 9
+        "message"   => 10
     )
 ));
 

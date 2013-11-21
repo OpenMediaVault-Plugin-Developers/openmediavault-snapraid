@@ -21,19 +21,19 @@
 // require("js/omv/module/admin/diagnostic/log/plugin/Plugin.js")
 // require("js/omv/util/Format.js")
 
-Ext.define("OMV.module.admin.diagnostic.log.plugin.Snapraid", {
+Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
     extend: "OMV.module.admin.diagnostic.log.plugin.Plugin",
 
     id: "snapraid",
     text: _("SnapRAID"),
     stateful: true,
-    stateId: "92a5f193-e76a-481e-a1c0-13db308c97c0",
+    stateId: "11adf193-e76a-481e-b2c0-13cb308c97c0",
     columns: [{
         text: _("Date & Time"),
         sortable: true,
         dataIndex: "date",
         stateId: "date",
-        renderer: OMV.util.Format.localeTimeRenderer()
+        flex: 1
     },{
         text: _("Component"),
         sortable: true,
