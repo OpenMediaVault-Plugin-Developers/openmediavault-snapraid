@@ -280,20 +280,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
                 gettext("This volume has already been added."));
         }
 
-        $parity = $xmlConfig->get("//services/snapraid/mntentref");
-        $useqparity = $xmlConfig->get("//services/snapraid/useqparity");
-        $qparity = $xmlConfig->get("//services/snapraid/qmntentref");
-
-        if ( $params['mntentref'] == $parity ) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                gettext("Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
-        }
-
-        if ( $useqparity != 0 && $params['mntentref'] == $qparity ) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                gettext("Q-Parity is using this volume. Content cannot use the same volume as Parity or Q-Parity."));
-        }
-
         $xpath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
         $deviceDir = $xmlConfig->get($xpath);
         $deviceDir = $deviceDir['dir'];
