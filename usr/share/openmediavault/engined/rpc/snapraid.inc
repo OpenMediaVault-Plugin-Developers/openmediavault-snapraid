@@ -183,7 +183,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, "//services/snapraid");
 
         if ( $params['pool'] && ! file_exists("/media/pool") )
-            mkdir("/media/pool", 0664);
+            mkdir("/media/pool", 0777);
 
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
