@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-20 15:32-0600\n"
+"POT-Creation-Date: 2013-12-12 14:20-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,6 +60,9 @@ msgid "Content"
 msgstr ""
 
 msgid "Content root"
+msgstr ""
+
+msgid "Creates a virtual view of all the files in your array using symbolic links."
 msgstr ""
 
 msgid "Data"
@@ -143,6 +146,9 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
+msgid "Pool"
+msgstr ""
+
 msgid "Prints a report of the status of the array."
 msgstr ""
 
@@ -170,6 +176,9 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
+msgid "Share Name"
+msgstr ""
+
 msgid "SnapRAID"
 msgstr ""
 
@@ -180,6 +189,9 @@ msgid "SnapRAID diff"
 msgstr ""
 
 msgid "SnapRAID fix"
+msgstr ""
+
+msgid "SnapRAID pool"
 msgstr ""
 
 msgid "SnapRAID scrub"
@@ -215,6 +227,9 @@ msgstr ""
 msgid "UUID"
 msgstr ""
 
+msgid "Update the pool"
+msgstr ""
+
 msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
 msgstr ""
 
@@ -228,4 +243,7 @@ msgid "Volume to use for Parity storage. It must NOT be on a data disk."
 msgstr ""
 
 msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
+msgstr ""
+
+msgid "pool"
 msgstr ""

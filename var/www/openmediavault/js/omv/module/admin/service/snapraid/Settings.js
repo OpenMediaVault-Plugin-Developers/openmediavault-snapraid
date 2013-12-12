@@ -46,6 +46,17 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             properties : [
                 "enabled"
             ]
+        },{
+            name : [
+                "poolname"
+            ],
+            conditions : [{
+                name  : "pool",
+                value : true
+            }],
+            properties : [
+                "enabled"
+            ]
         }]
     }],
 
@@ -108,7 +119,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 xtype      : "checkbox",
                 name       : "useqparity",
                 fieldLabel : _("Use Q-Parity"),
-                boxLabel: _("Enables second drive for parity. This is equivalent to RAID 6."),
+                boxLabel   : _("Enables second drive for parity. This is equivalent to RAID 6."),
                 checked    : false
             },{
                 xtype         : "combo",
@@ -188,6 +199,17 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 fieldLabel : _("No Hidden"),
                 boxLabel: _("Excludes hidden files and directories."),
                 checked    : false
+            },{
+                xtype      : "checkbox",
+                name       : "pool",
+                fieldLabel : _("pool"),
+                boxLabel   : _("Creates a virtual view of all the files in your array using symbolic links."),
+                checked    : false
+            },{
+                xtype      : "textfield",
+                name       : "poolname",
+                fieldLabel : _("Share Name"),
+                allowNone  : true
             }]
         }];
     }

@@ -146,6 +146,26 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
             },{
                 border : false,
                 html   : "<br />"
+            },{
+                xtype: "fieldset",
+                title: _("Pool"),
+                frame: false,
+                items: [{
+                    border : false,
+                    html   : _("Update the pool") + "<br /><br />"
+                },{
+                    xtype   : "button",
+                    name    : "pool",
+                    text    : _("Pool"),
+                    scope   : this,
+                    handler : Ext.Function.bind(me.onPoolButton, me, [ me ])
+                },{
+                    border : false,
+                    html   : "<br />"
+                }]
+            },{
+                border : false,
+                html   : "<br />"
             }]
         }];
     },
@@ -238,7 +258,23 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 }
             }
         }).show();
+    },
+    
+    onPoolButton: function() {
+        var me = this;
+        Ext.create("OMV.window.Execute", {
+            title      : _("SnapRAID pool"),
+            rpcService : "SnapRaid",
+            rpcMethod  : "executePool",
+            listeners  : {
+                scope     : me,
+                exception : function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                }
+            }
+        }).show();
     }
+    
 });
 
 OMV.WorkspaceManager.registerPanel({

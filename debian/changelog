@@ -1,3 +1,10 @@
+openmediavault-snapraid (0.5.12) stable; urgency=low
+
+  * Add pooling feature
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 12 Dec 2013 14:20:27 -0500
+
 openmediavault-snapraid (0.5.11) stable; urgency=low
 
   * Allow content on parity/q-parity drive

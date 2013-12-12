@@ -64,6 +64,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('executeDiff');
         $this->registerMethod('executeStatus');
         $this->registerMethod('executeFix');
+        $this->registerMethod('executePool');
 
         $this->registerMethod('getParityCandidates');
         $this->registerMethod('getCandidates');
@@ -81,9 +82,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//services/snapraid");
 
         // Modify result data
-        $object['useqparity']   = boolval($object['useqparity']);
-        $object['nohidden']     = boolval($object['nohidden']);
-        $object['autosave']     = intval($object['autosave']);
+        $object['useqparity'] = boolval($object['useqparity']);
+        $object['nohidden']   = boolval($object['nohidden']);
+        $object['autosave']   = intval($object['autosave']);
+        $object['pool']       = boolval($object['pool']);
 
         unset($object['contents']);
         unset($object['datas']);
@@ -103,14 +105,16 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "parity"        : { "type" : "string" },
-                "mntentref"     : { "type" : "string" },
-                "useqparity"    : { "type" : "boolean" },
-                "qparity"       : { "type" : "string", "optional" : true },
-                "qmntentref"    : { "type" : "string", "optional" : true },
-                "blocksize"     : { "type" : "integer" },
-                "autosave"      : { "type" : "integer" },
-                "nohidden"      : { "type" : "boolean" }
+                "parity"     : { "type" : "string" },
+                "mntentref"  : { "type" : "string" },
+                "useqparity" : { "type" : "boolean" },
+                "qparity"    : { "type" : "string", "optional" : true },
+                "qmntentref" : { "type" : "string", "optional" : true },
+                "blocksize"  : { "type" : "integer" },
+                "autosave"   : { "type" : "integer" },
+                "nohidden"   : { "type" : "boolean" },
+                "pool"       : { "type" : "boolean" },
+                "poolname"   : { "type" : "string", "optional" : true }
             }
         }');
 
@@ -168,18 +172,20 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
         // Prepare configuration data
         $object = array(
-            "mntentref"     => $params['mntentref'],
-            "parity"        => $params['parity'],
-            "useqparity"    => array_boolval($params, 'useqparity'),
-            "qmntentref"    => $params['qmntentref'],
-            "qparity"       => $params['qparity'],
-            "blocksize"     => intval($params['blocksize']),
-            "autosave"      => intval($params['autosave']),
-            "nohidden"      => array_boolval($params, 'nohidden'),
-            "contents"      => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
-            "datas"         => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
-            "excludes"      => isset($oldObject['excludes']) ? $oldObject['excludes'] : array(),
-            "includes"      => isset($oldObject['includes']) ? $oldObject['includes'] : array()
+            "mntentref"  => $params['mntentref'],
+            "parity"     => $params['parity'],
+            "useqparity" => array_boolval($params, 'useqparity'),
+            "qmntentref" => $params['qmntentref'],
+            "qparity"    => $params['qparity'],
+            "blocksize"  => intval($params['blocksize']),
+            "autosave"   => intval($params['autosave']),
+            "nohidden"   => array_boolval($params, 'nohidden'),
+            "pool"       => array_boolval($params, 'pool'),
+            "poolname"   => $params['poolname'],
+            "contents"   => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
+            "datas"      => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
+            "excludes"   => isset($oldObject['excludes']) ? $oldObject['excludes'] : array(),
+            "includes"   => isset($oldObject['includes']) ? $oldObject['includes'] : array()
         );
 
         // Set configuration object
@@ -910,6 +916,35 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             $cmd = "/usr/local/bin/snapraid fix 2>&1";
+            $this->exec($cmd, $output, $bgOutputFilename);
+            $this->finalizeBgProcStatus($bgStatusFilename, $output);
+            exit(0);
+        } catch(Exception $e) {
+            $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+            exit(1);
+        }
+    }
+
+    public function executePool($params, $context) {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+
+        // Create a background process.
+        $bgStatusFilename = $this->createBgProcStatus();
+        $pid = $this->fork();
+        if($pid > 0) { // Parent process.
+            $this->initializeBgProcStatus($bgStatusFilename, $pid);
+            return $bgStatusFilename;
+        }
+
+        // Child process.
+        try {
+            $bgOutputFilename = $this->createBgProcOutput();
+            $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
+
+            $cmd = "/usr/local/bin/snapraid pool 2>&1";
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             exit(0);
