@@ -182,6 +182,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         if (false === $xmlConfig->replace("//services/snapraid", $object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED, "//services/snapraid");
 
+        if ( $params['pool'] && ! file_exists("/media/pool") )
+            mkdir("/media/pool", 0664);
+
         // Notify configuration changes
         $dispatcher = &OMVNotifyDispatcher::getInstance();
         $dispatcher->notify(OMV_NOTIFY_MODIFY, "org.openmediavault.services.snapraid", $object);
