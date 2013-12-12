@@ -118,22 +118,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             }
         }');
 
-        if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['mntentref']}']")) {
-            throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                gettext("This volume is already in use by content."));
-        }
-
         if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['mntentref']}']")) {
             throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume is already in use by data."));
         }
 
         if ( $params['useqparity'] === true ) {
-            if(TRUE === $xmlConfig->exists("//services/snapraid/contents/content[" . "mntentref='{$params['qmntentref']}']")) {
-                throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
-                    gettext("This volume is already in use by content."));
-            }
-
             if(TRUE === $xmlConfig->exists("//services/snapraid/datas/data[" . "mntentref='{$params['qmntentref']}']")) {
                 throw new OMVException(OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                     gettext("This volume is already in use by data."));
