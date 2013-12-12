@@ -259,7 +259,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
             }
         }).show();
     },
-    
+
     onPoolButton: function() {
         var me = this;
         Ext.create("OMV.window.Execute", {
@@ -274,7 +274,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
             }
         }).show();
     }
-    
+
 });
 
 OMV.WorkspaceManager.registerPanel({

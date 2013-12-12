@@ -110,14 +110,5 @@ while [ ${index} -le ${count} ]; do
     index=$(( ${index} + 1 ))
 done
 
-# Only if enabled
-if [ "$(omv_config_get "//services/snapraid/enable")" != "1" ]; then
-    exit 0
-fi
-
-if [ "$(omv_config_get "//services/snapraid/pool")" != "1" ]; then
-    exit 0
-fi
-
 omv-mkconf samba
 /usr/local/bin/snapraid pool

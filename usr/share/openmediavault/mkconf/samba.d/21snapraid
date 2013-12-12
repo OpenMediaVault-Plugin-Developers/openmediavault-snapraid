@@ -32,7 +32,7 @@ if [ "$(omv_config_get "//services/snapraid/pool")" != "1" ]; then
 fi
 
 POOL_DIR="/media/pool"
-pool_name=$(omv_config_get "//services/snapraid/pool_name")
+pool_name=$(omv_config_get "//services/snapraid/poolname")
 
 cat <<EOF >> ${OMV_SAMBA_CONFIG}
 
