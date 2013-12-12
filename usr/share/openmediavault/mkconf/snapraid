@@ -21,6 +21,7 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 SNAPRAID_CONFIG="/etc/snapraid.conf";
+POOL_DIR="/media/pool"
 
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
