@@ -171,7 +171,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             "autosave"   => intval($params['autosave']),
             "nohidden"   => array_boolval($params, 'nohidden'),
             "pool"       => array_boolval($params, 'pool'),
-            "poolname"   => $params['poolname'],
+            "poolname"   => str_replace(" ", "_", $params['poolname']),
             "contents"   => isset($oldObject['contents']) ? $oldObject['contents'] : array(),
             "datas"      => isset($oldObject['datas']) ? $oldObject['datas'] : array(),
             "excludes"   => isset($oldObject['excludes']) ? $oldObject['excludes'] : array(),

@@ -202,13 +202,13 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
             },{
                 xtype      : "checkbox",
                 name       : "pool",
-                fieldLabel : _("pool"),
+                fieldLabel : _("Enable Pool"),
                 boxLabel   : _("Creates a virtual view of all the files in your array using symbolic links."),
                 checked    : false
             },{
                 xtype      : "textfield",
                 name       : "poolname",
-                fieldLabel : _("Share Name"),
+                fieldLabel : _("Pool Share Name"),
                 allowNone  : true
             }]
         }];

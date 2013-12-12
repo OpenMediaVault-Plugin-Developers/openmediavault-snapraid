@@ -18,6 +18,8 @@ configure)
         object="${object}<blocksize>256</blocksize>"
         object="${object}<autosave>0</autosave>"
         object="${object}<nohidden>0</nohidden>"
+        object="${object}<pool>0</pool>"
+        object="${object}<poolname>0</poolname>"
         object="${object}<contents></contents>"
         object="${object}<datas></datas>"
         object="${object}<excludes></excludes>"
