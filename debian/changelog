@@ -1,3 +1,9 @@
+openmediavault-snapraid (0.5.13) stable; urgency=low
+
+  * Update snapraid to 5.1
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 12 Dec 2013 16:38:27 -0500
+
 openmediavault-snapraid (0.5.12) stable; urgency=low
 
   * Add pooling feature
