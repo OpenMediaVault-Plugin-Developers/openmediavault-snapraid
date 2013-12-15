@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# dezi121 <by@songming.me>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-snapraid\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-12-12 14:20-0600\n"
+"PO-Revision-Date: 2013-12-15 06:48+0000\n"
+"Last-Translator: dezi121 <by@songming.me>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "%s (%s available)"
+msgstr ""
+
+msgid "Add content path"
+msgstr ""
+
+msgid "Add data volume"
+msgstr "添加数据卷"
+
+msgid "Add exclusion"
+msgstr "添加排除项"
+
+msgid "Add inclusion"
+msgstr "添加包含项"
+
+msgid "Auto Save"
+msgstr "自动保存"
+
+msgid ""
+"Automatically save the state when syncing after the specified amount of GiB "
+"is processed. Default value is 0, meaning disabled."
+msgstr "在同步多少GB数据后自动保存校验状态，默认值0，代表不开启该功能。"
+
+msgid "Block Size"
+msgstr "块大小"
+
+msgid "Block size in KiB"
+msgstr "块大小单位KB"
+
+msgid "Check"
+msgstr "检查"
+
+msgid ""
+"Checks all the files and the redundancy data. All the files are hashed and "
+"compared with the snapshot saved in the previous 'sync' command."
+msgstr "检查所有文件和冗余数据，所有文件的Hash值将和之前保存的快照进行比较。"
+
+msgid "Commands"
+msgstr "命令"
+
+msgid "Component"
+msgstr "组成"
+
+msgid "Content"
+msgstr ""
+
+msgid "Content root"
+msgstr ""
+
+msgid ""
+"Creates a virtual view of all the files in your array using symbolic links."
+msgstr "创建阵列中使用符号链接所有文件的虚拟视图。"
+
+msgid "Data"
+msgstr "数据盘"
+
+msgid "Data root"
+msgstr ""
+
+msgid "Date & Time"
+msgstr "日期和时间"
+
+msgid "Diff"
+msgstr "比较"
+
+msgid "Edit content path"
+msgstr ""
+
+msgid "Edit data volume"
+msgstr "编辑数据卷"
+
+msgid "Edit exclusion"
+msgstr "编辑排除项"
+
+msgid "Edit inclusion"
+msgstr "编辑包含项"
+
+msgid "Enables second drive for parity. This is equivalent to RAID 6."
+msgstr "添加第二块硬盘作为校验盘，类似于RAID 6。"
+
+msgid "Event"
+msgstr "事件"
+
+msgid "Exclude"
+msgstr "排除"
+
+msgid "Excludes"
+msgstr "排除"
+
+msgid "Excludes hidden files and directories."
+msgstr "排除隐藏文件和隐藏文件夹"
+
+msgid "Fix"
+msgstr "修复"
+
+msgid "Include"
+msgstr "包含"
+
+msgid "Includes"
+msgstr "包含"
+
+msgid "Information"
+msgstr "信息"
+
+msgid "Label"
+msgstr "Label"
+
+msgid ""
+"Lists all the files modified from the last 'sync' command that have to "
+"recompute their redundancy data."
+msgstr "列出最后一次 '更新冗余' 命令执行以来修改过的文件，这会重新计算它们的冗余数据。"
+
+msgid "Message"
+msgstr "消息"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "No Hidden"
+msgstr "隐藏文件选项"
+
+msgid "Parity Path"
+msgstr "冗余路径"
+
+msgid "Parity Volume"
+msgstr "冗余卷"
+
+msgid "Parity and Q-Parity cannot be the same."
+msgstr "校验卷和第二校验卷不能重复"
+
+msgid ""
+"Parity is using this volume. Content cannot use the same volume as Parity or"
+" Q-Parity."
+msgstr ""
+
+msgid "Path"
+msgstr "路径"
+
+msgid "Pool"
+msgstr "存储池"
+
+msgid "Prints a report of the status of the array."
+msgstr "显示阵列状态"
+
+msgid "Q-Parity Volume"
+msgstr "第二冗余卷"
+
+msgid ""
+"Q-Parity is using this volume. Content cannot use the same volume as Parity "
+"or Q-Parity."
+msgstr ""
+
+msgid "QParity Path"
+msgstr "第二冗余路径"
+
+msgid "Restore the last backup/snapshot."
+msgstr "恢复上次备份/快照"
+
+msgid "Scrub"
+msgstr "侦测"
+
+msgid "Scrubs the array, checking for silent errors."
+msgstr "侦测阵列，检查“ silent errors”"
+
+msgid "Select a volume ..."
+msgstr "选者卷"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Share Name"
+msgstr "共享名称"
+
+msgid "SnapRAID"
+msgstr "SnapRAID"
+
+msgid "SnapRAID check"
+msgstr "SnapRAID检查"
+
+msgid "SnapRAID diff"
+msgstr "SnapRAID比较"
+
+msgid "SnapRAID fix"
+msgstr "SnapRAID修复"
+
+msgid "SnapRAID pool"
+msgstr "SnapRAID 池"
+
+msgid "SnapRAID scrub"
+msgstr "SnapRAID侦测"
+
+msgid "SnapRAID status"
+msgstr "SnapRAID状态"
+
+msgid "SnapRAID sync"
+msgstr "SnapRAID更新冗余"
+
+msgid "SnapRAID user manual"
+msgstr "SnapRAID用户手册"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Sync"
+msgstr "更新冗余"
+
+msgid ""
+"The following excludes are written to the snapraid config file by default:"
+msgstr ""
+
+msgid "This volume has already been added."
+msgstr "该卷已经被添加过"
+
+msgid "This volume is already in use by content."
+msgstr ""
+
+msgid "This volume is already in use by data."
+msgstr "该卷已经被设问数据卷"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Update the pool"
+msgstr "更新存储池"
+
+msgid ""
+"Updates the redundancy information. All the modified files in the disk array"
+" are read, and the redundancy data is recomputed."
+msgstr ""
+
+msgid "Use Q-Parity"
+msgstr "启用第二校验卷"
+
+msgid "Volume"
+msgstr "卷"
+
+msgid "Volume to use for Parity storage. It must NOT be on a data disk."
+msgstr ""
+
+msgid ""
+"Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
+"parity disk."
+msgstr ""
+
+msgid "pool"
+msgstr "池"
