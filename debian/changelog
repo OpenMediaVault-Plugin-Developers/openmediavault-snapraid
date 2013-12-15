@@ -1,3 +1,10 @@
+openmediavault-snapraid (0.5.15) stable; urgency=low
+
+  * Fix info page
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 15 Dec 2013 10:50:27 -0500
+
 openmediavault-snapraid (0.5.14) stable; urgency=low
 
   * Compile snapraid binary on correct system

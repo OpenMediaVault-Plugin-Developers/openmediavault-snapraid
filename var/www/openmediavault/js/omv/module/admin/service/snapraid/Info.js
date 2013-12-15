@@ -26,10 +26,20 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
     initComponent: function() {
         var me = this;
 
-        me.html = "snapraid v5.0 by Andrea Mazzoleni, http://snapraid.sourceforge.net" + "<br /><br />";
-        me.html += "<a href='http://snapraid.sourceforge.net/manual.html' target=_blank>" + _("SnapRAID user manual") + "</a>";
-        me.html += "<br /><br /><br />" + _("The following excludes are written to the snapraid config file by default:")
-        me.html += "<br /><ul><li>*.bak</li><li>*.unrecoverable</li><li>/tmp/</li><li>lost+found/</li><li>.content</li><li>aquota.group</li><li>aquota.user</li></ul>"
+        me.html = "<ul>" +
+                    "<li>snapraid v5.1 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
+                    "<li><a href='http://snapraid.sourceforge.net/manual.html' target=_blank>" + _("SnapRAID user manual") + "</a></li>" +
+                  "</ul>" +
+                  _("The following excludes are written to the snapraid config file by default:") +
+                  "<ul>" +
+                    "<li>*.bak</li>" +
+                    "<li>*.unrecoverable</li>" +
+                    "<li>/tmp/</li>" +
+                    "<li>lost+found/</li>" +
+                    "<li>.content</li>" +
+                    "<li>aquota.group</li>" +
+                    "<li>aquota.user</li>" +
+                  "</ul>";
         me.callParent(arguments);
     }
 });
