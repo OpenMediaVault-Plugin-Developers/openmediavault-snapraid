@@ -38,33 +38,24 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
         var me = this;
 
         return [{
-            xtype  : "fieldset",
-            frame  : false,
-            border : false,
-            items  : [{
                 xtype : "fieldset",
-                title : _("Sync"),
+                title : _("Commands"),
                 frame : false,
                 items : [{
-                    border : false,
-                    html   : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") + "<br /><br />"
-                },{
                     xtype   : "button",
                     name    : "sync",
                     text    : _("Sync"),
                     scope   : this,
                     handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                xtype : "fieldset",
-                title : _("Scrub"),
-                frame : false,
-                items : [{
-                    border : false,
-                    html   : _("Scrubs the array, checking for silent errors.") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "scrub",
@@ -72,16 +63,14 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Scrubs the array, checking for silent errors.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                xtype : "fieldset",
-                title : _("Check"),
-                frame : false,
-                items : [{
-                    border : false,
-                    html   : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "check",
@@ -89,16 +78,14 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                xtype : "fieldset",
-                title : _("Diff"),
-                frame : false,
-                items : [{
-                    border : false,
-                    html   : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "diff",
@@ -106,16 +93,14 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                xtype: "fieldset",
-                title: _("Status"),
-                frame: false,
-                items: [{
-                    border : false,
-                    html   : _("Prints a report of the status of the array.") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "status",
@@ -123,16 +108,14 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Prints a report of the status of the array.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                xtype: "fieldset",
-                title: _("Fix"),
-                frame: false,
-                items: [{
-                    border : false,
-                    html   : _("Restore the last backup/snapshot.") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "fix",
@@ -140,19 +123,14 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onFixButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Restore the last backup/snapshot.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
-                }]
-            },{
-                border : false,
-                html   : "<br />"
-            },{
-                xtype: "fieldset",
-                title: _("Pool"),
-                frame: false,
-                items: [{
-                    border : false,
-                    html   : _("Update the pool") + "<br /><br />"
                 },{
                     xtype   : "button",
                     name    : "pool",
@@ -160,13 +138,15 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     scope   : this,
                     handler : Ext.Function.bind(me.onPoolButton, me, [ me ])
                 },{
+		      xtype   : "text",
+		      text    : "Update the pool.",
+		      style   : {
+			   paddingLeft : "10px"
+		      }
+		  },{
                     border : false,
                     html   : "<br />"
                 }]
-            },{
-                border : false,
-                html   : "<br />"
-            }]
         }];
     },
 
