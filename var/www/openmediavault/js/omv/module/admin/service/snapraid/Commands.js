@@ -49,7 +49,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.",
+		      text    : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -64,7 +64,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Scrubs the array, checking for silent errors.",
+		      text    : _("Scrubs the array, checking for silent errors."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -79,7 +79,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.",
+		      text    : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.",
+		      text    : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -109,7 +109,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Prints a status report of the array.",
+		      text    : _("Prints a status report of the array."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -124,7 +124,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onFixButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Restore the last backup/snapshot.",
+		      text    : _("Restore the last backup/snapshot."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }
@@ -139,7 +139,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onPoolButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Update the pool.",
+		      text    : _("Update the pool."),
 		      style   : {
 			   paddingLeft : "10px"
 		      }

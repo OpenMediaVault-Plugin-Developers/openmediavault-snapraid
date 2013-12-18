@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Damtux <sun_lion@live.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-12 14:20-0600\n"
-"PO-Revision-Date: 2013-12-12 20:20+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2013-12-16 18:51+0000\n"
+"Last-Translator: Damtux <sun_lion@live.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s disponibile)"
 
 msgid "Add content path"
 msgstr ""
 
 msgid "Add data volume"
-msgstr ""
+msgstr "Aggiungi un volume di dati"
 
 msgid "Add exclusion"
 msgstr ""
@@ -33,7 +34,7 @@ msgid "Add inclusion"
 msgstr ""
 
 msgid "Auto Save"
-msgstr ""
+msgstr "Salvataggio Automatico"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -41,10 +42,10 @@ msgid ""
 msgstr ""
 
 msgid "Block Size"
-msgstr ""
+msgstr "Dimensione del Blocco"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "Dimensione del Blocco in KiB"
 
 msgid "Check"
 msgstr ""
@@ -68,7 +69,7 @@ msgstr ""
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
-msgstr ""
+msgstr "Crea una vista virtuale di tutti i file nel tuo array usando link simbolici."
 
 msgid "Data"
 msgstr ""
@@ -77,7 +78,7 @@ msgid "Data root"
 msgstr ""
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Data & Ora"
 
 msgid "Diff"
 msgstr ""
@@ -98,7 +99,7 @@ msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr ""
 
 msgid "Event"
-msgstr ""
+msgstr "Evento"
 
 msgid "Exclude"
 msgstr ""
@@ -130,10 +131,10 @@ msgid ""
 msgstr ""
 
 msgid "Message"
-msgstr ""
+msgstr "Messaggio"
 
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 msgid "No Hidden"
 msgstr ""
@@ -153,13 +154,13 @@ msgid ""
 msgstr ""
 
 msgid "Path"
-msgstr ""
+msgstr "Percorso"
 
 msgid "Pool"
 msgstr ""
 
 msgid "Prints a report of the status of the array."
-msgstr ""
+msgstr "Stampa un rapporto sullo stato dell'array."
 
 msgid "Q-Parity Volume"
 msgstr ""
@@ -182,16 +183,16 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr ""
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "Seleziona un volume ..."
 
 msgid "Settings"
-msgstr ""
+msgstr "Impostazioni"
 
 msgid "Share Name"
 msgstr ""
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "SnapRAID check"
 msgstr ""
@@ -215,13 +216,13 @@ msgid "SnapRAID sync"
 msgstr ""
 
 msgid "SnapRAID user manual"
-msgstr ""
+msgstr "manuale utente SnapRAID"
 
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 msgid "Sync"
-msgstr ""
+msgstr "Sincronizza"
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
