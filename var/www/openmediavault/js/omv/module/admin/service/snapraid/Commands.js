@@ -109,7 +109,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : "Prints a report of the status of the array.",
+		      text    : "Prints a status report of the array.",
 		      style   : {
 			   paddingLeft : "10px"
 		      }
