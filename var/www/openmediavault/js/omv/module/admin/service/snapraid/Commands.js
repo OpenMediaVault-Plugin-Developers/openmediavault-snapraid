@@ -51,7 +51,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 		      xtype   : "text",
 		      text    : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "16px"
 		      }
 		  },{
                     border : false,
@@ -66,7 +66,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 		      xtype   : "text",
 		      text    : _("Scrubs the array, checking for silent errors."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "14px"
 		      }
 		  },{
                     border : false,
@@ -81,7 +81,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 		      xtype   : "text",
 		      text    : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "12px"
 		      }
 		  },{
                     border : false,
@@ -96,7 +96,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 		      xtype   : "text",
 		      text    : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "24px"
 		      }
 		  },{
                     border : false,
@@ -124,9 +124,9 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                     handler : Ext.Function.bind(me.onFixButton, me, [ me ])
                 },{
 		      xtype   : "text",
-		      text    : _("Restore the last backup/snapshot."),
+		      text    : _("   Restore the last backup/snapshot."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "26px"
 		      }
 		  },{
                     border : false,
@@ -141,7 +141,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
 		      xtype   : "text",
 		      text    : _("Update the pool."),
 		      style   : {
-			   paddingLeft : "10px"
+			   paddingLeft : "20px"
 		      }
 		  },{
                     border : false,
