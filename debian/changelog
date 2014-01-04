@@ -1,3 +1,10 @@
+openmediavault-snapraid (0.5.18) stable; urgency=low
+
+  * Update locales
+  * Only run pool command in mkconf when pool is enabled
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 04 Jan 2014 08:47:27 -0500
+
 openmediavault-snapraid (0.5.17) stable; urgency=low
 
   * Improve Command tab layout #2

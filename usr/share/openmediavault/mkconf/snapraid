@@ -107,4 +107,7 @@ while [ ${index} -le ${count} ]; do
 done
 
 omv-mkconf samba
-/usr/local/bin/snapraid pool
+
+if [ "$(omv_config_get "//services/snapraid/pool")" != "0" ]; then
+    /usr/local/bin/snapraid pool
+fi
