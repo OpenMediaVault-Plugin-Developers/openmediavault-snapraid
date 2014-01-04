@@ -2,13 +2,13 @@
 
 rm -f usr/local/bin/snapraid
 
-if [ ! -d "snapraid-5.0" ]; then
-  wget http://sourceforge.net/projects/snapraid/files/snapraid-5.1.tar.gz/download -O snapraid-5.1.tar.gz
-  tar xzf snapraid-5.1.tar.gz
-  /bin/rm -f snapraid-5.1.tar.gz
+if [ ! -d "snapraid-5.2" ]; then
+  wget http://sourceforge.net/projects/snapraid/files/snapraid-5.2.tar.gz/download -O snapraid-5.2.tar.gz
+  tar xzf snapraid-5.2.tar.gz
+  /bin/rm -f snapraid-5.2.tar.gz
 fi
 
-cd snapraid-5.1
+cd snapraid-5.2
 ./configure
 make clean
 make
