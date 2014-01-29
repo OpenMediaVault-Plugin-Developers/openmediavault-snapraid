@@ -6,7 +6,7 @@ openmediavault-snapraid (0.5.20) stable; urgency=low
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 29 Jan 2014 08:10:27 -0500
 
- openmediavault-snapraid (0.5.19) stable; urgency=low
+openmediavault-snapraid (0.5.19) stable; urgency=low
 
   * Update to snapraid 5.2
 
