@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-12 14:20-0600\n"
-"PO-Revision-Date: 2013-12-22 07:54+0000\n"
-"Last-Translator: артур Мудрых <arturmon82@gmail.com>\n"
+"POT-Creation-Date: 2014-01-29 08:13-0600\n"
+"PO-Revision-Date: 2014-01-29 14:14+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,6 +95,9 @@ msgstr "Редактировать исключения"
 msgid "Edit inclusion"
 msgstr "Редактировать включения"
 
+msgid "Enable Pool"
+msgstr ""
+
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr "Включить второй диск для \"Parity\". Это равносильно RAID 6."
 
@@ -159,8 +162,11 @@ msgstr "Путь"
 msgid "Pool"
 msgstr "Пул"
 
-msgid "Prints a report of the status of the array."
-msgstr "Показать отчет о статусе массива."
+msgid "Pool Share Name"
+msgstr ""
+
+msgid "Prints a status report of the array."
+msgstr ""
 
 msgid "Q-Parity Volume"
 msgstr "Том \"Q-Parity\""
@@ -187,9 +193,6 @@ msgstr "Выберите том ..."
 
 msgid "Settings"
 msgstr "Настройки"
-
-msgid "Share Name"
-msgstr "Имя общего ресурса"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
@@ -231,17 +234,14 @@ msgstr "Следующие исключения записываются в ко
 msgid "This volume has already been added."
 msgstr "Этот том уже был добавлен."
 
-msgid "This volume is already in use by content."
-msgstr "Этот том уже используется под \"содержимое\"."
-
 msgid "This volume is already in use by data."
 msgstr "Этот том уже используются под \"данные\"."
 
 msgid "UUID"
 msgstr "UUID"
 
-msgid "Update the pool"
-msgstr "Обновить пул"
+msgid "Update the pool."
+msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
@@ -261,6 +261,3 @@ msgid ""
 "Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
 "parity disk."
 msgstr "Том, используется для хранения  \"Q-Parity\". Он не должен быть диском с \"данными\" или диском \"Parity\"."
-
-msgid "pool"
-msgstr "пул"

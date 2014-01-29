@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Damtux <sun_lion@live.com>, 2013
+# polxmod <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-12 14:20-0600\n"
-"PO-Revision-Date: 2013-12-16 18:51+0000\n"
-"Last-Translator: Damtux <sun_lion@live.com>\n"
+"POT-Creation-Date: 2014-01-29 08:13-0600\n"
+"PO-Revision-Date: 2014-01-29 14:14+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,10 +29,10 @@ msgid "Add data volume"
 msgstr "Aggiungi un volume di dati"
 
 msgid "Add exclusion"
-msgstr ""
+msgstr "Aggiungi esclusione"
 
 msgid "Add inclusion"
-msgstr ""
+msgstr "Aggiungi inclusione"
 
 msgid "Auto Save"
 msgstr "Salvataggio Automatico"
@@ -48,7 +49,7 @@ msgid "Block size in KiB"
 msgstr "Dimensione del Blocco in KiB"
 
 msgid "Check"
-msgstr ""
+msgstr "Controlla"
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
@@ -56,74 +57,77 @@ msgid ""
 msgstr ""
 
 msgid "Commands"
-msgstr ""
+msgstr "Comandi"
 
 msgid "Component"
-msgstr ""
+msgstr "Componente"
 
 msgid "Content"
-msgstr ""
+msgstr "Contenuti"
 
 msgid "Content root"
-msgstr ""
+msgstr "Radice Contenuti"
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
 msgstr "Crea una vista virtuale di tutti i file nel tuo array usando link simbolici."
 
 msgid "Data"
-msgstr ""
+msgstr "Dati"
 
 msgid "Data root"
-msgstr ""
+msgstr "Radice Dati"
 
 msgid "Date & Time"
 msgstr "Data & Ora"
 
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 msgid "Edit content path"
 msgstr ""
 
 msgid "Edit data volume"
-msgstr ""
+msgstr "Modifica un volume dati"
 
 msgid "Edit exclusion"
-msgstr ""
+msgstr "Modifica esclusioni"
 
 msgid "Edit inclusion"
+msgstr "Modifica inclusione"
+
+msgid "Enable Pool"
 msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr ""
+msgstr "Abilita un secondo disco per la parità. Equivale ad un RAID 6."
 
 msgid "Event"
 msgstr "Evento"
 
 msgid "Exclude"
-msgstr ""
+msgstr "Escludi"
 
 msgid "Excludes"
-msgstr ""
+msgstr "Esclusi"
 
 msgid "Excludes hidden files and directories."
 msgstr ""
 
 msgid "Fix"
-msgstr ""
+msgstr "Ripara"
 
 msgid "Include"
-msgstr ""
+msgstr "Includi"
 
 msgid "Includes"
-msgstr ""
+msgstr "Includi"
 
 msgid "Information"
-msgstr ""
+msgstr "Informazioni"
 
 msgid "Label"
-msgstr ""
+msgstr "Etichetta"
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
@@ -137,21 +141,21 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "No Hidden"
-msgstr ""
+msgstr "No file nascosti"
 
 msgid "Parity Path"
 msgstr ""
 
 msgid "Parity Volume"
-msgstr ""
+msgstr "Volume Parity"
 
 msgid "Parity and Q-Parity cannot be the same."
-msgstr ""
+msgstr "Parity e Q-Parity non possono essere uguali."
 
 msgid ""
 "Parity is using this volume. Content cannot use the same volume as Parity or"
 " Q-Parity."
-msgstr ""
+msgstr "Parity sta usando questo volue. Il contenuto non può usare lo stesso volume come Parity o Q-Parity."
 
 msgid "Path"
 msgstr "Percorso"
@@ -159,11 +163,14 @@ msgstr "Percorso"
 msgid "Pool"
 msgstr ""
 
-msgid "Prints a report of the status of the array."
-msgstr "Stampa un rapporto sullo stato dell'array."
+msgid "Pool Share Name"
+msgstr ""
+
+msgid "Prints a status report of the array."
+msgstr ""
 
 msgid "Q-Parity Volume"
-msgstr ""
+msgstr "Volume Q-Parity"
 
 msgid ""
 "Q-Parity is using this volume. Content cannot use the same volume as Parity "
@@ -174,13 +181,13 @@ msgid "QParity Path"
 msgstr ""
 
 msgid "Restore the last backup/snapshot."
-msgstr ""
+msgstr "Recupera l'ultimo backup/snapshot."
 
 msgid "Scrub"
-msgstr ""
+msgstr "Pulisci"
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr ""
+msgstr "Pulischi l'array, controlla gli errori silenziosi."
 
 msgid "Select a volume ..."
 msgstr "Seleziona un volume ..."
@@ -188,32 +195,29 @@ msgstr "Seleziona un volume ..."
 msgid "Settings"
 msgstr "Impostazioni"
 
-msgid "Share Name"
-msgstr ""
-
 msgid "SnapRAID"
 msgstr "SnapRAID"
 
 msgid "SnapRAID check"
-msgstr ""
+msgstr "Controllo SnapRAID"
 
 msgid "SnapRAID diff"
-msgstr ""
+msgstr "Diff SnapRAID"
 
 msgid "SnapRAID fix"
-msgstr ""
+msgstr "Riparazione SnapRAID"
 
 msgid "SnapRAID pool"
 msgstr ""
 
 msgid "SnapRAID scrub"
-msgstr ""
+msgstr "Pulitura SnapRAID"
 
 msgid "SnapRAID status"
-msgstr ""
+msgstr "Stato SnapRAID"
 
 msgid "SnapRAID sync"
-msgstr ""
+msgstr "Sincronizzazione SnapRAID"
 
 msgid "SnapRAID user manual"
 msgstr "manuale utente SnapRAID"
@@ -229,18 +233,15 @@ msgid ""
 msgstr ""
 
 msgid "This volume has already been added."
-msgstr ""
-
-msgid "This volume is already in use by content."
-msgstr ""
+msgstr "Questo volume è già stato aggiunto."
 
 msgid "This volume is already in use by data."
-msgstr ""
+msgstr "Questo volume è già utilizzato dai dati."
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
-msgid "Update the pool"
+msgid "Update the pool."
 msgstr ""
 
 msgid ""
@@ -249,18 +250,15 @@ msgid ""
 msgstr ""
 
 msgid "Use Q-Parity"
-msgstr ""
+msgstr "Usa Q-Parity"
 
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr ""
+msgstr "Volume da utilizzare per archiviazione Parity. NON deve essere su un disco di dati."
 
 msgid ""
 "Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
 "parity disk."
-msgstr ""
-
-msgid "pool"
-msgstr ""
+msgstr "Volume da utilizzare per archiviazione Q-Parity. NON deve essere su un disco di dati."

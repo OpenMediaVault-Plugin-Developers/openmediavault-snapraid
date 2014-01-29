@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-12 14:20-0600\n"
+"POT-Creation-Date: 2014-01-29 08:13-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,6 +89,9 @@ msgstr ""
 msgid "Edit inclusion"
 msgstr ""
 
+msgid "Enable Pool"
+msgstr ""
+
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr ""
 
@@ -149,7 +152,10 @@ msgstr ""
 msgid "Pool"
 msgstr ""
 
-msgid "Prints a report of the status of the array."
+msgid "Pool Share Name"
+msgstr ""
+
+msgid "Prints a status report of the array."
 msgstr ""
 
 msgid "Q-Parity Volume"
@@ -174,9 +180,6 @@ msgid "Select a volume ..."
 msgstr ""
 
 msgid "Settings"
-msgstr ""
-
-msgid "Share Name"
 msgstr ""
 
 msgid "SnapRAID"
@@ -218,16 +221,13 @@ msgstr ""
 msgid "This volume has already been added."
 msgstr ""
 
-msgid "This volume is already in use by content."
-msgstr ""
-
 msgid "This volume is already in use by data."
 msgstr ""
 
 msgid "UUID"
 msgstr ""
 
-msgid "Update the pool"
+msgid "Update the pool."
 msgstr ""
 
 msgid "Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed."
@@ -243,7 +243,4 @@ msgid "Volume to use for Parity storage. It must NOT be on a data disk."
 msgstr ""
 
 msgid "Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk."
-msgstr ""
-
-msgid "pool"
 msgstr ""

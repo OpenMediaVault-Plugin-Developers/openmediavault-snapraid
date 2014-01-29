@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# JanN <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-12 14:20-0600\n"
-"PO-Revision-Date: 2013-12-12 20:20+0000\n"
+"POT-Creation-Date: 2014-01-29 08:13-0600\n"
+"PO-Revision-Date: 2014-01-29 14:14+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -18,248 +19,245 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s verfügbar)"
 
 msgid "Add content path"
-msgstr ""
+msgstr "Inhaltsdatenpfad hinzufügen"
 
 msgid "Add data volume"
-msgstr ""
+msgstr "Datenlaufwerk hinzufügen"
 
 msgid "Add exclusion"
-msgstr ""
+msgstr "Ausschluss hinzufügen"
 
 msgid "Add inclusion"
-msgstr ""
+msgstr "Einschluss hinzufügen"
 
 msgid "Auto Save"
-msgstr ""
+msgstr "Automatische Sicherung"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr ""
+msgstr "Automatische Synchronisierungsstatussicherung beim Erreichen der angegebenen Anzahl von verarbeiteten GiB. Voreinstellungswert ist 0; Damit ist die Automatik deaktiviert."
 
 msgid "Block Size"
-msgstr ""
+msgstr "Blockgröße"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "Blockgröße in KB"
 
 msgid "Check"
-msgstr ""
+msgstr "Prüfen"
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
 "compared with the snapshot saved in the previous 'sync' command."
-msgstr ""
+msgstr "Prüft alle Dateien und Prüfdaten. Für alle Dateien werden Prüfsummen erzeugt und mit der Momentaufnahme verglichen, die beim vorhergehenden 'sync'-Befehl gespeichert wurde."
 
 msgid "Commands"
-msgstr ""
+msgstr "Befehle"
 
 msgid "Component"
-msgstr ""
+msgstr "Komponente"
 
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 msgid "Content root"
-msgstr ""
+msgstr "Inhaltsstammverzeichnis"
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
-msgstr ""
+msgstr "Erzeugt eine virtuelle Ansicht aller Dateien in Ihrem Array mittels Symbolischer Links."
 
 msgid "Data"
-msgstr ""
+msgstr "Daten"
 
 msgid "Data root"
-msgstr ""
+msgstr "Datenstammverzeichnis"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Datum & Uhrzeit"
 
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 msgid "Edit content path"
-msgstr ""
+msgstr "Inhaltsdatenpfad bearbeiten"
 
 msgid "Edit data volume"
-msgstr ""
+msgstr "Datenlaufwerk bearbeiten"
 
 msgid "Edit exclusion"
-msgstr ""
+msgstr "Ausschluss bearbeiten"
 
 msgid "Edit inclusion"
+msgstr "Einschluss bearbeiten"
+
+msgid "Enable Pool"
 msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr ""
+msgstr "Aktiviert zweites Laufwerk für Paritätsdaten. Dies entspricht RAID 6."
 
 msgid "Event"
-msgstr ""
+msgstr "Ereignis"
 
 msgid "Exclude"
-msgstr ""
+msgstr "Schließe aus"
 
 msgid "Excludes"
-msgstr ""
+msgstr "Schließt aus"
 
 msgid "Excludes hidden files and directories."
-msgstr ""
+msgstr "Schließt versteckte Dateien und Verzeichnisse aus."
 
 msgid "Fix"
-msgstr ""
+msgstr "Festlegen"
 
 msgid "Include"
-msgstr ""
+msgstr "Schließe ein"
 
 msgid "Includes"
-msgstr ""
+msgstr "Schließt ein"
 
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 msgid "Label"
-msgstr ""
+msgstr "Kennzeichnung"
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
-msgstr ""
+msgstr "Zeige alle durch den letzten 'sync'-Befehl veränderten Dateien, deren Prüfdaten neu berechnet werden müssen."
 
 msgid "Message"
-msgstr ""
+msgstr "Mitteilung"
 
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 msgid "No Hidden"
-msgstr ""
+msgstr "keine Versteckten"
 
 msgid "Parity Path"
-msgstr ""
+msgstr "Paritätsdatenpfad"
 
 msgid "Parity Volume"
-msgstr ""
+msgstr "Paritätsdatenlaufwerk"
 
 msgid "Parity and Q-Parity cannot be the same."
-msgstr ""
+msgstr "Parität und Q-Parität können nicht das Selbe sein."
 
 msgid ""
 "Parity is using this volume. Content cannot use the same volume as Parity or"
 " Q-Parity."
-msgstr ""
+msgstr "Dieses Laufwerk wird für Paritätsdaten benutzt. Inhaltsdaten können nicht auf dem selben Laufwerk wie Paritäts- oder Q-Paritätsdaten gespeichert werden."
 
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 msgid "Pool"
+msgstr "Laufwerkpool"
+
+msgid "Pool Share Name"
 msgstr ""
 
-msgid "Prints a report of the status of the array."
+msgid "Prints a status report of the array."
 msgstr ""
 
 msgid "Q-Parity Volume"
-msgstr ""
+msgstr "Q-Paritätsdatenlaufwerk"
 
 msgid ""
 "Q-Parity is using this volume. Content cannot use the same volume as Parity "
 "or Q-Parity."
-msgstr ""
+msgstr "Dieses Laufwerk wird für Q-Paritätsdaten benutzt. Inhaltsdaten können nicht auf dem selben Laufwerk wie Paritäts- oder Q-Paritätsdaten gespeichert werden."
 
 msgid "QParity Path"
-msgstr ""
+msgstr "Q-Paritätsdatenpfad"
 
 msgid "Restore the last backup/snapshot."
-msgstr ""
+msgstr "Letztes Backup/letzte Momentaufnahme wiederherstellen."
 
 msgid "Scrub"
-msgstr ""
+msgstr "Bereinigung"
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr ""
+msgstr "Bereinigt das Array, prüft auf unentdeckte Fehler."
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "Wähle ein Laufwerk ..."
 
 msgid "Settings"
-msgstr ""
-
-msgid "Share Name"
-msgstr ""
+msgstr "Einstellungen"
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "SnapRAID check"
-msgstr ""
+msgstr "SnapRAID-Prüfung"
 
 msgid "SnapRAID diff"
-msgstr ""
+msgstr "SnapRAID-Diff-Prüfung"
 
 msgid "SnapRAID fix"
-msgstr ""
+msgstr "SnapRAID-Anpassung"
 
 msgid "SnapRAID pool"
-msgstr ""
+msgstr "SnapRAID-Laufwerkspool"
 
 msgid "SnapRAID scrub"
-msgstr ""
+msgstr "SnapRAID-Bereinigung"
 
 msgid "SnapRAID status"
-msgstr ""
+msgstr "SnapRAID-Status"
 
 msgid "SnapRAID sync"
-msgstr ""
+msgstr "SnapRAID-Synchronisierung"
 
 msgid "SnapRAID user manual"
-msgstr ""
+msgstr "SnapRAID-Anwenderhandbuch"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Sync"
-msgstr ""
+msgstr "Synchronisierung"
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
-msgstr ""
+msgstr "Die folgenden Ausschlüsse werden per Voreinstellung in die SnapRAID-Konfigurationsdatei geschrieben: "
 
 msgid "This volume has already been added."
-msgstr ""
-
-msgid "This volume is already in use by content."
-msgstr ""
+msgstr "Dieses Laufwerk wurde bereits hinzugefügt."
 
 msgid "This volume is already in use by data."
-msgstr ""
+msgstr "Dieses Laufwerk wird bereits für Paritätsdaten benutzt."
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
-msgid "Update the pool"
+msgid "Update the pool."
 msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
-msgstr ""
+msgstr "Aktualisiert die Prüfdaten. Alle veränderten Dateien im Plattenarray werden gelesen, und ihre Prüfdaten werden neu berechnet."
 
 msgid "Use Q-Parity"
-msgstr ""
+msgstr "Verwende Q-Parität"
 
 msgid "Volume"
-msgstr ""
+msgstr "Laufwerk"
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr ""
+msgstr "Für Paritätsdatenspeicherung zu nutzendes Laufwerk. Dies darf KEIN Datenlaufwerk sein. "
 
 msgid ""
 "Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
 "parity disk."
-msgstr ""
-
-msgid "pool"
-msgstr ""
+msgstr "Für Q-Paritätsdatenspeicherung zu nutzendes Laufwerk. Dies darf KEIN Datenlaufwerk sein. "
