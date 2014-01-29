@@ -1,7 +1,8 @@
 /**
- *
  * @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
- * @author    OpenMediaVault Plugin Developers
+ * @author    Volker Theile <volker.theile@openmediavault.org>
+ * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+ * @copyright Copyright (c) 2009-2013 Volker Theile
  * @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify

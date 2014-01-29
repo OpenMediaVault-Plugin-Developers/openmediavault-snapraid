@@ -1,9 +1,10 @@
 <?php
-
-/**
- * Copyright (C) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * Copyright (C)      2013 OpenMediaVault Plugin Developers
- * Copyright (C) 2009-2013 Volker Theile <volker.theile@openmediavault.org>
+/*
+ * @author    Volker Theile <volker.theile@openmediavault.org>
+ * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+ * @copyright Copyright (c) 2009-2013 Volker Theile
+ * @Copyright Copyright (c) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
+ * @copyright Copyright (c) 2013-2014 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 require_once "openmediavault/object.inc";
 require_once "openmediavault/config.inc";
 require_once "openmediavault/error.inc";
@@ -57,7 +57,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->registerMethod('setInclude');
         $this->registerMethod('deleteInclude');
 
-        $this->registerMethod('getCommands');
         $this->registerMethod('executeSync');
         $this->registerMethod('executeScrub');
         $this->registerMethod('executeCheck');
@@ -220,8 +219,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $fsname = $xmlConfig->get("//system/fstab/mntent[uuid='{$objectv['mntentref']}']");
             $fs = new OMVFilesystem($fsname['fsname']);
             $object = array(
-                "uuid" => $objectv['uuid'],
-                "label" => $fs->getLabel(),
+                "uuid"        => $objectv['uuid'],
+                "label"       => $fs->getLabel(),
                 "contentroot" => $objectv['contentroot']
             );
             $result[] = $object;
@@ -266,9 +265,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid"          : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
-                "mntentref"     : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
-                "contentroot"   : { "type" : "string" }
+                "uuid"        : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "mntentref"   : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
+                "contentroot" : { "type" : "string" }
             }
         }');
 
@@ -288,9 +287,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
         // Prepare the configuration object.
         $object = array(
-            "uuid"          => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
-            "mntentref"     => $params['mntentref'],
-            "contentroot"   => $params['contentroot']
+            "uuid"        => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "mntentref"   => $params['mntentref'],
+            "contentroot" => $params['contentroot']
         );
 
         // Set the configuration object.
@@ -369,9 +368,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $fsname = $xmlConfig->get("//system/fstab/mntent[uuid='{$objectv['mntentref']}']");
             $fs = new OMVFilesystem($fsname['fsname']);
             $object = array(
-                "uuid" => $objectv['uuid'],
-                "label" => $fs->getLabel(),
-                "volume" => $objectv['mntentref'],
+                "uuid"     => $objectv['uuid'],
+                "label"    => $fs->getLabel(),
+                "volume"   => $objectv['mntentref'],
                 "dataroot" => $objectv['dataroot']
             );
             $result[] = $object;
@@ -416,10 +415,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid"          : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
-                "name"          : { "type" : "string" },
-                "mntentref"     : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
-                "dataroot"      : { "type" : "string" }
+                "uuid"      : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "name"      : { "type" : "string" },
+                "mntentref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
+                "dataroot"  : { "type" : "string" }
             }
         }');
 
@@ -452,10 +451,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
 
         // Prepare the configuration object.
         $object = array(
-            "uuid"          => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
-            "name"          => $params['name'],
-            "mntentref"     => $params['mntentref'],
-            "dataroot"      => $params['dataroot']
+            "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "name"      => $params['name'],
+            "mntentref" => $params['mntentref'],
+            "dataroot"  => $params['dataroot']
         );
 
         // Set the configuration object.
@@ -738,10 +737,6 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         $xpath = sprintf("//services/snapraid/includes/include[uuid='%s']", $params['uuid']);
         return $this->deleteConfigObjectByPath($xpath,
             "org.openmediavault.services.snapraid.includes.include");
-    }
-
-    public function getCommands($params, $context) {
-
     }
 
     public function executeSync($params, $context) {
