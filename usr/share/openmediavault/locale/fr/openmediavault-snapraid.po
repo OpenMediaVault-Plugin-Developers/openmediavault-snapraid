@@ -3,38 +3,37 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Cyryl Sochacki <cyrylsochacki@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-29 08:13-0600\n"
-"PO-Revision-Date: 2014-02-07 10:25+0000\n"
-"Last-Translator: Cyryl Sochacki <cyrylsochacki@gmail.com>\n"
-"Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/pl_PL/)\n"
+"PO-Revision-Date: 2014-02-11 13:16+0000\n"
+"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/openmediavault-snapraid/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pl_PL\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "%s (%s available)"
-msgstr "%s (%s dostępnych)"
+msgstr ""
 
 msgid "Add content path"
 msgstr ""
 
 msgid "Add data volume"
-msgstr "Dodaj dysk "
+msgstr ""
 
 msgid "Add exclusion"
-msgstr "Dodaj wykluczenie"
+msgstr ""
 
 msgid "Add inclusion"
-msgstr "Dodaj integrację"
+msgstr ""
 
 msgid "Auto Save"
-msgstr "Auto zapis"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -42,13 +41,13 @@ msgid ""
 msgstr ""
 
 msgid "Block Size"
-msgstr "Rozmiar bloku"
+msgstr ""
 
 msgid "Block size in KiB"
-msgstr "Rozmiar bloku w KiB"
+msgstr ""
 
 msgid "Check"
-msgstr "Sprawdź"
+msgstr ""
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
@@ -56,77 +55,77 @@ msgid ""
 msgstr ""
 
 msgid "Commands"
-msgstr "Polecenia"
+msgstr ""
 
 msgid "Component"
-msgstr "Komponent"
+msgstr ""
 
 msgid "Content"
-msgstr "Zawartość"
+msgstr ""
 
 msgid "Content root"
-msgstr "Zawartość główna"
+msgstr ""
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
 msgstr ""
 
 msgid "Data"
-msgstr "Dane"
+msgstr ""
 
 msgid "Data root"
-msgstr "Główne dane"
+msgstr ""
 
 msgid "Date & Time"
-msgstr "Data i czas"
+msgstr ""
 
 msgid "Diff"
-msgstr "Różnica"
+msgstr ""
 
 msgid "Edit content path"
 msgstr ""
 
 msgid "Edit data volume"
-msgstr "Edytuj dysk danych"
+msgstr ""
 
 msgid "Edit exclusion"
-msgstr "Edytuj wykluczenie"
+msgstr ""
 
 msgid "Edit inclusion"
-msgstr "Edytuj integrację"
+msgstr ""
 
 msgid "Enable Pool"
-msgstr "Włącz pule"
+msgstr ""
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr "Włącz drugi dysk parzystości. Jest to równoważne z RAID 6."
+msgstr ""
 
 msgid "Event"
-msgstr "Zdarzenie"
+msgstr ""
 
 msgid "Exclude"
-msgstr "Wyklucz"
+msgstr ""
 
 msgid "Excludes"
-msgstr "Wykluczone"
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr ""
 
 msgid "Fix"
-msgstr "Napraw"
+msgstr ""
 
 msgid "Include"
-msgstr "Załącz"
+msgstr ""
 
 msgid "Includes"
-msgstr "Załączone"
+msgstr ""
 
 msgid "Information"
-msgstr "Informacje"
+msgstr ""
 
 msgid "Label"
-msgstr "Etykieta"
+msgstr ""
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
@@ -134,13 +133,13 @@ msgid ""
 msgstr ""
 
 msgid "Message"
-msgstr "Wiadomość"
+msgstr ""
 
 msgid "Name"
-msgstr "Nazwa"
+msgstr ""
 
 msgid "No Hidden"
-msgstr "Nie ukryta"
+msgstr ""
 
 msgid "Parity Path"
 msgstr ""
@@ -157,10 +156,10 @@ msgid ""
 msgstr ""
 
 msgid "Path"
-msgstr "Ścieżka"
+msgstr ""
 
 msgid "Pool"
-msgstr "Pula"
+msgstr ""
 
 msgid "Pool Share Name"
 msgstr ""
@@ -183,49 +182,49 @@ msgid "Restore the last backup/snapshot."
 msgstr ""
 
 msgid "Scrub"
-msgstr "Peeling"
+msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Peeling tablicy, sprawdź ciche błędy."
+msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Wybierz dysk ..."
+msgstr ""
 
 msgid "Settings"
-msgstr "Ustawienia"
+msgstr ""
 
 msgid "SnapRAID"
-msgstr "SnapRAID"
+msgstr ""
 
 msgid "SnapRAID check"
-msgstr "sprawdź SnapRAID"
+msgstr ""
 
 msgid "SnapRAID diff"
-msgstr "różnice SnapRAID "
+msgstr ""
 
 msgid "SnapRAID fix"
-msgstr "SnapRAID fix"
+msgstr ""
 
 msgid "SnapRAID pool"
-msgstr "Pula SnapRAID"
+msgstr ""
 
 msgid "SnapRAID scrub"
 msgstr ""
 
 msgid "SnapRAID status"
-msgstr "Status SnapRAID"
+msgstr ""
 
 msgid "SnapRAID sync"
-msgstr "SnapRAID sync"
+msgstr ""
 
 msgid "SnapRAID user manual"
 msgstr ""
 
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 msgid "Sync"
-msgstr "Synchronizuj"
+msgstr ""
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
@@ -238,7 +237,7 @@ msgid "This volume is already in use by data."
 msgstr ""
 
 msgid "UUID"
-msgstr "UUID"
+msgstr ""
 
 msgid "Update the pool."
 msgstr ""
@@ -249,10 +248,10 @@ msgid ""
 msgstr ""
 
 msgid "Use Q-Parity"
-msgstr "Użyj Q-Parity"
+msgstr ""
 
 msgid "Volume"
-msgstr "Dysk"
+msgstr ""
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
 msgstr ""
