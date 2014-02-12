@@ -2,13 +2,13 @@ Source: openmediavault-snapraid
 Section: net
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.3
 Homepage: http://omv-extras.org/simple/
 
 Package: openmediavault-snapraid
 Architecture: amd64
-Depends: openmediavault (>= 0.5.14), openmediavault (<< 0.6)
+Depends: openmediavault (>= 0.6)
 Description: snapraid plugin for OpenMediaVault.
  SnapRAID is a backup program for disk arrays. It stores parity
  information of your data and it's able to recover from up to two
