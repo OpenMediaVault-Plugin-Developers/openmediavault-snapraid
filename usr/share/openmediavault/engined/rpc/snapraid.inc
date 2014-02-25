@@ -209,9 +209,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get the configuration object.
         $xpath = "//services/snapraid/contents/content";
         $objects = $xmlConfig->getList($xpath);
-        if(is_null($objects)) {
+        if(is_null($objects))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         // Get filesystem label
         $result = array();
@@ -248,9 +247,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get the configuration object.
         $xpath = sprintf("//services/snapraid/contents/content[uuid='%s']", $params['uuid']);
         $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
+        if(is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         return $object;
     }
@@ -303,9 +301,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $success = $xmlConfig->replace("//services/snapraid/contents/content[uuid='{$params['uuid']}']", $object);
         }
 
-        if(FALSE === $success) {
+        if(FALSE === $success)
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
-        }
 
         // Notify configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
@@ -358,9 +355,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get the configuration object.
         $xpath = "//services/snapraid/datas/data";
         $objects = $xmlConfig->getList($xpath);
-        if(is_null($objects)) {
+        if(is_null($objects))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         // Get filesystem label
         $result = array();
@@ -398,9 +394,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get the configuration object.
         $xpath = sprintf("//services/snapraid/datas/data[uuid='%s']", $params['uuid']);
         $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
+        if(is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         return $object;
     }
@@ -452,7 +447,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Prepare the configuration object.
         $object = array(
             "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
-            "name"      => $params['name'],
+            "name"      => str_replace(" ", "_", $params['name']),
             "mntentref" => $params['mntentref'],
             "dataroot"  => $params['dataroot']
         );
@@ -468,9 +463,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $success = $xmlConfig->replace("//services/snapraid/datas/data[uuid='{$params['uuid']}']", $object);
         }
 
-        if(FALSE === $success) {
+        if(FALSE === $success)
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
-        }
 
         // Notify configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
@@ -523,9 +517,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get configuration data.
         $xpath = "//services/snapraid/excludes/exclude";
         $objects = $xmlConfig->getList($xpath);
-        if(is_null($objects)) {
+        if(is_null($objects))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         // Filter the result.
         return $this->applyFilter($objects, $params['start'], $params['limit'],
@@ -549,9 +542,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
           // Get the configuration object.
         $xpath = sprintf("//services/snapraid/excludes/exclude[uuid='%s']", $params['uuid']);
         $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
+        if(is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         return $object;
     }
@@ -587,9 +579,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $success = $xmlConfig->replace("//services/snapraid/excludes/exclude[uuid='{$params['uuid']}']", $object);
         }
 
-        if(FALSE === $success) {
+        if(FALSE === $success)
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
-        }
 
         // Notify configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
@@ -641,9 +632,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
         // Get configuration data.
         $xpath = "//services/snapraid/includes/include";
         $objects = $xmlConfig->getList($xpath);
-        if(is_null($objects)) {
+        if(is_null($objects))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         // Filter the result.
         return $this->applyFilter($objects, $params['start'], $params['limit'],
@@ -667,9 +657,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
           // Get the configuration object.
         $xpath = sprintf("//services/snapraid/includes/include[uuid='%s']", $params['uuid']);
         $object = $xmlConfig->get($xpath);
-        if(is_null($object)) {
+        if(is_null($object))
             throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, $xpath);
-        }
 
         return $object;
     }
@@ -705,9 +694,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract {
             $success = $xmlConfig->replace("//services/snapraid/includes/include[uuid='{$params['uuid']}']", $object);
         }
 
-        if(FALSE === $success) {
+        if(FALSE === $success)
             throw new OMVException(OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED);
-        }
 
         // Notify configuration changes.
         $dispatcher = &OMVNotifyDispatcher::getInstance();
