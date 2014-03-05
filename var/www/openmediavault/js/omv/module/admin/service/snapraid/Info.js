@@ -30,7 +30,7 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
         var me = this;
 
         me.html = "<ul>" +
-                    "<li>snapraid v5.2 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
+                    "<li>snapraid v5.3 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
                     "<li><a href='http://snapraid.sourceforge.net/manual.html' target=_blank>" + _("SnapRAID user manual") + "</a></li>" +
                   "</ul>" +
                   _("The following excludes are written to the snapraid config file by default:") +
