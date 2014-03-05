@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-29 08:13-0600\n"
-"PO-Revision-Date: 2014-02-12 12:38+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2014-03-04 20:38-0600\n"
+"PO-Revision-Date: 2014-02-14 01:31+0000\n"
+"Last-Translator: kansuke <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,245 +18,245 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "%s (%s available)"
-msgstr ""
+msgstr "%s (%s 利用可能)"
 
 msgid "Add content path"
-msgstr ""
+msgstr "コンテンツパスの追加"
 
 msgid "Add data volume"
-msgstr ""
+msgstr "データボリュームの追加"
 
 msgid "Add exclusion"
-msgstr ""
+msgstr "除外するものの追加"
 
 msgid "Add inclusion"
-msgstr ""
+msgstr "含めるものの追加"
 
 msgid "Auto Save"
-msgstr ""
+msgstr "自動保存"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr ""
+msgstr "GiB単位で指定された量を処理した後に同期されたとき、自動的に状態を保存します。デフォルト値は無効を意味する0です。"
 
 msgid "Block Size"
-msgstr ""
+msgstr "ブロックサイズ"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "KiB単位でのブロックサイズ"
 
 msgid "Check"
-msgstr ""
+msgstr "チェック"
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
 "compared with the snapshot saved in the previous 'sync' command."
-msgstr ""
+msgstr "すべてのファイルと冗長データをチェックします。すべてのファイルがハッシュされ、以前の「同期」コマンドで保存したスナップショットと比較されます。"
 
 msgid "Commands"
-msgstr ""
+msgstr "コマンド"
 
 msgid "Component"
-msgstr ""
+msgstr "コンポーネント"
 
 msgid "Content"
-msgstr ""
+msgstr "コンテンツ"
 
 msgid "Content root"
-msgstr ""
+msgstr "コンテンツルート"
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
-msgstr ""
+msgstr "シンボリックリンクを使用して、アレイ内のすべてのファイルの仮想ビューを作成します。"
 
 msgid "Data"
-msgstr ""
+msgstr "データ"
 
 msgid "Data root"
-msgstr ""
+msgstr "データルート"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "日付 & 時刻"
 
 msgid "Diff"
-msgstr ""
+msgstr "差分"
 
 msgid "Edit content path"
-msgstr ""
+msgstr "コンテンツパスの編集"
 
 msgid "Edit data volume"
-msgstr ""
+msgstr "データボリュームの編集"
 
 msgid "Edit exclusion"
-msgstr ""
+msgstr "除外するものの編集"
 
 msgid "Edit inclusion"
-msgstr ""
+msgstr "含めるものの編集"
 
 msgid "Enable Pool"
-msgstr ""
+msgstr "プールの有効化"
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr ""
+msgstr "パリティのための2つ目のドライブを有効にします。これはRAID6に相当します。"
 
 msgid "Event"
-msgstr ""
+msgstr "イベント"
 
 msgid "Exclude"
-msgstr ""
+msgstr "除外"
 
 msgid "Excludes"
-msgstr ""
+msgstr "除外"
 
 msgid "Excludes hidden files and directories."
-msgstr ""
+msgstr "隠しファイルやディレクトリを除外します。"
 
 msgid "Fix"
-msgstr ""
+msgstr "修正"
 
 msgid "Include"
-msgstr ""
+msgstr "インクルード"
 
 msgid "Includes"
-msgstr ""
+msgstr "インクルード"
 
 msgid "Information"
-msgstr ""
+msgstr "情報"
 
 msgid "Label"
-msgstr ""
+msgstr "ラベル"
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
-msgstr ""
+msgstr "冗長データを再計算する必要があり、最後の「同期」コマンドから変更されたすべてのファイルを一覧表示します。"
 
 msgid "Message"
-msgstr ""
+msgstr "メッセージ"
 
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 msgid "No Hidden"
-msgstr ""
+msgstr "隠さない"
 
 msgid "Parity Path"
-msgstr ""
+msgstr "パリティパス"
 
 msgid "Parity Volume"
-msgstr ""
+msgstr "パリティボリューム"
 
 msgid "Parity and Q-Parity cannot be the same."
-msgstr ""
+msgstr "パリティとQパリティは同じにすることはできません。"
 
 msgid ""
 "Parity is using this volume. Content cannot use the same volume as Parity or"
 " Q-Parity."
-msgstr ""
+msgstr "パリティはこのボリュームを使用しています。コンテンツはパリティまたはQパリティと同じ容量を使用することはできません。"
 
 msgid "Path"
-msgstr ""
+msgstr "パス"
 
 msgid "Pool"
-msgstr ""
+msgstr "プール"
 
 msgid "Pool Share Name"
-msgstr ""
+msgstr "プール共有の名前"
 
 msgid "Prints a status report of the array."
-msgstr ""
+msgstr "アレイのステータスレポートを印刷します。"
 
 msgid "Q-Parity Volume"
-msgstr ""
+msgstr "Qパリティボリューム"
 
 msgid ""
 "Q-Parity is using this volume. Content cannot use the same volume as Parity "
 "or Q-Parity."
-msgstr ""
+msgstr "Qパリティはこのボリュームを使用しています。コンテンツはパリティまたはQパリティと同じ容量を使用することはできません。"
 
 msgid "QParity Path"
-msgstr ""
+msgstr "Qパリティパス"
 
 msgid "Restore the last backup/snapshot."
-msgstr ""
+msgstr "最後のバックアップ/スナップショットからリストアします。"
 
 msgid "Scrub"
-msgstr ""
+msgstr "スクラブ"
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr ""
+msgstr "アレイをスクラブし、サイレントエラーをチェックします。"
 
 msgid "Select a volume ..."
-msgstr ""
+msgstr "ボリュームの選択 ..."
 
 msgid "Settings"
-msgstr ""
+msgstr "設定"
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "SnapRAID check"
-msgstr ""
+msgstr "SnapRAIDチェック"
 
 msgid "SnapRAID diff"
-msgstr ""
+msgstr "SnapRAID差分"
 
 msgid "SnapRAID fix"
-msgstr ""
+msgstr "SnapRAID修正"
 
 msgid "SnapRAID pool"
-msgstr ""
+msgstr "SnapRAIDプール"
 
 msgid "SnapRAID scrub"
-msgstr ""
+msgstr "SnapRAIDスクラブ"
 
 msgid "SnapRAID status"
-msgstr ""
+msgstr "SnapRAID状態"
 
 msgid "SnapRAID sync"
-msgstr ""
+msgstr "SnapRAID同期"
 
 msgid "SnapRAID user manual"
-msgstr ""
+msgstr "SnapRAIDユーザーマニュアル"
 
 msgid "Status"
-msgstr ""
+msgstr "状態"
 
 msgid "Sync"
-msgstr ""
+msgstr "同期"
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
-msgstr ""
+msgstr "以下の除外は、デフォルトでsnapraid設定ファイルに書き込まれます:"
 
 msgid "This volume has already been added."
-msgstr ""
+msgstr "このボリュームはすでに追加されています。"
 
 msgid "This volume is already in use by data."
-msgstr ""
+msgstr "このボリュームはデータによってすでに使用されています。"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Update the pool."
-msgstr ""
+msgstr "プールをアップデートします。"
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
-msgstr ""
+msgstr "冗長性情報を更新します。ディスクアレイ内のすべての変更されたファイルが読み取られ、冗長データが再計算されます。"
 
 msgid "Use Q-Parity"
-msgstr ""
+msgstr "Qパリティを使用"
 
 msgid "Volume"
-msgstr ""
+msgstr "ボリューム"
 
 msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr ""
+msgstr "パリティストレージ用にボリュームは使用されます。これは、データディスクにあってはいけません。"
 
 msgid ""
 "Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
 "parity disk."
-msgstr ""
+msgstr "Qパリティストレージ用にボリュームは使用されます。これは、データディスクまたは、パリティディスクにあってはいけません。"

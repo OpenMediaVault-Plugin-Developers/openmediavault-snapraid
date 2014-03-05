@@ -4,12 +4,12 @@
 # 
 # Translators:
 # Damtux <sun_lion@live.com>, 2013
-# polxmod <paolo.velati@gmail.com>, 2014
+# Paolo Velati <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-29 08:13-0600\n"
+"POT-Creation-Date: 2014-03-04 20:38-0600\n"
 "PO-Revision-Date: 2014-01-29 14:14+0000\n"
 "Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
