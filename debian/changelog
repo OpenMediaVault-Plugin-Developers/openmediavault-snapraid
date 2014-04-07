@@ -1,3 +1,10 @@
+openmediavault-snapraid (0.6.2) stable; urgency=low
+
+  * Update to Snapraid 6.0
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 07 Apr 2014 07:53:27 -0500
+
 openmediavault-snapraid (0.6.1) stable; urgency=low
 
   * Update to run on Kralizec and Sardaukar
