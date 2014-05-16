@@ -24,6 +24,7 @@
 
 Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
     extend : "OMV.module.admin.diagnostic.log.plugin.Plugin",
+    alias  : "omv.plugin.diagnostic.log.snapraid",
 
     id       : "snapraid",
     text     : _("SnapRAID"),
@@ -63,10 +64,4 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
         { name : "event", type : "string" },
         { name : "message", type : "string" },
     ]
-});
-
-OMV.PluginManager.register({
-    ptype     : "diagnostic",
-    id        : "log",
-    className : "OMV.module.admin.diagnostic.log.plugin.SnapRaid"
 });
