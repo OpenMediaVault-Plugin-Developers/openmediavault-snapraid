@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Damtux <sun_lion@live.com>, 2013
+# Damtux, 2013
 # Paolo Velati <paolo.velati@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-04 20:38-0600\n"
-"PO-Revision-Date: 2014-03-16 18:13+0000\n"
+"PO-Revision-Date: 2014-05-11 14:10+0000\n"
 "Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -187,7 +187,7 @@ msgid "Scrub"
 msgstr "Pulisci"
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Pulischi l'array, controlla gli errori silenziosi."
+msgstr "Pulisci l'array, controlla gli errori silenziosi."
 
 msgid "Select a volume ..."
 msgstr "Seleziona un volume ..."
