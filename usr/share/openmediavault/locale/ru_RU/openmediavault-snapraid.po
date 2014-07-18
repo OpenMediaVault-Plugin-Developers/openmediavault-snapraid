@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Alexander Savchenko, 2014
 # артур Мудрых <arturmon82@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-04 20:38-0600\n"
-"PO-Revision-Date: 2014-01-29 14:14+0000\n"
-"Last-Translator: ryecoaaron <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-06-15 20:43+0000\n"
+"Last-Translator: Alexander Savchenko\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgid "Edit inclusion"
 msgstr "Редактировать включения"
 
 msgid "Enable Pool"
-msgstr ""
+msgstr "Включить пул"
 
 msgid "Enables second drive for parity. This is equivalent to RAID 6."
 msgstr "Включить второй диск для \"Parity\". Это равносильно RAID 6."
@@ -241,7 +242,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "Update the pool."
-msgstr ""
+msgstr "Обновить пул."
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"

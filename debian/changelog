@@ -1,9 +1,10 @@
-openmediavault-snapraid (0.6.3) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0) stable; urgency=low
 
+  * Update to Snapraid 6.3
   * Update log to use alias instead of register
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 16 May 2014 06:02:51 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 17 Jul 2014 19:18:03 -0500
 
 openmediavault-snapraid (0.6.2) stable; urgency=low
 
