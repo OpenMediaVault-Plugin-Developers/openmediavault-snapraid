@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="6.1"
+VERSION="6.3"
 rm -f usr/local/bin/snapraid
 
 if [ ! -d "snapraid-${VERSION}" ]; then
