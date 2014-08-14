@@ -28,11 +28,7 @@
 // require("js/omv/data/proxy/Rpc.js")
 // require("js/omv/form/field/SharedFolderComboBox.js")
 
-/**
- * @class OMV.module.admin.service.snapraid.Content
- * @derived OMV.workspace.window.Form
- */
-Ext.define("OMV.module.admin.service.snapraid.Content", {
+Ext.define("OMV.module.admin.service.snapraid.Drive", {
     extend : "OMV.workspace.window.Form",
     uses   : [
         "OMV.form.field.SharedFolderComboBox",
@@ -40,18 +36,20 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
     ],
 
     rpcService   : "SnapRaid",
-    rpcGetMethod : "getContent",
-    rpcSetMethod : "setContent",
+    rpcGetMethod : "getDrive",
+    rpcSetMethod : "setDrive",
     plugins      : [{
         ptype : "configobject"
     }],
+
+    width : 575,
 
     getFormItems: function () {
         return [{
             xtype         : "combo",
             name          : "mntentref",
-            fieldLabel    : _("Volume"),
-            emptyText     : _("Select a volume ..."),
+            fieldLabel    : _("Drive"),
+            emptyText     : _("Select a drive ..."),
             allowBlank    : false,
             allowNone     : false,
             editable      : false,
@@ -82,21 +80,28 @@ Ext.define("OMV.module.admin.service.snapraid.Content", {
                 }]
             })
         },{
-            xtype      : "textfield",
-            name       : "contentroot",
-            fieldLabel : _("Content root"),
-            allowNone  : true,
-            readOnly   : true,
-            hidden     : true
+            xtype      : "checkbox",
+            name       : "content",
+            fieldLabel : _("Content"),
+            boxLabel   : _("Drive where content file is stored.  This file is a list of saved files and contains the details of your backup with all the checksums to verify its integrity."),
+            checked    : false
+        },{
+            xtype      : "checkbox",
+            name       : "data",
+            fieldLabel : _("Data"),
+            boxLabel   : _("Drive where data is stored."),
+            checked    : false
+        },{
+            xtype      : "checkbox",
+            name       : "parity",
+            fieldLabel : _("Parity"),
+            boxLabel   : _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss."),
+            checked    : false
         }];
     }
 });
 
-/**
- * @class OMV.module.admin.service.snapraid.ContentList
- * @derived OMV.workspace.grid.Panel
- */
-Ext.define("OMV.module.admin.service.snapraid.ContentList", {
+Ext.define("OMV.module.admin.service.snapraid.DriveList", {
     extend   : "OMV.workspace.grid.Panel",
     requires : [
         "OMV.Rpc",
@@ -117,10 +122,35 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
         dataIndex : "label",
         stateId   : "label"
     },{
-        text      : _("Path"),
+        xtype     : "booleaniconcolumn",
+        header    : _("Content"),
         sortable  : true,
-        dataIndex : "contentroot",
-        stateId   : "contentroot"
+        dataIndex : "content",
+        align     : "center",
+        width     : 80,
+        resizable : false,
+        trueIcon  : "switch_on.png",
+        falseIcon : "switch_off.png"
+    },{
+        xtype     : "booleaniconcolumn",
+        header    : _("Data"),
+        sortable  : true,
+        dataIndex : "data",
+        align     : "center",
+        width     : 80,
+        resizable : false,
+        trueIcon  : "switch_on.png",
+        falseIcon : "switch_off.png"
+    },{
+        xtype     : "booleaniconcolumn",
+        header    : _("Parity"),
+        sortable  : true,
+        dataIndex : "parity",
+        align     : "center",
+        width     : 80,
+        resizable : false,
+        trueIcon  : "switch_on.png",
+        falseIcon : "switch_off.png"
     }],
 
     initComponent : function () {
@@ -133,14 +163,16 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
                     fields      : [
                         { name : "uuid", type : "string" },
                         { name : "label", type : "string" },
-                        { name : "contentroot", type : "string" }
+                        { name : "content", type : "boolean" },
+                        { name : "data", type : "boolean" },
+                        { name : "parity", type : "boolean" }
                     ]
                 }),
                 proxy : {
                     type    : "rpc",
                     rpcData : {
                         service : "SnapRaid",
-                        method  : "getContentList"
+                        method  : "getDriveList"
                     }
                 }
             })
@@ -150,8 +182,8 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
 
     onAddButton : function () {
         var me = this;
-        Ext.create("OMV.module.admin.service.snapraid.Content", {
-            title     : _("Add content path"),
+        Ext.create("OMV.module.admin.service.snapraid.Drive", {
+            title     : _("Add drive"),
             uuid      : OMV.UUID_UNDEFINED,
             listeners : {
                 scope  : me,
@@ -165,8 +197,8 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
     onEditButton : function() {
         var me = this;
         var record = me.getSelected();
-        Ext.create("OMV.module.admin.service.snapraid.Content", {
-            title     : _("Edit content path"),
+        Ext.create("OMV.module.admin.service.snapraid.Drive", {
+            title     : _("Edit drive"),
             uuid      : record.get("uuid"),
             listeners : {
                 scope  : me,
@@ -184,7 +216,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
             callback : me.onDeletion,
             rpcData  : {
                 service : "SnapRaid",
-                method  : "deleteContent",
+                method  : "deleteDrive",
                 params  : {
                     uuid : record.get("uuid")
                 }
@@ -196,7 +228,7 @@ Ext.define("OMV.module.admin.service.snapraid.ContentList", {
 OMV.WorkspaceManager.registerPanel({
     id        : "contents",
     path      : "/service/snapraid",
-    text      : _("Content"),
+    text      : _("Drives"),
     position  : 20,
-    className : "OMV.module.admin.service.snapraid.ContentList"
+    className : "OMV.module.admin.service.snapraid.DriveList"
 });

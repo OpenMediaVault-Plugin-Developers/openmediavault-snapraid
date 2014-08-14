@@ -25,47 +25,59 @@ require_once("openmediavault/util.inc");
 require_once("openmediavault/initscript.inc");
 require_once("openmediavault/log.inc");
 
-class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyListener {
-
-    public function getName() {
+class OMVModuleSnapRaid extends OMVModuleServiceAbstract implements OMVINotifyListener
+{
+    public function getName()
+    {
         return "snapraid";
     }
 
-    public function applyConfig() {
-        global $xmlConfig;
-
-        $config = $xmlConfig->get("//services/snapraid");
-
-        if (is_null($config))
-            throw new OMVException(OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED, "//services/snapraid");
-
-        $cmd = "sudo omv-mkconf snapraid 2>&1";
-
-        if (0 !== $this->exec($cmd, $output))
-            throw new OMVException(OMVErrorMsg::E_EXEC_FAILED, $cmd, implode("\n", $output));
+    private function getEventMessagePath()
+    {
+        return sprintf("org.openmediavault.services.%s", $this->getName());
     }
 
-    public function bindListeners(OMVNotifyDispatcher $dispatcher) {
+    private function getEventMessagePathDrive()
+    {
+        return sprintf("%s.drives.drive", $this->getEventMessagePath());
+    }
+
+    private function getEventMessagePathRule()
+    {
+        return sprintf("%s.rules.rule", $this->getEventMessagePath());
+    }
+
+    public function applyConfig()
+    {
+        $cmd = "omv-mkconf snapraid 2>&1";
+
+        if (0 !== $this->exec($cmd, $output))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_EXEC_FAILED,
+                $cmd,
+                implode("\n", $output)
+            );
+        }
+    }
+
+    public function bindListeners(OMVNotifyDispatcher $dispatcher)
+    {
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            "org.openmediavault.services.snapraid",
-            array($this, "setDirty"));
+            $this->getEventMessagePath(),
+            array($this, "setDirty")
+        );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.contents.content",
-            array($this, "setDirty"));
+            $this->getEventMessagePathDrive(),
+            array($this, "setDirty")
+        );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.datas.data",
-            array($this, "setDirty"));
-        $dispatcher->addListener(
-            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.excludes.exclude",
-            array($this, "setDirty"));
-        $dispatcher->addListener(
-            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.includes.include",
-            array($this, "setDirty"));
+            $this->getEventMessagePathRule(),
+            array($this, "setDirty")
+        );
     }
 }
 
@@ -85,5 +97,3 @@ OMVLogFile::registerType("snapraid", array(
         "message"   => 10
     )
 ));
-
-?>

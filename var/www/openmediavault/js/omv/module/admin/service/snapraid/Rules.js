@@ -22,118 +22,93 @@
 // require("js/omv/workspace/grid/Panel.js")
 // require("js/omv/workspace/window/Form.js")
 // require("js/omv/workspace/window/plugin/ConfigObject.js")
+// require("js/omv/util/Format.js")
 // require("js/omv/Rpc.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
-// require("js/omv/form/field/SharedFolderComboBox.js")
 
-/**
- * @class OMV.module.admin.service.snapraid.Data
- * @derived OMV.workspace.window.Form
- */
-Ext.define("OMV.module.admin.service.snapraid.Data", {
-    extend : "OMV.workspace.window.Form",
-    uses   : [
-        "OMV.form.field.SharedFolderComboBox",
+Ext.define("OMV.module.admin.service.snapraid.Rule", {
+    extend   : "OMV.workspace.window.Form",
+    requires : [
         "OMV.workspace.window.plugin.ConfigObject"
     ],
 
     rpcService   : "SnapRaid",
-    rpcGetMethod : "getData",
-    rpcSetMethod : "setData",
+    rpcGetMethod : "getRule",
+    rpcSetMethod : "setRule",
     plugins      : [{
         ptype : "configobject"
     }],
 
-    getFormItems : function () {
+    getFormItems : function() {
         return [{
             xtype      : "textfield",
-            name       : "name",
-            fieldLabel : _("Name"),
+            name       : "rule",
+            fieldLabel : _("Rule"),
             allowBlank : false
         },{
-            xtype         : "combo",
-            name          : "mntentref",
-            fieldLabel    : _("Volume"),
-            emptyText     : _("Select a volume ..."),
+            xtype      : "combo",
+            name       : "rtype",
+            fieldLabel : _("Rule Type"),
+            mode       : "local",
+            store      : new Ext.data.SimpleStore({
+                fields  : [ "value", "text" ],
+                data    : [
+                    [ 0, _("Exclusion") ],
+                    [ 1, _("Inclusion") ]
+                ]
+            }),
+            displayField  : "text",
+            valueField    : "value",
             allowBlank    : false,
-            allowNone     : false,
             editable      : false,
             triggerAction : "all",
-            displayField  : "description",
-            valueField    : "uuid",
-            store         : Ext.create("OMV.data.Store", {
-                autoLoad : true,
-                model    : OMV.data.Model.createImplicit({
-                    idProperty : "uuid",
-                    fields     : [
-                        { name : "uuid", type : "string" },
-                        { name : "devicefile", type : "string" },
-                        { name : "description", type : "string" }
-                    ]
-                }),
-                proxy : {
-                    type : "rpc",
-                    rpcData : {
-                        service : "ShareMgmt",
-                        method  : "getCandidates"
-                    },
-                    appendSortParams : false
-                },
-                sorters : [{
-                    direction : "ASC",
-                    property  : "devicefile"
-                }]
-            })
-        },{
-            xtype      : "textfield",
-            name       : "dataroot",
-            fieldLabel : _("Data root"),
-            allowNone  : true,
-            readOnly   : true,
-            hidden     : true
-        }];
+            value         : 0,
+            plugins    : [{
+                ptype : "fieldinfo",
+                text  : _("Specify whether the rule is an exclusion or inclusion.")
+            }]
+        }
+        ];
     }
 });
 
-/**
- * @class OMV.module.admin.service.snapraid.DataList
- * @derived OMV.workspace.grid.Panel
- */
-Ext.define("OMV.module.admin.service.snapraid.DataList", {
+Ext.define("OMV.module.admin.service.snapraid.Rules", {
     extend   : "OMV.workspace.grid.Panel",
     requires : [
         "OMV.Rpc",
         "OMV.data.Store",
         "OMV.data.Model",
-        "OMV.data.proxy.Rpc"
+        "OMV.data.proxy.Rpc",
+        "OMV.util.Format"
     ],
     uses     : [
-        "OMV.module.admin.service.snapraid.Data"
+        "OMV.module.admin.service.snapraid.Exclude"
     ],
 
     hidePagingToolbar : false,
     stateful          : true,
-    stateId           : "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
+    stateId           : "a982a76d-6804-4632-b31b-8b48c0ea6dde",
     columns           : [{
-        text      : _("Label"),
+        text      : _("Rule"),
         sortable  : true,
-        dataIndex : "label",
-        stateId   : "label"
+        dataIndex : "rule",
+        stateId   : "rule"
     },{
-        text      : _("UUID"),
+        text      : _("Rule Type"),
         sortable  : true,
-        dataIndex : "volume",
-        stateId   : "volume"
-    },{
-        text      : _("Path"),
-        sortable  : true,
-        dataIndex : "dataroot",
-        stateId   : "dataroot"
+        dataIndex : "rtype",
+        stateId   : "rtype",
+        renderer  : function (value) {
+            if (value == '1')
+                return _("Inclusion");
+            else
+                return _("Exclusion");
+        }
     }],
 
-    initComponent : function () {
+    initComponent : function() {
         var me = this;
         Ext.apply(me, {
             store : Ext.create("OMV.data.Store", {
@@ -142,16 +117,15 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
                     idProperty  : "uuid",
                     fields      : [
                         { name : "uuid", type : "string" },
-                        { name : "label", type : "string" },
-                        { name : "volume", type : "string" },
-                        { name : "dataroot", type : "string" }
+                        { name : "rule", type : "string" },
+                        { name : "rtype", type : "integer" }
                     ]
                 }),
                 proxy : {
                     type    : "rpc",
                     rpcData : {
                         service : "SnapRaid",
-                        method  : "getDataList"
+                        method  : "getRuleList"
                     }
                 }
             })
@@ -159,14 +133,14 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
         me.callParent(arguments);
     },
 
-    onAddButton : function () {
+    onAddButton : function() {
         var me = this;
-        Ext.create("OMV.module.admin.service.snapraid.Data", {
-            title     : _("Add data volume"),
+        Ext.create("OMV.module.admin.service.snapraid.Rule", {
+            title     : _("Add rule"),
             uuid      : OMV.UUID_UNDEFINED,
             listeners : {
                 scope  : me,
-                submit : function () {
+                submit : function() {
                     this.doReload();
                 }
             }
@@ -176,8 +150,8 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
     onEditButton : function() {
         var me = this;
         var record = me.getSelected();
-        Ext.create("OMV.module.admin.service.snapraid.Data", {
-            title     : _("Edit data volume"),
+        Ext.create("OMV.module.admin.service.snapraid.Rule", {
+            title     : _("Edit rule"),
             uuid      : record.get("uuid"),
             listeners : {
                 scope  : me,
@@ -188,26 +162,27 @@ Ext.define("OMV.module.admin.service.snapraid.DataList", {
         }).show();
     },
 
-    doDeletion : function (record) {
+    doDeletion : function(record) {
         var me = this;
         OMV.Rpc.request({
             scope    : me,
             callback : me.onDeletion,
             rpcData  : {
                 service : "SnapRaid",
-                method  : "deleteData",
+                method  : "deleteRule",
                 params  : {
                     uuid : record.get("uuid")
                 }
             }
         });
     }
+
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "datalist",
+    id        : "excludes",
     path      : "/service/snapraid",
-    text      : _("Data"),
+    text      : _("Rules"),
     position  : 30,
-    className : "OMV.module.admin.service.snapraid.DataList"
+    className : "OMV.module.admin.service.snapraid.Rules"
 });

@@ -32,59 +32,59 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
     getFormItems    : function() {
         var me = this;
         return [{
-            xtype  : 'container',
+            xtype  : "container",
             layout : {
-                type    : 'table',
+                type    : "table",
                 columns : 2,
                 tdAttrs : { style: 'padding: 7px 5px;' }
             },
-            items : [{
+            items  : [{
                 xtype   : "button",
                 name    : "sync",
                 text    : _("Sync"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onSyncButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("sync"), me, [ me ])
             },{
-                xtype : "text",
-                text  : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.")
+                xtype   : "text",
+                text    : _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.")
             },{
                 xtype   : "button",
                 name    : "scrub",
                 text    : _("Scrub"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onScrubButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("scrub"), me, [ me ])
             },{
-                xtype : "text",
-                text  : _("Scrubs the array, checking for silent errors.")
+                xtype   : "text",
+                text    : _("Scrubs the array, checking for silent errors.")
             },{
                 xtype   : "button",
                 name    : "check",
                 text    : _("Check"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onCheckButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("check"), me, [ me ])
             },{
-                xtype : "text",
-                text  : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.")
+                xtype   : "text",
+                text    : _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.")
             },{
                 xtype   : "button",
                 name    : "diff",
                 text    : _("Diff"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onDiffButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("diff"), me, [ me ])
             },{
-                xtype : "text",
-                text  : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.")
+                xtype   : "text",
+                text    : _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.")
             },{
                 xtype   : "button",
                 name    : "status",
                 text    : _("Status"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onStatusButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("status"), me, [ me ])
             },{
                 xtype   : "text",
                 text    : _("Prints a status report of the array.")
@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 text    : _("Fix"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onFixButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("fix"), me, [ me ])
             },{
                 xtype   : "text",
                 text    : _("Restore the last backup/snapshot.")
@@ -104,7 +104,7 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
                 text    : _("Pool"),
                 scope   : this,
                 width   : 60,
-                handler : Ext.Function.bind(me.onPoolButton, me, [ me ])
+                handler : Ext.Function.bind(me.onCommandButton("pool"), me, [ me ])
             },{
                 xtype   : "text",
                 text    : _("Update the pool.")
@@ -112,117 +112,39 @@ Ext.define("OMV.module.admin.service.snapraid.Commands", {
         }];
     },
 
-    onSyncButton: function() {
+    onCommandButton: function(cmd) {
         var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID sync"),
+        var wnd = Ext.create("OMV.window.Execute", {
+            title      : "SnapRAID " + cmd,
             rpcService : "SnapRaid",
-            rpcMethod  : "executeSync",
-            listeners  : {
+            rpcMethod  : "executeCommand",
+            rpcParams  : {
+                command : cmd
+            },
+            hideStartButton : true,
+            hideStopButton  : true,
+            listeners       : {
                 scope     : me,
+                finish    : function(wnd, response) {
+                    wnd.appendValue(_("Done..."));
+                    wnd.setButtonDisabled("close", false);
+                },
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
+                    wnd.setButtonDisabled("close", false);
                 }
             }
-        }).show();
-    },
-
-    onScrubButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID scrub"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executeScrub",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onCheckButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID check"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executeCheck",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onDiffButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID diff"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executeDiff",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onStatusButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID status"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executeStatus",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onFixButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID fix"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executeFix",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
-    },
-
-    onPoolButton: function() {
-        var me = this;
-        Ext.create("OMV.window.Execute", {
-            title      : _("SnapRAID pool"),
-            rpcService : "SnapRaid",
-            rpcMethod  : "executePool",
-            listeners  : {
-                scope     : me,
-                exception : function(wnd, error) {
-                    OMV.MessageBox.error(null, error);
-                }
-            }
-        }).show();
+        });
+        wnd.setButtonDisabled("close", true);
+        wnd.show();
+        wnd.start();
     }
-
 });
 
 OMV.WorkspaceManager.registerPanel({
     id        : "commands",
     path      : "/service/snapraid",
     text      : _("Commands"),
-    position  : 60,
+    position  : 40,
     className : "OMV.module.admin.service.snapraid.Commands"
 });

@@ -6,40 +6,45 @@ set -e
 . /usr/share/openmediavault/scripts/helper-functions
 
 case "$1" in
-configure)
+    configure)
+        SERVICE_XPATH_NAME="snapraid"
+        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-    if ! omv_config_exists "/config/services/snapraid"; then
-        echo "Initial configuration."
-        object="<parity>0</parity>"
-        object="${object}<mntentref></mntentref>"
-        object="${object}<useqparity>0</useqparity>"
-        object="${object}<qparity></qparity>"
-        object="${object}<qmntentref></qmntentref>"
-        object="${object}<blocksize>256</blocksize>"
-        object="${object}<autosave>0</autosave>"
-        object="${object}<nohidden>0</nohidden>"
-        object="${object}<pool>0</pool>"
-        object="${object}<poolname>0</poolname>"
-        object="${object}<contents></contents>"
-        object="${object}<datas></datas>"
-        object="${object}<excludes></excludes>"
-        object="${object}<includes></includes>"
-        omv_config_add_element "/config/services" "snapraid" "${object}" true
-    fi
+        DRIVES="drives"
+        RULES="rules"
 
-    omv_install_fixperms
+        if ! omv_config_exists "${SERVICE_XPATH}"; then
+            omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
+            omv_config_add_element "${SERVICE_XPATH}" "blocksize" "256"
+            omv_config_add_element "${SERVICE_XPATH}" "autosave" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "nohidden" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "pool" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "poolname" ""
+        fi
 
-    dpkg-trigger update-fixperms
-    dpkg-trigger update-locale
+        if ! omv_config_exists "${SERVICE_XPATH}/${DRIVES}"; then
+            omv_config_add_element "${SERVICE_XPATH}" "${DRIVES}"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/${RULES}"; then
+            omv_config_add_element "${SERVICE_XPATH}" "${RULES}"
+        fi
+
+        omv_install_fixperms
+
+        dpkg-trigger update-fixperms
+        dpkg-trigger update-locale
     ;;
 
-abort-upgrade|abort-remove|abort-deconfigure)
+    abort-upgrade|abort-remove|abort-deconfigure)
     ;;
 
-*)
-    echo "postinst called with unknown argument" >&2
-    exit 1
+    *)
+        echo "postinst called with unknown argument" >&2
+        exit 1
     ;;
 esac
+
+#DEBHELPER#
 
 exit 0

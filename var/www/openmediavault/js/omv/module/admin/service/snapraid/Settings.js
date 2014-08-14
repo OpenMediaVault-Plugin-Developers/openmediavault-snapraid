@@ -37,18 +37,6 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
         ptype        : "linkedfields",
         correlations : [{
             name : [
-                "qmntentref",
-                "qparity"
-            ],
-            conditions : [{
-                name  : "useqparity",
-                value : true
-            }],
-            properties : [
-                "enabled"
-            ]
-        },{
-            name : [
                 "poolname"
             ],
             conditions : [{
@@ -73,100 +61,6 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 labelSeparator : ""
             },
             items : [{
-                xtype         : "combo",
-                name          : "mntentref",
-                fieldLabel    : _("Parity Volume"),
-                emptyText     : _("Select a volume ..."),
-                allowBlank    : false,
-                allowNone     : false,
-                editable      : false,
-                triggerAction : "all",
-                displayField  : "description",
-                valueField    : "uuid",
-                store         : Ext.create("OMV.data.Store", {
-                    autoLoad : true,
-                    model    : OMV.data.Model.createImplicit({
-                        idProperty : "uuid",
-                        fields     : [
-                            { name : "uuid", type : "string" },
-                            { name : "devicefile", type : "string" },
-                            { name : "description", type : "string" }
-                        ]
-                    }),
-                    proxy : {
-                        type : "rpc",
-                        rpcData : {
-                            service : "SnapRaid",
-                            method  : "getParityCandidates"
-                        },
-                        appendSortParams : false
-                    },
-                    sorters : [{
-                        direction : "ASC",
-                        property  : "devicefile"
-                    }]
-                }),
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Volume to use for Parity storage. It must NOT be on a data disk.")
-                }]
-            },{
-                xtype      : "textfield",
-                name       : "parity",
-                fieldLabel : _("Parity Path"),
-                allowNone  : true,
-                readOnly   : true
-            },{
-                xtype      : "checkbox",
-                name       : "useqparity",
-                fieldLabel : _("Use Q-Parity"),
-                boxLabel   : _("Enables second drive for parity. This is equivalent to RAID 6."),
-                checked    : false
-            },{
-                xtype         : "combo",
-                name          : "qmntentref",
-                fieldLabel    : _("Q-Parity Volume"),
-                emptyText     : _("Select a volume ..."),
-                allowBlank    : true,
-                allowNone     : true,
-                editable      : false,
-                triggerAction : "all",
-                displayField  : "description",
-                valueField    : "uuid",
-                store         : Ext.create("OMV.data.Store", {
-                    autoLoad : true,
-                    model    : OMV.data.Model.createImplicit({
-                        idProperty : "uuid",
-                        fields     : [
-                            { name : "uuid", type : "string" },
-                            { name : "devicefile", type : "string" },
-                            { name : "description", type : "string" }
-                        ]
-                    }),
-                    proxy : {
-                        type : "rpc",
-                        rpcData : {
-                            service : "SnapRaid",
-                            method  : "getCandidates"
-                        },
-                        appendSortParams : false
-                    },
-                    sorters : [{
-                        direction : "ASC",
-                        property  : "devicefile"
-                    }]
-                }),
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Volume to use for Q-Parity storage. It must NOT be on a data disk or the parity disk.")
-                }]
-            },{
-                xtype      : "textfield",
-                name       : "qparity",
-                fieldLabel : _("QParity Path"),
-                allowNone  : true,
-                readOnly   : true
-            },{
                 xtype         : "numberfield",
                 name          : "blocksize",
                 fieldLabel    : _("Block Size"),
