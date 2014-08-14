@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 20:38-0600\n"
-"PO-Revision-Date: 2014-02-14 01:31+0000\n"
-"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
+"POT-Creation-Date: 2014-08-14 08:08-0500\n"
+"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,20 +17,14 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s 利用可能)"
+msgid "A data drive cannot be a parity drive."
+msgstr ""
 
-msgid "Add content path"
-msgstr "コンテンツパスの追加"
+msgid "Add drive"
+msgstr ""
 
-msgid "Add data volume"
-msgstr "データボリュームの追加"
-
-msgid "Add exclusion"
-msgstr "除外するものの追加"
-
-msgid "Add inclusion"
-msgstr "含めるものの追加"
+msgid "Add rule"
+msgstr ""
 
 msgid "Auto Save"
 msgstr "自動保存"
@@ -63,9 +57,6 @@ msgstr "コンポーネント"
 msgid "Content"
 msgstr "コンテンツ"
 
-msgid "Content root"
-msgstr "コンテンツルート"
-
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
 msgstr "シンボリックリンクを使用して、アレイ内のすべてのファイルの仮想ビューを作成します。"
@@ -73,53 +64,58 @@ msgstr "シンボリックリンクを使用して、アレイ内のすべての
 msgid "Data"
 msgstr "データ"
 
-msgid "Data root"
-msgstr "データルート"
-
 msgid "Date & Time"
 msgstr "日付 & 時刻"
 
 msgid "Diff"
 msgstr "差分"
 
-msgid "Edit content path"
-msgstr "コンテンツパスの編集"
+msgid "Done..."
+msgstr ""
 
-msgid "Edit data volume"
-msgstr "データボリュームの編集"
+msgid "Drive"
+msgstr ""
 
-msgid "Edit exclusion"
-msgstr "除外するものの編集"
+msgid ""
+"Drive where content file is stored.  This file is a list of saved files and "
+"contains the details of your backup with all the checksums to verify its "
+"integrity."
+msgstr ""
 
-msgid "Edit inclusion"
-msgstr "含めるものの編集"
+msgid "Drive where data is stored."
+msgstr ""
+
+msgid ""
+"Drive where parity files are stored which are necessary to recover from disk"
+" failure.  For each parity drive, one data drive can fail without data loss."
+msgstr ""
+
+msgid "Drives"
+msgstr ""
+
+msgid "Edit drive"
+msgstr ""
+
+msgid "Edit rule"
+msgstr ""
 
 msgid "Enable Pool"
 msgstr "プールの有効化"
 
-msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr "パリティのための2つ目のドライブを有効にします。これはRAID6に相当します。"
-
 msgid "Event"
 msgstr "イベント"
-
-msgid "Exclude"
-msgstr "除外"
-
-msgid "Excludes"
-msgstr "除外"
 
 msgid "Excludes hidden files and directories."
 msgstr "隠しファイルやディレクトリを除外します。"
 
+msgid "Exclusion"
+msgstr ""
+
 msgid "Fix"
 msgstr "修正"
 
-msgid "Include"
-msgstr "インクルード"
-
-msgid "Includes"
-msgstr "インクルード"
+msgid "Inclusion"
+msgstr ""
 
 msgid "Information"
 msgstr "情報"
@@ -135,28 +131,11 @@ msgstr "冗長データを再計算する必要があり、最後の「同期」
 msgid "Message"
 msgstr "メッセージ"
 
-msgid "Name"
-msgstr "名前"
-
 msgid "No Hidden"
 msgstr "隠さない"
 
-msgid "Parity Path"
-msgstr "パリティパス"
-
-msgid "Parity Volume"
-msgstr "パリティボリューム"
-
-msgid "Parity and Q-Parity cannot be the same."
-msgstr "パリティとQパリティは同じにすることはできません。"
-
-msgid ""
-"Parity is using this volume. Content cannot use the same volume as Parity or"
-" Q-Parity."
-msgstr "パリティはこのボリュームを使用しています。コンテンツはパリティまたはQパリティと同じ容量を使用することはできません。"
-
-msgid "Path"
-msgstr "パス"
+msgid "Parity"
+msgstr ""
 
 msgid "Pool"
 msgstr "プール"
@@ -167,19 +146,17 @@ msgstr "プール共有の名前"
 msgid "Prints a status report of the array."
 msgstr "アレイのステータスレポートを印刷します。"
 
-msgid "Q-Parity Volume"
-msgstr "Qパリティボリューム"
-
-msgid ""
-"Q-Parity is using this volume. Content cannot use the same volume as Parity "
-"or Q-Parity."
-msgstr "Qパリティはこのボリュームを使用しています。コンテンツはパリティまたはQパリティと同じ容量を使用することはできません。"
-
-msgid "QParity Path"
-msgstr "Qパリティパス"
-
 msgid "Restore the last backup/snapshot."
 msgstr "最後のバックアップ/スナップショットからリストアします。"
+
+msgid "Rule"
+msgstr ""
+
+msgid "Rule Type"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
 
 msgid "Scrub"
 msgstr "スクラブ"
@@ -187,8 +164,8 @@ msgstr "スクラブ"
 msgid "Scrubs the array, checking for silent errors."
 msgstr "アレイをスクラブし、サイレントエラーをチェックします。"
 
-msgid "Select a volume ..."
-msgstr "ボリュームの選択 ..."
+msgid "Select a drive ..."
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
@@ -196,29 +173,11 @@ msgstr "設定"
 msgid "SnapRAID"
 msgstr "SnapRAID"
 
-msgid "SnapRAID check"
-msgstr "SnapRAIDチェック"
-
-msgid "SnapRAID diff"
-msgstr "SnapRAID差分"
-
-msgid "SnapRAID fix"
-msgstr "SnapRAID修正"
-
-msgid "SnapRAID pool"
-msgstr "SnapRAIDプール"
-
-msgid "SnapRAID scrub"
-msgstr "SnapRAIDスクラブ"
-
-msgid "SnapRAID status"
-msgstr "SnapRAID状態"
-
-msgid "SnapRAID sync"
-msgstr "SnapRAID同期"
-
 msgid "SnapRAID user manual"
 msgstr "SnapRAIDユーザーマニュアル"
+
+msgid "Specify whether the rule is an exclusion or inclusion."
+msgstr ""
 
 msgid "Status"
 msgstr "状態"
@@ -233,12 +192,6 @@ msgstr "以下の除外は、デフォルトでsnapraid設定ファイルに書�
 msgid "This volume has already been added."
 msgstr "このボリュームはすでに追加されています。"
 
-msgid "This volume is already in use by data."
-msgstr "このボリュームはデータによってすでに使用されています。"
-
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Update the pool."
 msgstr "プールをアップデートします。"
 
@@ -246,17 +199,3 @@ msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
 msgstr "冗長性情報を更新します。ディスクアレイ内のすべての変更されたファイルが読み取られ、冗長データが再計算されます。"
-
-msgid "Use Q-Parity"
-msgstr "Qパリティを使用"
-
-msgid "Volume"
-msgstr "ボリューム"
-
-msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr "パリティストレージ用にボリュームは使用されます。これは、データディスクにあってはいけません。"
-
-msgid ""
-"Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
-"parity disk."
-msgstr "Qパリティストレージ用にボリュームは使用されます。これは、データディスクまたは、パリティディスクにあってはいけません。"

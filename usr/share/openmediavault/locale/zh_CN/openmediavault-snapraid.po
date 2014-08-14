@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 20:38-0600\n"
-"PO-Revision-Date: 2014-01-30 13:38+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
+"POT-Creation-Date: 2014-08-14 08:08-0500\n"
+"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,20 +18,14 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "%s (%s available)"
-msgstr "%s (%s 可用)"
+msgid "A data drive cannot be a parity drive."
+msgstr ""
 
-msgid "Add content path"
-msgstr "添加 content 路径"
+msgid "Add drive"
+msgstr ""
 
-msgid "Add data volume"
-msgstr "添加数据卷"
-
-msgid "Add exclusion"
-msgstr "添加排除项"
-
-msgid "Add inclusion"
-msgstr "添加包含项"
+msgid "Add rule"
+msgstr ""
 
 msgid "Auto Save"
 msgstr "自动保存"
@@ -64,9 +58,6 @@ msgstr "组成"
 msgid "Content"
 msgstr "校验清单"
 
-msgid "Content root"
-msgstr "校验清单根目录"
-
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
 msgstr "创建阵列中使用符号链接所有文件的虚拟视图。"
@@ -74,53 +65,58 @@ msgstr "创建阵列中使用符号链接所有文件的虚拟视图。"
 msgid "Data"
 msgstr "数据盘"
 
-msgid "Data root"
-msgstr "数据根目录"
-
 msgid "Date & Time"
 msgstr "日期和时间"
 
 msgid "Diff"
 msgstr "比较"
 
-msgid "Edit content path"
-msgstr "编辑 content 路径"
+msgid "Done..."
+msgstr ""
 
-msgid "Edit data volume"
-msgstr "编辑数据卷"
+msgid "Drive"
+msgstr ""
 
-msgid "Edit exclusion"
-msgstr "编辑排除项"
+msgid ""
+"Drive where content file is stored.  This file is a list of saved files and "
+"contains the details of your backup with all the checksums to verify its "
+"integrity."
+msgstr ""
 
-msgid "Edit inclusion"
-msgstr "编辑包含项"
+msgid "Drive where data is stored."
+msgstr ""
+
+msgid ""
+"Drive where parity files are stored which are necessary to recover from disk"
+" failure.  For each parity drive, one data drive can fail without data loss."
+msgstr ""
+
+msgid "Drives"
+msgstr ""
+
+msgid "Edit drive"
+msgstr ""
+
+msgid "Edit rule"
+msgstr ""
 
 msgid "Enable Pool"
 msgstr "启用存储池"
 
-msgid "Enables second drive for parity. This is equivalent to RAID 6."
-msgstr "添加第二块硬盘作为校验盘，类似于RAID 6。"
-
 msgid "Event"
 msgstr "事件"
-
-msgid "Exclude"
-msgstr "排除"
-
-msgid "Excludes"
-msgstr "排除"
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
 
+msgid "Exclusion"
+msgstr ""
+
 msgid "Fix"
 msgstr "修复"
 
-msgid "Include"
-msgstr "包含"
-
-msgid "Includes"
-msgstr "包含"
+msgid "Inclusion"
+msgstr ""
 
 msgid "Information"
 msgstr "信息"
@@ -136,28 +132,11 @@ msgstr "列出最后一次 '更新冗余' 命令执行以来修改过的文件�
 msgid "Message"
 msgstr "消息"
 
-msgid "Name"
-msgstr "名称"
-
 msgid "No Hidden"
 msgstr "隐藏文件选项"
 
-msgid "Parity Path"
-msgstr "冗余路径"
-
-msgid "Parity Volume"
-msgstr "冗余卷"
-
-msgid "Parity and Q-Parity cannot be the same."
-msgstr "校验卷和第二校验卷不能重复"
-
-msgid ""
-"Parity is using this volume. Content cannot use the same volume as Parity or"
-" Q-Parity."
-msgstr "冗余卷已经使用了该磁盘，Content 不能使用冗余磁盘和第二冗余磁盘。"
-
-msgid "Path"
-msgstr "路径"
+msgid "Parity"
+msgstr ""
 
 msgid "Pool"
 msgstr "存储池"
@@ -168,19 +147,17 @@ msgstr "共享池名"
 msgid "Prints a status report of the array."
 msgstr "显示阵列状态报告。"
 
-msgid "Q-Parity Volume"
-msgstr "第二冗余卷"
-
-msgid ""
-"Q-Parity is using this volume. Content cannot use the same volume as Parity "
-"or Q-Parity."
-msgstr "第二冗余卷已经使用了该磁盘，Content 不能使用冗余磁盘和第二冗余磁盘。"
-
-msgid "QParity Path"
-msgstr "第二冗余路径"
-
 msgid "Restore the last backup/snapshot."
 msgstr "恢复上次备份/快照"
+
+msgid "Rule"
+msgstr ""
+
+msgid "Rule Type"
+msgstr ""
+
+msgid "Rules"
+msgstr ""
 
 msgid "Scrub"
 msgstr "侦测"
@@ -188,8 +165,8 @@ msgstr "侦测"
 msgid "Scrubs the array, checking for silent errors."
 msgstr "侦测阵列，检查“ silent errors”"
 
-msgid "Select a volume ..."
-msgstr "选者卷"
+msgid "Select a drive ..."
+msgstr ""
 
 msgid "Settings"
 msgstr "设置"
@@ -197,29 +174,11 @@ msgstr "设置"
 msgid "SnapRAID"
 msgstr "SnapRAID"
 
-msgid "SnapRAID check"
-msgstr "SnapRAID检查"
-
-msgid "SnapRAID diff"
-msgstr "SnapRAID比较"
-
-msgid "SnapRAID fix"
-msgstr "SnapRAID修复"
-
-msgid "SnapRAID pool"
-msgstr "SnapRAID 池"
-
-msgid "SnapRAID scrub"
-msgstr "SnapRAID侦测"
-
-msgid "SnapRAID status"
-msgstr "SnapRAID状态"
-
-msgid "SnapRAID sync"
-msgstr "SnapRAID更新冗余"
-
 msgid "SnapRAID user manual"
 msgstr "SnapRAID用户手册"
+
+msgid "Specify whether the rule is an exclusion or inclusion."
+msgstr ""
 
 msgid "Status"
 msgstr "状态"
@@ -234,12 +193,6 @@ msgstr "默认配置以及排除了以下内容："
 msgid "This volume has already been added."
 msgstr "该卷已经被添加过"
 
-msgid "This volume is already in use by data."
-msgstr "该卷已经被设问数据卷"
-
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Update the pool."
 msgstr "更新池。"
 
@@ -247,17 +200,3 @@ msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
 msgstr "更新冗余信息，所有阵列中修改过的文件将被读取，同时重新计算冗余数据。"
-
-msgid "Use Q-Parity"
-msgstr "启用第二校验卷"
-
-msgid "Volume"
-msgstr "卷"
-
-msgid "Volume to use for Parity storage. It must NOT be on a data disk."
-msgstr "用于冗余的磁盘不能是数据盘。"
-
-msgid ""
-"Volume to use for Q-Parity storage. It must NOT be on a data disk or the "
-"parity disk."
-msgstr "用于第二冗余的磁盘不能是数据盘，也不能是第一冗余磁盘。"
