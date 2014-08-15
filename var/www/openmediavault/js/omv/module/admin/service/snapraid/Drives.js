@@ -153,6 +153,70 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
         falseIcon : "switch_off.png"
     }],
 
+    getTopToolbarItems: function() {
+        var me = this;
+        var items = me.callParent(arguments);
+
+        Ext.Array.insert(items, 3, [{
+            id       : me.getId() + "-sync",
+            xtype    : "button",
+            text     : _("Sync"),
+            icon     : "images/refresh.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "sync" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-scrub",
+            xtype    : "button",
+            text     : _("Scrub"),
+            icon     : "images/erase.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "scrub" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-check",
+            xtype    : "button",
+            text     : _("Check"),
+            icon     : "images/checkmark.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "check" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-diff",
+            xtype    : "button",
+            text     : _("Diff"),
+            icon     : "images/details.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "diff" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-status",
+            xtype    : "button",
+            text     : _("Status"),
+            icon     : "images/pulse.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "status" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-fix",
+            xtype    : "button",
+            text     : _("Fix"),
+            icon     : "images/aid.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "fix" ]),
+            scope    : me
+        },{
+            id       : me.getId() + "-pool",
+            xtype    : "button",
+            text     : _("Pool"),
+            icon     : "images/grid.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            handler  : Ext.Function.bind(me.onCommandButton, me, [ "pool" ]),
+            scope    : me
+        }]);
+        return items;
+    },
+
     initComponent : function () {
         var me = this;
         Ext.apply(me, {
@@ -222,6 +286,34 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                 }
             }
         });
+    },
+
+    onCommandButton : function(cmd) {
+        var me = this;
+        var wnd = Ext.create("OMV.window.Execute", {
+            title      : "SnapRAID " + cmd,
+            rpcService : "SnapRaid",
+            rpcMethod  : "executeCommand",
+            rpcParams  : {
+                command : cmd
+            },
+            hideStartButton : true,
+            hideStopButton  : true,
+            listeners       : {
+                scope     : me,
+                finish    : function(wnd, response) {
+                    wnd.appendValue(_("Done..."));
+                    wnd.setButtonDisabled("close", false);
+                },
+                exception : function(wnd, error) {
+                    OMV.MessageBox.error(null, error);
+                    wnd.setButtonDisabled("close", false);
+                }
+            }
+        });
+        wnd.setButtonDisabled("close", true);
+        wnd.show();
+        wnd.start();
     }
 });
 

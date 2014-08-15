@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 08:08-0500\n"
-"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"POT-Creation-Date: 2014-08-15 13:14-0500\n"
+"PO-Revision-Date: 2014-08-15 18:15+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -49,9 +49,6 @@ msgid ""
 "compared with the snapshot saved in the previous 'sync' command."
 msgstr "Revisar todos los archivos y su firma de redundancia. Todos los ficheros son revisados y comparados con el snapshot previo generado por el comando 'sincronizar'"
 
-msgid "Commands"
-msgstr "Comandos"
-
 msgid "Component"
 msgstr "Componentes"
 
@@ -67,6 +64,9 @@ msgstr "Datos"
 
 msgid "Date & Time"
 msgstr "Fecha y hora"
+
+msgid "Description of Buttons on Drives tab"
+msgstr ""
 
 msgid "Diff"
 msgstr "Differencias"

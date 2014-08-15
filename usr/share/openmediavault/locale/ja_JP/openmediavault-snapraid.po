@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 08:08-0500\n"
-"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"POT-Creation-Date: 2014-08-15 13:14-0500\n"
+"PO-Revision-Date: 2014-08-15 18:15+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -48,9 +48,6 @@ msgid ""
 "compared with the snapshot saved in the previous 'sync' command."
 msgstr "すべてのファイルと冗長データをチェックします。すべてのファイルがハッシュされ、以前の「同期」コマンドで保存したスナップショットと比較されます。"
 
-msgid "Commands"
-msgstr "コマンド"
-
 msgid "Component"
 msgstr "コンポーネント"
 
@@ -66,6 +63,9 @@ msgstr "データ"
 
 msgid "Date & Time"
 msgstr "日付 & 時刻"
+
+msgid "Description of Buttons on Drives tab"
+msgstr ""
 
 msgid "Diff"
 msgstr "差分"

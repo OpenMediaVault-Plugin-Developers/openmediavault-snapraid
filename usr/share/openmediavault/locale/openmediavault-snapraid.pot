@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 08:08-0500\n"
+"POT-Creation-Date: 2014-08-15 13:14-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,9 +44,6 @@ msgstr ""
 msgid "Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command."
 msgstr ""
 
-msgid "Commands"
-msgstr ""
-
 msgid "Component"
 msgstr ""
 
@@ -60,6 +57,9 @@ msgid "Data"
 msgstr ""
 
 msgid "Date & Time"
+msgstr ""
+
+msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"

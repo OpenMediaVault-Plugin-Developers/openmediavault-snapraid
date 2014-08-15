@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 08:08-0500\n"
-"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"POT-Creation-Date: 2014-08-15 13:14-0500\n"
+"PO-Revision-Date: 2014-08-15 18:15+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "数据盘不能做校验盘"
 
 msgid "Add drive"
-msgstr ""
+msgstr "添加磁盘"
 
 msgid "Add rule"
-msgstr ""
+msgstr "添加规则"
 
 msgid "Auto Save"
 msgstr "自动保存"
@@ -49,9 +49,6 @@ msgid ""
 "compared with the snapshot saved in the previous 'sync' command."
 msgstr "检查所有文件和冗余数据，所有文件的Hash值将和之前保存的快照进行比较。"
 
-msgid "Commands"
-msgstr "命令"
-
 msgid "Component"
 msgstr "组成"
 
@@ -68,23 +65,26 @@ msgstr "数据盘"
 msgid "Date & Time"
 msgstr "日期和时间"
 
+msgid "Description of Buttons on Drives tab"
+msgstr ""
+
 msgid "Diff"
 msgstr "比较"
 
 msgid "Done..."
-msgstr ""
+msgstr "完成..."
 
 msgid "Drive"
-msgstr ""
+msgstr "磁盘"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "校验清单存储的磁盘，这个文件保存着备份文件的详情，包括校验文件完整性的信息。"
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "数据存储的磁盘。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -92,13 +92,13 @@ msgid ""
 msgstr ""
 
 msgid "Drives"
-msgstr ""
+msgstr "磁盘"
 
 msgid "Edit drive"
-msgstr ""
+msgstr "编辑磁盘"
 
 msgid "Edit rule"
-msgstr ""
+msgstr "编辑规则"
 
 msgid "Enable Pool"
 msgstr "启用存储池"
@@ -110,13 +110,13 @@ msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
 
 msgid "Exclusion"
-msgstr ""
+msgstr "排除"
 
 msgid "Fix"
 msgstr "修复"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "包含"
 
 msgid "Information"
 msgstr "信息"
@@ -136,7 +136,7 @@ msgid "No Hidden"
 msgstr "隐藏文件选项"
 
 msgid "Parity"
-msgstr ""
+msgstr "冗余"
 
 msgid "Pool"
 msgstr "存储池"
@@ -151,13 +151,13 @@ msgid "Restore the last backup/snapshot."
 msgstr "恢复上次备份/快照"
 
 msgid "Rule"
-msgstr ""
+msgstr "规则"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "规则类型"
 
 msgid "Rules"
-msgstr ""
+msgstr "规则"
 
 msgid "Scrub"
 msgstr "侦测"
@@ -166,7 +166,7 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "侦测阵列，检查“ silent errors”"
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "选择磁盘 ..."
 
 msgid "Settings"
 msgstr "设置"
@@ -178,7 +178,7 @@ msgid "SnapRAID user manual"
 msgstr "SnapRAID用户手册"
 
 msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr ""
+msgstr "指定是排除还是包含的规则。"
 
 msgid "Status"
 msgstr "状态"

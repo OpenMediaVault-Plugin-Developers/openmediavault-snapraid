@@ -24,14 +24,44 @@
 Ext.define("OMV.module.admin.service.snapraid.Info", {
     extend : "Ext.panel.Panel",
 
-    autoScroll : true,
-
+    autoScroll    : true,
     initComponent : function() {
         var me = this;
-
-        me.html = "<ul>" +
-                    "<li>snapraid v6.3 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
+        me.html = "<b>SnapRAID</b>" +
+                  "<ul>" +
+                    "<li>Version 6.3 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
                     "<li><a href='http://snapraid.sourceforge.net/manual.html' target=_blank>" + _("SnapRAID user manual") + "</a></li>" +
+                  "</ul>" +
+                  _("Description of Buttons on Drives tab") +
+                  "<ul>" +
+                  "<li>" +
+                    "<b>" + _("Sync") + "</b><br />" +
+                    _("Updates the redundancy information. All the modified files in the disk array are read, and the redundancy data is recomputed.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Scrub") + "</b><br />" +
+                    _("Scrubs the array, checking for silent errors.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Check") + "</b><br />" +
+                    _("Checks all the files and the redundancy data. All the files are hashed and compared with the snapshot saved in the previous 'sync' command.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Diff") + "</b><br />" +
+                    _("Lists all the files modified from the last 'sync' command that have to recompute their redundancy data.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Status") + "</b><br />" +
+                    _("Prints a status report of the array.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Fix") + "</b><br />" +
+                    _("Restore the last backup/snapshot.") +
+                  "</li>" +
+                  "<li>" +
+                    "<b>" + _("Pool") + "</b><br />" +
+                    _("Update the pool.") +
+                  "</li>" +
                   "</ul>" +
                   _("The following excludes are written to the snapraid config file by default:") +
                   "<ul>" +
@@ -51,6 +81,6 @@ OMV.WorkspaceManager.registerPanel({
     id        : "info",
     path      : "/service/snapraid",
     text      : _("Information"),
-    position  : 50,
+    position  : 40,
     className : "OMV.module.admin.service.snapraid.Info"
 });

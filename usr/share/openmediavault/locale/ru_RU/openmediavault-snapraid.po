@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-14 08:08-0500\n"
-"PO-Revision-Date: 2014-08-14 13:10+0000\n"
+"POT-Creation-Date: 2014-08-15 13:14-0500\n"
+"PO-Revision-Date: 2014-08-15 18:15+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -50,9 +50,6 @@ msgid ""
 "compared with the snapshot saved in the previous 'sync' command."
 msgstr "Проверяет все файлы и избыточность данных. Все файлы хэшируются и по сравниваются с снимком сохраненным в предыдущей команде «Sync»."
 
-msgid "Commands"
-msgstr "Команды"
-
 msgid "Component"
 msgstr "Компонент"
 
@@ -68,6 +65,9 @@ msgstr "\"Данные\""
 
 msgid "Date & Time"
 msgstr "Дата и Время"
+
+msgid "Description of Buttons on Drives tab"
+msgstr ""
 
 msgid "Diff"
 msgstr "Diff"

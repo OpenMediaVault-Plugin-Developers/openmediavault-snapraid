@@ -2,7 +2,7 @@ openmediavault-snapraid (1.0.1) stable; urgency=low
 
   * Separate snapraid binary
   * Merge includes and excludes to rules
-  * Merge content, data, parity to drives
+  * Merge content, data, parity, commands tabs to drives tab
   * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 13 Aug 2014 19:55:56 -0500
