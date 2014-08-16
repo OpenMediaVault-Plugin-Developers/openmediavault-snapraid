@@ -314,6 +314,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             }
         }');
 
+        $params['name'] = str_replace(" ", "_", $params['name']);
+
         $xPath = sprintf("%s[name='%s']", $this->getXPathDrive(), $params['name']);
         if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) )
         {

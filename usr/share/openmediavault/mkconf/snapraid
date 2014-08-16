@@ -61,12 +61,14 @@ while [ ${index} -le ${count} ]; do
 
     if [ "${path}" != "" ]; then
         if [ "${content}" -eq "1" ]; then
-            echo "content ${path}/snapraid.content # OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+            echo "# OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+            echo "content ${path}/snapraid.content" >> ${SNAPRAID_CONFIG}
         fi
 
         if [ "${data}" -eq "1" ]; then
             label=$(omv_config_get "${DRIVES}[position()=${index}]/label")
-            echo "disk ${label} ${path} # OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+            echo "# OMV-Name: ${name}  Drive Label: ${label}" >> ${SNAPRAID_CONFIG}
+            echo "disk ${name} ${path}" >> ${SNAPRAID_CONFIG}
         fi
 
         if [ "${parity}" -eq "1" ]; then
@@ -74,9 +76,11 @@ while [ ${index} -le ${count} ]; do
 
             if [ "${countp}" -le 6 ]; then
                 if [ "${countp}" != "1" ]; then
-                    echo "${countp}-parity ${path}/snapraid.${countp}-parity # OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+                    echo "# OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+                    echo "${countp}-parity ${path}/snapraid.${countp}-parity" >> ${SNAPRAID_CONFIG}
                 else
-                    echo "parity ${path}/snapraid.parity # OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+                    echo "# OMV-Name: ${name}" >> ${SNAPRAID_CONFIG}
+                    echo "parity ${path}/snapraid.parity" >> ${SNAPRAID_CONFIG}
                 fi
             fi
         fi
