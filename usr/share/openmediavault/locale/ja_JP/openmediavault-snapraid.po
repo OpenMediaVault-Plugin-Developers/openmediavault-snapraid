@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 13:14-0500\n"
-"PO-Revision-Date: 2014-08-15 18:15+0000\n"
+"POT-Creation-Date: 2014-08-16 09:59-0500\n"
+"PO-Revision-Date: 2014-08-16 15:00+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -70,9 +70,6 @@ msgstr ""
 msgid "Diff"
 msgstr "差分"
 
-msgid "Done..."
-msgstr ""
-
 msgid "Drive"
 msgstr ""
 
@@ -131,6 +128,9 @@ msgstr "冗長データを再計算する必要があり、最後の「同期」
 msgid "Message"
 msgstr "メッセージ"
 
+msgid "Name"
+msgstr ""
+
 msgid "No Hidden"
 msgstr "隠さない"
 
@@ -184,6 +184,9 @@ msgstr "状態"
 
 msgid "Sync"
 msgstr "同期"
+
+msgid "That name has already been used."
+msgstr ""
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"

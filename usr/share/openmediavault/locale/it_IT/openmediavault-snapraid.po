@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 13:14-0500\n"
-"PO-Revision-Date: 2014-08-15 18:15+0000\n"
+"POT-Creation-Date: 2014-08-16 09:59-0500\n"
+"PO-Revision-Date: 2014-08-16 15:00+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -72,9 +72,6 @@ msgstr ""
 msgid "Diff"
 msgstr "Diff"
 
-msgid "Done..."
-msgstr ""
-
 msgid "Drive"
 msgstr ""
 
@@ -133,6 +130,9 @@ msgstr "Elenca tutti i file modificati dall'ultimo comando 'sync' che devono ric
 msgid "Message"
 msgstr "Messaggio"
 
+msgid "Name"
+msgstr ""
+
 msgid "No Hidden"
 msgstr "No file nascosti"
 
@@ -186,6 +186,9 @@ msgstr "Stato"
 
 msgid "Sync"
 msgstr "Sincronizza"
+
+msgid "That name has already been used."
+msgstr ""
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"

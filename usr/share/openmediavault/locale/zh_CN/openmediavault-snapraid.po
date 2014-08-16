@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 13:14-0500\n"
-"PO-Revision-Date: 2014-08-15 18:15+0000\n"
+"POT-Creation-Date: 2014-08-16 09:59-0500\n"
+"PO-Revision-Date: 2014-08-16 15:00+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -71,9 +71,6 @@ msgstr ""
 msgid "Diff"
 msgstr "比较"
 
-msgid "Done..."
-msgstr "完成..."
-
 msgid "Drive"
 msgstr "磁盘"
 
@@ -132,6 +129,9 @@ msgstr "列出最后一次 '更新冗余' 命令执行以来修改过的文件�
 msgid "Message"
 msgstr "消息"
 
+msgid "Name"
+msgstr ""
+
 msgid "No Hidden"
 msgstr "隐藏文件选项"
 
@@ -185,6 +185,9 @@ msgstr "状态"
 
 msgid "Sync"
 msgstr "更新冗余"
+
+msgid "That name has already been used."
+msgstr ""
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"

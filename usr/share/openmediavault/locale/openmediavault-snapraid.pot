@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-15 13:14-0500\n"
+"POT-Creation-Date: 2014-08-16 09:59-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,9 +65,6 @@ msgstr ""
 msgid "Diff"
 msgstr ""
 
-msgid "Done..."
-msgstr ""
-
 msgid "Drive"
 msgstr ""
 
@@ -117,6 +114,9 @@ msgid "Lists all the files modified from the last 'sync' command that have to re
 msgstr ""
 
 msgid "Message"
+msgstr ""
+
+msgid "Name"
 msgstr ""
 
 msgid "No Hidden"
@@ -171,6 +171,9 @@ msgid "Status"
 msgstr ""
 
 msgid "Sync"
+msgstr ""
+
+msgid "That name has already been used."
 msgstr ""
 
 msgid "The following excludes are written to the snapraid config file by default:"
