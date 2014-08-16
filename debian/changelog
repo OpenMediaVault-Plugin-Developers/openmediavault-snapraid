@@ -1,3 +1,10 @@
+openmediavault-snapraid (1.0.2) stable; urgency=low
+
+  * Add name field
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 16 Aug 2014 09:51:52 -0500
+
 openmediavault-snapraid (1.0.1) stable; urgency=low
 
   * Separate snapraid binary

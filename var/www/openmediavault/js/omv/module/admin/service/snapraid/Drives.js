@@ -80,6 +80,11 @@ Ext.define("OMV.module.admin.service.snapraid.Drive", {
                 }]
             })
         },{
+            xtype      : "textfield",
+            name       : "name",
+            fieldLabel : _("Name"),
+            allowBlank : false
+        },{
             xtype      : "checkbox",
             name       : "content",
             fieldLabel : _("Content"),
@@ -117,6 +122,11 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
     stateful          : true,
     stateId           : "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns           : [{
+        text      : _("Name"),
+        sortable  : true,
+        dataIndex : "name",
+        stateId   : "name"
+    },{
         text      : _("Label"),
         sortable  : true,
         dataIndex : "label",
@@ -226,6 +236,7 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                     idProperty  : "uuid",
                     fields      : [
                         { name : "uuid", type : "string" },
+                        { name : "name", type : "string" },
                         { name : "label", type : "string" },
                         { name : "content", type : "boolean" },
                         { name : "data", type : "boolean" },
@@ -290,30 +301,21 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
 
     onCommandButton : function(cmd) {
         var me = this;
-        var wnd = Ext.create("OMV.window.Execute", {
+        Ext.create("OMV.window.Execute", {
             title      : "SnapRAID " + cmd,
             rpcService : "SnapRaid",
             rpcMethod  : "executeCommand",
             rpcParams  : {
                 command : cmd
             },
-            hideStartButton : true,
             hideStopButton  : true,
             listeners       : {
                 scope     : me,
-                finish    : function(wnd, response) {
-                    wnd.appendValue(_("Done..."));
-                    wnd.setButtonDisabled("close", false);
-                },
                 exception : function(wnd, error) {
                     OMV.MessageBox.error(null, error);
-                    wnd.setButtonDisabled("close", false);
                 }
             }
-        });
-        wnd.setButtonDisabled("close", true);
-        wnd.show();
-        wnd.start();
+        }).show();
     }
 });
 

@@ -247,6 +247,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $fs = new OMVFilesystem($fsname['fsname']);
             $object = array(
                 "uuid"    => $objectv['uuid'],
+                "name"    => $objectv['name'],
                 "label"   => $fs->getLabel(),
                 "content" => array_boolval($objectv, 'content'),
                 "data"   => array_boolval($objectv, 'data'),
@@ -306,11 +307,21 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "properties" : {
                 "uuid"      : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
                 "mntentref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID'].' },
+                "name"      : { "type" : "string" },
                 "content"   : { "type" : "boolean" },
                 "data"      : { "type" : "boolean" },
                 "parity"    : { "type" : "boolean" }
             }
         }');
+
+        $xPath = sprintf("%s[name='%s']", $this->getXPathDrive(), $params['name']);
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) )
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
+                gettext("That name has already been used.")
+            );
+        }
 
         $xPath = sprintf("%s[mntentref='%s']", $this->getXPathDrive(), $params['mntentref']);
         if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) )
@@ -332,8 +343,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $xPath = sprintf("%s[uuid='%s']", $this->getXPathFstab(), $params['mntentref']);
         $deviceDir = $xmlConfig->get($xPath);
         $fs = new OMVFilesystem($deviceDir['fsname']);
-        $params['name'] = $fs->getLabel();
-        $params['path'] = $deviceDir['dir'];
+
+        $params['label'] = $fs->getLabel();
+        $params['path']  = $deviceDir['dir'];
 
         // Prepare the configuration object.
         $object = array(
@@ -343,6 +355,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "data"      => array_boolval($params, "data"),
             "parity"    => array_boolval($params, "parity"),
             "name"      => $params['name'],
+            "label"     => $params['label'],
             "path"      => $params['path']
         );
 
