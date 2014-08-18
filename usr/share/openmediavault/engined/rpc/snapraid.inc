@@ -107,6 +107,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $this->registerMethod('setRule');
         $this->registerMethod('deleteRule');
 
+        $this->registerMethod('getConfig');
+
         $this->registerMethod('executeCommand');
     }
 
@@ -569,6 +571,17 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $xPath,
             $this->getEventMessagePathRule()
         );
+    }
+
+    public function getConfig($params, $context)
+    {
+        $output = "";
+        $result = "";
+
+        OMVUtil::exec("cat /etc/snapraid.conf", $result);
+        $output = implode("\n", $result) . "\n";
+
+        return $output;
     }
 
     public function executeCommand($params, $context)

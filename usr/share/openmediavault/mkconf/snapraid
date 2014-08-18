@@ -23,7 +23,8 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
-SNAPRAID_CONFIG="/etc/snapraid.conf";
+SNAPRAID_FILENAME="snapraid.conf"
+SNAPRAID_CONFIG="/etc/${SNAPRAID_FILENAME}"
 POOL_DIR="/media/pool"
 
 SERVICE_XPATH_NAME="snapraid"
@@ -91,6 +92,7 @@ done
 
 # Add default excludes
 cat <<EOF >> ${SNAPRAID_CONFIG}
+
 exclude *.bak
 exclude *.unrecoverable
 exclude /tmp/
@@ -124,3 +126,28 @@ omv-mkconf samba
 if [ "$(omv_config_get "${SERVICE_XPATH}/pool")" != "0" ]; then
     /usr/bin/snapraid pool
 fi
+
+# backup snapraid.conf
+count=$(omv_config_get_count "${DRIVES}")
+index=1
+while [ ${index} -le ${count} ]; do
+
+    data=$(omv_config_get "${DRIVES}[position()=${index}]/data")
+    path=$(omv_config_get "${DRIVES}[position()=${index}]/path")
+
+    if [ "${path}" != "" ]; then
+        if [ "${data}" -eq "1" ]; then
+            if [ -f "${path}/${SNAPRAID_FILENAME}.bak" ]; then
+                rm -f "${path}/${SNAPRAID_FILENAME}.bak"
+            fi
+
+            if [ -f "${path}/${SNAPRAID_FILENAME}" ]; then
+                mv "${path}/${SNAPRAID_FILENAME}" "${path}/${SNAPRAID_FILENAME}.bak"
+            fi
+
+            cp ${SNAPRAID_CONFIG} ${path}/
+        fi
+    fi
+
+    index=$(( ${index} + 1 ))
+done
