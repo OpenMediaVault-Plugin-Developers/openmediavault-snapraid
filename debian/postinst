@@ -32,6 +32,17 @@ case "$1" in
 
         omv_install_fixperms
 
+        if dpkg --compare-versions "$2" lt-nl "0.6.3"; then
+            if [ -f "/etc/snapraid.conf" ]; then
+                for OLDFILE in $(cat /etc/snapraid.conf | grep disk | sed 's/.*\(\/media.*\)/\1/g'); do
+                    if [ -f "$OLDFILE/.content" ]; then
+                        mv $OLDFILE/.content $OLDFILE/snapraid.content >/dev/null 2>&1
+                        echo "$OLDFILE/.content renamed successfully!"
+                    fi
+                done
+            fi
+        fi
+
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
     ;;
