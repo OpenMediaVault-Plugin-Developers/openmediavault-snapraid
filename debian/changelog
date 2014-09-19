@@ -1,9 +1,9 @@
-openmediavault-snapraid (1.0.4) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0.4) stable; urgency=low
 
   * Convert content files when upgrading from OMV 0.5.x
   * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 19 Sep 2014 12:09:03 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 19 Sep 2014 12:10:42 -0500
 
 openmediavault-snapraid (1.0.3) stable; urgency=low
 

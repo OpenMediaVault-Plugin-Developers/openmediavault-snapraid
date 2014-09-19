@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-16 09:59-0500\n"
-"PO-Revision-Date: 2014-08-16 15:00+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-08-18 07:27+0000\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "データドライブはパリティドライブにすることはできません。"
 
 msgid "Add drive"
-msgstr ""
+msgstr "ドライブの追加"
 
 msgid "Add rule"
-msgstr ""
+msgstr "ルールの追加"
 
 msgid "Auto Save"
 msgstr "自動保存"
@@ -65,36 +66,36 @@ msgid "Date & Time"
 msgstr "日付 & 時刻"
 
 msgid "Description of Buttons on Drives tab"
-msgstr ""
+msgstr "ドライブタブ上のボタンの説明"
 
 msgid "Diff"
 msgstr "差分"
 
 msgid "Drive"
-msgstr ""
+msgstr "ドライブ"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "コンテンツファイルが保存されているドライブの場所です。 このファイルには保存されたファイルの一覧と、整合性を検証するためのすべてのチェックサムとともに、あなたのバックアップの詳細が含まれています。"
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "データが保存されているドライブの場所。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr ""
+msgstr "ディスク障害からの復旧にはパリティファイルが保存されているドライブが必要です。複数のパリティドライブ、1つのデータドライブの場合、データロスを防ぐことができます。"
 
 msgid "Drives"
-msgstr ""
+msgstr "ドライブ"
 
 msgid "Edit drive"
-msgstr ""
+msgstr "ドライブの編集"
 
 msgid "Edit rule"
-msgstr ""
+msgstr "ルールの編集"
 
 msgid "Enable Pool"
 msgstr "プールの有効化"
@@ -106,13 +107,13 @@ msgid "Excludes hidden files and directories."
 msgstr "隠しファイルやディレクトリを除外します。"
 
 msgid "Exclusion"
-msgstr ""
+msgstr "除外"
 
 msgid "Fix"
 msgstr "修正"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "含むもの"
 
 msgid "Information"
 msgstr "情報"
@@ -129,13 +130,13 @@ msgid "Message"
 msgstr "メッセージ"
 
 msgid "Name"
-msgstr ""
+msgstr "名前"
 
 msgid "No Hidden"
 msgstr "隠さない"
 
 msgid "Parity"
-msgstr ""
+msgstr "パリティ"
 
 msgid "Pool"
 msgstr "プール"
@@ -150,13 +151,13 @@ msgid "Restore the last backup/snapshot."
 msgstr "最後のバックアップ/スナップショットからリストアします。"
 
 msgid "Rule"
-msgstr ""
+msgstr "ルール"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "ルールタイプ"
 
 msgid "Rules"
-msgstr ""
+msgstr "ルール"
 
 msgid "Scrub"
 msgstr "スクラブ"
@@ -165,7 +166,7 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "アレイをスクラブし、サイレントエラーをチェックします。"
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "ドライブの選択 ..."
 
 msgid "Settings"
 msgstr "設定"
@@ -177,7 +178,7 @@ msgid "SnapRAID user manual"
 msgstr "SnapRAIDユーザーマニュアル"
 
 msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr ""
+msgstr "ルールが除外なのか、含まれるものなのかを指定します。"
 
 msgid "Status"
 msgstr "状態"
@@ -186,7 +187,7 @@ msgid "Sync"
 msgstr "同期"
 
 msgid "That name has already been used."
-msgstr ""
+msgstr "この名前は既に使用されています。"
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"

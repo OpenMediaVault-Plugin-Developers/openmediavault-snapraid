@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-08-16 09:59-0500\n"
-"PO-Revision-Date: 2014-08-16 15:00+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-08-25 09:52+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "Un disco de datos no puede ser de paridad."
 
 msgid "Add drive"
-msgstr ""
+msgstr "Añadir Disco"
 
 msgid "Add rule"
-msgstr ""
+msgstr "Añadir regla"
 
 msgid "Auto Save"
 msgstr "Salvado automático"
@@ -66,36 +66,36 @@ msgid "Date & Time"
 msgstr "Fecha y hora"
 
 msgid "Description of Buttons on Drives tab"
-msgstr ""
+msgstr "Descripción de los botones en la pestaña de discos"
 
 msgid "Diff"
 msgstr "Differencias"
 
 msgid "Drive"
-msgstr ""
+msgstr "Disco"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "Disco donde se almacena el archivo de contenido. Este archivo es una lista de archivos salvados y contiene el detalle de sus copias, con su correspondiente checksum para verificar la integridad del archivo."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Disco donde se almacenan ls datos."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr ""
+msgstr "Disco donde se almacena los archivos de paridad, que son necesarios para realizar la recuperación en caso de fallo del disco de datos. Por cada disco de paridad, se puede perder hasta un disco de datos, sin perdida de información."
 
 msgid "Drives"
-msgstr ""
+msgstr "Discos"
 
 msgid "Edit drive"
-msgstr ""
+msgstr "Editar disco"
 
 msgid "Edit rule"
-msgstr ""
+msgstr "Editar regla"
 
 msgid "Enable Pool"
 msgstr "Habilitar Pool"
@@ -107,13 +107,13 @@ msgid "Excludes hidden files and directories."
 msgstr "Excluir archivos y carpetas ocultos."
 
 msgid "Exclusion"
-msgstr ""
+msgstr "Exclusiones"
 
 msgid "Fix"
 msgstr "Arreglar"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "Inclusiones"
 
 msgid "Information"
 msgstr "Información"
@@ -130,13 +130,13 @@ msgid "Message"
 msgstr "Mensaje"
 
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 msgid "No Hidden"
 msgstr "No mostrar ocultos"
 
 msgid "Parity"
-msgstr ""
+msgstr "Paridad"
 
 msgid "Pool"
 msgstr "Pool"
@@ -151,13 +151,13 @@ msgid "Restore the last backup/snapshot."
 msgstr "Restaura el ultimo backup/snapshot."
 
 msgid "Rule"
-msgstr ""
+msgstr "Regla"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "Tipo de regla"
 
 msgid "Rules"
-msgstr ""
+msgstr "Reglas"
 
 msgid "Scrub"
 msgstr "Reparar"
@@ -166,7 +166,7 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "Reparar el array, Buscando errores silenciosos."
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "Seleccione un disco ..."
 
 msgid "Settings"
 msgstr "Opciones"
@@ -178,7 +178,7 @@ msgid "SnapRAID user manual"
 msgstr "Manual de usuario de SnapRAID"
 
 msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr ""
+msgstr "Especificar si la regla es de exclusión o de inclusión."
 
 msgid "Status"
 msgstr "Estado"
@@ -187,7 +187,7 @@ msgid "Sync"
 msgstr "Sync"
 
 msgid "That name has already been used."
-msgstr ""
+msgstr "Este nombre está en uso."
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
