@@ -484,6 +484,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             );
         }
 
+        $object['rtype'] = intval($object['rtype']);
+
         return $object;
     }
 
@@ -514,6 +516,14 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "rtype" => intval($params['rtype'])
         );
 
+        if ( substr($object['rule'], -2) == "/*" )
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_MISC_FAILURE,
+                "Illegal rule - cannot end with /*"
+            );
+        }
+
         // Set the configuration data.
         $success = FALSE;
         if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
@@ -524,7 +534,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         else
         {
             // Update existing configuration object.
-            $xPath = sprintf("%s[uuid='%s']", $this->getXPathRules(), $params['uuid']);
+            $xPath = sprintf("%s[uuid='%s']", $this->getXPathRule(), $params['uuid']);
             $success = $xmlConfig->replace($xPath, $object);
         }
 
@@ -606,7 +616,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
 
-        if($pid > 0)    // Parent process.
+        if ($pid > 0)    // Parent process.
         {
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;

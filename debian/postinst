@@ -40,6 +40,13 @@ case "$1" in
                         echo "$OLDFILE/.content renamed successfully!"
                     fi
                 done
+
+                for OLDPARITY in $(cat /etc/snapraid.conf | grep parity | sed 's/.*\(\/media\/.*\)\/snapraid\.parity/\1/g'); do
+                    if [ -f "$OLDPARITY/parity.file" ]; then
+                        mv $OLDPARITY/parity.file $OLDPARITY/snapraid.parity >/dev/null 2>&1
+                        echo "$OLDPARITY/parity.file renamed successfully!"
+                    fi
+                done
             fi
         fi
 

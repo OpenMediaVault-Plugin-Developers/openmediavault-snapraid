@@ -101,7 +101,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
         dataIndex : "rtype",
         stateId   : "rtype",
         renderer  : function (value) {
-            if (value == '1')
+            if (value == 1)
                 return _("Inclusion");
             else
                 return _("Exclusion");
