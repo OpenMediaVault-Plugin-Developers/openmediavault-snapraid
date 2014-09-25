@@ -92,6 +92,11 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         return "/usr/bin/snapraid";
     }
 
+    private function getLogFile()
+    {
+        return "/var/log/snapraid.log";
+    }
+
     public function initialize()
     {
         $this->registerMethod('getSettings');
@@ -631,6 +636,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             );
         }
 
+        $log = sprintf("[%s] %s - Manually started\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+        file_put_contents($this->getLogFile(), $log, FILE_APPEND);
+
         // Child process.
         try {
             $bgOutputFilename = $this->createBgProcOutput();
@@ -639,9 +647,17 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $cmd = sprintf("%s %s 2>&1", $this->getProgram(), $params['command']);
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
+
+            $log = sprintf("[%s] %s - Finished\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+            file_put_contents($this->getLogFile(), $log, FILE_APPEND);
+
             exit(0);
         } catch(Exception $e) {
             $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+
+            $log = sprintf("[%s] %s - Error!\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+            file_put_contents($this->getLogFile(), $log, FILE_APPEND);
+
             exit(1);
         }
     }

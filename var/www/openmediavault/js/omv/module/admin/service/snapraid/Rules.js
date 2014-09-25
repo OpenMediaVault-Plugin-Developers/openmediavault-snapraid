@@ -42,11 +42,67 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
     }],
 
     getFormItems : function() {
+        var me = this;
         return [{
-            xtype      : "textfield",
-            name       : "rule",
-            fieldLabel : _("Rule"),
-            allowBlank : false
+            xtype         : "combo",
+            name          : "mntentref",
+            fieldLabel    : _("Volume"),
+            emptyText     : _("Select a volume ..."),
+            allowBlank    : false,
+            allowNone     : false,
+            editable      : false,
+            triggerAction : "all",
+            displayField  : "description",
+            valueField    : "uuid",
+            submitValue   : false,
+            store         : Ext.create("OMV.data.Store", {
+                autoLoad : true,
+                model    : OMV.data.Model.createImplicit({
+                    idProperty  : "uuid",
+                    fields      : [
+                        { name : "uuid", type : "string" },
+                        { name : "devicefile", type : "string" },
+                        { name : "description", type : "string" }
+                    ]
+                }),
+                proxy : {
+                    type    : "rpc",
+                    rpcData : {
+                        service : "ShareMgmt",
+                        method  : "getCandidates"
+                    },
+                    appendSortParams : false
+                },
+                sorters : [{
+                    direction : "ASC",
+                    property  : "devicefile"
+                }]
+            })
+        },{
+            xtype          : "trigger",
+            name           : "rule",
+            fieldLabel     : _("Rule"),
+            allowBlank     : false,
+            triggerCls     : "x-form-folder-trigger",
+            onTriggerClick : function() {
+                // Get the UUID of the selected volume.
+                var field = me.findField("mntentref");
+                var value = field.getValue();
+                if(Ext.isUUID(value)) {
+                    Ext.create("OMV.window.FolderBrowser", {
+                        uuid      : value,
+                        listeners : {
+                            scope  : this,
+                            select : function(wnd, node, path) {
+                                // Set the selected path.
+                                this.setValue(path);
+                            }
+                        }
+                    }).show();
+                } else {
+                    OMV.MessageBox.info(null, _("Please first select a volume."));
+                }
+            }
         },{
             xtype      : "combo",
             name       : "rtype",

@@ -89,11 +89,10 @@ $moduleMgr->registerModule(new OMVModuleSnapRaid());
 OMVLogFile::registerType("snapraid", array(
     "filename" => "snapraid.log",
     "filepath" => "/var/log/snapraid.log",
-    "regex"    => "/(^(.*?)\s+(.*?)\s+(.*?))\s+(.*?)\s+(.*?):\s+(.*?)\[(.*?)\]:\s+(.*?):\s+\'(.*?)\'$/",
+    "regex"    => "/^\[((.*?)\s+(.*?))\]\s+(.*?)\s+-\s+(.*?)$/",
     "columns"  => array(
         "date"      => 1,
-        "component" => 7,
-        "event"     => 8,
-        "message"   => 10
+        "component" => 4,
+        "message"   => 5
     )
 ));

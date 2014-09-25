@@ -1,3 +1,11 @@
+openmediavault-snapraid (1.0.6) stable; urgency=low
+
+  * Add folder browser for selecting rules
+  * Create log entry when command buttons are used
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 25 Sep 2014 13:04:29 -0500
+
 openmediavault-snapraid (1.0.5) stable; urgency=low
 
   * Fix bug in Rules
