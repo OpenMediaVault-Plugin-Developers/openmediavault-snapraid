@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 09:59-0500\n"
-"PO-Revision-Date: 2014-08-16 15:00+0000\n"
+"POT-Creation-Date: 2014-09-25 13:11-0500\n"
+"PO-Revision-Date: 2014-09-25 18:13+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/openmediavault-snapraid/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -49,6 +49,9 @@ msgid ""
 msgstr ""
 
 msgid "Component"
+msgstr ""
+
+msgid "Config"
 msgstr ""
 
 msgid "Content"
@@ -99,9 +102,6 @@ msgstr ""
 msgid "Enable Pool"
 msgstr ""
 
-msgid "Event"
-msgstr ""
-
 msgid "Excludes hidden files and directories."
 msgstr ""
 
@@ -137,6 +137,9 @@ msgstr ""
 msgid "Parity"
 msgstr ""
 
+msgid "Please first select a volume."
+msgstr ""
+
 msgid "Pool"
 msgstr ""
 
@@ -165,6 +168,9 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr ""
 
 msgid "Select a drive ..."
+msgstr ""
+
+msgid "Select a volume ..."
 msgstr ""
 
 msgid "Settings"
@@ -201,4 +207,7 @@ msgstr ""
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
+msgstr ""
+
+msgid "Volume"
 msgstr ""

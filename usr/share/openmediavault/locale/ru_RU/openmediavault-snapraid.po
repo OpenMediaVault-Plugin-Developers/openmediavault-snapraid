@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 09:59-0500\n"
-"PO-Revision-Date: 2014-08-16 15:00+0000\n"
+"POT-Creation-Date: 2014-09-25 13:11-0500\n"
+"PO-Revision-Date: 2014-09-25 18:13+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,9 @@ msgstr "Проверяет все файлы и избыточность дан�
 
 msgid "Component"
 msgstr "Компонент"
+
+msgid "Config"
+msgstr ""
 
 msgid "Content"
 msgstr "\"Содержимое\""
@@ -101,9 +104,6 @@ msgstr ""
 msgid "Enable Pool"
 msgstr "Включить пул"
 
-msgid "Event"
-msgstr "Событие"
-
 msgid "Excludes hidden files and directories."
 msgstr "Исключает скрытые файлы и каталоги"
 
@@ -139,6 +139,9 @@ msgstr "Никаких скрытых"
 msgid "Parity"
 msgstr ""
 
+msgid "Please first select a volume."
+msgstr ""
+
 msgid "Pool"
 msgstr "Пул"
 
@@ -167,6 +170,9 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "Scrub массива, проверка на скрытые ошибки."
 
 msgid "Select a drive ..."
+msgstr ""
+
+msgid "Select a volume ..."
 msgstr ""
 
 msgid "Settings"
@@ -204,3 +210,6 @@ msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
 msgstr "Обновление информации об избыточности. Все изменения файлов в дисковом массиве считываются, и избыточность данных пересчитывается."
+
+msgid "Volume"
+msgstr ""

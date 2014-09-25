@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-16 09:59-0500\n"
-"PO-Revision-Date: 2014-08-16 15:00+0000\n"
+"POT-Creation-Date: 2014-09-25 13:11-0500\n"
+"PO-Revision-Date: 2014-09-25 18:13+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -52,6 +52,9 @@ msgstr "Controlla tutti i file e i dati di ridondanza. Viene eseguito l'hashing 
 
 msgid "Component"
 msgstr "Componente"
+
+msgid "Config"
+msgstr ""
 
 msgid "Content"
 msgstr "Contenuti"
@@ -101,9 +104,6 @@ msgstr ""
 msgid "Enable Pool"
 msgstr "Abilita Aggregazione"
 
-msgid "Event"
-msgstr "Evento"
-
 msgid "Excludes hidden files and directories."
 msgstr "Escludi file e cartelle nascoste."
 
@@ -139,6 +139,9 @@ msgstr "No file nascosti"
 msgid "Parity"
 msgstr ""
 
+msgid "Please first select a volume."
+msgstr ""
+
 msgid "Pool"
 msgstr "Aggregazione"
 
@@ -167,6 +170,9 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "Pulisci l'array, controlla gli errori silenziosi."
 
 msgid "Select a drive ..."
+msgstr ""
+
+msgid "Select a volume ..."
 msgstr ""
 
 msgid "Settings"
@@ -204,3 +210,6 @@ msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
 msgstr "Aggiorna le informazioni di ridondanza. Tutti i file modificati nel disco dell'array vengono letti, e la ridondanza dei dati viene ricalcolata."
+
+msgid "Volume"
+msgstr ""
