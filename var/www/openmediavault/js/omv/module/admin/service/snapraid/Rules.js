@@ -140,7 +140,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
         "OMV.util.Format"
     ],
     uses     : [
-        "OMV.module.admin.service.snapraid.Exclude"
+        "OMV.module.admin.service.snapraid.Rule"
     ],
 
     hidePagingToolbar : false,
