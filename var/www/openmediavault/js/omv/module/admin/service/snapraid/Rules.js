@@ -48,8 +48,6 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
             name          : "mntentref",
             fieldLabel    : _("Volume"),
             emptyText     : _("Select a volume ..."),
-            allowBlank    : false,
-            allowNone     : false,
             editable      : false,
             triggerAction : "all",
             displayField  : "description",

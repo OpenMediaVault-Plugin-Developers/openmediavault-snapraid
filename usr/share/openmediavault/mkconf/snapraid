@@ -121,12 +121,6 @@ while [ ${index} -le ${count} ]; do
     index=$(( ${index} + 1 ))
 done
 
-omv-mkconf samba
-
-if [ "$(omv_config_get "${SERVICE_XPATH}/pool")" != "0" ]; then
-    /usr/bin/snapraid pool
-fi
-
 # backup snapraid.conf
 count=$(omv_config_get_count "${DRIVES}")
 index=1
@@ -134,6 +128,8 @@ while [ ${index} -le ${count} ]; do
 
     data=$(omv_config_get "${DRIVES}[position()=${index}]/data")
     path=$(omv_config_get "${DRIVES}[position()=${index}]/path")
+
+    echo "exclude "${path}/${SNAPRAID_FILENAME}" >> ${SNAPRAID_CONFIG}
 
     if [ "${path}" != "" ]; then
         if [ "${data}" -eq "1" ]; then
@@ -151,3 +147,9 @@ while [ ${index} -le ${count} ]; do
 
     index=$(( ${index} + 1 ))
 done
+
+omv-mkconf samba
+
+if [ "$(omv_config_get "${SERVICE_XPATH}/pool")" != "0" ]; then
+    /usr/bin/snapraid pool
+fi
