@@ -129,9 +129,9 @@ while [ ${index} -le ${count} ]; do
     data=$(omv_config_get "${DRIVES}[position()=${index}]/data")
     path=$(omv_config_get "${DRIVES}[position()=${index}]/path")
 
-    echo "exclude "${path}/${SNAPRAID_FILENAME}" >> ${SNAPRAID_CONFIG}
-
     if [ "${path}" != "" ]; then
+        echo "exclude ${path}/${SNAPRAID_FILENAME}" >> ${SNAPRAID_CONFIG}
+        
         if [ "${data}" -eq "1" ]; then
             if [ -f "${path}/${SNAPRAID_FILENAME}.bak" ]; then
                 rm -f "${path}/${SNAPRAID_FILENAME}.bak"
