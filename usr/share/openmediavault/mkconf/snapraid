@@ -23,6 +23,14 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+# from /usr/share/openmediavault/sysinfo/modules.d/00-omv-version
+. /usr/share/openmediavault/sysinfo/functions
+OMV_name=$(omv_product_info "name")
+OMV_packagename=$(omv_product_info "packagename")
+OMV_versionname=$(omv_product_info "versionname")
+### not working! don't know why actually
+#OMV_version=$(dpkg-query -W -f='${Version}' ${packagename})
+
 SNAPRAID_FILENAME="snapraid.conf"
 SNAPRAID_CONFIG="/etc/${SNAPRAID_FILENAME}"
 POOL_DIR="/media/pool"
@@ -34,12 +42,14 @@ DRIVES="${SERVICE_XPATH}/drives/drive"
 RULES="${SERVICE_XPATH}/rules/rule"
 
 OMV_VERSION="$(dpkg -l | grep 'openmediavault ' | awk '{print $3}')"
-PLUGIN_VERSION="$(dpkg -l | grep openmediavault-snapraid | awk '{print $3}')"
+PLUGIN_VERSION="$(dpkg -l | grep $OMV_packagename-snapraid | awk '{print $3}')"
 
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
-# this file was automatically generated from OpenMediaVault $OMV_VERSION
-# and 'openmediavault-snapraid' $PLUGIN_VERSION 
+# this file was automatically generated from 
+# ${OMV_name} $OMV_versionname $OMV_VERSION
+# and 'openmediavault-snapraid' $PLUGIN_VERSION
+
 EOF
 
 xmlstarlet sel -t -m "${SERVICE_XPATH}" \
