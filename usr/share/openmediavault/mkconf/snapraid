@@ -33,11 +33,12 @@ SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 DRIVES="${SERVICE_XPATH}/drives/drive"
 RULES="${SERVICE_XPATH}/rules/rule"
 
+OMV_VERSION="$(dpkg -l | grep 'openmediavault ' | awk '{print $3}')"
 PLUGIN_VERSION="$(dpkg -l | grep openmediavault-snapraid | awk '{print $3}')"
 
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
-# this file was automatically generated from OpenMediaVault 1.0. <- set this to a version variable.
+# this file was automatically generated from OpenMediaVault $OMV_VERSION
 # and 'openmediavault-snapraid' $PLUGIN_VERSION 
 EOF
 
