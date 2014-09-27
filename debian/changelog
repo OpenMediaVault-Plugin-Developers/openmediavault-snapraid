@@ -1,3 +1,9 @@
+openmediavault-snapraid (1.0.9) UNRELEASED; urgency=low
+
+  * More fixes to config file
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 27 Sep 2014 07:58:15 -0500
+
 openmediavault-snapraid (1.0.8) stable; urgency=low
 
   * Fix mkconf error
