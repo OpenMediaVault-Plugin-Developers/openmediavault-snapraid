@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Ettore Atalan <atalanttore@googlemail.com>, 2014
 # Jan Neumann <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-09-25 18:13+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2014-09-28 11:43+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,13 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "Ein Datenlaufwerk kann kein Paritätslaufwerk sein."
 
 msgid "Add drive"
-msgstr ""
+msgstr "Laufwerk hinzufügen"
 
 msgid "Add rule"
-msgstr ""
+msgstr "Regel hinzufügen"
 
 msgid "Auto Save"
 msgstr "Automatische Sicherung"
@@ -53,7 +54,7 @@ msgid "Component"
 msgstr "Komponente"
 
 msgid "Config"
-msgstr ""
+msgstr "Konfiguration"
 
 msgid "Content"
 msgstr "Inhalt"
@@ -75,7 +76,7 @@ msgid "Diff"
 msgstr "Diff"
 
 msgid "Drive"
-msgstr ""
+msgstr "Laufwerk"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -92,13 +93,13 @@ msgid ""
 msgstr ""
 
 msgid "Drives"
-msgstr ""
+msgstr "Laufwerke"
 
 msgid "Edit drive"
-msgstr ""
+msgstr "Laufwerk bearbeiten"
 
 msgid "Edit rule"
-msgstr ""
+msgstr "Regel bearbeiten"
 
 msgid "Enable Pool"
 msgstr ""
@@ -107,13 +108,13 @@ msgid "Excludes hidden files and directories."
 msgstr "Schließt versteckte Dateien und Verzeichnisse aus."
 
 msgid "Exclusion"
-msgstr ""
+msgstr "Ausschluss"
 
 msgid "Fix"
 msgstr "Festlegen"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "Einbindung"
 
 msgid "Information"
 msgstr "Information"
@@ -130,13 +131,13 @@ msgid "Message"
 msgstr "Mitteilung"
 
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 msgid "No Hidden"
 msgstr "keine Versteckten"
 
 msgid "Parity"
-msgstr ""
+msgstr "Parität"
 
 msgid "Please first select a volume."
 msgstr ""
@@ -154,13 +155,13 @@ msgid "Restore the last backup/snapshot."
 msgstr "Letztes Backup/letzte Momentaufnahme wiederherstellen."
 
 msgid "Rule"
-msgstr ""
+msgstr "Regel"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "Regeltyp"
 
 msgid "Rules"
-msgstr ""
+msgstr "Regeln"
 
 msgid "Scrub"
 msgstr "Bereinigung"
@@ -169,7 +170,7 @@ msgid "Scrubs the array, checking for silent errors."
 msgstr "Bereinigt das Array, prüft auf unentdeckte Fehler."
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "Wählen Sie ein Laufwerk aus ..."
 
 msgid "Select a volume ..."
 msgstr ""
@@ -193,7 +194,7 @@ msgid "Sync"
 msgstr "Synchronisierung"
 
 msgid "That name has already been used."
-msgstr ""
+msgstr "Dieser Name wurde bereits verwendet."
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"

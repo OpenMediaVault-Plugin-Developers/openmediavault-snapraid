@@ -1,8 +1,9 @@
-openmediavault-snapraid (1.0.10) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0.10) stable; urgency=low
 
   * Fix rule path error
+  * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 04 Oct 2014 17:56:01 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 04 Oct 2014 17:57:37 -0500
 
 openmediavault-snapraid (1.0.9) stable; urgency=low
 
