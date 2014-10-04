@@ -508,17 +508,19 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "uuid"  : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
-                "rule"  : { "type" : "string" },
-                "rtype" : { "type" : "integer" }
+                "uuid"      : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_UNDEFINED'].' },
+                "mntentref" : { '.$GLOBALS['OMV_JSONSCHEMA_UUID_NONE'].' },
+                "rule"      : { "type" : "string" },
+                "rtype"     : { "type" : "integer" }
             }
         }');
 
         // Prepare configuration data.
         $object = array(
-            "uuid"  => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
-            "rule"  => $params['rule'],
-            "rtype" => intval($params['rtype'])
+            "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "mntentref" => $params['mntentref'],
+            "rule"      => $params['rule'],
+            "rtype"     => intval($params['rtype'])
         );
 
         if ( substr($object['rule'], -2) == "/*" )
@@ -529,6 +531,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             );
         }
 
+        $xPath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
+        $deviceDir = $xmlConfig->get($xpath);
+        $params['rule-folder'] = $deviceDir['dir'];
+        
         // Set the configuration data.
         $success = FALSE;
         if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])

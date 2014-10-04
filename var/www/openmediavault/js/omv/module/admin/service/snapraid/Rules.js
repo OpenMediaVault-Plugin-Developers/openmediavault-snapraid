@@ -52,7 +52,8 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
             triggerAction : "all",
             displayField  : "description",
             valueField    : "uuid",
-            submitValue   : false,
+            allowNone     : true,
+            allowBlank    : true,
             store         : Ext.create("OMV.data.Store", {
                 autoLoad : true,
                 model    : OMV.data.Model.createImplicit({
