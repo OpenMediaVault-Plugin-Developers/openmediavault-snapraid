@@ -515,15 +515,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             }
         }');
 
-        // Prepare configuration data.
-        $object = array(
-            "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
-            "mntentref" => $params['mntentref'],
-            "rule"      => $params['rule'],
-            "rtype"     => intval($params['rtype'])
-        );
-
-        if ( substr($object['rule'], -2) == "/*" )
+        if ( substr($params['rule'], -2) == "/*" )
         {
             throw new OMVException(
                 OMVErrorMsg::E_MISC_FAILURE,
@@ -532,9 +524,18 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         }
 
         $xPath = sprintf("//system/fstab/mntent[uuid='%s']", $params['mntentref']);
-        $deviceDir = $xmlConfig->get($xpath);
+        $deviceDir = $xmlConfig->get($xPath);
         $params['rule-folder'] = $deviceDir['dir'];
-        
+
+        // Prepare configuration data.
+        $object = array(
+            "uuid"        => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
+            "mntentref"   => $params['mntentref'],
+            "rule-folder" => $params['rule-folder'],
+            "rule"        => $params['rule'],
+            "rtype"       => intval($params['rtype'])
+        );
+
         // Set the configuration data.
         $success = FALSE;
         if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])

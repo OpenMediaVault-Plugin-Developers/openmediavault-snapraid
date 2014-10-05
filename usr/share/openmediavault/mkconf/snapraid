@@ -42,7 +42,7 @@ PLUGIN_VERSION="$(dpkg -l | grep $OMV_packagename-snapraid | awk '{print $3}')"
 
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
-# this file was automatically generated from 
+# this file was automatically generated from
 # ${OMV_name} ${OMV_versionname} ${OMV_version}
 # and 'openmediavault-snapraid' ${PLUGIN_VERSION}
 
@@ -119,14 +119,14 @@ while [ ${index} -le ${count} ]; do
     rtype=$(omv_config_get "${RULES}[position()=${index}]/rtype")
     rule=$(omv_config_get "${RULES}[position()=${index}]/rule")
     rulefolder=$(omv_config_get "${RULES}[position()=${index}]/rule-folder")
-    
+
     if [ "${rule}" != "" ]; then
         if [ "${rulefolder}" != "" ]; then
             rulepath="${rulefolder}/${rule}"
         else
             rulepath="${rule}"
         fi
-        
+
         if [ "${rtype}" != "0" ]; then
             echo "include ${rulepath}" >> ${SNAPRAID_CONFIG}
         else
@@ -144,7 +144,7 @@ while [ ${index} -le ${count} ]; do
 
     data=$(omv_config_get "${DRIVES}[position()=${index}]/data")
     path=$(omv_config_get "${DRIVES}[position()=${index}]/path")
-	
+
 	# do backups - keep the last 3
     if [ "${path}" != "" ]; then
         if [ "${data}" -eq "1" ]; then
