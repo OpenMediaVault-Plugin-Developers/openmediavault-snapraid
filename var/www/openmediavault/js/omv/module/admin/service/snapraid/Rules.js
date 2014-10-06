@@ -94,7 +94,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
                             scope  : this,
                             select : function(wnd, node, path) {
                                 // Set the selected path.
-                                this.setValue(path);
+                                this.setValue(path + "/");
                             }
                         }
                     }).show();
