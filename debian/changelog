@@ -1,8 +1,8 @@
-openmediavault-snapraid (1.0.11) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0.11) stable; urgency=low
 
   * Revert rule path changes
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 06 Oct 2014 09:11:08 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 06 Oct 2014 09:22:29 -0500
 
 openmediavault-snapraid (1.0.10) stable; urgency=low
 
