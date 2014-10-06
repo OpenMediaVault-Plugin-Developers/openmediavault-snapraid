@@ -122,15 +122,13 @@ while [ ${index} -le ${count} ]; do
 
     if [ "${rule}" != "" ]; then
         if [ "${rulefolder}" != "" ]; then
-            rulepath="${rulefolder}/${rule}"
-        else
-            rulepath="${rule}"
+            echo "# Rule selected from ${rulefolder}" >> ${SNAPRAID_CONFIG}
         fi
 
         if [ "${rtype}" != "0" ]; then
-            echo "include ${rulepath}" >> ${SNAPRAID_CONFIG}
+            echo "include ${rule}" >> ${SNAPRAID_CONFIG}
         else
-            echo "exclude ${rulepath}" >> ${SNAPRAID_CONFIG}
+            echo "exclude ${rule}" >> ${SNAPRAID_CONFIG}
         fi
     fi
 
