@@ -22,6 +22,15 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "poolname" ""
         fi
 
+        if dpkg --compare-versions "$2" lt-nl "1.0.13"; then
+            omv_config_add_element "${SERVICE_XPATH}" "syslog" "1"
+            omv_config_add_element "${SERVICE_XPATH}" "debug" "0"
+            omv_config_add_element "${SERVICE_XPATH}" "sendmail" "1"
+            omv_config_add_element "${SERVICE_XPATH}" "runscrub" "1"
+            omv_config_add_element "${SERVICE_XPATH}" "scrubfreq" "7"
+            omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "0"
+        fi
+
         if ! omv_config_exists "${SERVICE_XPATH}/${DRIVES}"; then
             omv_config_add_element "${SERVICE_XPATH}" "${DRIVES}"
         fi

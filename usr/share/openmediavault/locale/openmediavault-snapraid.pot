@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
+"POT-Creation-Date: 2014-10-08 06:44-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,10 +62,22 @@ msgstr ""
 msgid "Date & Time"
 msgstr ""
 
+msgid "Debug"
+msgstr ""
+
+msgid "Define threshold of files deleted to start the sync-process. default = 0 to make sure no sync process is started while testing or if there are any deleted files"
+msgstr ""
+
+msgid "Delete Threshold"
+msgstr ""
+
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"
+msgstr ""
+
+msgid "Diff Script Settings"
 msgstr ""
 
 msgid "Drive"
@@ -149,7 +161,13 @@ msgstr ""
 msgid "Rules"
 msgstr ""
 
+msgid "Run Scrub"
+msgstr ""
+
 msgid "Scrub"
+msgstr ""
+
+msgid "Scrub Frequency"
 msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
@@ -159,6 +177,12 @@ msgid "Select a drive ..."
 msgstr ""
 
 msgid "Select a volume ..."
+msgstr ""
+
+msgid "Send Mail"
+msgstr ""
+
+msgid "Set to true if you want to scrub after a successful sync"
 msgstr ""
 
 msgid "Settings"
@@ -179,6 +203,9 @@ msgstr ""
 msgid "Sync"
 msgstr ""
 
+msgid "Syslog"
+msgstr ""
+
 msgid "That name has already been used."
 msgstr ""
 
@@ -188,6 +215,9 @@ msgstr ""
 msgid "This volume has already been added."
 msgstr ""
 
+msgid "Units in days."
+msgstr ""
+
 msgid "Update the pool."
 msgstr ""
 
@@ -195,4 +225,7 @@ msgid "Updates the redundancy information. All the modified files in the disk ar
 msgstr ""
 
 msgid "Volume"
+msgstr ""
+
+msgid "Write logs to syslog"
 msgstr ""

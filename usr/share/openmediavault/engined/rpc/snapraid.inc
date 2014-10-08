@@ -142,6 +142,13 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $object['autosave'] = intval($object['autosave']);
         $object['pool']     = boolval($object['pool']);
 
+        $object['syslog']       = boolval($object['syslog']);
+        $object['debug']        = boolval($object['debug']);
+        $object['sendmail']     = boolval($object['sendmail']);
+        $object['runscrub']     = boolval($object['runscrub']);
+        $object['scrubfreq']    = intval($object['scrubfreq']);
+        $object['delthreshold'] = intval($object['delthreshold']);
+
         unset($object['drives']);
         unset($object['rules']);
 
@@ -162,11 +169,17 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "blocksize"  : { "type" : "integer" },
-                "autosave"   : { "type" : "integer" },
-                "nohidden"   : { "type" : "boolean" },
-                "pool"       : { "type" : "boolean" },
-                "poolname"   : { "type" : "string", "optional" : true }
+                "blocksize"    : { "type" : "integer" },
+                "autosave"     : { "type" : "integer" },
+                "nohidden"     : { "type" : "boolean" },
+                "pool"         : { "type" : "boolean" },
+                "poolname"     : { "type" : "string", "optional" : true },
+                "syslog"       : { "type" : "boolean" },
+                "debug"        : { "type" : "boolean" },
+                "sendmail"     : { "type" : "boolean" },
+                "runscrub"     : { "type" : "boolean" },
+                "scrubfreq"    : { "type" : "integer" },
+                "delthreshold" : { "type" : "integer" }
             }
         }');
 
@@ -182,13 +195,19 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
         // Prepare configuration data
         $object = array(
-            "blocksize" => intval($params['blocksize']),
-            "autosave"  => intval($params['autosave']),
-            "nohidden"  => array_boolval($params, 'nohidden'),
-            "pool"      => array_boolval($params, 'pool'),
-            "poolname"  => str_replace(" ", "_", $params['poolname']),
-            "drives"    => isset($oldObject['drives']) ? $oldObject['drives'] : array(),
-            "rules"     => isset($oldObject['rules']) ? $oldObject['rules'] : array()
+            "blocksize"    => intval($params['blocksize']),
+            "autosave"     => intval($params['autosave']),
+            "nohidden"     => array_boolval($params, 'nohidden'),
+            "pool"         => array_boolval($params, 'pool'),
+            "poolname"     => str_replace(" ", "_", $params['poolname']),
+            "syslog"       => array_boolval($params, 'syslog'),
+            "debug"        => array_boolval($params, 'debug'),
+            "sendmail"     => array_boolval($params, 'sendmail'),
+            "runscrub"     => array_boolval($params, 'runscrub'),
+            "scrubfreq"    => intval($params['scrubfreq']),
+            "delthreshold" => intval($params['delthreshold']),
+            "drives"       => isset($oldObject['drives']) ? $oldObject['drives'] : array(),
+            "rules"        => isset($oldObject['rules']) ? $oldObject['rules'] : array()
         );
 
         // Set configuration object

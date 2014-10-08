@@ -1,3 +1,10 @@
+openmediavault-snapraid (1.0.13) UNRELEASED; urgency=low
+
+  * Add snapraid-diff script settings
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 08 Oct 2014 06:44:01 -0500
+
 openmediavault-snapraid (1.0.12) stable; urgency=low
 
   * Improve rules

@@ -92,7 +92,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 xtype      : "checkbox",
                 name       : "nohidden",
                 fieldLabel : _("No Hidden"),
-                boxLabel: _("Excludes hidden files and directories."),
+                boxLabel   : _("Excludes hidden files and directories."),
                 checked    : false
             },{
                 xtype      : "checkbox",
@@ -105,6 +105,63 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 name       : "poolname",
                 fieldLabel : _("Pool Share Name"),
                 allowNone  : true
+            }]
+        },{
+            xtype    : "fieldset",
+            title    : _("Diff Script Settings"),
+            defaults : {
+                labelSeparator : ""
+            },
+            items : [{
+                xtype      : "checkbox",
+                name       : "syslog",
+                fieldLabel : _("Syslog"),
+                boxLabel   : _("Write logs to syslog"),
+                checked    : true
+            },{
+                xtype      : "checkbox",
+                name       : "debug",
+                fieldLabel : _("Debug"),
+                checked    : false
+            },{
+                xtype      : "checkbox",
+                name       : "sendmail",
+                fieldLabel : _("Send Mail"),
+                checked    : true
+            },{
+                xtype      : "checkbox",
+                name       : "runscrub",
+                fieldLabel : _("Run Scrub"),
+                boxLabel   : _("Set to true if you want to scrub after a successful sync"),
+                checked    : true
+            },{
+                xtype         : "numberfield",
+                name          : "scrubfreq",
+                fieldLabel    : _("Scrub Frequency"),
+                minValue      : 0,
+                maxValue      : 365,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 7,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Units in days.")
+                }]
+            },{
+                xtype         : "numberfield",
+                name          : "delthreshold",
+                fieldLabel    : _("Delete Threshold"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 0,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Define threshold of files deleted to start the sync-process. default = 0 to make sure no sync process is started while testing or if there are any deleted files")
+                }]
             }]
         }];
     }

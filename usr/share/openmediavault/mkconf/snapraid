@@ -32,6 +32,9 @@ SNAPRAID_FILENAME="snapraid.conf"
 SNAPRAID_CONFIG="/etc/${SNAPRAID_FILENAME}"
 POOL_DIR="/media/pool"
 
+DIFF_SCRIPT_FILENAME="snapraid-diff.conf"
+DIFF_SCRIPT_CONFIG="/etc/${DIFF_SCRIPT_FILENAME}"
+
 SERVICE_XPATH_NAME="snapraid"
 SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
@@ -72,8 +75,8 @@ while [ ${index} -le ${count} ]; do
     label=$(omv_config_get "${DRIVES}[position()=${index}]/label")
 
     if [ "${path}" != "" ]; then
-		echo "#####################################################################" >> ${SNAPRAID_CONFIG}
-		echo "# OMV-Name: ${name}  Drive Label: ${label}" >> ${SNAPRAID_CONFIG}
+        echo "#####################################################################" >> ${SNAPRAID_CONFIG}
+        echo "# OMV-Name: ${name}  Drive Label: ${label}" >> ${SNAPRAID_CONFIG}
         if [ "${content}" -eq "1" ]; then
             echo "content ${path}/snapraid.content" >> ${SNAPRAID_CONFIG}
         fi
@@ -93,7 +96,7 @@ while [ ${index} -le ${count} ]; do
                 fi
             fi
         fi
-		echo >> ${SNAPRAID_CONFIG}
+        echo >> ${SNAPRAID_CONFIG}
     fi
 
     index=$(( ${index} + 1 ))
@@ -143,7 +146,7 @@ while [ ${index} -le ${count} ]; do
     data=$(omv_config_get "${DRIVES}[position()=${index}]/data")
     path=$(omv_config_get "${DRIVES}[position()=${index}]/path")
 
-	# do backups - keep the last 3
+    # do backups - keep the last 3
     if [ "${path}" != "" ]; then
         if [ "${data}" -eq "1" ]; then
             if [ -f "${path}/${SNAPRAID_FILENAME}.bak" ]; then
@@ -160,6 +163,29 @@ while [ ${index} -le ${count} ]; do
 
     index=$(( ${index} + 1 ))
 done
+
+
+# create snapraid diff script config file
+cat <<EOF > ${DIFF_SCRIPT_CONFIG}
+# this file was automatically generated from
+# ${OMV_name} ${OMV_versionname} ${OMV_version}
+# and 'openmediavault-snapraid' ${PLUGIN_VERSION}
+
+EOF
+
+xmlstarlet sel -t -m "${SERVICE_XPATH}" \
+    -i "syslog = 0" -o "SYSLOG=\"false\"" -n -b \
+    -i "syslog = 1" -o "SYSLOG=\"true\"" -n -b \
+    -i "debug = 0" -o "DEBUG=\"false\"" -n -b \
+    -i "debug = 1" -o "DEBUG=\"true\"" -n -b \
+    -i "sendmail = 0" -o "SENDMAIL=\"false\"" -n -b \
+    -i "sendmail = 1" -o "SENDMAIL=\"true\"" -n -b \
+    -i "runscrub = 0" -o "RUN_SCRUB=\"false\"" -n -b \
+    -i "runscrub = 1" -o "RUN_SCRUB=\"true\"" -n -b \
+    -i "scrubfreq != ''" -v "concat('SCRUB_FREQUENCY_IN_DAYS=', scrubfreq)" -n -b \
+    -i "delthreshold != ''" -v "concat('DEL_THRESHOLD=', delthreshold)" -n -b \
+${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${DIFF_SCRIPT_CONFIG}
+
 
 omv-mkconf samba
 
