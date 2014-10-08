@@ -189,16 +189,16 @@ fi
 
 #    <email>
 #      <enable>1</enable>
-#      <server>mail.ryecoinc.com</server>
+#      <server>mail.blablabla.com</server>
 #      <port>25</port>
 #      <tls>0</tls>
-#      <sender>server@ryecoinc.com</sender>
+#      <sender>server@blablabla.com</sender>
 #      <authentication>
 #        <enable>0</enable>
 #        <username></username>
 #        <password></password>
 #      </authentication>
-#      <primaryemail>aaron@ryecoinc.net</primaryemail>
+#      <primaryemail>someuser@blablabla.net</primaryemail>
 #      <secondaryemail></secondaryemail>
 #    </email>
 
