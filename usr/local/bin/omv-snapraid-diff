@@ -166,6 +166,8 @@ else
 	echo "$SR_DIFF_CONF not found! Exiting ..."
 fi
 
+if $DEBUG; then VERBOSE="true"; fi
+
 ############################
 # Mail settings:
 # get basic info
