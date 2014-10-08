@@ -1,0 +1,76 @@
+#!/bin/bash
+DATE_SCRIPTSTART="$(date +%s)"
+STATUS_FILE="/etc/snapraid.status"
+
+to_GB() {
+# kilo="$(( $value / 1024 ))"
+# mega="$(( $kilo / 1024 ))"
+# giga="$(( $mega / 1024 ))"
+	echo "$(( $1 / 1024 / 1024 / 1024 ))"
+}
+
+### ToDo:
+# read last sync-date
+if [ -f $STATUS_FILE ]; then
+	#echo "content ..."
+	CONTENT_FILE="$(cat $STATUS_FILE  | grep content:/ | sed 's/content:\(.*\)/\1/g')"
+	#echo "CONTENT_FILE: $CONTENT_FILE"
+	CONTENT_FILE_content="$(cat $STATUS_FILE)"
+else
+	echo "$STATUS_FILE not found! please run 'snapraid status -l $STATUS_FILE' first!"
+	echo "Exiting here ..."
+	exit 1
+fi
+
+#echo "$CONTENT_FILE"
+
+if [ -f $CONTENT_FILE ]; then 
+	DATE_LAST_SYNC="$(stat -c %Y $CONTENT_FILE)"
+else
+	echo "content-file not found!"
+fi
+
+if [ -z $DATE_LAST_SYNC ]; then
+	echo "DATE_LAST_SYNC is zero! please run 'snapraid sync' first!"
+	exit 1
+fi
+
+# echo "DATE_SCRIPTSTART: $DATE_SCRIPTSTART"
+# echo "This is $(date -d @$DATE_SCRIPTSTART)"
+# echo "Date: $(date +%F -d @$DATE_SCRIPTSTART)"
+
+# echo "DATE_LAST_SYNC: $DATE_LAST_SYNC"
+# echo "This is $(date -d @$DATE_LAST_SYNC)"
+# echo "Date: $(date +%F -d @$DATE_LAST_SYNC)"
+
+DATE_diff=$(($DATE_SCRIPTSTART-$DATE_LAST_SYNC))
+
+#echo "-------"
+#echo "DATE_diff: $DATE_diff"
+#echo "-------"
+#date -u -d @"$DATE_diff" +'%-m Months %-d days %-M minutes %-S seconds'
+#echo "-------"
+#echo "Days: $(($DATE_diff/86400))"
+#echo "-------"
+echo "$(($DATE_diff/86400)) days, $(date -u -d @"$DATE_diff" +'%-M minutes %-S seconds')"
+
+# output for every single disk
+SR_ARRAY_CNT=0
+for SR_DISKS in $(cat /etc/snapraid.conf | grep disk | sed 's/disk \(.*\) \/media.*/\1/g'); do
+	let SR_ARRAY_CNT++
+	echo "--- $SR_DISKS ---"
+	SR_DISK_FILE_COUNT[${SR_ARRAY_CNT}]=$(echo "$CONTENT_FILE_content" | grep $SR_DISKS | grep disk_file_count | sed 's/.*:\([0-9]\)/\1/g')
+	SR_DISK_FILE_SIZE[${SR_ARRAY_CNT}]=$(echo "$CONTENT_FILE_content" | grep $SR_DISKS | grep disk_file_size | sed 's/.*:\([0-9]\)/\1/g')
+	#echo ${SR_DISK_FILE_COUNT[$SR_ARRAY_CNT]} "files with $(numfmt --to=si --suffix=B --format="%3f" ${SR_DISK_FILE_SIZE[${SR_ARRAY_CNT}]})"
+	echo ${SR_DISK_FILE_COUNT[$SR_ARRAY_CNT]} "files with $(to_GB ${SR_DISK_FILE_SIZE[${SR_ARRAY_CNT}]}) GB"
+done
+
+# total output
+echo "---------"
+SR_TOTAL_FILE_COUNT=$(echo "$CONTENT_FILE_content" | grep summary:file_count | sed 's/.*:\([0-9]\)/\1/g')
+SR_TOTAL_FILE_SIZE=$(echo "$CONTENT_FILE_content"  | grep summary:file_size | sed 's/.*:\([0-9]\)/\1/g')
+SR_PARITY_FILE_SIZE=$(echo "$CONTENT_FILE_content"  | grep summary:parity_size | sed 's/.*:\([0-9]\)/\1/g')
+# echo "Parity Size: $(numfmt --to=si --suffix=B --format="%3f" $SR_PARITY_FILE_SIZE)"
+# echo "SnapRAID covers $SR_TOTAL_FILE_COUNT files with total $(numfmt --to=si --suffix=B --format="%3f" $SR_TOTAL_FILE_SIZE)"
+echo "Parity Size: $(to_GB $SR_PARITY_FILE_SIZE) GB"
+echo "SnapRAID covers $SR_TOTAL_FILE_COUNT files with total $(to_GB $SR_TOTAL_FILE_SIZE) GB"

@@ -21,23 +21,61 @@
 #
 # ToDo:
 # - write sed file from config
+# - check omv tmp-dir
 # - check for mail and PW in config.xml
-# - check for drive name in OMV -> snapraid.conf plugin!
 #
-################################################################
+#######################################################################
 
-SCRIPTVERSION="1.0.4"
-
-# Set path to snapraid.conf
-SNAPRAIDCONF="/etc/snapraid.conf"
-
+# Logging Settings
+SYSLOG="true"            # activate write to syslog (default="true")
+VERBOSE="false"            # use the verbose mode, with additional info on the command line (default="false")
 LOGGER="/usr/bin/logger"   # path and name of logger (default="/usr/bin/logger")
-FACILITY="local6"         # facility to log to -> see syslog.conf  and add the line (default="local6")
+FACILITY="local5"         # facility to log to -> see syslog.conf  and add the line (default="local6")
 						# "local6.* %/var/log/autoshutdown.log"
-						
-SR_DIFF_CONF="/etc/snapraid-diff.conf"
+DEBUG="false"
 
-EMAIL_SUBJECT_PREFIX="SnapRAID"
+SENDMAIL="true"
+
+############################
+# Scrub Settings
+# # Set to true if you want to scrub after a successful sync
+RUN_SCRUB="false"
+SCRUB_FREQUENCY_IN_DAYS=7
+
+############################
+# Mail settings:
+# get basic info
+. /etc/default/openmediavault
+
+# needed for omv_config_get command
+. /usr/share/openmediavault/scripts/helper-functions
+
+#primary and secondary recipients
+OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
+OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
+if $DEBUG; then 
+	echo "OMV_MAIL_primarymail $OMV_MAIL_primarymail"
+	echo "OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
+fi
+
+# structure in /etc/openmediavault/config.xml
+
+#    <email>
+#      <enable>1</enable>
+#      <server>mail.ryecoinc.com</server>
+#      <port>25</port>
+#      <tls>0</tls>
+#      <sender>server@ryecoinc.com</sender>
+#      <authentication>
+#        <enable>0</enable>
+#        <username></username>
+#        <password></password>
+#      </authentication>
+#      <primaryemail>aaron@ryecoinc.net</primaryemail>
+#      <secondaryemail></secondaryemail>
+#    </email>
+
+#EMAIL_SUBJECT_PREFIX="[${OMV_MAIL_sender}] SnapRAID"
 
 ################################################################
 #####     Functions
@@ -55,6 +93,7 @@ EMAIL_SUBJECT_PREFIX="SnapRAID"
 #				1 = Error happend
 #
 _send_email(){
+
 ## the below does not work with the internal OMV-Settings
 #	mail -s "$1" -a 'Content-Type: text/plain; charset=utf-8' $MAIL -- -F "$3" -f "$4" < $2
 
@@ -63,12 +102,6 @@ if [ $SENDMAIL = "false" ]; then
 	echo "Mail should be sent here - SENDMAIL set to false"
 	return 0
 fi
-
-# add mail footer 
-cat >> $TMP_OUTPUT <<EOF
-
-Yours, SnapRAID-diff script
-EOF
 
 #mail [-a header] [-b bcc-addr] [-c cc-addr] [-s subject] to-addr
 mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" < $2
@@ -118,7 +151,6 @@ _log() {
 # removes $TMP_OUTPUT
 _rmtmp() {
 	rm $TMP_OUTPUT >/dev/null 2>&1
-	rm $TMP_DIR >/dev/null 2>&1
 }
 
 ################################################################
@@ -141,7 +173,7 @@ _check_success() {
 #   name      : _add_mail_header
 #   parameter   : none
 #
-# adds mail text
+# adds mail tex
 #
 _add_mail_header() {
 	cat > $TMP_OUTPUT <<EOF
@@ -150,7 +182,7 @@ running SnapRAID $SNAPRAIDVERSION
 ---------------------------------------------
 SnapRAID Job started - $(date)
 Warnings about 'Ignoring mount point' are possibly due to AUFS or mhddfs-Pooling in OMV
-
+SnapRAID DIFF started - $(date)
 EOF
 }
 
@@ -158,62 +190,25 @@ EOF
 #####     MAIN BODY of the script
 ################################################################
 
-# read config
-if [ -f $SR_DIFF_CONF ]; then
-	. $SR_DIFF_CONF
-else
-	_log "WARN: $SR_DIFF_CONF not found! Exiting ..."
-	echo "$SR_DIFF_CONF not found! Exiting ..."
-fi
+SCRIPTVERSION="1.0.0"
 
-############################
-# Mail settings:
-# get basic info
-. /etc/default/openmediavault
+# Set path to snapraid.conf
+SNAPRAIDCONF="/etc/snapraid.conf"
 
-# needed for omv_config_get command
-. /usr/share/openmediavault/scripts/helper-functions
-
-#primary and secondary recipients
-OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
-OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
-
-if $DEBUG; then 
-	_log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
-	_log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
-fi
-
-# structure in /etc/openmediavault/config.xml
-
-#    <email>
-#      <enable>1</enable>
-#      <server>mail.ryecoinc.com</server>
-#      <port>25</port>
-#      <tls>0</tls>
-#      <sender>server@ryecoinc.com</sender>
-#      <authentication>
-#        <enable>0</enable>
-#        <username></username>
-#        <password></password>
-#      </authentication>
-#      <primaryemail>aaron@ryecoinc.net</primaryemail>
-#      <secondaryemail></secondaryemail>
-#    </email>
+# Define threshold of files deleted to start the sync-process
+# default = 0 to make sure no sync process is started while testing
+DEL_THRESHOLD=0
 
 # read CONTENT and PARITY from $SNAPRAIDCONF
 OMV_CONTENT_FILES="$(egrep '^content /media/' $SNAPRAIDCONF | awk '{print $2}')"
 PARITY_FILE="$(egrep '^parity /' $SNAPRAIDCONF | awk '{print $2}')"
-OMV_SNAPRAID_DISKS="$(egrep '^disk .* /media/' $SNAPRAIDCONF | awk '{print $3}')"
 
 ## INTERNAL TEMP VARS ##
-TMP_DIR="/tmp/snapraid"
-TMP_OUTPUT="$TMP_DIR/snapraid.out"
-TMP_SCRUB_DIR="/root/.snapraid"
+TMP_OUTPUT="/tmp/snapraid.out"
 
 if $DEBUG; then
 	_log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
 	_log "DEBUG: PARITY_FILE: $PARITY_FILE"
-	_log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
 	_log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
 fi
 
@@ -222,15 +217,10 @@ if [ -z $SNAPRAID_BIN ]; then
 	_log "WARN: snapraid executable not found!"
 fi
 if [ ! -x $SNAPRAID_BIN ]; then
-	_log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
+	_log "WARN: snapraid not executable! Please do a 'chmod +x snapraid'"
 fi
 
 SNAPRAIDVERSION="$(${SNAPRAID_BIN} -V | sed 's/snapraid v//g')"
-
-# check tmp-dirs
-if [ ! -d $TMP_DIR ]; then
-        mkdir $TMP_DIR
-fi
 
 if [ -f $TMP_OUTPUT ]; then
 	rm $TMP_OUTPUT && _log "INFO: '$TMP_OUTPUT' deleted - creating a new one"
@@ -251,7 +241,6 @@ for SINGLE_CONTENT_FILE in $OMV_CONTENT_FILES; do
 		_log "WARN: Content file ($SINGLE_CONTENT_FILE) not found!"
 	fi
 done
-
 if [ $CONTENT_FILES_COUNTER -eq 0 ]; then
 	_log "WARN: No Content files found! Exiting ..."
 	exit 1
@@ -264,69 +253,34 @@ else
   exit 1
 fi
 
-### Section to support SnapRAID Scrub ###
-mkdir -p $TMP_SCRUB_DIR
-
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_counter ]; then
-	COUNTER=$(cat $TMP_SCRUB_DIR/snapraid_scrub_counter)
-else
-	echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-	COUNTER=1
-fi
+#   ### Section to support SnapRAID Scrub ###
+# mkdir -p /root/.snapraid/
+# 
+# if [ -f /root/.snapraid/snapraid_scrub_counter ]; then
+# 	COUNTER=$(cat /root/.snapraid/snapraid_scrub_counter)
+# else
+# 	echo "1" > /root/.snapraid/snapraid_scrub_counter
+# 	COUNTER=1
+# fi
 # enable only one of the two below!!!
-let COUNTER++
+# let COUNTER++
 # COUNTER=$(($COUNTER+0))
-### End Scrub Section ###
+# ### End Scrub Section ###
 
 ################################################################
 ## Start of the script
 _log "INFO: ----------------------------------------"
 _log "INFO: SnapRAID Job started - Script-version: $SCRIPTVERSION"
 _log "INFO: SnapRAID-Version: $SNAPRAIDVERSION"
-_add_mail_header # all info above is in that function
-
-_log "INFO: Checking 'disks' in '$SNAPRAIDCONF'"
-### check if all hdds in the config are there
-for OMV_DISK in $OMV_SNAPRAID_DISKS; do
-
-	if $DEBUG; then _log "DEBUG: found: OMV_DISK: $OMV_DISK"; fi
-	
-	if ! grep $OMV_DISK /etc/mtab > /dev/null 2>&1; then
-	
-    #if [ ! -b $OMV_DISK ]; then # doesn't work - no block device found :o
-        _log "WARN: ERROR: Disk $OMV_DISK was not found or is not mounted!"
-        _log "WARN: Sync job cancelled to prevent data loss."
-        _log "WARN: Please check your disks!"
-        _log "WARN: Replace damaged Disk and proceed with 'snapraid fix'"
-        _log "WARN: to rebuild the raid array and recover your data."
-        _log "WARN: Then, use 'snapraid check' to verify the integrity of the recovered files."
-        _log "WARN: Lastly, use 'snapraid sync' to update the parity files."
-
-        echo "ERROR - Data Disk $OMV_DISK not found or is not mounted!" >> $TMP_OUTPUT
-        echo "Sync job cancelled to prevent data loss." >> $TMP_OUTPUT
-        echo " " >> $TMP_OUTPUT
-        echo "Please check your disks!"  >> $TMP_OUTPUT
-        echo "Replace damaged Disk and proceed with 'snapraid fix'" >> $TMP_OUTPUT
-        echo "to rebuild the raid array and recover your data." >> $TMP_OUTPUT
-        echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >> $TMP_OUTPUT
-        echo "Lastly, use 'snapraid sync' to update the parity files." >> $TMP_OUTPUT
-
-        _send_email "$EMAIL_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-        _check_success && _rmtmp
-        _log "WARN: script exits here due to missing disk ..."
-        exit 1;
-    fi
-done
 
 ################################################################
 # start snapraid DIFF command
 _log "INFO: SnapRAID DIFF started"
-echo "SnapRAID DIFF started - $(date)" >> $TMP_OUTPUT
+_add_mail_header # all info above is in that function
 
 # run diff: 
 # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
-$SNAPRAID_BIN diff 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
-do
+$SNAPRAID_BIN diff 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
 	_log "WARN: $line"
 done
 
@@ -345,9 +299,6 @@ MOVE_COUNT=$(grep -w '^ \{1,\}[0-9]* moved$' $TMP_OUTPUT | sed 's/^ *//g' | cut 
 COPY_COUNT=$(grep -w '^ \{1,\}[0-9]* copied$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
 UPDATE_COUNT=$(grep -w '^ \{1,\}[0-9]* updated$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
 
-# added for debugging
-#DEL_COUNT=42
-
 _log "INFO: SUMMARY of changes since last sync - Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
 # check if files have changed
@@ -361,22 +312,24 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
         _log "INFO: Please run sync manually if this is not an error condition."
 		echo "Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
 		echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
+		echo >> $TMP_OUTPUT
+		echo "Yours, SnapRAID script" >> $TMP_OUTPUT
 
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
+		_send_email "SnapRAID - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
     else
 
         # NO, delete threshold not reached, lets run the sync job
         _log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
 		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command" >> $TMP_OUTPUT
-	
-		# start snapraid SYNC
+
+# _log "INFO: Script exits here for debugging!"
+# exit 0	
+		# start snapraid SYNC command
         _log "INFO: SnapRAID SYNC Job started"
         _log "INFO: ----------------------------------------"
 		echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
-		# we should eventually grep %
         $SNAPRAID_BIN sync >> $TMP_OUTPUT
         #wait for the job to finish
         wait
@@ -386,37 +339,33 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
-        # start snapraid SCRUB
-        if [ $RUN_SCRUB = "true" ]; then
-            if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-               COUNTER=$[$COUNTER + 1]
-               echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-            else
-				_log "INFO: SnapRAID SCRUB Job started"
-				_log "INFO: ----------------------------------------"
-				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-				$SNAPRAID_BIN scrub -p 100 -o 0 >> $TMP_OUTPUT
+        _send_email "$EMAIL_SUBJECT_PREFIX - Sync Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _check_success && _rmtmp
 
-				# wait for the job to finish
-				wait
+		##############################
+#         # start snapraid SCRUB
+#         if [ $RUN_SCRUB = "true" ]; then
+#             if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
+#				echo "SnapRAID SCRUB-Cycle count not met.  No scrub was run." - $(date)" >> $TMP_OUTPUT
+#                COUNTER=$[$COUNTER + 1]
+#                echo "$COUNTER" > /root/.snapraid/snapraid_scrub_counter
+#             else
+#				echo "SnapRAID SCRUB Job started. This will take a while - $(date)" >> $TMP_OUTPUT
+#                $SNAPRAID_BIN scrub -p 100 -o 0 >> $TMP_OUTPUT
 
-               # Reset counter
-               echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+				#wait for the job to finish
+#				wait
 
-               _log "INFO: ----------------------------------------"
-				_log "INFO: SnapRAID SCRUB Job finished"
-				echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-            fi
-        else
-               echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
-               _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
-        fi
-        _send_email "$EMAIL_SUBJECT_PREFIX - Sync/Srub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
+#                # Reset counter
+#                echo "1" > /root/.snapraid/snapraid_scrub_counter
+
+#				_send_email "SnapRAID - Full Scrub COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+#				_check_success && _rmtmp
+
+#             fi
+#         else
+#                echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+#         fi
     fi
 else
     # NO, so lets log it and exit
