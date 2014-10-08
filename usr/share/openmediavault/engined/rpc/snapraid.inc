@@ -674,14 +674,14 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
 
-            $log = sprintf("[%s] %s - Finished\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+            $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Finished\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
             file_put_contents($this->getLogFile(), $log, FILE_APPEND);
 
             exit(0);
         } catch(Exception $e) {
             $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
 
-            $log = sprintf("[%s] %s - Error!\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+            $log = sprintf("[%s] omv-snapraid-gui: ERROR: %s - Error!\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
             file_put_contents($this->getLogFile(), $log, FILE_APPEND);
 
             exit(1);

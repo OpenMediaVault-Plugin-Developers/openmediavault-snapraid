@@ -43,6 +43,12 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
         stateId   : "component",
         flex      : 1
     },{
+        text      : _("Level"),
+        sortable  : true,
+        dataIndex : "level",
+        stateId   : "level",
+        flex      : 1
+    },{
         text      : _("Message"),
         sortable  : true,
         dataIndex : "message",
@@ -55,6 +61,7 @@ Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
     rpcFields : [
         { name : "date", type : "string" },
         { name : "component", type : "string" },
+        { name : "level", type : "string" },
         { name : "message", type : "string" },
     ]
 });
