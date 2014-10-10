@@ -22,12 +22,27 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "poolname" ""
         fi
 
-        if dpkg --compare-versions "$2" lt-nl "1.0.13"; then
+        if ! omv_config_exists "${SERVICE_XPATH}/syslog"; then
             omv_config_add_element "${SERVICE_XPATH}" "syslog" "1"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/debug"; then
             omv_config_add_element "${SERVICE_XPATH}" "debug" "0"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/sendmail"; then
             omv_config_add_element "${SERVICE_XPATH}" "sendmail" "1"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/runscrub"; then
             omv_config_add_element "${SERVICE_XPATH}" "runscrub" "1"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/scrubfreq"; then
             omv_config_add_element "${SERVICE_XPATH}" "scrubfreq" "7"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/delthreshold"; then
             omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "0"
         fi
 
@@ -58,6 +73,8 @@ case "$1" in
                 done
             fi
         fi
+
+        omv-mkconf snapraid
 
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale

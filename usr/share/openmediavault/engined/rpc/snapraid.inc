@@ -662,7 +662,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             );
         }
 
-        $log = sprintf("[%s] %s - Manually started\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
+        $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Manually started\r\n", date("Y-m-d H:i:s"), strtoupper($params['command']));
         file_put_contents($this->getLogFile(), $log, FILE_APPEND);
 
         // Child process.
