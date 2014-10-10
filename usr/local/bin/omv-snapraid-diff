@@ -26,18 +26,16 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.0.4"
+SCRIPTVERSION="1.0.5"
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
 
-LOGGER="/usr/bin/logger"   # path and name of logger (default="/usr/bin/logger")
-FACILITY="local6"         # facility to log to -> see syslog.conf  and add the line (default="local6")
-						# "local6.* %/var/log/autoshutdown.log"
-						
 SR_DIFF_CONF="/etc/snapraid-diff.conf"
 
 EMAIL_SUBJECT_PREFIX="SnapRAID"
+
+SNAPRAID_LOG="/var/log/snapraid.log"
 
 ################################################################
 #####     Functions
@@ -89,24 +87,18 @@ mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" < $2
 #   return      : none
 #
 _log() {
-	#echo "\$\*: $*"
-       [[ "$*" =~ ^([A-Za-z]*):(.*) ]] &&
+       [[ "$*" =~ ^([A-Za-z]*):\ (.*) ]] &&
          {
             PRIORITY=${BASH_REMATCH[1]} # INFO, DEBUG, WARN
             LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
-            [[ "$(basename "$0")" =~ ^(.*) ]] && {
-            LOGMESSAGE="${BASH_REMATCH[1]}[$$]: $PRIORITY: '$LOGMESSAGE'";
-            }
          }
 
       if $VERBOSE ; then
-		#echo "VERBOSE:"
-         # next line only with implementation where logger does not support option '-s'
-         # echo "$(date '+%b %e %H:%M:%S'):$LOGMESSAGE"
-         [ $SYSLOG ] && $LOGGER -s -t "$(date '+%b %e %H:%M:%S'): $USER" -p $FACILITY.$PRIORITY "$LOGMESSAGE"
-      else
-         [ $SYSLOG ] && $LOGGER -t "$USER" -p $FACILITY.$PRIORITY "$LOGMESSAGE"
-      fi   # > if [ "$VERBOSE" = "NO" ]; then
+		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
+		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >> $SNAPRAID_LOG
+	else
+		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >> $SNAPRAID_LOG
+	fi
 }
 
 ################################################################
@@ -350,7 +342,8 @@ UPDATE_COUNT=$(grep -w '^ \{1,\}[0-9]* updated$' $TMP_OUTPUT | sed 's/^ *//g' | 
 # added for debugging
 #DEL_COUNT=42
 
-_log "INFO: SUMMARY of changes since last sync - Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
+_log "INFO: SUMMARY of changes since last sync:"
+_log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
 # check if files have changed
 if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -gt 0 -o $UPDATE_COUNT -gt 0 ]; then
