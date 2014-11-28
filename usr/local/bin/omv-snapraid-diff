@@ -26,16 +26,23 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.0.5"
+SCRIPTVERSION="1.0.7"
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
 
+# the following file is created by the OMV-GUI
 SR_DIFF_CONF="/etc/snapraid-diff.conf"
 
 EMAIL_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
+
+# get basic info
+. /etc/default/openmediavault
+
+# needed for omv_config_get command
+. /usr/share/openmediavault/scripts/helper-functions
 
 ################################################################
 #####     Functions
@@ -93,7 +100,7 @@ _log() {
             LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
          }
 
-      if $VERBOSE ; then
+      if $DEBUG ; then
 		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
 		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >> $SNAPRAID_LOG
 	else
@@ -158,16 +165,8 @@ else
 	echo "$SR_DIFF_CONF not found! Exiting ..."
 fi
 
-if $DEBUG; then VERBOSE="true"; fi
-
 ############################
 # Mail settings:
-# get basic info
-. /etc/default/openmediavault
-
-# needed for omv_config_get command
-. /usr/share/openmediavault/scripts/helper-functions
-
 #primary and secondary recipients
 OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
 OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
@@ -270,11 +269,12 @@ fi
 # enable only one of the two below!!!
 let COUNTER++
 # COUNTER=$(($COUNTER+0))
+
 ### End Scrub Section ###
 
 ################################################################
 ## Start of the script
-_log "INFO: ----------------------------------------"
+_log "INFO: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 _log "INFO: SnapRAID Job started - Script-version: $SCRIPTVERSION"
 _log "INFO: SnapRAID-Version: $SNAPRAIDVERSION"
 _add_mail_header # all info above is in that function
