@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-10-03 00:34+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
+"POT-Creation-Date: 2014-10-08 06:44-0500\n"
+"PO-Revision-Date: 2014-11-14 19:51+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,11 +68,26 @@ msgstr "数据盘"
 msgid "Date & Time"
 msgstr "日期和时间"
 
+msgid "Debug"
+msgstr "调试"
+
+msgid ""
+"Define threshold of files deleted to start the sync-process. default = 0 to "
+"make sure no sync process is started while testing or if there are any "
+"deleted files"
+msgstr ""
+
+msgid "Delete Threshold"
+msgstr "删除阈值"
+
 msgid "Description of Buttons on Drives tab"
 msgstr "磁盘标签上按键说明"
 
 msgid "Diff"
 msgstr "比较"
+
+msgid "Diff Script Settings"
+msgstr "比较脚本设置"
 
 msgid "Drive"
 msgstr "磁盘"
@@ -162,8 +177,14 @@ msgstr "规则类型"
 msgid "Rules"
 msgstr "规则"
 
+msgid "Run Scrub"
+msgstr "运行侦测"
+
 msgid "Scrub"
 msgstr "侦测"
+
+msgid "Scrub Frequency"
+msgstr "侦测频率"
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "侦测阵列，检查“ silent errors”"
@@ -173,6 +194,12 @@ msgstr "选择磁盘 ..."
 
 msgid "Select a volume ..."
 msgstr "选择卷 ..."
+
+msgid "Send Mail"
+msgstr "发送邮件"
+
+msgid "Set to true if you want to scrub after a successful sync"
+msgstr ""
 
 msgid "Settings"
 msgstr "设置"
@@ -192,6 +219,9 @@ msgstr "状态"
 msgid "Sync"
 msgstr "更新冗余"
 
+msgid "Syslog"
+msgstr "系统日志"
+
 msgid "That name has already been used."
 msgstr "这个名称已经被使用。"
 
@@ -201,6 +231,9 @@ msgstr "默认配置以及排除了以下内容："
 
 msgid "This volume has already been added."
 msgstr "该卷已经被添加过"
+
+msgid "Units in days."
+msgstr "以天为单位。"
 
 msgid "Update the pool."
 msgstr "更新池。"
@@ -212,3 +245,6 @@ msgstr "更新冗余信息，所有阵列中修改过的文件将被读取，同
 
 msgid "Volume"
 msgstr "卷"
+
+msgid "Write logs to syslog"
+msgstr "记录到系统日志"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-09-28 11:43+0000\n"
+"POT-Creation-Date: 2014-10-08 06:44-0500\n"
+"PO-Revision-Date: 2014-11-15 01:33+0000\n"
 "Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -69,11 +69,26 @@ msgstr "Daten"
 msgid "Date & Time"
 msgstr "Datum & Uhrzeit"
 
+msgid "Debug"
+msgstr "Fehlersuche"
+
+msgid ""
+"Define threshold of files deleted to start the sync-process. default = 0 to "
+"make sure no sync process is started while testing or if there are any "
+"deleted files"
+msgstr ""
+
+msgid "Delete Threshold"
+msgstr "Schwellenwert löschen"
+
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"
 msgstr "Diff"
+
+msgid "Diff Script Settings"
+msgstr ""
 
 msgid "Drive"
 msgstr "Laufwerk"
@@ -85,7 +100,7 @@ msgid ""
 msgstr ""
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Laufwerk, auf dem Daten gespeichert sind."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -102,7 +117,7 @@ msgid "Edit rule"
 msgstr "Regel bearbeiten"
 
 msgid "Enable Pool"
-msgstr ""
+msgstr "Laufwerkpool aktivieren"
 
 msgid "Excludes hidden files and directories."
 msgstr "Schließt versteckte Dateien und Verzeichnisse aus."
@@ -140,7 +155,7 @@ msgid "Parity"
 msgstr "Parität"
 
 msgid "Please first select a volume."
-msgstr ""
+msgstr "Bitte wählen Sie zuerst ein Volumen aus."
 
 msgid "Pool"
 msgstr "Laufwerkpool"
@@ -163,8 +178,14 @@ msgstr "Regeltyp"
 msgid "Rules"
 msgstr "Regeln"
 
+msgid "Run Scrub"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Bereinigung"
+
+msgid "Scrub Frequency"
+msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "Bereinigt das Array, prüft auf unentdeckte Fehler."
@@ -173,6 +194,12 @@ msgid "Select a drive ..."
 msgstr "Wählen Sie ein Laufwerk aus ..."
 
 msgid "Select a volume ..."
+msgstr "Wählen Sie ein Volumen aus ..."
+
+msgid "Send Mail"
+msgstr "E-Mail senden"
+
+msgid "Set to true if you want to scrub after a successful sync"
 msgstr ""
 
 msgid "Settings"
@@ -193,6 +220,9 @@ msgstr "Status"
 msgid "Sync"
 msgstr "Synchronisierung"
 
+msgid "Syslog"
+msgstr "Syslog"
+
 msgid "That name has already been used."
 msgstr "Dieser Name wurde bereits verwendet."
 
@@ -201,10 +231,13 @@ msgid ""
 msgstr "Die folgenden Ausschlüsse werden per Voreinstellung in die SnapRAID-Konfigurationsdatei geschrieben: "
 
 msgid "This volume has already been added."
-msgstr "Dieses Laufwerk wurde bereits hinzugefügt."
+msgstr "Dieses Volumen wurde bereits hinzugefügt."
+
+msgid "Units in days."
+msgstr "Einheiten in Tagen."
 
 msgid "Update the pool."
-msgstr ""
+msgstr "Laufwerkpool aktualisieren."
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
@@ -212,4 +245,7 @@ msgid ""
 msgstr "Aktualisiert die Prüfdaten. Alle veränderten Dateien im Plattenarray werden gelesen, und ihre Prüfdaten werden neu berechnet."
 
 msgid "Volume"
-msgstr ""
+msgstr "Volumen"
+
+msgid "Write logs to syslog"
+msgstr "Protokoll in das syslog schreiben"

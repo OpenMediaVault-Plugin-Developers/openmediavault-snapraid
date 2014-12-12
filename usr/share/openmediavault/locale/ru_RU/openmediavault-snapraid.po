@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-09-25 18:13+0000\n"
+"POT-Creation-Date: 2014-10-08 06:44-0500\n"
+"PO-Revision-Date: 2014-11-14 19:51+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -69,11 +69,26 @@ msgstr "\"Данные\""
 msgid "Date & Time"
 msgstr "Дата и Время"
 
+msgid "Debug"
+msgstr ""
+
+msgid ""
+"Define threshold of files deleted to start the sync-process. default = 0 to "
+"make sure no sync process is started while testing or if there are any "
+"deleted files"
+msgstr ""
+
+msgid "Delete Threshold"
+msgstr ""
+
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"
 msgstr "Diff"
+
+msgid "Diff Script Settings"
+msgstr ""
 
 msgid "Drive"
 msgstr ""
@@ -163,8 +178,14 @@ msgstr ""
 msgid "Rules"
 msgstr ""
 
+msgid "Run Scrub"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Scrub"
+
+msgid "Scrub Frequency"
+msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "Scrub массива, проверка на скрытые ошибки."
@@ -173,6 +194,12 @@ msgid "Select a drive ..."
 msgstr ""
 
 msgid "Select a volume ..."
+msgstr ""
+
+msgid "Send Mail"
+msgstr ""
+
+msgid "Set to true if you want to scrub after a successful sync"
 msgstr ""
 
 msgid "Settings"
@@ -193,6 +220,9 @@ msgstr "Status"
 msgid "Sync"
 msgstr "Sync"
 
+msgid "Syslog"
+msgstr ""
+
 msgid "That name has already been used."
 msgstr ""
 
@@ -203,6 +233,9 @@ msgstr "Следующие исключения записываются в ко
 msgid "This volume has already been added."
 msgstr "Этот том уже был добавлен."
 
+msgid "Units in days."
+msgstr ""
+
 msgid "Update the pool."
 msgstr "Обновить пул."
 
@@ -212,4 +245,7 @@ msgid ""
 msgstr "Обновление информации об избыточности. Все изменения файлов в дисковом массиве считываются, и избыточность данных пересчитывается."
 
 msgid "Volume"
+msgstr ""
+
+msgid "Write logs to syslog"
 msgstr ""

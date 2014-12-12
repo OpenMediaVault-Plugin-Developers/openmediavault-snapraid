@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-09-25 18:13+0000\n"
+"POT-Creation-Date: 2014-10-08 06:44-0500\n"
+"PO-Revision-Date: 2014-11-14 19:51+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "Un disco dati non può essere un disco parity."
 
 msgid "Add drive"
-msgstr ""
+msgstr "Aggiungi disco"
 
 msgid "Add rule"
-msgstr ""
+msgstr "Aggiungi regola"
 
 msgid "Auto Save"
 msgstr "Salvataggio Automatico"
@@ -54,7 +54,7 @@ msgid "Component"
 msgstr "Componente"
 
 msgid "Config"
-msgstr ""
+msgstr "Config"
 
 msgid "Content"
 msgstr "Contenuti"
@@ -69,14 +69,29 @@ msgstr "Dati"
 msgid "Date & Time"
 msgstr "Data & Ora"
 
+msgid "Debug"
+msgstr "Debug"
+
+msgid ""
+"Define threshold of files deleted to start the sync-process. default = 0 to "
+"make sure no sync process is started while testing or if there are any "
+"deleted files"
+msgstr ""
+
+msgid "Delete Threshold"
+msgstr "Elimina Soglia"
+
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"
 msgstr "Diff"
 
+msgid "Diff Script Settings"
+msgstr "Impostazioni Script Diff"
+
 msgid "Drive"
-msgstr ""
+msgstr "Disco"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -85,7 +100,7 @@ msgid ""
 msgstr ""
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Disco dove sono salvati i dati"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -93,13 +108,13 @@ msgid ""
 msgstr ""
 
 msgid "Drives"
-msgstr ""
+msgstr "Dischi"
 
 msgid "Edit drive"
-msgstr ""
+msgstr "Modifica disco"
 
 msgid "Edit rule"
-msgstr ""
+msgstr "Modifica regola"
 
 msgid "Enable Pool"
 msgstr "Abilita Aggregazione"
@@ -108,13 +123,13 @@ msgid "Excludes hidden files and directories."
 msgstr "Escludi file e cartelle nascoste."
 
 msgid "Exclusion"
-msgstr ""
+msgstr "Esclusione"
 
 msgid "Fix"
 msgstr "Ripara"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "Inclusione"
 
 msgid "Information"
 msgstr "Informazioni"
@@ -131,16 +146,16 @@ msgid "Message"
 msgstr "Messaggio"
 
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 msgid "No Hidden"
 msgstr "No file nascosti"
 
 msgid "Parity"
-msgstr ""
+msgstr "Parity"
 
 msgid "Please first select a volume."
-msgstr ""
+msgstr "Per favore prima seleziona un volume."
 
 msgid "Pool"
 msgstr "Aggregazione"
@@ -155,24 +170,36 @@ msgid "Restore the last backup/snapshot."
 msgstr "Recupera l'ultimo backup/snapshot."
 
 msgid "Rule"
-msgstr ""
+msgstr "Regola"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "Tipo Regola"
 
 msgid "Rules"
-msgstr ""
+msgstr "Regole"
+
+msgid "Run Scrub"
+msgstr "Avvia Pulizia"
 
 msgid "Scrub"
 msgstr "Pulisci"
+
+msgid "Scrub Frequency"
+msgstr "Frequenza Pulizia"
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "Pulisci l'array, controlla gli errori silenziosi."
 
 msgid "Select a drive ..."
-msgstr ""
+msgstr "Seleziona un disco..."
 
 msgid "Select a volume ..."
+msgstr "Seleziona un volume ..."
+
+msgid "Send Mail"
+msgstr "Invia Mail"
+
+msgid "Set to true if you want to scrub after a successful sync"
 msgstr ""
 
 msgid "Settings"
@@ -193,8 +220,11 @@ msgstr "Stato"
 msgid "Sync"
 msgstr "Sincronizza"
 
+msgid "Syslog"
+msgstr "Syslog"
+
 msgid "That name has already been used."
-msgstr ""
+msgstr "Questo nome è già stato usato."
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
@@ -202,6 +232,9 @@ msgstr "Le seguenti esclusioni vengono scritte nel file di configurazione di sna
 
 msgid "This volume has already been added."
 msgstr "Questo volume è già stato aggiunto."
+
+msgid "Units in days."
+msgstr "Unità in giorni."
 
 msgid "Update the pool."
 msgstr "Aggiorna l'aggregazione."
@@ -212,4 +245,7 @@ msgid ""
 msgstr "Aggiorna le informazioni di ridondanza. Tutti i file modificati nel disco dell'array vengono letti, e la ridondanza dei dati viene ricalcolata."
 
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
+
+msgid "Write logs to syslog"
+msgstr "Scrivi i log su syslog"

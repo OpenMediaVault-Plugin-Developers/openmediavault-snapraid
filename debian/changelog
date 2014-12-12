@@ -1,10 +1,11 @@
-openmediavault-snapraid (1.0.13) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0.13) stable; urgency=low
 
   * Add snapraid-diff script settings
   * Change logging to match script
   * Update locales
+  * Add custom debian/control field XB-Plugin-Section
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 08 Oct 2014 06:44:01 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Dec 2014 06:06:51 -0600
 
 openmediavault-snapraid (1.0.12) stable; urgency=low
 

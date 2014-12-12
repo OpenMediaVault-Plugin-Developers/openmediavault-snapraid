@@ -3,248 +3,248 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014
+# kochin <kochinc@outlook.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-08 06:44-0500\n"
-"PO-Revision-Date: 2014-11-14 19:51+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/da/)\n"
+"PO-Revision-Date: 2014-11-23 17:03+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: da\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr "En data disk kan ikke være paritets disk."
+msgstr "資料磁碟不可是奇偶性磁碟。"
 
 msgid "Add drive"
-msgstr "Tilføj disk"
+msgstr "新增磁碟"
 
 msgid "Add rule"
-msgstr "Tilføj regel"
+msgstr "新增龜則"
 
 msgid "Auto Save"
-msgstr "Auto Gem"
+msgstr "自動儲存"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr "Gemmer automatisk tilstanden ved synkronisering efter at den angivet mængde af GiB er gennemført. Standard værdi er 0, hvilket betyder deaktiveret."
+msgstr "做同步時，在處理超過所指定的 GiB 數量後，自動儲存狀態。預設值為 0，表示停用。"
 
 msgid "Block Size"
-msgstr "Blok Størrelse"
+msgstr "區塊大小"
 
 msgid "Block size in KiB"
-msgstr "Blok størrelse i KiB"
+msgstr "區塊大小以 KiB 為單位"
 
 msgid "Check"
-msgstr "Kontroller"
+msgstr "檢查"
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
 "compared with the snapshot saved in the previous 'sync' command."
-msgstr "Kontroller alle filer og redundans data. Alle filer bliver hashed og sammenlignet med det snapshot, der blev gemt ved sidste 'synk' kommando."
+msgstr "檢查全部的檔案和冗餘資料。所有檔案會被計算雜湊值來與之前 '同步' 指令所儲存的快照來比較。"
 
 msgid "Component"
-msgstr "Komponent"
+msgstr "元件"
 
 msgid "Config"
-msgstr "Konfigurere"
+msgstr "配置"
 
 msgid "Content"
-msgstr "Indhold"
+msgstr "內容"
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
-msgstr "Opretter en virtuel oversigt af alle filer i din opstillingen ved brug af symbolsk links."
+msgstr "利用符號鏈接來建立一個包含你的陣列中所有檔案之虛擬示意。"
 
 msgid "Data"
-msgstr "Data"
+msgstr "資料"
 
 msgid "Date & Time"
-msgstr "Dato & Tid"
+msgstr "日期與時間"
 
 msgid "Debug"
-msgstr "Debug"
+msgstr "除錯"
 
 msgid ""
 "Define threshold of files deleted to start the sync-process. default = 0 to "
 "make sure no sync process is started while testing or if there are any "
 "deleted files"
-msgstr "Sæt tærskel af slettede filer der skal starte sync-processen. Standard=0 for at sikre at ingen sync processer starter mens der testet eller hvis der er nogle slettede filer"
+msgstr "定義用來開始同步程序的檔案刪除定限。預設 = 0 是來確定當測試或若有任何被刪除檔案時，同步程序不會開始。"
 
 msgid "Delete Threshold"
-msgstr "Slet Tærskel"
+msgstr "刪除定限"
 
 msgid "Description of Buttons on Drives tab"
-msgstr "Beskrivelse af Knapper på Disk fane"
+msgstr "磁碟 分頁上按鈕的敘述"
 
 msgid "Diff"
-msgstr "Forskel"
+msgstr "差異"
 
 msgid "Diff Script Settings"
-msgstr "Forskel Script Indstillinger"
+msgstr "Diff 腳本程式設定"
 
 msgid "Drive"
-msgstr "Disk"
+msgstr "磁碟"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr "Disk hvor indholds fil bliver gemt. Denne fil er en liste af gemte filer og indeholder detaljer om din backup med alle checksummer for at verificere dens integritet."
+msgstr "儲存內容檔案的磁碟。該檔案是一份被儲存檔案的清單，它包含了您的備份之細節，有所有的核對和來確認它的完整性。"
 
 msgid "Drive where data is stored."
-msgstr "Disk, hvor data bliver gemt."
+msgstr "資料儲存的磁碟。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr "Disk hvor paritets filer bliver gemt som er nødvendige for at genskabe fra en disk fejl. For hver paritets disk, kan en data disk fejle uden data tab."
+msgstr "儲存奇偶性檔案的磁碟，是在磁碟故障時用來做復原。每有一個奇偶性磁碟，就允許一個資料磁碟故障而不會失去資料。"
 
 msgid "Drives"
-msgstr "Diske"
+msgstr "磁碟"
 
 msgid "Edit drive"
-msgstr "Rediger disk"
+msgstr "編輯磁碟"
 
 msgid "Edit rule"
-msgstr "Rediger regel"
+msgstr "編輯龜則"
 
 msgid "Enable Pool"
-msgstr "Aktiver Pool"
+msgstr "編輯集用場"
 
 msgid "Excludes hidden files and directories."
-msgstr "Ekskluder gemte filer og biblioteker."
+msgstr "排除隱藏的檔案和目錄。"
 
 msgid "Exclusion"
-msgstr "Undtagelse"
+msgstr "排除"
 
 msgid "Fix"
-msgstr "Ret"
+msgstr "修復"
 
 msgid "Inclusion"
-msgstr "Inddragelse"
+msgstr "含入"
 
 msgid "Information"
-msgstr "Oplysning"
+msgstr "資訊"
 
 msgid "Label"
-msgstr "Label"
+msgstr "標籤"
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
-msgstr "Viser alle ændrede filer fra sidste 'synk' kommando, der skal have genberegnet deres redundans data."
+msgstr "列出自從前一次 'sync' 指令之後被更改過，必須從新計算它們冗餘資料的所有檔案。"
 
 msgid "Message"
-msgstr "Besked"
+msgstr "訊息"
 
 msgid "Name"
-msgstr "Navn"
+msgstr "名稱"
 
 msgid "No Hidden"
-msgstr "Ingen Gemte"
+msgstr "不含隱藏"
 
 msgid "Parity"
-msgstr "Paritet"
+msgstr "竒偶性"
 
 msgid "Please first select a volume."
-msgstr "Vælg venligst først et drev."
+msgstr "請首先選擇一個磁碟。"
 
 msgid "Pool"
-msgstr "Pool"
+msgstr "集用場"
 
 msgid "Pool Share Name"
-msgstr "Pool Delings Navn"
+msgstr "集用場共享名稱"
 
 msgid "Prints a status report of the array."
-msgstr "Viser en status rapport af opstillingen."
+msgstr "列印一份陣列的狀態報告。"
 
 msgid "Restore the last backup/snapshot."
-msgstr "Genskab sidste backup/snapshot."
+msgstr "復原到最後的備份/快照。"
 
 msgid "Rule"
-msgstr "Regel"
+msgstr "規則"
 
 msgid "Rule Type"
-msgstr "Regel Type"
+msgstr "規則型式"
 
 msgid "Rules"
-msgstr "Regler"
+msgstr "規則"
 
 msgid "Run Scrub"
-msgstr "Kør Udrens"
+msgstr "執行清理"
 
 msgid "Scrub"
-msgstr "Udrens"
+msgstr "清理"
 
 msgid "Scrub Frequency"
-msgstr "Udrens Frekvens"
+msgstr "清理頻率"
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Udrenser opstillingen, kontroller efter stille fejl."
+msgstr "清理陣列，查找靜默錯誤。"
 
 msgid "Select a drive ..."
-msgstr "Vælg en disk ..."
+msgstr "選擇一個磁碟 ..."
 
 msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
+msgstr "選擇一個磁碟 ..."
 
 msgid "Send Mail"
-msgstr "Send Email"
+msgstr "送出電子郵件"
 
 msgid "Set to true if you want to scrub after a successful sync"
-msgstr "Marker hvis du vil udrense efter et veludført sync"
+msgstr "將它設定成 true，如果你要在一次成功的同步後做清理。"
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "設定"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
 
 msgid "SnapRAID user manual"
-msgstr "SnapRAID brugermanual"
+msgstr "SnapRAID 使用手冊"
 
 msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr " Angiv om reglen er en undtagelse eller inddragelse."
+msgstr "指定這份規則是排除或含入。"
 
 msgid "Status"
-msgstr "Status"
+msgstr "狀態"
 
 msgid "Sync"
-msgstr "Synk"
+msgstr "同步"
 
 msgid "Syslog"
 msgstr "Syslog"
 
 msgid "That name has already been used."
-msgstr "Dette navn findes allerede."
+msgstr "那個名稱已經被使用了。"
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
-msgstr "Følgende ekskluderer bliver skrevet i snapraid konfiguration fil som standard:"
+msgstr "以下的排除是預設寫入 snapraid 的設置檔案中。"
 
 msgid "This volume has already been added."
-msgstr "Dette drev er allerede blevet tilføjet."
+msgstr "這磁碟已經被加入過。"
 
 msgid "Units in days."
-msgstr "Enheder i dage."
+msgstr "以天數為單位。"
 
 msgid "Update the pool."
-msgstr "Opdater pool."
+msgstr "更新集用場。"
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
-msgstr "Opdatere redundans oplysninger. Alle ændrede filer i disk opstillingen bliver læst, og redundans data bliver genberegnet."
+msgstr "更新冗餘資訊。所有在磁碟陣列內被更改過的檔案會被讀取，並重新計算冗餘資料。"
 
 msgid "Volume"
-msgstr "Drev"
+msgstr "磁碟"
 
 msgid "Write logs to syslog"
-msgstr "Skriv logs til syslog"
+msgstr "將日誌寫入 syslog"
