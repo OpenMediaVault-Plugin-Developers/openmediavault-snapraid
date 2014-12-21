@@ -26,7 +26,7 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.0.7"
+SCRIPTVERSION="1.0.8"
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
@@ -208,6 +208,11 @@ if $DEBUG; then
 	_log "DEBUG: PARITY_FILE: $PARITY_FILE"
 	_log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
 	_log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
+	_log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
+	_log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
+	_log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
+	_log "DEBUG: SCRUB_OLDER_THAN_DAYS: $SCRUB_OLDER_THAN_DAYS"
+	_log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
 fi
 
 SNAPRAID_BIN="$(which snapraid)"
@@ -270,6 +275,17 @@ fi
 let COUNTER++
 # COUNTER=$(($COUNTER+0))
 
+# define Variables, if not set in snapraid-diff
+if [ -z ${SCRUB_PERCENT} ]; then
+	SCRUB_PERCENT=100
+	_log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
+	_log "INFO: set it to $SCRUB_PERCENT"
+fi
+if [ -z ${SCRUB_OLDER_THAN_DAYS} ]; then
+	SCRUB_OLDER_THAN_DAYS=0
+	_log "INFO: SCRUB_OLDER_THAN_DAYS not set in '$SR_DIFF_CONF'"
+	_log "INFO: set it to $SCRUB_OLDER_THAN_DAYS"
+fi
 ### End Scrub Section ###
 
 ################################################################
@@ -393,7 +409,7 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 				_log "INFO: ----------------------------------------"
 				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
 				echo "----------------------------------------" >> $TMP_OUTPUT
-				$SNAPRAID_BIN scrub -p 100 -o 0 >> $TMP_OUTPUT
+				$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
 
 				# wait for the job to finish
 				wait
