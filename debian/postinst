@@ -55,11 +55,11 @@ case "$1" in
         fi
 
         if ! omv_config_exists "${SERVICE_XPATH}/percentscrub"; then
-            omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "12"
+            omv_config_add_element "${SERVICE_XPATH}" "percentscrub" "12"
         fi
 
         if ! omv_config_exists "${SERVICE_XPATH}/scrubpercent"; then
-            omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "100"
+            omv_config_add_element "${SERVICE_XPATH}" "scrubpercent" "100"
         fi
 
         omv_install_fixperms
