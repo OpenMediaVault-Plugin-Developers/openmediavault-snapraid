@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-08 06:44-0500\n"
+"POT-Creation-Date: 2014-12-22 07:02-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,6 +122,9 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
+msgid "Level"
+msgstr ""
+
 msgid "Lists all the files modified from the last 'sync' command that have to recompute their redundancy data."
 msgstr ""
 
@@ -168,6 +171,15 @@ msgid "Scrub"
 msgstr ""
 
 msgid "Scrub Frequency"
+msgstr ""
+
+msgid "Scrub Percentage"
+msgstr ""
+
+msgid "Scrub percentage used for diff script."
+msgstr ""
+
+msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."

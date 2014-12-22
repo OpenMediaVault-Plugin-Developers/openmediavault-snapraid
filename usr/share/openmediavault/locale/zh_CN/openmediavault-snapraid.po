@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-08 06:44-0500\n"
-"PO-Revision-Date: 2014-11-14 19:51+0000\n"
+"POT-Creation-Date: 2014-12-22 07:02-0600\n"
+"PO-Revision-Date: 2014-12-22 13:05+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -136,6 +136,9 @@ msgstr "信息"
 msgid "Label"
 msgstr "标签"
 
+msgid "Level"
+msgstr ""
+
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
@@ -185,6 +188,15 @@ msgstr "侦测"
 
 msgid "Scrub Frequency"
 msgstr "侦测频率"
+
+msgid "Scrub Percentage"
+msgstr ""
+
+msgid "Scrub percentage used for diff script."
+msgstr ""
+
+msgid "Scrub percentage used for scrub button on Drives tab."
+msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "侦测阵列，检查“ silent errors”"
