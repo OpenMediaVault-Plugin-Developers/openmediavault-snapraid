@@ -622,13 +622,29 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
     public function getConfig($params, $context)
     {
-        $output = "";
+		// Validate the RPC caller context.
+		$this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        $snapraidConf = "";
+        $snapraidDiff = "";
         $result = "";
 
         OMVUtil::exec("cat /etc/snapraid.conf", $result);
-        $output = implode("\n", $result) . "\n";
+        $snapraidConf = implode("\n", $result) . "\n";
 
-        return $output;
+        $result = "";
+
+        OMVUtil::exec("cat /etc/snapraid-diff.conf", $result);
+        $snapraidDiff = implode("\n", $result) . "\n";
+
+		return array(
+			"snapraidconf" => $snapraidConf,
+			"snapraiddiff" => $snapraidDiff
+		);
+
     }
 
     public function executeCommand($params, $context)

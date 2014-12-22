@@ -19,17 +19,56 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 // require("js/omv/WorkspaceManager.js")
-// require("js/omv/workspace/panel/Textarea.js")
+// require("js/omv/workspace/form/Panel.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Config", {
-    extend   : "OMV.workspace.panel.Textarea",
-    requires : [
-        "OMV.Rpc",
-        "OMV.window.MessageBox"
-    ],
+    extend: "OMV.workspace.form.Panel",
 
-    rpcService : "SnapRaid",
-    rpcMethod  : "getConfig"
+    rpcService   : "SnapRaid",
+    rpcGetMethod : "getConfig",
+
+    hideOkButton    : true,
+    hideResetButton : true,
+
+    getButtonItems : function() {
+        var me = this;
+        var items = me.callParent(arguments);
+        items.push({
+            id       : me.getId() + "-refresh",
+            xtype    : "button",
+            text     : _("Refresh"),
+            icon     : "images/refresh.png",
+            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
+            scope    : me,
+            handler  : function() {
+                me.doReload();
+            }
+        });
+        return items;
+    },
+
+    getFormItems : function() {
+		return [{
+			xtype         : "fieldset",
+			title         : _("Snapraid Config Files"),
+			fieldDefaults : {
+				labelSeparator : ""
+			},
+			items         : [{
+				xtype      : "textarea",
+				name       : "snapraidconf",
+				fieldLabel : _("snapraid.conf"),
+				readOnly   : true,
+				height     : 250
+			},{
+				xtype      : "textarea",
+				name       : "snapraiddiff",
+				fieldLabel : _("snapraid-diff.conf"),
+				readOnly   : true,
+				height     : 250
+			}]
+		}];
+	}
 });
 
 OMV.WorkspaceManager.registerPanel({
