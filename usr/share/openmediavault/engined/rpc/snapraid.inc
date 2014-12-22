@@ -183,7 +183,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
                 "runscrub"     : { "type" : "boolean" },
                 "scrubfreq"    : { "type" : "integer" },
                 "delthreshold" : { "type" : "integer" },
-                "scrubpercent" : { "type" : "integer" },
+                "scrubpercent" : { "type" : "integer" }
             }
         }');
 
