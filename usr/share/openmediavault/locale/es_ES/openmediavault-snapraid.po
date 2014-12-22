@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-22 07:02-0600\n"
-"PO-Revision-Date: 2014-12-22 13:05+0000\n"
+"POT-Creation-Date: 2014-12-22 09:17-0600\n"
+"PO-Revision-Date: 2014-12-22 15:20+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,9 @@ msgstr "Nombre del pool compartido"
 msgid "Prints a status report of the array."
 msgstr "Generar un informe del estado del Array."
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Restore the last backup/snapshot."
 msgstr "Restaura el ultimo backup/snapshot."
 
@@ -222,6 +225,9 @@ msgstr "SnapRAID"
 msgid "SnapRAID user manual"
 msgstr "Manual de usuario de SnapRAID"
 
+msgid "Snapraid Config Files"
+msgstr ""
+
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "Especificar si la regla es de exclusión o de inclusión."
 
@@ -260,3 +266,9 @@ msgstr "Volumen"
 
 msgid "Write logs to syslog"
 msgstr "Escribir logs en el syslog"
+
+msgid "snapraid-diff.conf"
+msgstr ""
+
+msgid "snapraid.conf"
+msgstr ""

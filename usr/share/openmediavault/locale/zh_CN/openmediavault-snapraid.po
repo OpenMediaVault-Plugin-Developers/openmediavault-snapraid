@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-22 07:02-0600\n"
-"PO-Revision-Date: 2014-12-22 13:05+0000\n"
+"POT-Creation-Date: 2014-12-22 09:17-0600\n"
+"PO-Revision-Date: 2014-12-22 15:20+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -168,6 +168,9 @@ msgstr "共享池名"
 msgid "Prints a status report of the array."
 msgstr "显示阵列状态报告。"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Restore the last backup/snapshot."
 msgstr "恢复上次备份/快照"
 
@@ -222,6 +225,9 @@ msgstr "SnapRAID"
 msgid "SnapRAID user manual"
 msgstr "SnapRAID用户手册"
 
+msgid "Snapraid Config Files"
+msgstr ""
+
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "指定是排除还是包含的规则。"
 
@@ -260,3 +266,9 @@ msgstr "卷"
 
 msgid "Write logs to syslog"
 msgstr "记录到系统日志"
+
+msgid "snapraid-diff.conf"
+msgstr ""
+
+msgid "snapraid.conf"
+msgstr ""

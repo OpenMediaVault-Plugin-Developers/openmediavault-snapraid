@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-22 07:02-0600\n"
-"PO-Revision-Date: 2014-12-22 13:05+0000\n"
+"POT-Creation-Date: 2014-12-22 09:17-0600\n"
+"PO-Revision-Date: 2014-12-22 15:20+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Acoli (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ach/)\n"
 "MIME-Version: 1.0\n"
@@ -167,6 +167,9 @@ msgstr ""
 msgid "Prints a status report of the array."
 msgstr ""
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Restore the last backup/snapshot."
 msgstr ""
 
@@ -221,6 +224,9 @@ msgstr ""
 msgid "SnapRAID user manual"
 msgstr ""
 
+msgid "Snapraid Config Files"
+msgstr ""
+
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr ""
 
@@ -258,4 +264,10 @@ msgid "Volume"
 msgstr ""
 
 msgid "Write logs to syslog"
+msgstr ""
+
+msgid "snapraid-diff.conf"
+msgstr ""
+
+msgid "snapraid.conf"
 msgstr ""
