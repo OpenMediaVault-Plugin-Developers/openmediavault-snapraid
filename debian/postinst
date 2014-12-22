@@ -54,6 +54,14 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "${RULES}"
         fi
 
+        if ! omv_config_exists "${SERVICE_XPATH}/percentscrub"; then
+            omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "12"
+        fi
+
+        if ! omv_config_exists "${SERVICE_XPATH}/scrubpercent"; then
+            omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "100"
+        fi
+
         omv_install_fixperms
 
         if dpkg --compare-versions "$2" lt-nl "0.6.3"; then

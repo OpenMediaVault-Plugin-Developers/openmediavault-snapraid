@@ -184,6 +184,7 @@ xmlstarlet sel -t -m "${SERVICE_XPATH}" \
     -i "runscrub = 1" -o "RUN_SCRUB=\"true\"" -n -b \
     -i "scrubfreq != ''" -v "concat('SCRUB_FREQUENCY_IN_DAYS=', scrubfreq)" -n -b \
     -i "delthreshold != ''" -v "concat('DEL_THRESHOLD=', delthreshold)" -n -b \
+    -i "scrubpercent != ''" -v "concat('SCRUB_PERCENT=', scrubpercent)" -n -b \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${DIFF_SCRIPT_CONFIG}
 
 

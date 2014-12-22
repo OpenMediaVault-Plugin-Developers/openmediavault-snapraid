@@ -138,9 +138,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         }
 
         // Modify result data
-        $object['nohidden'] = boolval($object['nohidden']);
-        $object['autosave'] = intval($object['autosave']);
-        $object['pool']     = boolval($object['pool']);
+        $object['nohidden']     = boolval($object['nohidden']);
+        $object['autosave']     = intval($object['autosave']);
+        $object['percentscrub'] = intval($object['percentscrub']);
+        $object['pool']         = boolval($object['pool']);
 
         $object['syslog']       = boolval($object['syslog']);
         $object['debug']        = boolval($object['debug']);
@@ -148,6 +149,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $object['runscrub']     = boolval($object['runscrub']);
         $object['scrubfreq']    = intval($object['scrubfreq']);
         $object['delthreshold'] = intval($object['delthreshold']);
+        $object['scrubpercent'] = intval($object['scrubpercent']);
 
         unset($object['drives']);
         unset($object['rules']);
@@ -171,6 +173,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "properties" : {
                 "blocksize"    : { "type" : "integer" },
                 "autosave"     : { "type" : "integer" },
+                "percentscrub" : { "type" : "integer" },
                 "nohidden"     : { "type" : "boolean" },
                 "pool"         : { "type" : "boolean" },
                 "poolname"     : { "type" : "string", "optional" : true },
@@ -179,7 +182,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
                 "sendmail"     : { "type" : "boolean" },
                 "runscrub"     : { "type" : "boolean" },
                 "scrubfreq"    : { "type" : "integer" },
-                "delthreshold" : { "type" : "integer" }
+                "delthreshold" : { "type" : "integer" },
+                "scrubpercent" : { "type" : "integer" },
             }
         }');
 
@@ -197,6 +201,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $object = array(
             "blocksize"    => intval($params['blocksize']),
             "autosave"     => intval($params['autosave']),
+            "percentscrub" => intval($params['percentscrub']),
             "nohidden"     => array_boolval($params, 'nohidden'),
             "pool"         => array_boolval($params, 'pool'),
             "poolname"     => str_replace(" ", "_", $params['poolname']),
@@ -206,6 +211,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "runscrub"     => array_boolval($params, 'runscrub'),
             "scrubfreq"    => intval($params['scrubfreq']),
             "delthreshold" => intval($params['delthreshold']),
+            "scrubpercent" => intval($params['scrubpercent']),
             "drives"       => isset($oldObject['drives']) ? $oldObject['drives'] : array(),
             "rules"        => isset($oldObject['rules']) ? $oldObject['rules'] : array()
         );
@@ -643,6 +649,19 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             }
         }');
 
+        // Get configuration object
+        $object = $xmlConfig->get( $this->getXPath() );
+        if (is_null($object))
+        {
+            throw new OMVException(
+                OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
+                $this->getXPath()
+            );
+        }
+
+        // Modify result data
+        $object['percentscrub'] = intval($object['percentscrub']);
+
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
@@ -670,7 +689,11 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            $cmd = sprintf("%s %s 2>&1", $this->getProgram(), $params['command']);
+            if ($params['command'] == "scrub")
+                $cmd = sprintf("%s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
+            else
+                $cmd = sprintf("%s %s 2>&1", $this->getProgram(), $params['command']);
+
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
 

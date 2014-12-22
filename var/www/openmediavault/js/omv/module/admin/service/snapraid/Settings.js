@@ -89,6 +89,20 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     text  : _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
                 }]
             },{
+                xtype         : "numberfield",
+                name          : "percentscrub",
+                fieldLabel    : _("Scrub Percentage"),
+                minValue      : 0,
+                maxValue      : 100,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 12,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Scrub percentage used for scrub button on Drives tab.")
+                }]
+            },{
                 xtype      : "checkbox",
                 name       : "nohidden",
                 fieldLabel : _("No Hidden"),
@@ -161,6 +175,20 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 plugins    : [{
                     ptype : "fieldinfo",
                     text  : _("Define threshold of files deleted to start the sync-process. default = 0 to make sure no sync process is started while testing or if there are any deleted files")
+                }]
+            },{
+                xtype         : "numberfield",
+                name          : "scrubpercent",
+                fieldLabel    : _("Scrub Percentage"),
+                minValue      : 0,
+                maxValue      : 100,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 100,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Scrub percentage used for diff script.")
                 }]
             }]
         }];
