@@ -27,9 +27,12 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
     autoScroll    : true,
     initComponent : function() {
         var me = this;
-        me.html = "<b>SnapRAID</b>" +
+        OMV.Rpc.request({
+            scope    : this,
+            callback : function(id, success, response) {
+                me.html = "<b>SnapRAID</b>" +
                   "<ul>" +
-                    "<li>Version 6.3 by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
+                    "<li>Version " + response.version + " by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
                     "<li><a href='http://snapraid.sourceforge.net/manual.html' target=_blank>" + _("SnapRAID user manual") + "</a></li>" +
                   "</ul>" +
                   _("Description of Buttons on Drives tab") +
@@ -73,6 +76,14 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
                     "<li>aquota.group</li>" +
                     "<li>aquota.user</li>" +
                   "</ul>";
+            },
+            relayErrors : false,
+            rpcData     : {
+                service  : "SnapRaid",
+                method   : "getVersion"
+            }
+        });
+
         me.callParent(arguments);
     }
 });

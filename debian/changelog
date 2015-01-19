@@ -1,10 +1,12 @@
-openmediavault-snapraid (1.0.14) UNRELEASED; urgency=low
+openmediavault-snapraid (1.0.15) UNRELEASED; urgency=low
 
   * Add scrub percentage for gui and diff script
   * Update locales
   * Add both config files to Config tab
+  * Update version info on Info tab
+  * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 22 Dec 2014 06:50:12 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 19 Jan 2015 17:12:24 -0600
 
 openmediavault-snapraid (1.0.13) stable; urgency=low
 

@@ -115,6 +115,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $this->registerMethod('getConfig');
 
         $this->registerMethod('executeCommand');
+        $this->registerMethod('getVersion');
     }
 
     public function getSettings($params, $context)
@@ -622,8 +623,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
     public function getConfig($params, $context)
     {
-		// Validate the RPC caller context.
-		$this->validateMethodContext(
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
             $context,
             array( "role" => OMV_ROLE_ADMINISTRATOR )
         );
@@ -640,10 +641,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         OMVUtil::exec("cat /etc/snapraid-diff.conf", $result);
         $snapraidDiff = implode("\n", $result) . "\n";
 
-		return array(
-			"snapraidconf" => $snapraidConf,
-			"snapraiddiff" => $snapraidDiff
-		);
+        return array(
+            "snapraidconf" => $snapraidConf,
+            "snapraiddiff" => $snapraidDiff
+        );
 
     }
 
@@ -726,6 +727,25 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             exit(1);
         }
     }
+
+    function getVersion($params, $context)
+    {
+        global $xmlConfig;
+
+        // Validate the RPC caller context.
+        $this->validateMethodContext(
+            $context,
+            array( "role" => OMV_ROLE_ADMINISTRATOR )
+        );
+
+        $output = array();
+        $cmd = sprintf( "export LANG=C; dpkg-query -W -f='\${Version}' %s", $this->getPluginName() );
+        OMVUtil::exec($cmd, $output, $result);
+        $object['version'] = $output[0];
+
+        return $object;
+    }
+
 }
 
 // Register the RPC service.
