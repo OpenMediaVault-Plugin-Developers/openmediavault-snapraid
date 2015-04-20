@@ -1,3 +1,9 @@
+openmediavault-snapraid (1.1) UNRELEASED; urgency=low
+
+  * Merge github pull request #7 - Fix omv-snapraid-diff with DEL_THRESHOLD=0
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 20 Apr 2015 07:39:00 -0500
+
 openmediavault-snapraid (1.0.15) stable; urgency=low
 
   * Update version info on Info tab

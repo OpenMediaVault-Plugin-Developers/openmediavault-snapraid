@@ -7,7 +7,7 @@ set -e
 
 case "$1" in
     purge)
-        omv_config_delete "//services/snapraid"
+        omv_config_delete "/config/services/snapraid"
 
     ;;
 
