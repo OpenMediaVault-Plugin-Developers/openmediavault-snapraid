@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-25 13:11-0500\n"
-"PO-Revision-Date: 2014-09-27 20:44+0000\n"
+"POT-Creation-Date: 2015-01-19 17:17-0600\n"
+"PO-Revision-Date: 2014-12-31 18:35+0000\n"
 "Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -68,11 +68,26 @@ msgstr "Datos"
 msgid "Date & Time"
 msgstr "Fecha y hora"
 
+msgid "Debug"
+msgstr "Depuración"
+
+msgid ""
+"Define threshold of files deleted to start the sync-process. default = 0 to "
+"make sure no sync process is started while testing or if there are any "
+"deleted files"
+msgstr "Definir el numero de archivos borrados para empezar el proceso de sincronización. Por defecto 0 para estar seguros que no se inicia el proceso mientras se este comprobando o si no hay ningun archivo borrado."
+
+msgid "Delete Threshold"
+msgstr "Borrar marca"
+
 msgid "Description of Buttons on Drives tab"
 msgstr "Descripción de los botones en la pestaña de discos"
 
 msgid "Diff"
 msgstr "Differencias"
+
+msgid "Diff Script Settings"
+msgstr "Opciones del script de diferencias"
 
 msgid "Drive"
 msgstr "Disco"
@@ -121,6 +136,9 @@ msgstr "Información"
 msgid "Label"
 msgstr "Etiqueta"
 
+msgid "Level"
+msgstr "Nivel"
+
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
@@ -150,6 +168,9 @@ msgstr "Nombre del pool compartido"
 msgid "Prints a status report of the array."
 msgstr "Generar un informe del estado del Array."
 
+msgid "Refresh"
+msgstr "Refresco"
+
 msgid "Restore the last backup/snapshot."
 msgstr "Restaura el ultimo backup/snapshot."
 
@@ -162,8 +183,23 @@ msgstr "Tipo de regla"
 msgid "Rules"
 msgstr "Reglas"
 
+msgid "Run Scrub"
+msgstr "Ejecutar reparación"
+
 msgid "Scrub"
 msgstr "Reparar"
+
+msgid "Scrub Frequency"
+msgstr "Frecuencia de la reparación"
+
+msgid "Scrub Percentage"
+msgstr "Porcentaje de Scrub"
+
+msgid "Scrub percentage used for diff script."
+msgstr "Porcentaje de Scrub usado por el script de diferencias."
+
+msgid "Scrub percentage used for scrub button on Drives tab."
+msgstr "Porcentaje de Scrub usado por el botón scrub en la pestaña Discos."
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "Reparar el array, Buscando errores silenciosos."
@@ -174,6 +210,12 @@ msgstr "Seleccione un disco ..."
 msgid "Select a volume ..."
 msgstr "Seleccione un volumen..."
 
+msgid "Send Mail"
+msgstr "Enviar mail"
+
+msgid "Set to true if you want to scrub after a successful sync"
+msgstr "Marcar como cierto si desea una reparación despues de una sincronización correcta."
+
 msgid "Settings"
 msgstr "Opciones"
 
@@ -183,6 +225,9 @@ msgstr "SnapRAID"
 msgid "SnapRAID user manual"
 msgstr "Manual de usuario de SnapRAID"
 
+msgid "Snapraid Config Files"
+msgstr "Archivos de config. Snapraid"
+
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "Especificar si la regla es de exclusión o de inclusión."
 
@@ -191,6 +236,9 @@ msgstr "Estado"
 
 msgid "Sync"
 msgstr "Sync"
+
+msgid "Syslog"
+msgstr "Syslog"
 
 msgid "That name has already been used."
 msgstr "Este nombre está en uso."
@@ -202,6 +250,9 @@ msgstr "Las siguientes exclusiones por defecto se incluirán en el archivo de co
 msgid "This volume has already been added."
 msgstr "Este disco ya ha sido añadido."
 
+msgid "Units in days."
+msgstr "Unidades en dias."
+
 msgid "Update the pool."
 msgstr "Actualizar el pool."
 
@@ -212,3 +263,12 @@ msgstr "Actualizar la información de redundancia. Todos los archivos en el pool
 
 msgid "Volume"
 msgstr "Volumen"
+
+msgid "Write logs to syslog"
+msgstr "Escribir logs en el syslog"
+
+msgid "snapraid-diff.conf"
+msgstr "snapraid-diff.conf"
+
+msgid "snapraid.conf"
+msgstr "snapraid.conf"

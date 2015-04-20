@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Damtux, 2013
-# Paolo Velati <paolo.velati@gmail.com>, 2014
+# Paolo Velati <paolo.velati@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-22 15:20+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"PO-Revision-Date: 2015-02-03 14:41+0000\n"
+"Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,7 +138,7 @@ msgid "Label"
 msgstr "Etichetta"
 
 msgid "Level"
-msgstr ""
+msgstr "Livello"
 
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
@@ -269,7 +269,7 @@ msgid "Write logs to syslog"
 msgstr "Scrivi i log su syslog"
 
 msgid "snapraid-diff.conf"
-msgstr ""
+msgstr "snapraid-diff.conf"
 
 msgid "snapraid.conf"
-msgstr ""
+msgstr "snapraid.conf"

@@ -3,71 +3,69 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alexander Savchenko, 2014-2015
-# артур Мудрых <arturmon82@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2015-03-04 19:32+0000\n"
-"Last-Translator: Alexander Savchenko\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ru/)\n"
+"PO-Revision-Date: 2013-11-12 16:13+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A data drive cannot be a parity drive."
 msgstr ""
 
 msgid "Add drive"
-msgstr "Добавить диск"
+msgstr ""
 
 msgid "Add rule"
-msgstr "Добавить правило"
+msgstr ""
 
 msgid "Auto Save"
-msgstr "Авто сохранение"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr "Автоматически сохранять состояние при синхронизации спустя заданное количество GiB обработанного. Значение по умолчанию равно 0, что означает, отключен."
+msgstr ""
 
 msgid "Block Size"
-msgstr "Размер блока"
+msgstr ""
 
 msgid "Block size in KiB"
-msgstr "Размер блока в KiB"
+msgstr ""
 
 msgid "Check"
-msgstr "Check"
+msgstr ""
 
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
 "compared with the snapshot saved in the previous 'sync' command."
-msgstr "Проверяет все файлы и избыточность данных. Все файлы хэшируются и по сравниваются с снимком сохраненным в предыдущей команде «Sync»."
+msgstr ""
 
 msgid "Component"
-msgstr "Компонент"
+msgstr ""
 
 msgid "Config"
 msgstr ""
 
 msgid "Content"
-msgstr "\"Содержимое\""
+msgstr ""
 
 msgid ""
 "Creates a virtual view of all the files in your array using symbolic links."
-msgstr "Создает виртуальное представление всех файлов в вашем массиве, используя символические ссылки."
+msgstr ""
 
 msgid "Data"
-msgstr "\"Данные\""
+msgstr ""
 
 msgid "Date & Time"
-msgstr "Дата и Время"
+msgstr ""
 
 msgid "Debug"
 msgstr ""
@@ -85,13 +83,13 @@ msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Diff"
-msgstr "Diff"
+msgstr ""
 
 msgid "Diff Script Settings"
 msgstr ""
 
 msgid "Drive"
-msgstr "Диск"
+msgstr ""
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -108,34 +106,34 @@ msgid ""
 msgstr ""
 
 msgid "Drives"
-msgstr "Диски"
+msgstr ""
 
 msgid "Edit drive"
-msgstr "Редактировать диск"
+msgstr ""
 
 msgid "Edit rule"
-msgstr "Редактировать правило"
+msgstr ""
 
 msgid "Enable Pool"
-msgstr "Включить пул"
+msgstr ""
 
 msgid "Excludes hidden files and directories."
-msgstr "Исключает скрытые файлы и каталоги"
+msgstr ""
 
 msgid "Exclusion"
 msgstr ""
 
 msgid "Fix"
-msgstr "Fix"
+msgstr ""
 
 msgid "Inclusion"
 msgstr ""
 
 msgid "Information"
-msgstr "Информация"
+msgstr ""
 
 msgid "Label"
-msgstr "Метка"
+msgstr ""
 
 msgid "Level"
 msgstr ""
@@ -143,16 +141,16 @@ msgstr ""
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
-msgstr "Список всех файлов, измененных с последнего «Sync», которые должны пересчитать их избыточность."
+msgstr ""
 
 msgid "Message"
-msgstr "Сообщение"
+msgstr ""
 
 msgid "Name"
-msgstr "Имя"
+msgstr ""
 
 msgid "No Hidden"
-msgstr "Никаких скрытых"
+msgstr ""
 
 msgid "Parity"
 msgstr ""
@@ -161,7 +159,7 @@ msgid "Please first select a volume."
 msgstr ""
 
 msgid "Pool"
-msgstr "Пул"
+msgstr ""
 
 msgid "Pool Share Name"
 msgstr ""
@@ -170,25 +168,25 @@ msgid "Prints a status report of the array."
 msgstr ""
 
 msgid "Refresh"
-msgstr "Обновить"
+msgstr ""
 
 msgid "Restore the last backup/snapshot."
-msgstr "Восстановить с последней резервной копии / снимка."
+msgstr ""
 
 msgid "Rule"
-msgstr "Правило"
+msgstr ""
 
 msgid "Rule Type"
 msgstr ""
 
 msgid "Rules"
-msgstr "Правила"
+msgstr ""
 
 msgid "Run Scrub"
 msgstr ""
 
 msgid "Scrub"
-msgstr "Scrub"
+msgstr ""
 
 msgid "Scrub Frequency"
 msgstr ""
@@ -203,13 +201,13 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr ""
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Scrub массива, проверка на скрытые ошибки."
+msgstr ""
 
 msgid "Select a drive ..."
-msgstr "Выберите диск ..."
+msgstr ""
 
 msgid "Select a volume ..."
-msgstr "Выберите том ..."
+msgstr ""
 
 msgid "Send Mail"
 msgstr ""
@@ -218,13 +216,13 @@ msgid "Set to true if you want to scrub after a successful sync"
 msgstr ""
 
 msgid "Settings"
-msgstr "Настройки"
+msgstr ""
 
 msgid "SnapRAID"
-msgstr "SnapRAID"
+msgstr ""
 
 msgid "SnapRAID user manual"
-msgstr "Инструкция SnapRAID"
+msgstr ""
 
 msgid "Snapraid Config Files"
 msgstr ""
@@ -233,10 +231,10 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr ""
 
 msgid "Status"
-msgstr "Status"
+msgstr ""
 
 msgid "Sync"
-msgstr "Sync"
+msgstr ""
 
 msgid "Syslog"
 msgstr ""
@@ -246,24 +244,24 @@ msgstr ""
 
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
-msgstr "Следующие исключения записываются в конфигурационный файл snapraid по умолчанию:"
+msgstr ""
 
 msgid "This volume has already been added."
-msgstr "Этот том уже был добавлен."
+msgstr ""
 
 msgid "Units in days."
 msgstr ""
 
 msgid "Update the pool."
-msgstr "Обновить пул."
+msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
 " are read, and the redundancy data is recomputed."
-msgstr "Обновление информации об избыточности. Все изменения файлов в дисковом массиве считываются, и избыточность данных пересчитывается."
+msgstr ""
 
 msgid "Volume"
-msgstr "Том"
+msgstr ""
 
 msgid "Write logs to syslog"
 msgstr ""
