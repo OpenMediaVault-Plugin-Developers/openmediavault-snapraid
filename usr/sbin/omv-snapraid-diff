@@ -364,6 +364,8 @@ _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] -
 # check if files have changed
 if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -gt 0 -o $UPDATE_COUNT -gt 0 ]; then
 
+    DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
+
     # YES, check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
     if [ $DEL_COUNT -gt $DEL_THRESHOLD && $DEL_THRESHOLD -gt 0 ]; then
     
