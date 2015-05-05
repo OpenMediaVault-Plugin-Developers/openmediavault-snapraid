@@ -367,7 +367,7 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
     DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
     # YES, check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
-    if [ $DEL_COUNT -gt $DEL_THRESHOLD && $DEL_THRESHOLD -gt 0 ]; then
+    if [ $DEL_COUNT -gt $DEL_THRESHOLD -a $DEL_THRESHOLD -gt 0 ]; then
     
         # YES, lets inform user and not proceed with the sync just in case
         _log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
