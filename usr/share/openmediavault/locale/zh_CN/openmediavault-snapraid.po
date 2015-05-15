@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-26 05:07+0000\n"
-"Last-Translator: songming <by@songming.me>\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,11 +83,17 @@ msgstr "删除阈值"
 msgid "Description of Buttons on Drives tab"
 msgstr "磁盘标签上按键说明"
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "比较"
 
 msgid "Diff Script Settings"
 msgstr "比较脚本设置"
+
+msgid "Down"
+msgstr ""
 
 msgid "Drive"
 msgstr "磁盘"
@@ -129,6 +135,9 @@ msgstr "修复"
 
 msgid "Inclusion"
 msgstr "包含"
+
+msgid "Info"
+msgstr ""
 
 msgid "Information"
 msgstr "信息"
@@ -186,6 +195,9 @@ msgstr "规则"
 msgid "Run Scrub"
 msgstr "运行侦测"
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "侦测"
 
@@ -231,6 +243,9 @@ msgstr "Snapraid配置文件"
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "指定是排除还是包含的规则。"
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "状态"
 
@@ -250,8 +265,14 @@ msgstr "默认配置以及排除了以下内容："
 msgid "This volume has already been added."
 msgstr "该卷已经被添加过"
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
 msgstr "以天为单位。"
+
+msgid "Up"
+msgstr ""
 
 msgid "Update the pool."
 msgstr "更新池。"

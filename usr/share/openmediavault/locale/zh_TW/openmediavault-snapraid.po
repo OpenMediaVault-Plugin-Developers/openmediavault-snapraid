@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-29 16:59+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,11 +83,17 @@ msgstr "刪除定限"
 msgid "Description of Buttons on Drives tab"
 msgstr "磁碟 分頁上按鈕的敘述"
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "差異"
 
 msgid "Diff Script Settings"
 msgstr "Diff 腳本程式設定"
+
+msgid "Down"
+msgstr ""
 
 msgid "Drive"
 msgstr "磁碟"
@@ -129,6 +135,9 @@ msgstr "修復"
 
 msgid "Inclusion"
 msgstr "含入"
+
+msgid "Info"
+msgstr ""
 
 msgid "Information"
 msgstr "資訊"
@@ -186,6 +195,9 @@ msgstr "規則"
 msgid "Run Scrub"
 msgstr "執行清理"
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "清理"
 
@@ -231,6 +243,9 @@ msgstr "Snapraid 設置檔案"
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "指定這份規則是排除或含入。"
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "狀態"
 
@@ -250,8 +265,14 @@ msgstr "以下的排除是預設寫入 snapraid 的設置檔案中。"
 msgid "This volume has already been added."
 msgstr "這磁碟已經被加入過。"
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
 msgstr "以天數為單位。"
+
+msgid "Up"
+msgstr ""
 
 msgid "Update the pool."
 msgstr "更新集用場。"

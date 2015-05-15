@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2015-01-01 10:46+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,11 +83,17 @@ msgstr "Slet Tærskel"
 msgid "Description of Buttons on Drives tab"
 msgstr "Beskrivelse af Knapper på Disk fane"
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "Forskel"
 
 msgid "Diff Script Settings"
 msgstr "Forskel Script Indstillinger"
+
+msgid "Down"
+msgstr ""
 
 msgid "Drive"
 msgstr "Disk"
@@ -129,6 +135,9 @@ msgstr "Ret"
 
 msgid "Inclusion"
 msgstr "Inddragelse"
+
+msgid "Info"
+msgstr ""
 
 msgid "Information"
 msgstr "Oplysning"
@@ -186,6 +195,9 @@ msgstr "Regler"
 msgid "Run Scrub"
 msgstr "Kør Udrens"
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Udrens"
 
@@ -231,6 +243,9 @@ msgstr "Snapraid Konfigurations Filer "
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr " Angiv om reglen er en undtagelse eller inddragelse."
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "Status"
 
@@ -250,8 +265,14 @@ msgstr "Følgende ekskluderer bliver skrevet i snapraid konfiguration fil som st
 msgid "This volume has already been added."
 msgstr "Dette drev er allerede blevet tilføjet."
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
 msgstr "Enheder i dage."
+
+msgid "Up"
+msgstr ""
 
 msgid "Update the pool."
 msgstr "Opdater pool."

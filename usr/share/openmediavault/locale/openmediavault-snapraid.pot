@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,10 +74,16 @@ msgstr ""
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr ""
 
 msgid "Diff Script Settings"
+msgstr ""
+
+msgid "Down"
 msgstr ""
 
 msgid "Drive"
@@ -114,6 +120,9 @@ msgid "Fix"
 msgstr ""
 
 msgid "Inclusion"
+msgstr ""
+
+msgid "Info"
 msgstr ""
 
 msgid "Information"
@@ -170,6 +179,9 @@ msgstr ""
 msgid "Run Scrub"
 msgstr ""
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr ""
 
@@ -215,6 +227,9 @@ msgstr ""
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr ""
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr ""
 
@@ -233,7 +248,13 @@ msgstr ""
 msgid "This volume has already been added."
 msgstr ""
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
+msgstr ""
+
+msgid "Up"
 msgstr ""
 
 msgid "Update the pool."

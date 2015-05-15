@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-22 15:20+0000\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Polish (Poland) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/pl_PL/)\n"
 "MIME-Version: 1.0\n"
@@ -83,10 +83,16 @@ msgstr ""
 msgid "Description of Buttons on Drives tab"
 msgstr ""
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "Różnica"
 
 msgid "Diff Script Settings"
+msgstr ""
+
+msgid "Down"
 msgstr ""
 
 msgid "Drive"
@@ -128,6 +134,9 @@ msgid "Fix"
 msgstr "Napraw"
 
 msgid "Inclusion"
+msgstr ""
+
+msgid "Info"
 msgstr ""
 
 msgid "Information"
@@ -186,6 +195,9 @@ msgstr ""
 msgid "Run Scrub"
 msgstr ""
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Peeling"
 
@@ -231,6 +243,9 @@ msgstr ""
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr ""
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "Status"
 
@@ -250,7 +265,13 @@ msgstr ""
 msgid "This volume has already been added."
 msgstr ""
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
+msgstr ""
+
+msgid "Up"
 msgstr ""
 
 msgid "Update the pool."

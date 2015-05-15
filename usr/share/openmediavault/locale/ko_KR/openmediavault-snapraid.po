@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-23 08:49+0000\n"
-"Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,11 +83,17 @@ msgstr "삭제 파일 임계값"
 msgid "Description of Buttons on Drives tab"
 msgstr "드라이브 탭 버튼 설명"
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "비교"
 
 msgid "Diff Script Settings"
 msgstr "비교 스크립트 설정"
+
+msgid "Down"
+msgstr ""
 
 msgid "Drive"
 msgstr "드라이브"
@@ -129,6 +135,9 @@ msgstr "수리"
 
 msgid "Inclusion"
 msgstr "포함"
+
+msgid "Info"
+msgstr ""
 
 msgid "Information"
 msgstr "정보"
@@ -186,6 +195,9 @@ msgstr "규칙"
 msgid "Run Scrub"
 msgstr "점검 실행"
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "점검"
 
@@ -231,6 +243,9 @@ msgstr "Snapraid 설정 파일"
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "규칙의 제외 또는 포함 여부를 지정합니다."
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "상태"
 
@@ -250,8 +265,14 @@ msgstr "다음의 제외는 기본적으로 SnapRAID 설정 파일에 기록됩�
 msgid "This volume has already been added."
 msgstr "볼륨이 이미 추가되었습니다."
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
 msgstr "일 단위."
+
+msgid "Up"
+msgstr ""
 
 msgid "Update the pool."
 msgstr "Pool 갱신."

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-31 18:35+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
+"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,11 +83,17 @@ msgstr "Borrar marca"
 msgid "Description of Buttons on Drives tab"
 msgstr "Descripción de los botones en la pestaña de discos"
 
+msgid "Devices"
+msgstr ""
+
 msgid "Diff"
 msgstr "Differencias"
 
 msgid "Diff Script Settings"
 msgstr "Opciones del script de diferencias"
+
+msgid "Down"
+msgstr ""
 
 msgid "Drive"
 msgstr "Disco"
@@ -129,6 +135,9 @@ msgstr "Arreglar"
 
 msgid "Inclusion"
 msgstr "Inclusiones"
+
+msgid "Info"
+msgstr ""
 
 msgid "Information"
 msgstr "Información"
@@ -186,6 +195,9 @@ msgstr "Reglas"
 msgid "Run Scrub"
 msgstr "Ejecutar reparación"
 
+msgid "SMART"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Reparar"
 
@@ -231,6 +243,9 @@ msgstr "Archivos de config. Snapraid"
 msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "Especificar si la regla es de exclusión o de inclusión."
 
+msgid "Spin"
+msgstr ""
+
 msgid "Status"
 msgstr "Estado"
 
@@ -250,8 +265,14 @@ msgstr "Las siguientes exclusiones por defecto se incluirán en el archivo de co
 msgid "This volume has already been added."
 msgstr "Este disco ya ha sido añadido."
 
+msgid "Tools"
+msgstr ""
+
 msgid "Units in days."
 msgstr "Unidades en dias."
+
+msgid "Up"
+msgstr ""
 
 msgid "Update the pool."
 msgstr "Actualizar el pool."
