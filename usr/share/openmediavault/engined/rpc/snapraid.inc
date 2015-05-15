@@ -633,12 +633,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $snapraidDiff = "";
         $result = "";
 
-        OMVUtil::exec("cat /etc/snapraid.conf", $result);
+        OMVUtil::exec("export LANG=C; cat /etc/snapraid.conf", $result);
         $snapraidConf = implode("\n", $result) . "\n";
 
         $result = "";
 
-        OMVUtil::exec("cat /etc/snapraid-diff.conf", $result);
+        OMVUtil::exec("export LANG=C; cat /etc/snapraid-diff.conf", $result);
         $snapraidDiff = implode("\n", $result) . "\n";
 
         return array(
@@ -707,9 +707,9 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
             if ($params['command'] == "scrub")
-                $cmd = sprintf("%s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
+                $cmd = sprintf("export LANG=C; %s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
             else
-                $cmd = sprintf("%s %s 2>&1", $this->getProgram(), $params['command']);
+                $cmd = sprintf("export LANG=C; %s %s 2>&1", $this->getProgram(), $params['command']);
 
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
