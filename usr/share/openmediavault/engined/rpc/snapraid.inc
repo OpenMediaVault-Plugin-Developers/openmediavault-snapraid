@@ -689,7 +689,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             return $bgStatusFilename;
         }
 
-        $commands = array("sync", "scrub", "check", "diff", "status", "fix", "pool");
+        $commands = array("sync", "scrub", "check", "diff", "status", "fix", "pool", "up", "down", "smart", "devices");
         if (!in_array($params['command'], $commands))
         {
             throw new OMVException(

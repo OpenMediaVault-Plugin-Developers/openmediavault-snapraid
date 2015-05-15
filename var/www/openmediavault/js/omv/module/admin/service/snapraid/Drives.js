@@ -168,61 +168,72 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
         var items = me.callParent(arguments);
 
         Ext.Array.insert(items, 3, [{
-            id       : me.getId() + "-sync",
             xtype    : "button",
-            text     : _("Sync"),
-            icon     : "images/refresh.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "sync" ]),
-            scope    : me
+            text     : _("Tools"),
+            scope    : this,
+            icon     : "images/wrench.png",
+            menu     : [{
+                text     : _("Sync"),
+                icon     : "images/refresh.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "sync" ]),
+            },{
+                text     : _("Scrub"),
+                icon     : "images/erase.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "scrub" ]),
+            },{
+                text     : _("Check"),
+                icon     : "images/checkmark.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "check" ]),
+            },{
+                text     : _("Diff"),
+                icon     : "images/details.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "diff" ]),
+            },{
+                text     : _("Fix"),
+                icon     : "images/aid.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "fix" ]),
+            },{
+                text     : _("Pool"),
+                icon     : "images/grid.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "pool" ]),
+            }]
         },{
-            id       : me.getId() + "-scrub",
             xtype    : "button",
-            text     : _("Scrub"),
-            icon     : "images/erase.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "scrub" ]),
-            scope    : me
+            text     : _("Spin"),
+            scope    : this,
+            icon     : "images/raid.png",
+            disabled : true,
+            selectionConfig : {
+                minSelections : 1,
+                maxSelections : 1
+            },
+            menu     : [{
+                text     : _("Up"),
+                icon     : "images/arrow-up.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "up" ]),
+            },{
+                text     : _("Down"),
+                icon     : "images/arrow-down.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "down" ]),
+            }]
         },{
-            id       : me.getId() + "-check",
             xtype    : "button",
-            text     : _("Check"),
-            icon     : "images/checkmark.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "check" ]),
-            scope    : me
-        },{
-            id       : me.getId() + "-diff",
-            xtype    : "button",
-            text     : _("Diff"),
-            icon     : "images/details.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "diff" ]),
-            scope    : me
-        },{
-            id       : me.getId() + "-status",
-            xtype    : "button",
-            text     : _("Status"),
+            text     : _("Info"),
+            scope    : this,
             icon     : "images/pulse.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "status" ]),
-            scope    : me
-        },{
-            id       : me.getId() + "-fix",
-            xtype    : "button",
-            text     : _("Fix"),
-            icon     : "images/aid.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "fix" ]),
-            scope    : me
-        },{
-            id       : me.getId() + "-pool",
-            xtype    : "button",
-            text     : _("Pool"),
-            icon     : "images/grid.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            handler  : Ext.Function.bind(me.onCommandButton, me, [ "pool" ]),
-            scope    : me
+            menu     : [{
+                text     : _("Devices"),
+                icon     : "images/details.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "devices" ]),
+            },{
+                text     : _("SMART"),
+                icon     : "images/pulse.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "smart" ]),
+            },{
+                text     : _("Status"),
+                icon     : "images/changelog.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "status" ]),
+            }]
         }]);
         return items;
     },
