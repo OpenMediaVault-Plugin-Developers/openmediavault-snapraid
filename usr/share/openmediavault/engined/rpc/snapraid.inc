@@ -662,7 +662,8 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $this->validateMethodParams($params, '{
             "type"       : "object",
             "properties" : {
-                "command" : { "type" : "string" }
+                "command" : { "type" : "string" },
+                "file"    : { "type" : "string", "optional" : true }
             }
         }');
 
@@ -689,7 +690,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             return $bgStatusFilename;
         }
 
-        $commands = array("sync", "scrub", "check", "diff", "status", "fix", "pool", "up", "down", "smart", "devices");
+        $commands = array("sync", "scrub", "check", "diff", "status", "fix", "pool",
+            "up", "down", "smart", "devices", "undelete", "silent"
+        );
+
         if (!in_array($params['command'], $commands))
         {
             throw new OMVException(
@@ -706,10 +710,23 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            if ($params['command'] == "scrub")
-                $cmd = sprintf("export LANG=C; %s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
-            else
-                $cmd = sprintf("export LANG=C; %s %s 2>&1", $this->getProgram(), $params['command']);
+            switch ($params['command'])
+            {
+                case "scrub":
+                    $cmd = sprintf("export LANG=C; %s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
+                    break;
+                case "silent":      // Fix known silent errors - snapraid -e fix && snapraid scrub -p0 
+                    $cmd = sprintf("export LANG=C; %s -e fix && %s scrub -p0 2>&1", $this->getProgram(), $this->getProgram());
+                    break;
+                case "undelete":    // undelete files - snapraid fix -m [-f %FILENAME%]
+                    if (empty($params['file']))
+                        $cmd = sprintf("export LANG=C; %s fix -m 2>&1", $this->getProgram());
+                    else
+                        $cmd = sprintf("export LANG=C; %s fix -m -f %s 2>&1", $this->getProgram(), $params['file']);
+                    break;
+                default:
+                    $cmd = sprintf("export LANG=C; %s %s 2>&1", $this->getProgram(), $params['command']);
+            }
 
             $this->exec($cmd, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);

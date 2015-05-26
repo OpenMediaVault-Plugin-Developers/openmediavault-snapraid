@@ -193,9 +193,17 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                 icon     : "images/aid.png",
                 handler  : Ext.Function.bind(me.onCommandButton, me, [ "fix" ]),
             },{
+                text     : _("Fix Silent"),
+                icon     : "images/wrench.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "silent" ]),
+            },{
                 text     : _("Pool"),
                 icon     : "images/grid.png",
                 handler  : Ext.Function.bind(me.onCommandButton, me, [ "pool" ]),
+            },{
+                text     : _("Undelete"),
+                icon     : "images/upload.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "undelete" ]),
             }]
         },{
             xtype    : "button",
@@ -312,12 +320,18 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
 
     onCommandButton : function(cmd) {
         var me = this;
+        
+        if (cmd == "undelete") {
+            file = prompt(_("Optional - Enter file or directory to undelete"), "");
+        }
+
         Ext.create("OMV.window.Execute", {
             title      : "SnapRAID " + cmd,
             rpcService : "SnapRaid",
             rpcMethod  : "executeCommand",
             rpcParams  : {
-                command : cmd
+                "command" : cmd,
+                "file"    : file
             },
             hideStopButton  : true,
             listeners       : {
