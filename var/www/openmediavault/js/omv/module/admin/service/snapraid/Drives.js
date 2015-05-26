@@ -320,7 +320,8 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
 
     onCommandButton : function(cmd) {
         var me = this;
-        
+        var file = "";
+
         if (cmd == "undelete") {
             file = prompt(_("Optional - Enter file or directory to undelete"), "");
         }

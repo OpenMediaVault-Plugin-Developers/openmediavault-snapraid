@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014
+# Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 14:37+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "드라이브 탭 버튼 설명"
 
 msgid "Devices"
-msgstr ""
+msgstr "장치"
 
 msgid "Diff"
 msgstr "비교"
@@ -93,7 +93,7 @@ msgid "Diff Script Settings"
 msgstr "비교 스크립트 설정"
 
 msgid "Down"
-msgstr ""
+msgstr "내리기"
 
 msgid "Drive"
 msgstr "드라이브"
@@ -133,11 +133,14 @@ msgstr "제외"
 msgid "Fix"
 msgstr "수리"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "포함"
 
 msgid "Info"
-msgstr ""
+msgstr "정보"
 
 msgid "Information"
 msgstr "정보"
@@ -161,6 +164,9 @@ msgstr "이름"
 
 msgid "No Hidden"
 msgstr "숨김 제외"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "패리티"
@@ -196,7 +202,7 @@ msgid "Run Scrub"
 msgstr "점검 실행"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "점검"
@@ -244,7 +250,7 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "규칙의 제외 또는 포함 여부를 지정합니다."
 
 msgid "Spin"
-msgstr ""
+msgstr "Spin"
 
 msgid "Status"
 msgstr "상태"
@@ -266,13 +272,16 @@ msgid "This volume has already been added."
 msgstr "볼륨이 이미 추가되었습니다."
 
 msgid "Tools"
+msgstr "도구"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."
 msgstr "일 단위."
 
 msgid "Up"
-msgstr ""
+msgstr "올리기"
 
 msgid "Update the pool."
 msgstr "Pool 갱신."

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 14:37+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "Description of Buttons on Drives tab"
 
 msgid "Devices"
-msgstr ""
+msgstr "Devices"
 
 msgid "Diff"
 msgstr "Diff"
@@ -93,7 +93,7 @@ msgid "Diff Script Settings"
 msgstr "Diff Script Settings"
 
 msgid "Down"
-msgstr ""
+msgstr "Down"
 
 msgid "Drive"
 msgstr "Drive"
@@ -133,11 +133,14 @@ msgstr "Exclusion"
 msgid "Fix"
 msgstr "Fix"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Inclusion"
 
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 msgid "Information"
 msgstr "Information"
@@ -161,6 +164,9 @@ msgstr "Name"
 
 msgid "No Hidden"
 msgstr "No Hidden"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "Parity"
@@ -196,7 +202,7 @@ msgid "Run Scrub"
 msgstr "Run Scrub"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "Scrub"
@@ -244,7 +250,7 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "Specify whether the rule is an exclusion or inclusion."
 
 msgid "Spin"
-msgstr ""
+msgstr "Spin"
 
 msgid "Status"
 msgstr "Status"
@@ -266,13 +272,16 @@ msgid "This volume has already been added."
 msgstr "This volume has already been added."
 
 msgid "Tools"
+msgstr "Tools"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."
 msgstr "Units in days."
 
 msgid "Up"
-msgstr ""
+msgstr "Up"
 
 msgid "Update the pool."
 msgstr "Update the pool."

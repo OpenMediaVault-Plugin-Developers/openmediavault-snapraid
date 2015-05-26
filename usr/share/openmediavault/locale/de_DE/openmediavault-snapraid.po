@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Ettore Atalan <atalanttore@googlemail.com>, 2014
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2015
 # Jan Neumann <omv@eingeord.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 15:22+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr "Ein Datenlaufwerk kann kein Paritätslaufwerk sein."
+msgstr "Ein Datenlaufwerk kann nicht ein Paritätslaufwerk sein."
 
 msgid "Add drive"
 msgstr "Laufwerk hinzufügen"
@@ -85,7 +85,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "Beschreibung von Schaltflächen im Reiter Laufwerke"
 
 msgid "Devices"
-msgstr ""
+msgstr "Geräte"
 
 msgid "Diff"
 msgstr "Diff"
@@ -134,6 +134,9 @@ msgstr "Ausschluss"
 msgid "Fix"
 msgstr "Festlegen"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Einbindung"
 
@@ -162,6 +165,9 @@ msgstr "Name"
 
 msgid "No Hidden"
 msgstr "keine Versteckten"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "Parität"
@@ -194,7 +200,7 @@ msgid "Rules"
 msgstr "Regeln"
 
 msgid "Run Scrub"
-msgstr ""
+msgstr "Bereinigung ausführen"
 
 msgid "SMART"
 msgstr ""
@@ -267,6 +273,9 @@ msgid "This volume has already been added."
 msgstr "Dieses Volumen wurde bereits hinzugefügt."
 
 msgid "Tools"
+msgstr "Werkzeuge"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."

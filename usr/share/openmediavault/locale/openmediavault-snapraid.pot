@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,6 +119,9 @@ msgstr ""
 msgid "Fix"
 msgstr ""
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr ""
 
@@ -144,6 +147,9 @@ msgid "Name"
 msgstr ""
 
 msgid "No Hidden"
+msgstr ""
+
+msgid "Optional - Enter file or directory to undelete"
 msgstr ""
 
 msgid "Parity"
@@ -249,6 +255,9 @@ msgid "This volume has already been added."
 msgstr ""
 
 msgid "Tools"
+msgstr ""
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."

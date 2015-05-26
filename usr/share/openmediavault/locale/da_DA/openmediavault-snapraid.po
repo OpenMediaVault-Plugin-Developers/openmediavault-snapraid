@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 14:37+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/openmediavault-snapraid/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Kontroller"
 msgid ""
 "Checks all the files and the redundancy data. All the files are hashed and "
 "compared with the snapshot saved in the previous 'sync' command."
-msgstr "Kontroller alle filer og redundans data. Alle filer bliver hashed og sammenlignet med det snapshot, der blev gemt ved sidste 'synk' kommando."
+msgstr "Kontroller alle filer og redundans data. Alle filer bliver hashed og sammenlignet med det snapshot, der blev gemt ved sidste 'sync' kommando."
 
 msgid "Component"
 msgstr "Komponent"
@@ -84,7 +84,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "Beskrivelse af Knapper på Disk fane"
 
 msgid "Devices"
-msgstr ""
+msgstr "Enheder"
 
 msgid "Diff"
 msgstr "Forskel"
@@ -93,7 +93,7 @@ msgid "Diff Script Settings"
 msgstr "Forskel Script Indstillinger"
 
 msgid "Down"
-msgstr ""
+msgstr "Ned"
 
 msgid "Drive"
 msgstr "Disk"
@@ -133,11 +133,14 @@ msgstr "Undtagelse"
 msgid "Fix"
 msgstr "Ret"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Inddragelse"
 
 msgid "Info"
-msgstr ""
+msgstr "Oplysning"
 
 msgid "Information"
 msgstr "Oplysning"
@@ -151,7 +154,7 @@ msgstr "Niveau"
 msgid ""
 "Lists all the files modified from the last 'sync' command that have to "
 "recompute their redundancy data."
-msgstr "Viser alle ændrede filer fra sidste 'synk' kommando, der skal have genberegnet deres redundans data."
+msgstr "Viser alle ændrede filer fra sidste 'sync' kommando, der skal have genberegnet deres redundans data."
 
 msgid "Message"
 msgstr "Besked"
@@ -161,6 +164,9 @@ msgstr "Navn"
 
 msgid "No Hidden"
 msgstr "Ingen Gemte"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "Paritet"
@@ -196,7 +202,7 @@ msgid "Run Scrub"
 msgstr "Kør Udrens"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "Udrens"
@@ -244,13 +250,13 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr " Angiv om reglen er en undtagelse eller inddragelse."
 
 msgid "Spin"
-msgstr ""
+msgstr "Spin"
 
 msgid "Status"
 msgstr "Status"
 
 msgid "Sync"
-msgstr "Synk"
+msgstr "Sync"
 
 msgid "Syslog"
 msgstr "Syslog"
@@ -266,13 +272,16 @@ msgid "This volume has already been added."
 msgstr "Dette drev er allerede blevet tilføjet."
 
 msgid "Tools"
+msgstr "Værktøjer"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."
 msgstr "Enheder i dage."
 
 msgid "Up"
-msgstr ""
+msgstr "Op"
 
 msgid "Update the pool."
 msgstr "Opdater pool."

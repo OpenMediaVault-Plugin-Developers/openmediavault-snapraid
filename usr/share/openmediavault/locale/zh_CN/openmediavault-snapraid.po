@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2013-2014
+# songming <by@songming.me>, 2013-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 15:19+0000\n"
+"Last-Translator: songming <by@songming.me>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -84,7 +84,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "磁盘标签上按键说明"
 
 msgid "Devices"
-msgstr ""
+msgstr "设备"
 
 msgid "Diff"
 msgstr "比较"
@@ -133,11 +133,14 @@ msgstr "排除"
 msgid "Fix"
 msgstr "修复"
 
+msgid "Fix Silent"
+msgstr "修复Silent"
+
 msgid "Inclusion"
 msgstr "包含"
 
 msgid "Info"
-msgstr ""
+msgstr "信息"
 
 msgid "Information"
 msgstr "信息"
@@ -161,6 +164,9 @@ msgstr "名称"
 
 msgid "No Hidden"
 msgstr "隐藏文件选项"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "冗余"
@@ -196,7 +202,7 @@ msgid "Run Scrub"
 msgstr "运行侦测"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "侦测"
@@ -266,6 +272,9 @@ msgid "This volume has already been added."
 msgstr "该卷已经被添加过"
 
 msgid "Tools"
+msgstr "工具"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."

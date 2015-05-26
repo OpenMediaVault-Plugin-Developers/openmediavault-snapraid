@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 14:37+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr "ドライブタブ上のボタンの説明"
 
 msgid "Devices"
-msgstr ""
+msgstr "デバイス"
 
 msgid "Diff"
 msgstr "差分"
@@ -93,7 +93,7 @@ msgid "Diff Script Settings"
 msgstr "Diffスクリプト設定"
 
 msgid "Down"
-msgstr ""
+msgstr "下げる"
 
 msgid "Drive"
 msgstr "ドライブ"
@@ -133,11 +133,14 @@ msgstr "除外"
 msgid "Fix"
 msgstr "修正"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "含むもの"
 
 msgid "Info"
-msgstr ""
+msgstr "情報"
 
 msgid "Information"
 msgstr "情報"
@@ -161,6 +164,9 @@ msgstr "名前"
 
 msgid "No Hidden"
 msgstr "隠さない"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "パリティ"
@@ -196,7 +202,7 @@ msgid "Run Scrub"
 msgstr "スクラブを実行"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "スクラブ"
@@ -244,7 +250,7 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "ルールが除外なのか、含まれるものなのかを指定します。"
 
 msgid "Spin"
-msgstr ""
+msgstr "スピン"
 
 msgid "Status"
 msgstr "状態"
@@ -266,13 +272,16 @@ msgid "This volume has already been added."
 msgstr "このボリュームはすでに追加されています。"
 
 msgid "Tools"
+msgstr "ツール"
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."
 msgstr "1日の単位。"
 
 msgid "Up"
-msgstr ""
+msgstr "上げる"
 
 msgid "Update the pool."
 msgstr "プールをアップデートします。"

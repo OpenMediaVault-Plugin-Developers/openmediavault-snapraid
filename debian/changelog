@@ -1,8 +1,9 @@
-openmediavault-snapraid (1.5) UNRELEASED; urgency=low
+openmediavault-snapraid (1.5) stable; urgency=low
 
   * Add more tools - github issue #8
+  * Update locales
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 26 May 2015 09:04:12 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 26 May 2015 15:09:48 -0500
 
 openmediavault-snapraid (1.4) stable; urgency=low
 

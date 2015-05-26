@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-15 08:39-0500\n"
-"PO-Revision-Date: 2015-05-15 13:39+0000\n"
+"POT-Creation-Date: 2015-05-26 09:37-0500\n"
+"PO-Revision-Date: 2015-05-26 14:37+0000\n"
 "Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -134,6 +134,9 @@ msgstr "Esclusione"
 msgid "Fix"
 msgstr "Ripara"
 
+msgid "Fix Silent"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Inclusione"
 
@@ -162,6 +165,9 @@ msgstr "Nome"
 
 msgid "No Hidden"
 msgstr "No file nascosti"
+
+msgid "Optional - Enter file or directory to undelete"
+msgstr ""
 
 msgid "Parity"
 msgstr "Parity"
@@ -267,6 +273,9 @@ msgid "This volume has already been added."
 msgstr "Questo volume è già stato aggiunto."
 
 msgid "Tools"
+msgstr ""
+
+msgid "Undelete"
 msgstr ""
 
 msgid "Units in days."
