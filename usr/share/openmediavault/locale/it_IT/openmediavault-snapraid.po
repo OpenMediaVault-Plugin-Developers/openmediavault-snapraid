@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Damtux, 2013
+# Marco, 2015
 # Paolo Velati <paolo.velati@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-26 09:37-0500\n"
-"PO-Revision-Date: 2015-05-26 14:37+0000\n"
-"Last-Translator: Aaron Murray <aaron27@ryecoinc.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/openmediavault-snapraid/language/it/)\n"
+"PO-Revision-Date: 2015-11-20 12:38+0000\n"
+"Last-Translator: Marco\n"
+"Language-Team: Italian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -76,7 +77,7 @@ msgid ""
 "Define threshold of files deleted to start the sync-process. default = 0 to "
 "make sure no sync process is started while testing or if there are any "
 "deleted files"
-msgstr ""
+msgstr "Definisci la soglia dei files eliminati perchè inizi il processo di sincronizzazione. Il default è 0 per assicurare che nessun processo di sincronizzazione inizi durante prove o in caso di files eliminati."
 
 msgid "Delete Threshold"
 msgstr "Elimina Soglia"
@@ -85,7 +86,7 @@ msgid "Description of Buttons on Drives tab"
 msgstr ""
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivi"
 
 msgid "Diff"
 msgstr "Diff"
@@ -94,7 +95,7 @@ msgid "Diff Script Settings"
 msgstr "Impostazioni Script Diff"
 
 msgid "Down"
-msgstr ""
+msgstr "Giù"
 
 msgid "Drive"
 msgstr "Disco"
@@ -103,7 +104,7 @@ msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "Disco dove risiede il contenuto del file. Questo file è una lista di files salvati e contiene i dettagli del tuo backup con tutte le somme di controllo per verificare la sua integrità."
 
 msgid "Drive where data is stored."
 msgstr "Disco dove sono salvati i dati"
@@ -111,7 +112,7 @@ msgstr "Disco dove sono salvati i dati"
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr ""
+msgstr "Disco dove sono memorizzati i files di parità che sono necessari per un ripristino dopo un guasto al disco. Per ogni disco di parità può guastarsi un disco dati senza perdite."
 
 msgid "Drives"
 msgstr "Dischi"
@@ -135,13 +136,13 @@ msgid "Fix"
 msgstr "Ripara"
 
 msgid "Fix Silent"
-msgstr ""
+msgstr "Correggi errori silenziosi"
 
 msgid "Inclusion"
 msgstr "Inclusione"
 
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 msgid "Information"
 msgstr "Informazioni"
@@ -167,7 +168,7 @@ msgid "No Hidden"
 msgstr "No file nascosti"
 
 msgid "Optional - Enter file or directory to undelete"
-msgstr ""
+msgstr "Opzionale - Inserire file o una directory per ripristinare"
 
 msgid "Parity"
 msgstr "Parity"
@@ -185,7 +186,7 @@ msgid "Prints a status report of the array."
 msgstr "Stampa un rapporto sullo stato dell'array."
 
 msgid "Refresh"
-msgstr ""
+msgstr "Aggiorna"
 
 msgid "Restore the last backup/snapshot."
 msgstr "Recupera l'ultimo backup/snapshot."
@@ -203,7 +204,7 @@ msgid "Run Scrub"
 msgstr "Avvia Pulizia"
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scrub"
 msgstr "Pulisci"
@@ -212,7 +213,7 @@ msgid "Scrub Frequency"
 msgstr "Frequenza Pulizia"
 
 msgid "Scrub Percentage"
-msgstr ""
+msgstr "Percentuale Scrub"
 
 msgid "Scrub percentage used for diff script."
 msgstr ""
@@ -233,7 +234,7 @@ msgid "Send Mail"
 msgstr "Invia Mail"
 
 msgid "Set to true if you want to scrub after a successful sync"
-msgstr ""
+msgstr "Imposta a Vero se vuoi eseguire uno scrub dopo una sincronizzazione corretta"
 
 msgid "Settings"
 msgstr "Impostazioni"
@@ -245,10 +246,10 @@ msgid "SnapRAID user manual"
 msgstr "manuale utente SnapRAID"
 
 msgid "Snapraid Config Files"
-msgstr ""
+msgstr "File di configurazione Snapraid"
 
 msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr ""
+msgstr "Specificare se la regola è una esclusione o inclusione."
 
 msgid "Spin"
 msgstr ""
@@ -273,16 +274,16 @@ msgid "This volume has already been added."
 msgstr "Questo volume è già stato aggiunto."
 
 msgid "Tools"
-msgstr ""
+msgstr "Strumenti"
 
 msgid "Undelete"
-msgstr ""
+msgstr "Ripristina"
 
 msgid "Units in days."
 msgstr "Unità in giorni."
 
 msgid "Up"
-msgstr ""
+msgstr "Su"
 
 msgid "Update the pool."
 msgstr "Aggiorna l'aggregazione."

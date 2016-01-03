@@ -1,6 +1,7 @@
 openmediavault-snapraid (3.0) stable; urgency=low
 
   * Adapt for OMV 3.0
+  * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 03 Jan 2016 15:34:31 -0600
 
