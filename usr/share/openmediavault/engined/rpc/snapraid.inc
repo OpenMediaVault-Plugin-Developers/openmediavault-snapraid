@@ -4,7 +4,7 @@
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
  * @Copyright Copyright (c) 2010-2012 Ian Moore <imooreyahoo@gmail.com>
- * @copyright Copyright (c) 2013-2015 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
     private function getXPath()
     {
-        return sprintf( "//services/%s", $this->getPluginName() );
+        return sprintf( "/config/services/%s", $this->getPluginName() );
     }
 
     private function getXPathDrives()
@@ -69,7 +69,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
     private function getXPathFstab()
     {
-        return sprintf( "//system/fstab/mntent" );
+        return sprintf( "/config/system/fstab/mntent" );
     }
 
     private function getEventMessagePath()
@@ -125,13 +125,12 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Get configuration object
         $object = $xmlConfig->get( $this->getXPath() );
-        if (is_null($object))
-        {
+        if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPath()
@@ -165,7 +164,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -190,8 +189,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
         // Get the existing configuration object.
         $oldObject = $xmlConfig->get( $this->getXPath() );
-        if (is_null($oldObject))
-        {
+        if (is_null($oldObject)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPath()
@@ -199,7 +197,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         }
 
         // Prepare configuration data
-        $object = array(
+        $object = [
             "blocksize"    => intval($params['blocksize']),
             "autosave"     => intval($params['autosave']),
             "percentscrub" => intval($params['percentscrub']),
@@ -213,21 +211,19 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "scrubfreq"    => intval($params['scrubfreq']),
             "delthreshold" => intval($params['delthreshold']),
             "scrubpercent" => intval($params['scrubpercent']),
-            "drives"       => isset($oldObject['drives']) ? $oldObject['drives'] : array(),
-            "rules"        => isset($oldObject['rules']) ? $oldObject['rules'] : array()
-        );
+            "drives"       => isset($oldObject['drives']) ? $oldObject['drives'] : [],
+            "rules"        => isset($oldObject['rules']) ? $oldObject['rules'] : []
+        ];
 
         // Set configuration object
-        if (false === $xmlConfig->replace($this->getXPath(), $object))
-        {
+        if (false === $xmlConfig->replace($this->getXPath(), $object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED,
                 $this->getXPath()
             );
         }
 
-        if ( $params['pool'] && ! file_exists("/media/pool") )
-        {
+        if ( $params['pool'] && ! file_exists("/media/pool") ) {
             mkdir("/media/pool", 0777);
         }
 
@@ -247,7 +243,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -263,8 +259,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
         // Get the configuration object.
         $objects = $xmlConfig->getList( $this->getXPathDrive() );
-        if (is_null($objects))
-        {
+        if (is_null($objects)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPathDrive()
@@ -272,20 +267,19 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         }
 
         // Get filesystem label
-        $result = array();
-        foreach($objects as $objectk => $objectv)
-        {
+        $result = [];
+        foreach($objects as $objectk => $objectv) {
             $xPath = sprintf("%s[uuid='%s']", $this->getXPathFstab(), $objectv['mntentref']);
             $fsname = $xmlConfig->get($xPath);
             $fs = new OMVFilesystem($fsname['fsname']);
-            $object = array(
+            $object = [
                 "uuid"    => $objectv['uuid'],
                 "name"    => $objectv['name'],
                 "label"   => $fs->getLabel(),
                 "content" => array_boolval($objectv, 'content'),
                 "data"   => array_boolval($objectv, 'data'),
                 "parity"  => array_boolval($objectv, 'parity')
-            );
+            ];
             $result[] = $object;
         }
 
@@ -299,7 +293,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
+        );
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
@@ -312,8 +309,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Get the configuration object.
         $xPath = sprintf("%s[uuid='%s']", $this->getXPathDrive(), $params['uuid']);
         $object = $xmlConfig->get($xPath);
-        if (is_null($object))
-        {
+        if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $xPath
@@ -332,7 +328,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         global $xmlConfig;
 
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
+        );
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
@@ -350,8 +349,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $params['name'] = str_replace(" ", "_", $params['name']);
 
         $xPath = sprintf("%s[name='%s']", $this->getXPathDrive(), $params['name']);
-        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) )
-        {
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) ) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("That name has already been used.")
@@ -359,16 +357,14 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         }
 
         $xPath = sprintf("%s[mntentref='%s']", $this->getXPathDrive(), $params['mntentref']);
-        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) )
-        {
+        if ( $params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'] && TRUE === $xmlConfig->exists($xPath) ) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_OBJECT_UNIQUENESS,
                 gettext("This volume has already been added.")
             );
         }
 
-        if ( TRUE === $params['data'] && TRUE === $params['parity'] )
-        {
+        if ( TRUE === $params['data'] && TRUE === $params['parity'] ) {
             throw new OMVException(
                 OMVErrorMsg::E_RPC_INVALID_PARAMS,
                 gettext("A data drive cannot be a parity drive.")
@@ -383,7 +379,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $params['path']  = $deviceDir['dir'];
 
         // Prepare the configuration object.
-        $object = array(
+        $object = [
             "uuid"      => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
             "mntentref" => $params['mntentref'],
             "content"   => array_boolval($params, "content"),
@@ -392,24 +388,20 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             "name"      => $params['name'],
             "label"     => $params['label'],
             "path"      => $params['path']
-        );
+        ];
 
         // Set the configuration object.
         $success = FALSE;
-        if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
-        {
+        if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) {
             // Append object to configuration.
-            $success = $xmlConfig->set($this->getXPathDrives(), array("drive" => $object));
-        }
-        else
-        {
+            $success = $xmlConfig->set($this->getXPathDrives(), [ "drive" => $object ]);
+        } else {
             // Update existing configuration object.
             $xPath = sprintf("%s[uuid='%s']", $this->getXPathDrive(), $params['uuid']);
             $success = $xmlConfig->replace($xPath, $object);
         }
 
-        if (FALSE === $success)
-        {
+        if (FALSE === $success) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED
             );
@@ -429,7 +421,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
     public function deleteDrive($params, $context)
     {
         // Validate the RPC caller context.
-        $this->validateMethodContext($context, array( "role" => OMV_ROLE_ADMINISTRATOR ));
+        $this->validateMethodContext(
+            $context,
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
+        );
 
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, '{
@@ -457,7 +452,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -473,8 +468,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
         // Get configuration data.
         $objects = $xmlConfig->getList( $this->getXPathRule() );
-        if (is_null($objects))
-        {
+        if (is_null($objects)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPathRule()
@@ -493,7 +487,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array("role" => OMV_ROLE_ADMINISTRATOR)
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -507,8 +501,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
           // Get the configuration object.
         $xPath = sprintf("%s[uuid='%s']", $this->getXPathRule(), $params['uuid']);
         $object = $xmlConfig->get($xPath);
-        if (is_null($object))
-        {
+        if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $xPath
@@ -527,7 +520,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -541,8 +534,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             }
         }');
 
-        if ( substr($params['rule'], -2) == "/*" )
-        {
+        if ( substr($params['rule'], -2) == "/*" ) {
             throw new OMVException(
                 OMVErrorMsg::E_MISC_FAILURE,
                 "Illegal rule - cannot end with /*"
@@ -554,30 +546,26 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $params['rule-folder'] = $deviceDir['dir'];
 
         // Prepare configuration data.
-        $object = array(
+        $object = [
             "uuid"        => ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) ? OMVUtil::uuid() : $params['uuid'],
             "mntentref"   => $params['mntentref'],
             "rule-folder" => $params['rule-folder'],
             "rule"        => $params['rule'],
             "rtype"       => intval($params['rtype'])
-        );
+        ];
 
         // Set the configuration data.
         $success = FALSE;
-        if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED'])
-        {
+        if ($params['uuid'] == $GLOBALS['OMV_UUID_UNDEFINED']) {
             // Append object to configuration.
             $success = $xmlConfig->set($this->getXPathRules(), array("rule" => $object));
-        }
-        else
-        {
+        } else {
             // Update existing configuration object.
             $xPath = sprintf("%s[uuid='%s']", $this->getXPathRule(), $params['uuid']);
             $success = $xmlConfig->replace($xPath, $object);
         }
 
-        if (FALSE === $success)
-        {
+        if (FALSE === $success) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_SET_OBJECT_FAILED
             );
@@ -602,7 +590,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -626,7 +614,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         $snapraidConf = "";
@@ -641,11 +629,10 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         OMVUtil::exec("export LANG=C; cat /etc/snapraid-diff.conf", $result);
         $snapraidDiff = implode("\n", $result) . "\n";
 
-        return array(
+        return [
             "snapraidconf" => $snapraidConf,
             "snapraiddiff" => $snapraidDiff
-        );
-
+        ];
     }
 
     public function executeCommand($params, $context)
@@ -655,7 +642,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
         // Validate the parameters of the RPC service method.
@@ -669,8 +656,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
 
         // Get configuration object
         $object = $xmlConfig->get( $this->getXPath() );
-        if (is_null($object))
-        {
+        if (is_null($object)) {
             throw new OMVException(
                 OMVErrorMsg::E_CONFIG_GET_OBJECT_FAILED,
                 $this->getXPath()
@@ -684,18 +670,17 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         $bgStatusFilename = $this->createBgProcStatus();
         $pid = $this->fork();
 
-        if ($pid > 0)    // Parent process.
-        {
+        if ($pid > 0) { // Parent process.
             $this->initializeBgProcStatus($bgStatusFilename, $pid);
             return $bgStatusFilename;
         }
 
-        $commands = array("sync", "scrub", "check", "diff", "status", "fix", "pool",
+        $commands = [
+            "sync", "scrub", "check", "diff", "status", "fix", "pool",
             "up", "down", "smart", "devices", "undelete", "silent"
-        );
+        ];
 
-        if (!in_array($params['command'], $commands))
-        {
+        if (!in_array($params['command'], $commands)) {
             throw new OMVException(
                 OMVErrorMsg::E_MISC_OPERATION_DENIED,
                 sprinf("Unknown command - %s", $params['command'])
@@ -710,8 +695,7 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
-            switch ($params['command'])
-            {
+            switch ($params['command']) {
                 case "scrub":
                     $cmd = sprintf("export LANG=C; %s %s -p %s 2>&1", $this->getProgram(), $params['command'], $object['percentscrub']);
                     break;
@@ -719,10 +703,11 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
                     $cmd = sprintf("export LANG=C; %s -e fix && %s scrub -p0 2>&1", $this->getProgram(), $this->getProgram());
                     break;
                 case "undelete":    // undelete files - snapraid fix -m [-f %FILENAME%]
-                    if (empty($params['file']))
+                    if (empty($params['file'])) {
                         $cmd = sprintf("export LANG=C; %s fix -m 2>&1", $this->getProgram());
-                    else
+                    } else {
                         $cmd = sprintf("export LANG=C; %s fix -m -f %s 2>&1", $this->getProgram(), $params['file']);
+                    }
                     break;
                 default:
                     $cmd = sprintf("export LANG=C; %s %s 2>&1", $this->getProgram(), $params['command']);
@@ -752,17 +737,16 @@ class OMVRpcServiceSnapRaid extends OMVRpcServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext(
             $context,
-            array( "role" => OMV_ROLE_ADMINISTRATOR )
+            [ "role" => OMV_ROLE_ADMINISTRATOR ]
         );
 
-        $output = array();
+        $output = [];
         $cmd = sprintf( "export LANG=C; dpkg-query -W -f='\${Version}' %s", $this->getPluginName() );
         OMVUtil::exec($cmd, $output, $result);
         $object['version'] = $output[0];
 
         return $object;
     }
-
 }
 
 // Register the RPC service.

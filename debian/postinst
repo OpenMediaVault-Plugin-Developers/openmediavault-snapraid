@@ -10,9 +10,6 @@ case "$1" in
         SERVICE_XPATH_NAME="snapraid"
         SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-        DRIVES="drives"
-        RULES="rules"
-
         if ! omv_config_exists "${SERVICE_XPATH}"; then
             omv_config_add_element "/config/services" "${SERVICE_XPATH_NAME}"
             omv_config_add_element "${SERVICE_XPATH}" "blocksize" "256"
@@ -20,68 +17,19 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "nohidden" "0"
             omv_config_add_element "${SERVICE_XPATH}" "pool" "0"
             omv_config_add_element "${SERVICE_XPATH}" "poolname" ""
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/syslog"; then
             omv_config_add_element "${SERVICE_XPATH}" "syslog" "1"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/debug"; then
             omv_config_add_element "${SERVICE_XPATH}" "debug" "0"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/sendmail"; then
             omv_config_add_element "${SERVICE_XPATH}" "sendmail" "1"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/runscrub"; then
             omv_config_add_element "${SERVICE_XPATH}" "runscrub" "1"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/scrubfreq"; then
             omv_config_add_element "${SERVICE_XPATH}" "scrubfreq" "7"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/delthreshold"; then
             omv_config_add_element "${SERVICE_XPATH}" "delthreshold" "0"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/${DRIVES}"; then
-            omv_config_add_element "${SERVICE_XPATH}" "${DRIVES}"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/${RULES}"; then
-            omv_config_add_element "${SERVICE_XPATH}" "${RULES}"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/percentscrub"; then
             omv_config_add_element "${SERVICE_XPATH}" "percentscrub" "12"
-        fi
-
-        if ! omv_config_exists "${SERVICE_XPATH}/scrubpercent"; then
             omv_config_add_element "${SERVICE_XPATH}" "scrubpercent" "100"
+            omv_config_add_element "${SERVICE_XPATH}" "drives" ""
+            omv_config_add_element "${SERVICE_XPATH}" "rules" ""
         fi
 
         omv_install_fixperms
-
-        if dpkg --compare-versions "$2" lt-nl "0.6.3"; then
-            if [ -f "/etc/snapraid.conf" ]; then
-                for OLDFILE in $(cat /etc/snapraid.conf | grep disk | sed 's/.*\(\/media.*\)/\1/g'); do
-                    if [ -f "$OLDFILE/.content" ]; then
-                        mv $OLDFILE/.content $OLDFILE/snapraid.content >/dev/null 2>&1
-                        echo "$OLDFILE/.content renamed successfully!"
-                    fi
-                done
-
-                for OLDPARITY in $(cat /etc/snapraid.conf | grep parity | sed 's/.*\(\/media\/.*\)\/snapraid\.parity/\1/g'); do
-                    if [ -f "$OLDPARITY/parity.file" ]; then
-                        mv $OLDPARITY/parity.file $OLDPARITY/snapraid.parity >/dev/null 2>&1
-                        echo "$OLDPARITY/parity.file renamed successfully!"
-                    fi
-                done
-            fi
-        fi
-
         omv-mkconf snapraid
 
         dpkg-trigger update-fixperms

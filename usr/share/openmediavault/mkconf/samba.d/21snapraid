@@ -6,7 +6,7 @@
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2011 Stephane Bocquet
 # @copyright Copyright (c) 2012 Marcel Beck
-# @copyright Copyright (c) 2013-2015 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,12 +28,12 @@ set -e
 
 OMV_SAMBA_CONFIG=${OMV_SAMBA_CONFIG:-"/etc/samba/smb.conf"}
 
-if [ "$(omv_config_get "//services/snapraid/pool")" != "1" ]; then
+if [ "$(omv_config_get "/config/services/snapraid/pool")" != "1" ]; then
     exit 0
 fi
 
 POOL_DIR="/media/pool"
-pool_name=$(omv_config_get "//services/snapraid/poolname")
+pool_name=$(omv_config_get "/config/services/snapraid/poolname")
 
 cat <<EOF >> ${OMV_SAMBA_CONFIG}
 
