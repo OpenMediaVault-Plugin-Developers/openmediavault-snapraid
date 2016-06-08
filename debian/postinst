@@ -29,7 +29,6 @@ case "$1" in
             omv_config_add_element "${SERVICE_XPATH}" "rules" ""
         fi
 
-        omv_install_fixperms
         omv-mkconf snapraid
 
         dpkg-trigger update-fixperms

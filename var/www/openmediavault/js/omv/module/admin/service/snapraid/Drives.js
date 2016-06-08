@@ -127,11 +127,6 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
         dataIndex : "name",
         stateId   : "name"
     },{
-        text      : _("Label"),
-        sortable  : true,
-        dataIndex : "label",
-        stateId   : "label"
-    },{
         xtype     : "booleaniconcolumn",
         header    : _("Content"),
         sortable  : true,
@@ -256,7 +251,6 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                     fields      : [
                         { name : "uuid", type : "string" },
                         { name : "name", type : "string" },
-                        { name : "label", type : "string" },
                         { name : "content", type : "boolean" },
                         { name : "data", type : "boolean" },
                         { name : "parity", type : "boolean" }

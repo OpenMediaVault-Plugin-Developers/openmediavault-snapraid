@@ -1,0 +1,170 @@
+[{
+	"type": "rpc",
+	"id": "rpc.snapraid.setsettings",
+	"params": {
+		"type": "object",
+		"properties": {
+			"blocksize": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 65535,
+				"required": true
+			},
+			"autosave": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 65535,
+				"required": true
+			},
+			"percentscrub": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 100,
+				"required": true
+			},
+			"nohidden": {
+				"type": "boolean",
+				"required": true
+			},
+			"pool": {
+				"type": "boolean",
+				"required": true
+			},
+			"poolname": {
+				"type": "string",
+				"required": false
+			},
+			"syslog": {
+				"type": "boolean",
+				"required": true
+			},
+			"debug": {
+				"type": "boolean",
+				"required": true
+			},
+			"sendmail": {
+				"type": "boolean",
+				"required": true
+			},
+			"runscrub": {
+				"type": "boolean",
+				"required": true
+			},
+			"scrubfreq": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 365,
+				"required": true
+			},
+			"delthreshold": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 65535,
+				"required": true
+			},
+			"scrubpercent": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 100,
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.snapraid.setdrive",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"mntentref": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"name": {
+			    "type": "string",
+				"required": true
+			},
+			"label": {
+			    "type": "string",
+				"required": true
+			},
+			"path": {
+			    "type": "string",
+				"required": true
+			},
+			"content": {
+			    "type": "boolean",
+				"required": true
+			},
+			"data": {
+			    "type": "boolean",
+				"required": true
+			},
+			"parity": {
+			    "type": "boolean",
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.snapraid.setrule",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"mntentref": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"rule-folder": {
+			    "type": "string",
+				"required": true
+			},
+			"rule": {
+			    "type": "string",
+				"required": true
+			},
+			"rtype": {
+			    "type": "integer",
+				"minimum": 0,
+				"maximum": 1,
+				"required": true
+			}
+		}
+	}
+},{
+	"type": "rpc",
+	"id": "rpc.snapraid.executecommand",
+	"params": {
+		"type": "object",
+		"properties": {
+			"command": {
+				"type": "string",
+				"enum": [
+					"sync", "scrub", "check",
+					"diff", "status", "fix",
+					"pool", "up", "down",
+					"smart", "devices", "undelete",
+					"silent"
+				],
+				"required": true
+			},
+			"file": {
+				"type": "string",
+				"required": false
+			}
+		}
+	}
+}]

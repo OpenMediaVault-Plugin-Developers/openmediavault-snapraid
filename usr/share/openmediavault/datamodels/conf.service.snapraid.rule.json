@@ -1,0 +1,29 @@
+{
+	"type": "config",
+	"id": "conf.service.snapraid.rule",
+	"title": "SnapRAID rule",
+	"queryinfo": {
+		"xpath": "//services/snapraid/rules/rule",
+		"iterable": true,
+		"idproperty": "uuid"
+	},
+	"properties": {
+		"uuid": {
+			"type": "string",
+			"format": "uuidv4"
+		},
+		"mntentref": {
+			"type": "string",
+			"format": "uuidv4"
+		},
+		"rule-folder": {
+			"type": "string"
+		},
+		"rule": {
+			"type": "string"
+		},
+		"rtype": {
+			"type": "integer"
+		}
+	}
+}
