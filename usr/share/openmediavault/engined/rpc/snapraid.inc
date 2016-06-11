@@ -140,7 +140,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             $fsbMngr->assertBackendExistsByType($meObject->get("type"));
             $fsb = $fsbMngr->getBackendByType($meObject->get("type"));
             // Add some mount point information:
-            $params['path'] = $meObject->get("dir"));
+            $params['path'] = $meObject->get("dir");
             // Get the filesystem implementation.
             $fs = $fsb->getImpl($meObject->get("fsname"));
             if (!is_null($fs) && $fs->exists()) {

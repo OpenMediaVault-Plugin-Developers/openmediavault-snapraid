@@ -30,7 +30,7 @@ class OMVModuleSnapRaid extends \OMV\Engine\Module\ServiceAbstract
     public function applyConfig()
     {
         $cmd = new \OMV\System\Process("omv-mkconf", "snapraid");
-        $cmd->setRedirect2to1(TRUE);
+        $cmd->setRedirect2to1();
         $cmd->execute();
     }
 
@@ -38,17 +38,17 @@ class OMVModuleSnapRaid extends \OMV\Engine\Module\ServiceAbstract
     {
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
-            "org.openmediavault.services.snapraid",
+            "org.openmediavault.conf.service.snapraid",
             [ $this, "setDirty" ]
         );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.drive",
+            "org.openmediavault.conf.service.snapraid.drive",
             [ $this, "setDirty" ]
         );
         $dispatcher->addListener(
             OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
-            "org.openmediavault.services.snapraid.rule",
+            "org.openmediavault.conf.service.snapraid.rule",
             [ $this, "setDirty" ]
         );
     }
