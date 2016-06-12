@@ -120,7 +120,7 @@ index=1
 while [ ${index} -le ${count} ]; do
 
     rtype=$(omv_config_get "${RULES}[position()=${index}]/rtype")
-    rule=$(omv_config_get "${RULES}[position()=${index}]/rule")
+    rule=$(omv_config_get "${RULES}[position()=${index}]/rule1")
     rulefolder=$(omv_config_get "${RULES}[position()=${index}]/rule-folder")
 
     if [ "${rule}" != "" ]; then

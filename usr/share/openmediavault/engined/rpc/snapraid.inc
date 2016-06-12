@@ -205,16 +205,16 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, "rpc.snapraid.setshare");
+        $this->validateMethodParams($params, "rpc.snapraid.setrule");
         // Prepare the configuration object.
-        $object = new \OMV\Config\ConfigObject("conf.service.snapraid.share");
+        $object = new \OMV\Config\ConfigObject("conf.service.snapraid.rule");
         // Check for illegal rule
-        if ( substr($params['rule'], -2) == "/*" ) {
+        if ( substr($params['rule1'], -2) == "/*" ) {
             throw new \OMV\Exception(gettext("Illegal rule - cannot end with /*"));
         }
         $db = \OMV\Config\Database::getInstance();
         $meObject = $db->get("conf.system.filesystem.mountpoint", $params["mntentref"]);
-        $params['rule-folder'] = $meObject->get("dir"));
+        $params['rule-folder'] = $meObject->get("dir");
         $object->setAssoc($params);
         // Set the configuration object.
         $db->set($object);
@@ -267,7 +267,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodParams($params, "rpc.snapraid.executecommand");
         // Get the configuration object.
         $db = \OMV\Config\Database::getInstance();
-        $object = $db->get("conf.service.snapraid")
+        $object = $db->get("conf.service.snapraid");
 
         // Create a background process.
         $bgStatusFilename = $this->createBgProcStatus();

@@ -1,8 +1,8 @@
-openmediavault-snapraid (3.2) UNRELEASED; urgency=medium
+openmediavault-snapraid (3.2) stable; urgency=low
 
   * Update for datamodels
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 07 Jun 2016 22:58:50 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 12 Jun 2016 08:39:24 -0500
 
 openmediavault-snapraid (3.1) stable; urgency=low
 

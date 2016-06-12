@@ -19,7 +19,7 @@
 		"rule-folder": {
 			"type": "string"
 		},
-		"rule": {
+		"rule1": {
 			"type": "string"
 		},
 		"rtype": {

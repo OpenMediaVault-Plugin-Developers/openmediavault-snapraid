@@ -90,14 +90,6 @@
 			    "type": "string",
 				"required": true
 			},
-			"label": {
-			    "type": "string",
-				"required": true
-			},
-			"path": {
-			    "type": "string",
-				"required": true
-			},
 			"content": {
 			    "type": "boolean",
 				"required": true
@@ -128,11 +120,7 @@
 				"format": "uuidv4",
 				"required": true
 			},
-			"rule-folder": {
-			    "type": "string",
-				"required": true
-			},
-			"rule": {
+			"rule1": {
 			    "type": "string",
 				"required": true
 			},

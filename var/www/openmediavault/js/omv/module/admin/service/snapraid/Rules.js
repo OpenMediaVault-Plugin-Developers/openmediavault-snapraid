@@ -79,7 +79,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
             })
         },{
             xtype          : "trigger",
-            name           : "rule",
+            name           : "rule1",
             fieldLabel     : _("Rule"),
             allowBlank     : false,
             triggerCls     : "x-form-folder-trigger",
@@ -148,8 +148,8 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
     columns           : [{
         text      : _("Rule"),
         sortable  : true,
-        dataIndex : "rule",
-        stateId   : "rule"
+        dataIndex : "rule1",
+        stateId   : "rule1"
     },{
         text      : _("Rule Type"),
         sortable  : true,
@@ -172,7 +172,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
                     idProperty  : "uuid",
                     fields      : [
                         { name : "uuid", type : "string" },
-                        { name : "rule", type : "string" },
+                        { name : "rule1", type : "string" },
                         { name : "rtype", type : "integer" }
                     ]
                 }),
