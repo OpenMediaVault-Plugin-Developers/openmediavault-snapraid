@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-26 09:37-0500\n"
-"PO-Revision-Date: 2015-05-26 14:37+0000\n"
+"POT-Creation-Date: 2016-06-12 08:42-0500\n"
+"PO-Revision-Date: 2016-06-12 13:42+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -135,6 +135,9 @@ msgstr ""
 msgid "Fix Silent"
 msgstr ""
 
+msgid "Illegal rule - cannot end with /*"
+msgstr ""
+
 msgid "Inclusion"
 msgstr ""
 
@@ -142,9 +145,6 @@ msgid "Info"
 msgstr ""
 
 msgid "Information"
-msgstr ""
-
-msgid "Label"
 msgstr ""
 
 msgid "Level"
@@ -260,14 +260,8 @@ msgstr ""
 msgid "Syslog"
 msgstr ""
 
-msgid "That name has already been used."
-msgstr ""
-
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
-msgstr ""
-
-msgid "This volume has already been added."
 msgstr ""
 
 msgid "Tools"

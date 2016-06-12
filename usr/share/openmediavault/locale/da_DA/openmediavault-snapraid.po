@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-26 09:37-0500\n"
-"PO-Revision-Date: 2015-07-25 19:52+0000\n"
-"Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>\n"
+"POT-Creation-Date: 2016-06-12 08:42-0500\n"
+"PO-Revision-Date: 2016-06-12 13:42+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,6 +136,9 @@ msgstr "Ret"
 msgid "Fix Silent"
 msgstr "Ret Stille"
 
+msgid "Illegal rule - cannot end with /*"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Inddragelse"
 
@@ -144,9 +147,6 @@ msgstr "Oplysning"
 
 msgid "Information"
 msgstr "Oplysning"
-
-msgid "Label"
-msgstr "Label"
 
 msgid "Level"
 msgstr "Niveau"
@@ -261,15 +261,9 @@ msgstr "Sync"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid "That name has already been used."
-msgstr "Dette navn findes allerede."
-
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
 msgstr "Følgende ekskluderer bliver skrevet i snapraid konfiguration fil som standard:"
-
-msgid "This volume has already been added."
-msgstr "Dette drev er allerede blevet tilføjet."
 
 msgid "Tools"
 msgstr "Værktøjer"

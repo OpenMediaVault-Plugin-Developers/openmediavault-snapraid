@@ -5,14 +5,14 @@
 # Translators:
 # Damtux, 2013
 # Marco, 2015
-# Paolo Velati <paolo.velati@gmail.com>, 2014-2015
+# Paolo Velati <paolo.velati@gmail.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-26 09:37-0500\n"
-"PO-Revision-Date: 2015-11-20 12:38+0000\n"
-"Last-Translator: Marco\n"
+"POT-Creation-Date: 2016-06-12 08:42-0500\n"
+"PO-Revision-Date: 2016-06-12 13:42+0000\n"
+"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,7 +83,7 @@ msgid "Delete Threshold"
 msgstr "Elimina Soglia"
 
 msgid "Description of Buttons on Drives tab"
-msgstr ""
+msgstr "Descrizione dei Pulsanti sulla scheda Dischi"
 
 msgid "Devices"
 msgstr "Dispositivi"
@@ -138,6 +138,9 @@ msgstr "Ripara"
 msgid "Fix Silent"
 msgstr "Correggi errori silenziosi"
 
+msgid "Illegal rule - cannot end with /*"
+msgstr ""
+
 msgid "Inclusion"
 msgstr "Inclusione"
 
@@ -146,9 +149,6 @@ msgstr "Info"
 
 msgid "Information"
 msgstr "Informazioni"
-
-msgid "Label"
-msgstr "Etichetta"
 
 msgid "Level"
 msgstr "Livello"
@@ -216,10 +216,10 @@ msgid "Scrub Percentage"
 msgstr "Percentuale Scrub"
 
 msgid "Scrub percentage used for diff script."
-msgstr ""
+msgstr "Percentuale di scrb usata per gli script diff."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr ""
+msgstr "Percentuale di scrb usata per il pulsante scrub sulla scheda Dischi."
 
 msgid "Scrubs the array, checking for silent errors."
 msgstr "Pulisci l'array, controlla gli errori silenziosi."
@@ -252,7 +252,7 @@ msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr "Specificare se la regola è una esclusione o inclusione."
 
 msgid "Spin"
-msgstr ""
+msgstr "Rotazione"
 
 msgid "Status"
 msgstr "Stato"
@@ -263,15 +263,9 @@ msgstr "Sincronizza"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid "That name has already been used."
-msgstr "Questo nome è già stato usato."
-
 msgid ""
 "The following excludes are written to the snapraid config file by default:"
 msgstr "Le seguenti esclusioni vengono scritte nel file di configurazione di snapraid come impostazione predefinita:"
-
-msgid "This volume has already been added."
-msgstr "Questo volume è già stato aggiunto."
 
 msgid "Tools"
 msgstr "Strumenti"
