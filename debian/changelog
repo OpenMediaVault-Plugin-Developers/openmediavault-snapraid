@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.3) stable; urgency=low
+
+  * Update for OMV 3.0.40
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 27 Sep 2016 21:12:10 -0500
+
 openmediavault-snapraid (3.2) stable; urgency=low
 
   * Update for datamodels
