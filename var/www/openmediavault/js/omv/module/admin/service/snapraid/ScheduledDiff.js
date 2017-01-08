@@ -22,7 +22,7 @@ Ext.define('OMV.module.admin.service.snapraid.ScheduledDiff', {
     extend: 'OMV.module.admin.system.cron.Job',
 
     title: _('Create scheduled diff job'),
-    height: 300,
+    height: 130,
     hideResetButton: true,
 
     initComponent: function() {
@@ -30,16 +30,19 @@ Ext.define('OMV.module.admin.service.snapraid.ScheduledDiff', {
 
         var enable = this.findField('enable');
         var username = this.findField('username');
+        var execution = this.findField('execution');
         var command = this.findField('command');
         var comment = this.findField('comment');
 
         enable.hide();
         username.hide();
+        execution.hide();
         command.hide();
         comment.hide();
 
         enable.setValue(true);
         username.setValue('root');
+        execution.setValue('daily');
         comment.setValue('SnapRAID - Scheduled diff.');
         command.setValue('/usr/sbin/omv-snapraid-diff');
     }
