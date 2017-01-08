@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2015
+# kochin <kochinc@outlook.com>, 2014-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-12 08:42-0500\n"
-"PO-Revision-Date: 2016-06-12 13:42+0000\n"
+"POT-Creation-Date: 2017-01-08 09:01-0600\n"
+"PO-Revision-Date: 2017-01-08 15:01+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "Add drive"
 msgstr "新增磁碟"
 
 msgid "Add rule"
-msgstr "新增龜則"
+msgstr "新增規則"
 
 msgid "Auto Save"
 msgstr "自動儲存"
@@ -58,9 +58,8 @@ msgstr "配置"
 msgid "Content"
 msgstr "內容"
 
-msgid ""
-"Creates a virtual view of all the files in your array using symbolic links."
-msgstr "利用符號鏈接來建立一個包含你的陣列中所有檔案之虛擬示意。"
+msgid "Create scheduled diff job"
+msgstr ""
 
 msgid "Data"
 msgstr "資料"
@@ -119,10 +118,7 @@ msgid "Edit drive"
 msgstr "編輯磁碟"
 
 msgid "Edit rule"
-msgstr "編輯龜則"
-
-msgid "Enable Pool"
-msgstr "編輯集用場"
+msgstr "編輯規則"
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隱藏的檔案和目錄。"
@@ -137,7 +133,7 @@ msgid "Fix Silent"
 msgstr "修復靜默錯誤"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "不合法的規則 - 不能以 /* 做結尾"
 
 msgid "Inclusion"
 msgstr "含入"
@@ -174,12 +170,6 @@ msgstr "竒偶性"
 msgid "Please first select a volume."
 msgstr "請首先選擇一個磁碟。"
 
-msgid "Pool"
-msgstr "集用場"
-
-msgid "Pool Share Name"
-msgstr "集用場共享名稱"
-
 msgid "Prints a status report of the array."
 msgstr "列印一份陣列的狀態報告。"
 
@@ -203,6 +193,9 @@ msgstr "執行清理"
 
 msgid "SMART"
 msgstr "SMART"
+
+msgid "Scheduled diff"
+msgstr ""
 
 msgid "Scrub"
 msgstr "清理"
@@ -276,9 +269,6 @@ msgstr "以天數為單位。"
 
 msgid "Up"
 msgstr "開始"
-
-msgid "Update the pool."
-msgstr "更新集用場。"
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"

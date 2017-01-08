@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-12 08:42-0500\n"
-"PO-Revision-Date: 2016-06-12 13:42+0000\n"
+"POT-Creation-Date: 2017-01-08 09:01-0600\n"
+"PO-Revision-Date: 2017-01-08 15:01+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -58,9 +58,8 @@ msgstr "Configuración"
 msgid "Content"
 msgstr "Lista de Contenido"
 
-msgid ""
-"Creates a virtual view of all the files in your array using symbolic links."
-msgstr "Crear una vista virtual de todos los archivos en su array usando enlaces simbolicos."
+msgid "Create scheduled diff job"
+msgstr ""
 
 msgid "Data"
 msgstr "Datos"
@@ -105,7 +104,7 @@ msgid ""
 msgstr "Disco donde se almacena el archivo de contenido. Este archivo es una lista de archivos salvados y contiene el detalle de sus copias, con su correspondiente checksum para verificar la integridad del archivo."
 
 msgid "Drive where data is stored."
-msgstr "Disco donde se almacenan ls datos."
+msgstr "Disco donde se almacenan los datos."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -121,9 +120,6 @@ msgstr "Editar disco"
 msgid "Edit rule"
 msgstr "Editar regla"
 
-msgid "Enable Pool"
-msgstr "Habilitar Pool"
-
 msgid "Excludes hidden files and directories."
 msgstr "Excluir archivos y carpetas ocultos."
 
@@ -137,7 +133,7 @@ msgid "Fix Silent"
 msgstr "Reparar en silencio"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "Regla ilegal - No puede terminar con  /*"
 
 msgid "Inclusion"
 msgstr "Inclusiones"
@@ -174,12 +170,6 @@ msgstr "Paridad"
 msgid "Please first select a volume."
 msgstr "Por favor seleccione primero un volumen"
 
-msgid "Pool"
-msgstr "Pool"
-
-msgid "Pool Share Name"
-msgstr "Nombre del pool compartido"
-
 msgid "Prints a status report of the array."
 msgstr "Generar un informe del estado del Array."
 
@@ -204,6 +194,9 @@ msgstr "Ejecutar reparación"
 msgid "SMART"
 msgstr "SMART"
 
+msgid "Scheduled diff"
+msgstr ""
+
 msgid "Scrub"
 msgstr "Reparar"
 
@@ -211,16 +204,16 @@ msgid "Scrub Frequency"
 msgstr "Frecuencia de la reparación"
 
 msgid "Scrub Percentage"
-msgstr "Porcentaje de Scrub"
+msgstr "Porcentaje de Reparación"
 
 msgid "Scrub percentage used for diff script."
-msgstr "Porcentaje de Scrub usado por el script de diferencias."
+msgstr "Porcentaje de reparación usado por el script de diferencias."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr "Porcentaje de Scrub usado por el botón scrub en la pestaña Discos."
+msgstr "Porcentaje de reparación usado por el botón scrub en la pestaña Discos."
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Reparar el array, Buscando errores silenciosos."
+msgstr "Reparando el array, Buscando errores silenciosos."
 
 msgid "Select a drive ..."
 msgstr "Seleccione un disco ..."
@@ -276,9 +269,6 @@ msgstr "Unidades en dias."
 
 msgid "Up"
 msgstr "Arriba"
-
-msgid "Update the pool."
-msgstr "Actualizar el pool."
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"

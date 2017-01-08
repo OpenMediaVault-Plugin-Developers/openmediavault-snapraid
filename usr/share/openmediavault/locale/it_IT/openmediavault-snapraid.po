@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-12 08:42-0500\n"
-"PO-Revision-Date: 2016-06-12 13:42+0000\n"
+"POT-Creation-Date: 2017-01-08 09:01-0600\n"
+"PO-Revision-Date: 2017-01-08 15:01+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -60,9 +60,8 @@ msgstr "Config"
 msgid "Content"
 msgstr "Contenuti"
 
-msgid ""
-"Creates a virtual view of all the files in your array using symbolic links."
-msgstr "Crea una vista virtuale di tutti i file nel tuo array usando link simbolici."
+msgid "Create scheduled diff job"
+msgstr ""
 
 msgid "Data"
 msgstr "Dati"
@@ -123,9 +122,6 @@ msgstr "Modifica disco"
 msgid "Edit rule"
 msgstr "Modifica regola"
 
-msgid "Enable Pool"
-msgstr "Abilita Aggregazione"
-
 msgid "Excludes hidden files and directories."
 msgstr "Escludi file e cartelle nascoste."
 
@@ -139,7 +135,7 @@ msgid "Fix Silent"
 msgstr "Correggi errori silenziosi"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "Regola illegale - impossibile concludere con /*"
 
 msgid "Inclusion"
 msgstr "Inclusione"
@@ -176,12 +172,6 @@ msgstr "Parity"
 msgid "Please first select a volume."
 msgstr "Per favore prima seleziona un volume."
 
-msgid "Pool"
-msgstr "Aggregazione"
-
-msgid "Pool Share Name"
-msgstr "Nome Condivisione Aggregazione"
-
 msgid "Prints a status report of the array."
 msgstr "Stampa un rapporto sullo stato dell'array."
 
@@ -205,6 +195,9 @@ msgstr "Avvia Pulizia"
 
 msgid "SMART"
 msgstr "SMART"
+
+msgid "Scheduled diff"
+msgstr ""
 
 msgid "Scrub"
 msgstr "Pulisci"
@@ -278,9 +271,6 @@ msgstr "Unità in giorni."
 
 msgid "Up"
 msgstr "Su"
-
-msgid "Update the pool."
-msgstr "Aggiorna l'aggregazione."
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
