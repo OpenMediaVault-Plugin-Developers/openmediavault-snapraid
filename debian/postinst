@@ -16,8 +16,6 @@ case "$1" in
             omv_config_add_key "${SERVICE_XPATH}" "blocksize" "256"
             omv_config_add_key "${SERVICE_XPATH}" "autosave" "0"
             omv_config_add_key "${SERVICE_XPATH}" "nohidden" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "pool" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "poolname" ""
             omv_config_add_key "${SERVICE_XPATH}" "syslog" "1"
             omv_config_add_key "${SERVICE_XPATH}" "debug" "0"
             omv_config_add_key "${SERVICE_XPATH}" "sendmail" "1"
