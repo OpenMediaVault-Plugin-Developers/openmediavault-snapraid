@@ -61,10 +61,6 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
                     "<b>" + _("Fix") + "</b><br />" +
                     _("Restore the last backup/snapshot.") +
                   "</li>" +
-                  "<li>" +
-                    "<b>" + _("Pool") + "</b><br />" +
-                    _("Update the pool.") +
-                  "</li>" +
                   "</ul>" +
                   _("The following excludes are written to the snapraid config file by default:") +
                   "<ul>" +

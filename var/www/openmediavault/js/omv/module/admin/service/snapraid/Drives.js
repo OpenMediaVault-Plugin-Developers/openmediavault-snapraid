@@ -192,10 +192,6 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                 icon     : "images/wrench.png",
                 handler  : Ext.Function.bind(me.onCommandButton, me, [ "silent" ]),
             },{
-                text     : _("Pool"),
-                icon     : "images/grid.png",
-                handler  : Ext.Function.bind(me.onCommandButton, me, [ "pool" ]),
-            },{
                 text     : _("Undelete"),
                 icon     : "images/upload.png",
                 handler  : Ext.Function.bind(me.onCommandButton, me, [ "undelete" ]),

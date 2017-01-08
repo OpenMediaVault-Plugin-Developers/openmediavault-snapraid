@@ -2,7 +2,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2015 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2017 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,25 +33,25 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
         "OMV.data.Store"
     ],
 
-    plugins: [{
-        ptype        : "linkedfields",
-        correlations : [{
-            name : [
-                "poolname"
-            ],
-            conditions : [{
-                name  : "pool",
-                value : true
-            }],
-            properties : [
-                "enabled"
-            ]
-        }]
-    }],
-
     rpcService   : "SnapRaid",
     rpcGetMethod : "getSettings",
     rpcSetMethod : "setSettings",
+
+    getButtonItems: function() {
+        var items = this.callParent(arguments);
+
+        items.push({
+            id: this.getId() + '-scheduled-diff',
+            xtype: 'button',
+            text: _('Scheduled diff'),
+            icon: 'images/wrench.png',
+            iconCls: Ext.baseCSSPrefix + 'btn-icon-16x16',
+            scope: this,
+            handler: Ext.Function.bind(this.onScheduledDiffButton, this)
+        });
+
+        return items;
+    },
 
     getFormItems : function() {
         return [{
@@ -108,17 +108,6 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 fieldLabel : _("No Hidden"),
                 boxLabel   : _("Excludes hidden files and directories."),
                 checked    : false
-            },{
-                xtype      : "checkbox",
-                name       : "pool",
-                fieldLabel : _("Enable Pool"),
-                boxLabel   : _("Creates a virtual view of all the files in your array using symbolic links."),
-                checked    : false
-            },{
-                xtype      : "textfield",
-                name       : "poolname",
-                fieldLabel : _("Pool Share Name"),
-                allowNone  : true
             }]
         },{
             xtype    : "fieldset",
@@ -192,6 +181,12 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 }]
             }]
         }];
+    },
+
+    onScheduledDiffButton: function() {
+        Ext.create('OMV.module.admin.service.snapraid.ScheduledDiff', {
+            uuid: OMV.UUID_UNDEFINED
+        }).show();
     }
 });
 

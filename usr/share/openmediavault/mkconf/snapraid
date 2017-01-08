@@ -3,7 +3,7 @@
 # @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2016 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2013-2017 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,6 @@ OMV_version=$(dpkg-query -W -f='${Version}' ${OMV_packagename})
 
 SNAPRAID_FILENAME="snapraid.conf"
 SNAPRAID_CONFIG="/etc/${SNAPRAID_FILENAME}"
-POOL_DIR="/media/pool"
 
 DIFF_SCRIPT_FILENAME="snapraid-diff.conf"
 DIFF_SCRIPT_CONFIG="/etc/${DIFF_SCRIPT_FILENAME}"
@@ -55,7 +54,6 @@ xmlstarlet sel -t -m "${SERVICE_XPATH}" \
     -i "blocksize != ''" -v "concat('block_size ', blocksize)" -n -b \
     -i "autosave != ''" -v "concat('autosave ', autosave)" -n -b \
     -i "nohidden[. = '1']" -o "nohidden" -n -b \
-    -i "pool[. = '1']" -o "pool ${POOL_DIR}" -b \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${SNAPRAID_CONFIG}
 
 # Add default content
@@ -157,7 +155,11 @@ while [ ${index} -le ${count} ]; do
                 mv "${path}/${SNAPRAID_FILENAME}" "${path}/${SNAPRAID_FILENAME}.bak"
             fi
 
-            cp ${SNAPRAID_CONFIG} ${path}/
+            if [ -f "${SNAPRAID_CONFIG}" ]; then
+                if [ -d "${path}" ]; then
+                    cp ${SNAPRAID_CONFIG} ${path}/
+                fi
+            fi
         fi
     fi
 
@@ -186,10 +188,3 @@ xmlstarlet sel -t -m "${SERVICE_XPATH}" \
     -i "delthreshold != ''" -v "concat('DEL_THRESHOLD=', delthreshold)" -n -b \
     -i "scrubpercent != ''" -v "concat('SCRUB_PERCENT=', scrubpercent)" -n -b \
 ${OMV_CONFIG_FILE} | xmlstarlet unesc >> ${DIFF_SCRIPT_CONFIG}
-
-
-omv-mkconf samba
-
-if [ "$(omv_config_get "${SERVICE_XPATH}/pool")" != "0" ]; then
-    /usr/bin/snapraid pool
-fi

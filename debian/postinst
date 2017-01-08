@@ -43,6 +43,17 @@ case "$1" in
 
         fi
 
+        if dpkg --compare-versions "${2}" lt-nl "3.4"; then
+
+            if omv_config_exists "${SERVICE_XPATH}/pool"; then
+                omv_config_delete "${SERVICE_XPATH}/pool"
+            fi
+            if omv_config_exists "${SERVICE_XPATH}/poolname"; then
+                omv_config_delete "${SERVICE_XPATH}/poolname"
+            fi
+
+        fi
+
         omv-mkconf snapraid
 
         dpkg-trigger update-fixperms

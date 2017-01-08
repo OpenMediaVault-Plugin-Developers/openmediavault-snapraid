@@ -26,14 +26,6 @@
 				"type": "boolean",
 				"required": true
 			},
-			"pool": {
-				"type": "boolean",
-				"required": true
-			},
-			"poolname": {
-				"type": "string",
-				"required": false
-			},
 			"syslog": {
 				"type": "boolean",
 				"required": true
