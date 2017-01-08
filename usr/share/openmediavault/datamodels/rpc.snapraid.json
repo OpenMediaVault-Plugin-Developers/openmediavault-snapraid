@@ -135,7 +135,7 @@
 				"enum": [
 					"sync", "scrub", "check",
 					"diff", "status", "fix",
-					"pool", "up", "down",
+					"up", "down",
 					"smart", "devices", "undelete",
 					"silent"
 				],
