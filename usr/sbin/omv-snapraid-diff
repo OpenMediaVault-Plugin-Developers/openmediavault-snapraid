@@ -69,7 +69,7 @@ if [ $SENDMAIL = "false" ]; then
 	return 0
 fi
 
-# add mail footer 
+# add mail footer
 cat >> $TMP_OUTPUT <<EOF
 
 Yours, SnapRAID-diff script
@@ -171,7 +171,7 @@ fi
 OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
 OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
 
-if $DEBUG; then 
+if $DEBUG; then
 	_log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
 	_log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
 fi
@@ -300,9 +300,9 @@ _log "INFO: Checking 'disks' in '$SNAPRAIDCONF'"
 for OMV_DISK in $OMV_SNAPRAID_DISKS; do
 
 	if $DEBUG; then _log "DEBUG: found: OMV_DISK: $OMV_DISK"; fi
-	
+
 	if ! grep $OMV_DISK /etc/mtab > /dev/null 2>&1; then
-	
+
     #if [ ! -b $OMV_DISK ]; then # doesn't work - no block device found :o
         _log "WARN: ERROR: Disk $OMV_DISK was not found or is not mounted!"
         _log "WARN: Sync job cancelled to prevent data loss."
@@ -333,7 +333,7 @@ done
 _log "INFO: SnapRAID DIFF started"
 echo "SnapRAID DIFF started - $(date)" >> $TMP_OUTPUT
 
-# run diff: 
+# run diff:
 # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
 $SNAPRAID_BIN diff 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
 do
@@ -368,7 +368,7 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 
     # YES, check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
     if [ $DEL_COUNT -gt $DEL_THRESHOLD -a $DEL_THRESHOLD -gt 0 ]; then
-    
+
         # YES, lets inform user and not proceed with the sync just in case
         _log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
         _log "INFO: Please run sync manually if this is not an error condition."
@@ -391,7 +391,7 @@ T) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
 		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled. Running SYNC Command."
 		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled. Running SYNC Command" >> $TMP_OUTPUT
 	fi
-	
+
 	# start snapraid SYNC
         _log "INFO: SnapRAID SYNC Job started"
         _log "INFO: ----------------------------------------"
@@ -413,7 +413,8 @@ T) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
             if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
 				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
 				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-               COUNTER=$[$COUNTER + 1]
+               # commenting out next line because it seems to double the count in most cases - see line #275
+               #COUNTER=$[$COUNTER + 1]
                echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
             else
 				_log "INFO: SnapRAID SCRUB Job started"
