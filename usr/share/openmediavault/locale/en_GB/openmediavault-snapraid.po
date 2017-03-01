@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2015-2016
+# Andi Chandler <andi@gowling.com>, 2015-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-08 09:01-0600\n"
-"PO-Revision-Date: 2017-01-08 15:01+0000\n"
+"POT-Creation-Date: 2017-03-01 07:23-0600\n"
+"PO-Revision-Date: 2017-03-01 13:27+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid "Content"
 msgstr "Content"
 
 msgid "Create scheduled diff job"
-msgstr ""
+msgstr "Create scheduled diff job"
 
 msgid "Data"
 msgstr "Data"
@@ -170,6 +170,9 @@ msgstr "Parity"
 msgid "Please first select a volume."
 msgstr "Please first select a volume."
 
+msgid "Prehash+Sync"
+msgstr ""
+
 msgid "Prints a status report of the array."
 msgstr "Prints a status report of the array."
 
@@ -195,7 +198,7 @@ msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled diff"
-msgstr ""
+msgstr "Scheduled diff"
 
 msgid "Scrub"
 msgstr "Scrub"

@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Toshihiro Kan <kansuke4649@gmail.com>, 2014-2016
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014-2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-08 09:01-0600\n"
-"PO-Revision-Date: 2017-01-08 15:01+0000\n"
+"POT-Creation-Date: 2017-03-01 07:23-0600\n"
+"PO-Revision-Date: 2017-03-01 13:27+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid "Content"
 msgstr "コンテンツ"
 
 msgid "Create scheduled diff job"
-msgstr ""
+msgstr "差分ジョブのスケジュールを作成"
 
 msgid "Data"
 msgstr "データ"
@@ -170,6 +170,9 @@ msgstr "パリティ"
 msgid "Please first select a volume."
 msgstr "最初にボリュームを選択してください。"
 
+msgid "Prehash+Sync"
+msgstr ""
+
 msgid "Prints a status report of the array."
 msgstr "アレイのステータスレポートを印刷します。"
 
@@ -195,7 +198,7 @@ msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled diff"
-msgstr ""
+msgstr "差分のスケジュール"
 
 msgid "Scrub"
 msgstr "スクラブ"
