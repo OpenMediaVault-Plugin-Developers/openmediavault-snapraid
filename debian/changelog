@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.6.2) stable; urgency=low
+
+  * Add prehash+sync option
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 01 Mar 2017 07:22:46 -0600
+
 openmediavault-snapraid (3.6.1) stable; urgency=low
 
   * Remove extra counter line from diff script

@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2015 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2017 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -171,6 +171,10 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
                 text     : _("Sync"),
                 icon     : "images/refresh.png",
                 handler  : Ext.Function.bind(me.onCommandButton, me, [ "sync" ]),
+            },{
+                text     : _("Prehash+Sync"),
+                icon     : "images/refresh.png",
+                handler  : Ext.Function.bind(me.onCommandButton, me, [ "sync -h" ]),
             },{
                 text     : _("Scrub"),
                 icon     : "images/erase.png",
