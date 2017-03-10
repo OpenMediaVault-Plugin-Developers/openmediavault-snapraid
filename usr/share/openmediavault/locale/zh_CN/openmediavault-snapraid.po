@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# songming <by@songming.me>, 2013-2015
+# songming <by@songming.me>, 2013-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 07:23-0600\n"
-"PO-Revision-Date: 2017-03-01 13:27+0000\n"
+"POT-Creation-Date: 2017-03-10 09:24-0600\n"
+"PO-Revision-Date: 2017-03-10 15:24+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgid "Content"
 msgstr "校验清单"
 
 msgid "Create scheduled diff job"
-msgstr ""
+msgstr "创建比较计划任务"
 
 msgid "Data"
 msgstr "数据盘"
@@ -133,7 +133,7 @@ msgid "Fix Silent"
 msgstr "修复隐性错误"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "无效规则 - 不能以 /* 结尾"
 
 msgid "Inclusion"
 msgstr "包含"
@@ -170,11 +170,17 @@ msgstr "校验"
 msgid "Please first select a volume."
 msgstr "请先选择卷。"
 
+msgid "Pre-Hash"
+msgstr ""
+
 msgid "Prehash+Sync"
 msgstr ""
 
 msgid "Prints a status report of the array."
 msgstr "显示阵列状态报告。"
+
+msgid "Read all data two times to ensure its integrity."
+msgstr ""
 
 msgid "Refresh"
 msgstr "刷新"
@@ -198,7 +204,7 @@ msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled diff"
-msgstr ""
+msgstr "比较计划"
 
 msgid "Scrub"
 msgstr "侦测"

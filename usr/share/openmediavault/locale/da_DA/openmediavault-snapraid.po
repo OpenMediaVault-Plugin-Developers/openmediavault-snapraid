@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 07:23-0600\n"
-"PO-Revision-Date: 2017-03-01 13:27+0000\n"
+"POT-Creation-Date: 2017-03-10 09:24-0600\n"
+"PO-Revision-Date: 2017-03-10 15:24+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -170,11 +170,17 @@ msgstr "Paritet"
 msgid "Please first select a volume."
 msgstr "Vælg venligst først et drev."
 
+msgid "Pre-Hash"
+msgstr ""
+
 msgid "Prehash+Sync"
 msgstr ""
 
 msgid "Prints a status report of the array."
 msgstr "Viser en status rapport af opstillingen."
+
+msgid "Read all data two times to ensure its integrity."
+msgstr ""
 
 msgid "Refresh"
 msgstr "Genopfrisk"
