@@ -59,6 +59,10 @@
 				"minimum": 0,
 				"maximum": 100,
 				"required": true
+			},
+			"prehash": {
+				"type": "boolean",
+				"required": true
 			}
 		}
 	}

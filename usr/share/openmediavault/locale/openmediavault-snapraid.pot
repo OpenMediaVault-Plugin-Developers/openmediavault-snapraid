@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-01 07:23-0600\n"
+"POT-Creation-Date: 2017-03-10 09:24-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,10 +155,16 @@ msgstr ""
 msgid "Please first select a volume."
 msgstr ""
 
+msgid "Pre-Hash"
+msgstr ""
+
 msgid "Prehash+Sync"
 msgstr ""
 
 msgid "Prints a status report of the array."
+msgstr ""
+
+msgid "Read all data two times to ensure its integrity."
 msgstr ""
 
 msgid "Refresh"

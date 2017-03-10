@@ -29,7 +29,6 @@ case "$1" in
         fi
 
         if dpkg --compare-versions "${2}" lt-nl "3.2"; then
-
             count=$(omv_config_get_count "${SERVICE_XPATH_RULE}");
             index=1;
             while [ ${index} -le ${count} ]; do
@@ -38,18 +37,21 @@ case "$1" in
                 fi
                 index=$(( ${index} + 1 ))
             done;
-
         fi
 
         if dpkg --compare-versions "${2}" lt-nl "3.4"; then
-
             if omv_config_exists "${SERVICE_XPATH}/pool"; then
                 omv_config_delete "${SERVICE_XPATH}/pool"
             fi
             if omv_config_exists "${SERVICE_XPATH}/poolname"; then
                 omv_config_delete "${SERVICE_XPATH}/poolname"
             fi
+        fi
 
+        if dpkg --compare-versions "${2}" lt-nl "3.6.3"; then
+            if ! omv_config_exists "${SERVICE_XPATH}/prehash"; then
+                omv_config_add_key "${SERVICE_XPATH}" "prehash" "0"
+            fi
         fi
 
         omv-mkconf snapraid

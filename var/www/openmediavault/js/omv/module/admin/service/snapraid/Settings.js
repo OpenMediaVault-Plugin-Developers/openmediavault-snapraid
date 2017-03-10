@@ -179,6 +179,15 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                     ptype : "fieldinfo",
                     text  : _("Define threshold of files deleted to start the sync-process. default = 0 to make sure no sync process is started while testing or if there are any deleted files")
                 }]
+            },{
+                xtype      : "checkbox",
+                name       : "prehash",
+                fieldLabel : _("Pre-Hash"),
+                checked    : true,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Read all data two times to ensure its integrity.")
+                }]
             }]
         }];
     },
