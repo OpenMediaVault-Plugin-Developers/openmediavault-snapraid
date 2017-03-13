@@ -363,7 +363,7 @@ _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] -
 
 # set pre-hash option
 if [ $(omv_config_get "/config/services/snapraid/prehash") -eq 1 ]; then
-	prehash="--prehash "
+	prehash=" --prehash"
 else
 	prehash=""
 fi
@@ -409,7 +409,7 @@ T) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
 		# we should eventually grep %
-		$SNAPRAID_BIN ${prehash}sync >> $TMP_OUTPUT
+		$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
 		#wait for the job to finish
 		wait
 
