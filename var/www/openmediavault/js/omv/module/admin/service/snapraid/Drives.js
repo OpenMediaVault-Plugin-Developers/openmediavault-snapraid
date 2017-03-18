@@ -122,6 +122,7 @@ Ext.define("OMV.module.admin.service.snapraid.DriveList", {
     stateful          : true,
     stateId           : "9879057b-b2c0-4c48-a4c1-8c9b4fb54d7b",
     columns           : [{
+        xtype     : "textcolumn",
         text      : _("Name"),
         sortable  : true,
         dataIndex : "name",

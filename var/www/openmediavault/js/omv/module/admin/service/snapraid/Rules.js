@@ -146,11 +146,13 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
     stateful          : true,
     stateId           : "a982a76d-6804-4632-b31b-8b48c0ea6dde",
     columns           : [{
+        xtype     : "textcolumn",
         text      : _("Rule"),
         sortable  : true,
         dataIndex : "rule1",
         stateId   : "rule1"
     },{
+        xtype     : "textcolumn",
         text      : _("Rule Type"),
         sortable  : true,
         dataIndex : "rtype",
