@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.6.7) stable; urgency=low
+
+  * Update for changes in OMV 3.0.68
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 02 Apr 2017 13:20:32 -0500
+
 openmediavault-snapraid (3.6.6) stable; urgency=low
 
   * Improve foreign content handling

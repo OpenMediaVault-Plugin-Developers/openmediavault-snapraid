@@ -194,9 +194,9 @@ fi
 #    </email>
 
 # read CONTENT and PARITY from $SNAPRAIDCONF
-OMV_CONTENT_FILES="$(egrep '^content /media/' $SNAPRAIDCONF | awk '{print $2}')"
+OMV_CONTENT_FILES="$(egrep '^content /(media|srv)/' $SNAPRAIDCONF | awk '{print $2}')"
 PARITY_FILE="$(egrep '^parity /' $SNAPRAIDCONF | awk '{print $2}')"
-OMV_SNAPRAID_DISKS="$(egrep '^disk .* /media/' $SNAPRAIDCONF | awk '{print $3}')"
+OMV_SNAPRAID_DISKS="$(egrep '^disk .* /(media|srv)/' $SNAPRAIDCONF | awk '{print $3}')"
 
 ## INTERNAL TEMP VARS ##
 TMP_DIR="/tmp/snapraid"
