@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.6.8) stable; urgency=low
+
+  * Fix visual format
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 15 May 2017 07:36:47 -0500
+
 openmediavault-snapraid (3.6.7) stable; urgency=low
 
   * Update for changes in OMV 3.0.68
