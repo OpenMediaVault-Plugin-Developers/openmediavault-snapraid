@@ -31,7 +31,7 @@ count=$(omv_config_get_count "${SERVICE_XPATH_RULE}");
 index=1;
 while [ ${index} -le ${count} ]; do
     if omv_config_exists "${SERVICE_XPATH_RULE}[position()=${index}]/rule"; then
-        omv_config_rename "${SERVICE_XPATH_RULE}[position()=${index}]rule" "rule1"
+        omv_config_rename "${SERVICE_XPATH_RULE}[position()=${index}]/rule" "rule1"
     fi
     index=$(( ${index} + 1 ))
 done;
