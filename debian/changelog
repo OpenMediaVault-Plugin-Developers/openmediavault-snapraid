@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.7.0) stable; urgency=low
+
+  * Convert to omv-confdbadm
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 21 Jun 2017 08:09:42 -0500
+
 openmediavault-snapraid (3.6.8) stable; urgency=low
 
   * Fix visual format

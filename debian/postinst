@@ -7,57 +7,19 @@ set -e
 
 case "$1" in
     configure)
-        SERVICE_XPATH_NAME="snapraid"
-        SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
-        SERVICE_XPATH_RULE="${SERVICE_XPATH}/rules/rule"
-
-        if ! omv_config_exists "${SERVICE_XPATH}"; then
-            omv_config_add_node "/config/services" "${SERVICE_XPATH_NAME}"
-            omv_config_add_key "${SERVICE_XPATH}" "blocksize" "256"
-            omv_config_add_key "${SERVICE_XPATH}" "autosave" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "nohidden" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "syslog" "1"
-            omv_config_add_key "${SERVICE_XPATH}" "debug" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "sendmail" "1"
-            omv_config_add_key "${SERVICE_XPATH}" "runscrub" "1"
-            omv_config_add_key "${SERVICE_XPATH}" "scrubfreq" "7"
-            omv_config_add_key "${SERVICE_XPATH}" "delthreshold" "0"
-            omv_config_add_key "${SERVICE_XPATH}" "percentscrub" "12"
-            omv_config_add_key "${SERVICE_XPATH}" "scrubpercent" "100"
-            omv_config_add_node "${SERVICE_XPATH}" "drives" ""
-            omv_config_add_node "${SERVICE_XPATH}" "rules" ""
-        fi
-
-        if dpkg --compare-versions "${2}" lt-nl "3.2"; then
-            count=$(omv_config_get_count "${SERVICE_XPATH_RULE}");
-            index=1;
-            while [ ${index} -le ${count} ]; do
-                if omv_config_exists "${SERVICE_XPATH_RULE}[position()=${index}]/rule"; then
-                    omv_config_rename "${SERVICE_XPATH_RULE}[position()=${index}]rule" "rule1"
-                fi
-                index=$(( ${index} + 1 ))
-            done;
-        fi
-
-        if dpkg --compare-versions "${2}" lt-nl "3.4"; then
-            if omv_config_exists "${SERVICE_XPATH}/pool"; then
-                omv_config_delete "${SERVICE_XPATH}/pool"
-            fi
-            if omv_config_exists "${SERVICE_XPATH}/poolname"; then
-                omv_config_delete "${SERVICE_XPATH}/poolname"
-            fi
-        fi
-
-        if dpkg --compare-versions "${2}" lt-nl "3.6.3"; then
-            if ! omv_config_exists "${SERVICE_XPATH}/prehash"; then
-                omv_config_add_key "${SERVICE_XPATH}" "prehash" "0"
-            fi
-        fi
-
-        omv-mkconf snapraid
-
+        # Activate package triggers.
         dpkg-trigger update-fixperms
         dpkg-trigger update-locale
+
+        # Initialize and migrate configuration database.
+        echo "Updating configuration database ..."
+        omv-confdbadm create "conf.service.snapraid"
+        if [ -n "$2" ]; then
+            omv-confdbadm migrate "conf.service.snapraid" "${2}"
+        fi
+
+        # make config file
+        omv-mkconf snapraid
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
