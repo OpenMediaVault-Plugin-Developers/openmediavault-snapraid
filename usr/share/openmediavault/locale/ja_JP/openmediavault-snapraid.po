@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
 # Toshihiro Kan <kansuke4649@gmail.com>, 2014-2017
@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 09:24-0600\n"
-"PO-Revision-Date: 2017-03-10 15:24+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2017-10-28 08:40-0500\n"
+"PO-Revision-Date: 2017-09-20 00:08+0000\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,7 +171,7 @@ msgid "Please first select a volume."
 msgstr "最初にボリュームを選択してください。"
 
 msgid "Pre-Hash"
-msgstr ""
+msgstr "プレハッシュ"
 
 msgid "Prehash+Sync"
 msgstr "プレハッシュ+同期"
@@ -180,7 +180,7 @@ msgid "Prints a status report of the array."
 msgstr "アレイのステータスレポートを印刷します。"
 
 msgid "Read all data two times to ensure its integrity."
-msgstr ""
+msgstr "完全性を保証するために、すべてのデータを2回読みます。"
 
 msgid "Refresh"
 msgstr "リフレッシュ"
