@@ -44,6 +44,13 @@ SNAPRAID_LOG="/var/log/snapraid.log"
 # needed for omv_config_get command
 . /usr/share/openmediavault/scripts/helper-functions
 
+# declare variables as integers
+declare -i DEL_COUNT=0
+declare -i ADD_COUNT=0
+declare -i MOVE_COUNT=0
+declare -i COPY_COUNT=0
+declare -i UPDATE_COUNT=0
+
 ################################################################
 #####     Functions
 ################################################################

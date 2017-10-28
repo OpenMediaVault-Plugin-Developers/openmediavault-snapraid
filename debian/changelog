@@ -1,3 +1,10 @@
+openmediavault-snapraid (3.7.2) stable; urgency=low
+
+  * Declare counter variables as intergers in diff script
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 28 Oct 2017 08:39:35 -0500
+
 openmediavault-snapraid (3.7.1) stable; urgency=low
 
   * Fix typo
