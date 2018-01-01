@@ -51,6 +51,8 @@ declare -i MOVE_COUNT=0
 declare -i COPY_COUNT=0
 declare -i UPDATE_COUNT=0
 
+declare -i PREHASH_VALUE=0
+
 ################################################################
 #####     Functions
 ################################################################
@@ -369,7 +371,8 @@ _log "INFO: SUMMARY of changes since last sync:"
 _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
 # set pre-hash option
-if [ $(omv_config_get "/config/services/snapraid/prehash") -eq 1 ]; then
+PREHASH_VALUE=$(omv_config_get "/config/services/snapraid/prehash")
+if [ $PREHASH_VALUE -eq 1 ]; then
 	prehash=" --pre-hash"
 else
 	prehash=""
