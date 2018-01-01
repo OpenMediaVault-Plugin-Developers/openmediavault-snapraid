@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.7.3) stable; urgency=low
+
+  * Declare prehash value as an integer
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 01 Jan 2018 09:08:45 -0600
+
 openmediavault-snapraid (3.7.2) stable; urgency=low
 
   * Declare counter variables as intergers in diff script
