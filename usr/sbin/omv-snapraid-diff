@@ -369,7 +369,7 @@ _log "INFO: SUMMARY of changes since last sync:"
 _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
 # set pre-hash option
-if [ $(omv_config_get "/config/services/snapraid/prehash") -eq 1 ]; then
+if [[ $(omv_config_get "/config/services/snapraid/prehash") -eq 1 ]]; then
 	prehash=" --pre-hash"
 else
 	prehash=""
