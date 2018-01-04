@@ -102,7 +102,7 @@ done
 
 # Add dynamic default excludes
 cat <<EOF >> ${SNAPRAID_CONFIG}
-exclude ${SNAPRAID_FILENAME}*
+exclude /${SNAPRAID_FILENAME}*
 EOF
 # Add static default excludes
 cat /etc/default/omv_snapraid_excludes >> ${SNAPRAID_CONFIG}
