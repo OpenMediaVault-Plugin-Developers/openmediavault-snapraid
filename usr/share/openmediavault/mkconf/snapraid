@@ -100,17 +100,12 @@ while [ ${index} -le ${count} ]; do
     index=$(( ${index} + 1 ))
 done
 
-# Add default excludes
+# Add dynamic default excludes
 cat <<EOF >> ${SNAPRAID_CONFIG}
-exclude *.bak
-exclude *.unrecoverable
-exclude /tmp/
-exclude lost+found/
-exclude .content
-exclude aquota.group
-exclude aquota.user
-exclude ${SNAPRAID_FILENAME}*
+exclude /${SNAPRAID_FILENAME}*
 EOF
+# Add static default excludes
+cat /etc/default/omv_snapraid_excludes >> ${SNAPRAID_CONFIG}
 
 # Process rules
 count=$(omv_config_get_count "${RULES}")

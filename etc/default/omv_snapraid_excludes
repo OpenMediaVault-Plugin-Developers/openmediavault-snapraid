@@ -1,0 +1,7 @@
+exclude *.unrecoverable
+exclude lost+found/
+exclude aquota.user
+exclude aquota.group
+exclude /tmp/
+exclude .content
+exclude *.bak
