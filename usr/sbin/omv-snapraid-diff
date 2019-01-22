@@ -458,7 +458,7 @@ T) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
 			   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
 			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
 		fi
-		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Srub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 		_check_success && _rmtmp
 	fi
 else
