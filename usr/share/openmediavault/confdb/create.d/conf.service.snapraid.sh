@@ -37,6 +37,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "sendmail" "1"
     omv_config_add_key "${SERVICE_XPATH}" "runscrub" "1"
     omv_config_add_key "${SERVICE_XPATH}" "scrubfreq" "7"
+    omv_config_add_key "${SERVICE_XPATH}" "updthreshold" "0"
     omv_config_add_key "${SERVICE_XPATH}" "delthreshold" "0"
     omv_config_add_key "${SERVICE_XPATH}" "percentscrub" "12"
     omv_config_add_key "${SERVICE_XPATH}" "scrubpercent" "100"

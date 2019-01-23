@@ -51,6 +51,12 @@
 			"maximum": 365,
 			"default": 7
 		},
+		"updthreshold": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 65535,
+			"default": 0
+		},
 		"delthreshold": {
 			"type": "integer",
 			"minimum": 0,
