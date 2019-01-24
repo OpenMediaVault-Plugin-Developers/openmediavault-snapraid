@@ -26,7 +26,7 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.0.8"
+SCRIPTVERSION="1.0.9"
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
@@ -91,7 +91,7 @@ mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" < $2
 		_log "INFO: Full statusreport sent to '$MAIL'"
 		return 0
 	else
-		_log "WARN: Mail with full statusreport not be sent. There was an error. Please have a look at /var/log/mail.log"
+		_log "WARN: Mail with full statusreport could not be sent. There was an error. Please have a look at /var/log/mail.log"
 		return 1
 	fi
 }
@@ -222,6 +222,7 @@ if $DEBUG; then
 	_log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
 	_log "DEBUG: SCRUB_OLDER_THAN_DAYS: $SCRUB_OLDER_THAN_DAYS"
 	_log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
+	_log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
 fi
 
 SNAPRAID_BIN="$(which snapraid)"
@@ -384,9 +385,35 @@ fi
 # check if files have changed
 if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -gt 0 -o $UPDATE_COUNT -gt 0 ]; then
 
+	UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
 	DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
-	# YES, check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
+	# YES, check if number of updated files exceeds UPD_THRESHOLD and UPD_THRESHOLD is enabled
+	if [ $UPDATE_COUNT -gt $UPD_THRESHOLD -a $UPD_THRESHOLD -gt 0 ]; then
+		
+		# YES, lets inform user and not proceed with the sync just in case
+		_log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
+		_log "INFO: Please run sync manually if this is not an error condition."
+		echo "Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
+		echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
+		
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		_check_success && _rmtmp
+	else
+
+		# NO, update threshold not reached, lets run the sync job
+
+	if [ $UPD_THRESHOLD -gt 0 ] ; then
+	        # There is a UPD_THRESHOLD set, so we're informing the user that the UPDATE_COUNT is below it
+		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD). Running SYNC Command."
+		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD). Running SYNC Command" >> $TMP_OUTPUT
+	else
+	        # UPD_THRESHOLD is disabled, so we reflect this information in email and log
+		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled. Running SYNC Command."
+		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled. Running SYNC Command" >> $TMP_OUTPUT
+	fi
+
+	# Check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
 	if [ $DEL_COUNT -gt $DEL_THRESHOLD -a $DEL_THRESHOLD -gt 0 ]; then
 
 		# YES, lets inform user and not proceed with the sync just in case
@@ -403,8 +430,7 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 
 	if [ $DEL_THRESHOLD -gt 0 ] ; then
 	        # There is a DEL_THRESHOLD set, so we're informing the user that the DEL_COUNT is below it
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUN
-T) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
+		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
 		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command" >> $TMP_OUTPUT
 	else
 	        # DEL_THRESHOLD is disabled, so we reflect this information in email and log

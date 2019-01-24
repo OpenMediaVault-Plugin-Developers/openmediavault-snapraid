@@ -173,6 +173,20 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 }]
             },{
                 xtype         : "numberfield",
+                name          : "updthreshold",
+                fieldLabel    : _("Update Threshold"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 0,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync")
+                }]
+            },{
+                xtype         : "numberfield",
                 name          : "delthreshold",
                 fieldLabel    : _("Delete Threshold"),
                 minValue      : 0,
@@ -183,7 +197,7 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 value         : 0,
                 plugins    : [{
                     ptype : "fieldinfo",
-                    text  : _("Define threshold of files deleted to start the sync-process. default = 0 to make sure no sync process is started while testing or if there are any deleted files")
+                    text  : _("Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync")
                 }]
             }]
         }];
