@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.7.4) stable; urgency=low
+
+  * Add default file for excludes
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 15 Aug 2019 12:54:01 -0500
+
 openmediavault-snapraid (3.7.3) stable; urgency=low
 
   * Declare prehash value as an integer
