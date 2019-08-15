@@ -5,13 +5,13 @@
 # Translators:
 # Damtux, 2013
 # Marco, 2015
-# Paolo Velati <paolo.velati@gmail.com>, 2014-2017
+# Paolo Velati <paolo.velati@gmail.com>, 2014-2018
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-10-28 08:40-0500\n"
-"PO-Revision-Date: 2017-09-19 22:18+0000\n"
+"PO-Revision-Date: 2018-07-09 12:48+0000\n"
 "Last-Translator: Paolo Velati <paolo.velati@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -200,7 +200,7 @@ msgid "Rules"
 msgstr "Regole"
 
 msgid "Run Scrub"
-msgstr "Avvia Pulizia"
+msgstr "Avvia Scrub"
 
 msgid "SMART"
 msgstr "SMART"
@@ -209,22 +209,22 @@ msgid "Scheduled diff"
 msgstr "Diff programmato"
 
 msgid "Scrub"
-msgstr "Pulisci"
+msgstr "Scrub"
 
 msgid "Scrub Frequency"
-msgstr "Frequenza Pulizia"
+msgstr "Frequenza Scrub"
 
 msgid "Scrub Percentage"
 msgstr "Percentuale Scrub"
 
 msgid "Scrub percentage used for diff script."
-msgstr "Percentuale di scrb usata per gli script diff."
+msgstr "Percentuale di scrub usata per gli script diff."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr "Percentuale di scrb usata per il pulsante scrub sulla scheda Dischi."
+msgstr "Percentuale di scrub usata per il pulsante scrub sulla scheda Dischi."
 
 msgid "Scrubs the array, checking for silent errors."
-msgstr "Pulisci l'array, controlla gli errori silenziosi."
+msgstr "Esegui lo scrub dell'array, controlla gli errori silenziosi."
 
 msgid "Select a drive ..."
 msgstr "Seleziona un disco..."
