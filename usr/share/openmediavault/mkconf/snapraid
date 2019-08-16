@@ -86,7 +86,7 @@ while [ ${index} -le ${count} ]; do
         fi
 
         if [ "${parity}" -eq "1" ]; then
-            countp=$(( ${countp} + 1 ))
+            countp=$((countp+1))
 
             if [ "${countp}" -le 6 ]; then
                 if [ "${countp}" != "1" ]; then
@@ -99,7 +99,7 @@ while [ ${index} -le ${count} ]; do
         echo >> ${SNAPRAID_CONFIG}
     fi
 
-    index=$(( ${index} + 1 ))
+    index=$((index+1))
 done
 
 # Add dynamic default excludes
@@ -107,8 +107,9 @@ cat <<EOF >> ${SNAPRAID_CONFIG}
 exclude /${SNAPRAID_FILENAME}*
 EOF
 # Add static default excludes
-touch ${EXCLUDES}
-cat ${EXCLUDES} >> ${SNAPRAID_CONFIG}
+if [ -f "${EXCLUDES}" ]; then
+    cat ${EXCLUDES} >> ${SNAPRAID_CONFIG}
+fi
 
 # Process rules
 count=$(omv_config_get_count "${RULES}")
@@ -131,7 +132,7 @@ while [ ${index} -le ${count} ]; do
         fi
     fi
 
-    index=$(( ${index} + 1 ))
+    index=$((index+1))
 done
 
 # backup snapraid.conf
@@ -161,7 +162,7 @@ while [ ${index} -le ${count} ]; do
         fi
     fi
 
-    index=$(( ${index} + 1 ))
+    index=$((index+1))
 done
 
 
