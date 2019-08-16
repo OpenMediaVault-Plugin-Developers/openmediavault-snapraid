@@ -42,7 +42,7 @@ RULES="${SERVICE_XPATH}/rules/rule"
 
 PLUGIN_VERSION="$(dpkg -l | grep $OMV_packagename-snapraid | awk '{print $3}')"
 
-EXCLUDES="/etc/default/omv_snapraid_excludes"
+EXCLUDES="/etc/default/openmediavault-snapraid"
 
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
