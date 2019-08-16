@@ -26,8 +26,12 @@ set -e
 SERVICE_XPATH_NAME="snapraid"
 SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
 
-if ! omv_config_exists "${SERVICE_XPATH}/updthresh"; then
-    omv_config_add_key "${SERVICE_XPATH}" "updthresh" "0"
+if ! omv_config_exists "${SERVICE_XPATH}/updthreshold"; then
+    omv_config_add_key "${SERVICE_XPATH}" "updthreshold" "0"
+fi
+
+if omv_config_exists "${SERVICE_XPATH}/updthresh"; then
+    omv_config_delete "${SERVICE_XPATH}/updthresh"
 fi
 
 exit 0

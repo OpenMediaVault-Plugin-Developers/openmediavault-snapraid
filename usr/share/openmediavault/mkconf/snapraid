@@ -42,6 +42,8 @@ RULES="${SERVICE_XPATH}/rules/rule"
 
 PLUGIN_VERSION="$(dpkg -l | grep $OMV_packagename-snapraid | awk '{print $3}')"
 
+EXCLUDES="/etc/default/omv_snapraid_excludes"
+
 # Create snapraid config file
 cat <<EOF > ${SNAPRAID_CONFIG}
 # this file was automatically generated from
@@ -105,7 +107,8 @@ cat <<EOF >> ${SNAPRAID_CONFIG}
 exclude /${SNAPRAID_FILENAME}*
 EOF
 # Add static default excludes
-cat /etc/default/omv_snapraid_excludes >> ${SNAPRAID_CONFIG}
+touch ${EXCLUDES}
+cat ${EXCLUDES} >> ${SNAPRAID_CONFIG}
 
 # Process rules
 count=$(omv_config_get_count "${RULES}")
