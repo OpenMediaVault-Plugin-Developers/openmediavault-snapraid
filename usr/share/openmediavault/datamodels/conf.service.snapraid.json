@@ -128,7 +128,7 @@
 								"type": "string",
 								"format": "uuidv4"
 							},
-							"rule-folder": {
+							"rulefolder": {
 								"type": "string"
 							},
 							"rule1": {

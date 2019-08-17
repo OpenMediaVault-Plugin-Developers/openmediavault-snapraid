@@ -5,3 +5,4 @@ exclude aquota.group
 exclude /tmp/
 exclude .content
 exclude *.bak
+exclude /snapraid.conf*

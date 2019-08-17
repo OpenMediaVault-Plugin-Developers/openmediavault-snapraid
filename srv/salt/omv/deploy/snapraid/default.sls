@@ -1,10 +1,6 @@
-#!/bin/sh
-#
 # @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
-# @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-# @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2019 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2019 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,21 +15,28 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-set -e
+{% set config = salt['omv_conf.get']('conf.service.snapraid') %}
 
-. /usr/share/openmediavault/scripts/helper-functions
+configure_snapraid:
+  file.managed:
+    - name: "/etc/snapraid.conf"
+    - source:
+      - salt://{{ slspath }}/files/etc-snapraid_conf.j2
+    - template: jinja
+    - context:
+        config: {{ config | json }}
+    - user: root
+    - group: root
+    - mode: 644
 
-SERVICE_XPATH_NAME="snapraid"
-SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
-SERVICE_XPATH_RULE="${SERVICE_XPATH}/rules/rule"
-
-count=$(omv_config_get_count "${SERVICE_XPATH_RULE}");
-index=1;
-while [ ${index} -le ${count} ]; do
-    if omv_config_exists "${SERVICE_XPATH_RULE}[position()=${index}]/rule"; then
-        omv_config_rename "${SERVICE_XPATH_RULE}[position()=${index}]/rule" "rule1"
-    fi
-    index=$(( ${index} + 1 ))
-done;
-
-exit 0
+configure_snapraid-diff:
+  file.managed:
+    - name: "/etc/snapraid-diff.conf"
+    - source:
+      - salt://{{ slspath }}/files/etc-snapraid-diff_conf.j2
+    - template: jinja
+    - context:
+        config: {{ config | json }}
+    - user: root
+    - group: root
+    - mode: 644

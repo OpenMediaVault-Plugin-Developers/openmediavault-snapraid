@@ -1,0 +1,42 @@
+{{ pillar['headers']['multiline'] }}
+block_size {{ config.blocksize }}
+autosave {{ config.autosave }}
+{%- if config.nohidden | to_bool %}
+nohidden
+{%- endif %}
+{% set count = namespace(a=0) -%}
+{% for drive in config.drives.drive %}
+{%- if drive.path | length > 0 -%}
+#####################################################################
+# OMV-Name: {{ drive.name }}  Drive Label: {{ drive.label }}
+{%- if drive.content | to_bool %}
+content {{ drive.path }}/snapraid.content
+{%- endif %}
+{%- if drive.data | to_bool %}
+disk {{ drive.name }} {{ drive.path }}
+{%- endif %}
+{%- if drive.parity | to_bool -%}
+{% set count.a = count.a + 1 -%}
+{%- if count.a < 6 -%}
+{%- if count.a > 1 %}
+{{ count.a }}-parity {{ drive.path }}/snapraid.{{ count.a }}-parity
+{%- else %}
+parity {{ drive.path }}/snapraid.parity
+{%- endif %}
+{%- endif %}
+{%- endif %}
+{%- endif %}
+{% endfor %}
+
+{% include "/etc/default/openmediavault-snapraid" ignore missing %}
+
+{% for rule in config.rules.rule %}
+{%- if rule.rulefolder | length > 0 -%}
+# Rule selected from {{ rule.rulefolder }}
+{%- endif %}
+{%- if rule.rtype | to_bool %}
+include {{ rule.rule1 }}
+{%- else %}
+exclude {{ rule.rule1 }}
+{%- endif %}
+{% endfor %}

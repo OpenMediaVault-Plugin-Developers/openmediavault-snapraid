@@ -1,0 +1,25 @@
+{{ pillar['headers']['multiline'] }}
+{%- if config.syslog | to_bool %}
+SYSLOG=true
+{%- else %}
+SYSLOG=false
+{%- endif %}
+{%- if config.debug | to_bool %}
+DEBUG=true
+{%- else %}
+DEBUG=false
+{%- endif %}
+{%- if config.sendmail | to_bool %}
+SENDMAIL=true
+{%- else %}
+SENDMAIL=false
+{%- endif %}
+{%- if config.runscrub | to_bool %}
+RUN_SCRUB=true
+{%- else %}
+RUN_SCRUB=false
+{%- endif %}
+SCRUB_FREQUENCY_IN_DAYS={{ config.scrubfreq }}
+UPD_THRESHOLD={{ config.updthreshold }}
+DEL_THRESHOLD={{ config.delthreshold }}
+SCRUB_PERCENT={{ config.scrubpercent }}
