@@ -17,6 +17,8 @@ case "$1" in
         if [ -n "$2" ]; then
             omv-confdbadm migrate "conf.service.snapraid" "${2}"
         fi
+
+        omv-salt deploy run --quiet snapraid
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)
