@@ -26,7 +26,7 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.0.9"
+SCRIPTVERSION="1.1.0"
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
@@ -383,13 +383,13 @@ if $DEBUG; then
 fi
 
 # check if files have changed
-if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -gt 0 -o $UPDATE_COUNT -gt 0 ]; then
+if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $COPY_COUNT -gt 0 ] || [ $UPDATE_COUNT -gt 0 ]; then
 
 	UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
 	DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
 	# YES, check if number of updated files exceeds UPD_THRESHOLD and UPD_THRESHOLD is enabled
-	if [ $UPDATE_COUNT -gt $UPD_THRESHOLD -a $UPD_THRESHOLD -gt 0 ]; then
+	if [ $UPDATE_COUNT -gt $UPD_THRESHOLD ] && [ $UPD_THRESHOLD -gt 0 ]; then
 		
 		# YES, lets inform user and not proceed with the sync just in case
 		_log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
@@ -399,9 +399,8 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 		
 		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 		_check_success && _rmtmp
-	else
-
-		# NO, update threshold not reached, lets run the sync job
+	fi
+	# NO, update threshold not reached, lets run the sync job
 
 	if [ $UPD_THRESHOLD -gt 0 ] ; then
 	        # There is a UPD_THRESHOLD set, so we're informing the user that the UPDATE_COUNT is below it
@@ -414,7 +413,7 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 	fi
 
 	# Check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
-	if [ $DEL_COUNT -gt $DEL_THRESHOLD -a $DEL_THRESHOLD -gt 0 ]; then
+	if [ $DEL_COUNT -gt $DEL_THRESHOLD ] && [ $DEL_THRESHOLD -gt 0 ]; then
 
 		# YES, lets inform user and not proceed with the sync just in case
 		_log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
@@ -424,9 +423,8 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 
 		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 		_check_success && _rmtmp
-	else
-
-		# NO, delete threshold not reached, lets run the sync job
+	fi
+	# NO, delete threshold not reached, lets run the sync job
 
 	if [ $DEL_THRESHOLD -gt 0 ] ; then
 	        # There is a DEL_THRESHOLD set, so we're informing the user that the DEL_COUNT is below it
@@ -439,54 +437,51 @@ if [ $DEL_COUNT -gt 0 -o $ADD_COUNT -gt 0 -o $MOVE_COUNT -gt 0 -o $COPY_COUNT -g
 	fi
 
 	# start snapraid SYNC
-		_log "INFO: SnapRAID SYNC Job started"
-		_log "INFO: ----------------------------------------"
-		echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
-		echo "----------------------------------------" >> $TMP_OUTPUT
+	_log "INFO: SnapRAID SYNC Job started"
+	_log "INFO: ----------------------------------------"
+	echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
+	echo "----------------------------------------" >> $TMP_OUTPUT
 
-		# we should eventually grep %
-		$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
-		#wait for the job to finish
-		wait
+	# we should eventually grep %
+	$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
+	#wait for the job to finish
+	wait
 
-		_log "INFO: ----------------------------------------"
-		_log "INFO: SnapRAID SYNC Job finished"
-		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
-		echo "----------------------------------------" >> $TMP_OUTPUT
+	_log "INFO: ----------------------------------------"
+	_log "INFO: SnapRAID SYNC Job finished"
+	echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
+	echo "----------------------------------------" >> $TMP_OUTPUT
 
-		# start snapraid SCRUB
-		if [ $RUN_SCRUB = "true" ]; then
-			if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-			   # commenting out next line because it seems to double the count in most cases - see line #275
-			   #COUNTER=$[$COUNTER + 1]
-			   echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-			else
-				_log "INFO: SnapRAID SCRUB Job started"
-				_log "INFO: ----------------------------------------"
-				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-				$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
-
-				# wait for the job to finish
-				wait
-
-			   # Reset counter
-			   echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-
-			   _log "INFO: ----------------------------------------"
-				_log "INFO: SnapRAID SCRUB Job finished"
-				echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-			fi
+	# start snapraid SCRUB
+	if [ $RUN_SCRUB = "true" ]; then
+		if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
+			_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
+			echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
+			echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
 		else
-			   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
-			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+			_log "INFO: SnapRAID SCRUB Job started"
+			_log "INFO: ----------------------------------------"
+			echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
+			echo "----------------------------------------" >> $TMP_OUTPUT
+			$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
+
+			# wait for the job to finish
+			wait
+
+			# Reset counter
+			echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+
+			_log "INFO: ----------------------------------------"
+			_log "INFO: SnapRAID SCRUB Job finished"
+			echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
+			echo "----------------------------------------" >> $TMP_OUTPUT
 		fi
-		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
+	else
+		   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
+		   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
 	fi
+	_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	_check_success && _rmtmp
 else
 	# NO, so lets log it and exit
 	_log "INFO: No change detected. Nothing to do"
