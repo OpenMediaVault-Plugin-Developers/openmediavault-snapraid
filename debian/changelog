@@ -1,3 +1,9 @@
+openmediavault-snapraid (3.7.7) stable; urgency=low
+
+  * Fix diff script bugs
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 18 Aug 2019 12:26:29 -0500
+
 openmediavault-snapraid (3.7.6) stable; urgency=low
 
   * Create default file
