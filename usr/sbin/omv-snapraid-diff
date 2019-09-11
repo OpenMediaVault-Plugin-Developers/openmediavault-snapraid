@@ -1,11 +1,13 @@
 #!/bin/bash
+
 #######################################################################
 # this is a helper script that keeps snapraid parity info in sync with
 # your data. Here's how it works:
 #   1) it first calls diff to figure out if the parity info is out of sync
 #   2) if there are changed files (i.e. new, changed, moved or removed),
 #         it then checks how many files were removed.
-#   3) if the deleted files exceed X (configurable), it triggers an
+#   3) if the deleted files exceed X (configurable), or updated files exceed
+#	   Y (configurable), it triggers an
 #         alert email and stops. (in case of accidental deletions)
 #   4) otherwise, it will call sync.
 #   5) when sync finishes, it sends an email with the output to user.
@@ -26,7 +28,12 @@
 #
 ################################################################
 
-SCRIPTVERSION="1.1.0"
+# Changes from v 1.1.0: Fix deleted and updated files logic
+SCRIPTVERSION="1.2.0"
+
+# Set error count variable
+# 0 for no thresholds exceeded; 1 for update threshold exceeded; 2 for delete threshold exceeded; 3 for both exceeded
+declare -i UPD_DEL_CHECK=0
 
 # Set path to snapraid.conf
 SNAPRAIDCONF="/etc/snapraid.conf"
@@ -365,9 +372,6 @@ MOVE_COUNT=$(grep -w '^ \{1,\}[0-9]* moved$' $TMP_OUTPUT | sed 's/^ *//g' | cut 
 COPY_COUNT=$(grep -w '^ \{1,\}[0-9]* copied$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
 UPDATE_COUNT=$(grep -w '^ \{1,\}[0-9]* updated$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
 
-# added for debugging
-#DEL_COUNT=42
-
 _log "INFO: SUMMARY of changes since last sync:"
 _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
@@ -388,99 +392,116 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 	UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
 	DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
-	# YES, check if number of updated files exceeds UPD_THRESHOLD and UPD_THRESHOLD is enabled
-	if [ $UPDATE_COUNT -gt $UPD_THRESHOLD ] && [ $UPD_THRESHOLD -gt 0 ]; then
-		
-		# YES, lets inform user and not proceed with the sync just in case
-		_log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
-		_log "INFO: Please run sync manually if this is not an error condition."
-		echo "Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
-		echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
-		
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
-	fi
-	# NO, update threshold not reached, lets run the sync job
+	# New Logic for v 1.2.0 - check whether update threshold is enabled or not
+	if [ $UPD_THRESHOLD -gt 0 ]; then
+		# Update threshold is enabled; check if count exceeds threshold
+		if [ $UPDATE_COUNT -gt $UPD_THRESHOLD ]; then
+			# Too many files updated; inform user and don't proceed with sync
+			_log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
+			_log "INFO: Please run sync manually if this is not an error condition."
+			echo "Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
+			echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
 
-	if [ $UPD_THRESHOLD -gt 0 ] ; then
-	        # There is a UPD_THRESHOLD set, so we're informing the user that the UPDATE_COUNT is below it
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD). Running SYNC Command."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD). Running SYNC Command" >> $TMP_OUTPUT
-	else
-	        # UPD_THRESHOLD is disabled, so we reflect this information in email and log
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled. Running SYNC Command."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled. Running SYNC Command" >> $TMP_OUTPUT
-	fi
-
-	# Check if number of deleted files exceed DEL_THRESHOLD and DEL_THRESHOLD is enabled
-	if [ $DEL_COUNT -gt $DEL_THRESHOLD ] && [ $DEL_THRESHOLD -gt 0 ]; then
-
-		# YES, lets inform user and not proceed with the sync just in case
-		_log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
-		_log "INFO: Please run sync manually if this is not an error condition."
-		echo "Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
-		echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
-
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
-	fi
-	# NO, delete threshold not reached, lets run the sync job
-
-	if [ $DEL_THRESHOLD -gt 0 ] ; then
-	        # There is a DEL_THRESHOLD set, so we're informing the user that the DEL_COUNT is below it
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD). Running SYNC Command" >> $TMP_OUTPUT
-	else
-	        # DEL_THRESHOLD is disabled, so we reflect this information in email and log
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled. Running SYNC Command."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled. Running SYNC Command" >> $TMP_OUTPUT
-	fi
-
-	# start snapraid SYNC
-	_log "INFO: SnapRAID SYNC Job started"
-	_log "INFO: ----------------------------------------"
-	echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
-	echo "----------------------------------------" >> $TMP_OUTPUT
-
-	# we should eventually grep %
-	$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
-	#wait for the job to finish
-	wait
-
-	_log "INFO: ----------------------------------------"
-	_log "INFO: SnapRAID SYNC Job finished"
-	echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
-	echo "----------------------------------------" >> $TMP_OUTPUT
-
-	# start snapraid SCRUB
-	if [ $RUN_SCRUB = "true" ]; then
-		if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-			_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-			echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-			echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+			# Increment check variable
+			UPD_DEL_CHECK=$((UPD_DEL_CHECK+1))
 		else
-			_log "INFO: SnapRAID SCRUB Job started"
-			_log "INFO: ----------------------------------------"
-			echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
-			echo "----------------------------------------" >> $TMP_OUTPUT
-			$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
-
-			# wait for the job to finish
-			wait
-
-			# Reset counter
-			echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-
-			_log "INFO: ----------------------------------------"
-			_log "INFO: SnapRAID SCRUB Job finished"
-			echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
-			echo "----------------------------------------" >> $TMP_OUTPUT
+			# Update threshold is set but not exceeded.  Inform user that UPDATE_COUNT is below threshold and allow to proceed
+			_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)."
+			echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)." >> $TMP_OUTPUT
 		fi
 	else
-		   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
-		   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+		# UPD_THRESHOLD is disabled, so we reflect this information in email and log
+		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled."
+		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled." >> $TMP_OUTPUT
 	fi
-	_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+
+	# New Logic for v 1.2.0 - check whether delete threshold is enabled or not
+	if [ $DEL_THRESHOLD -gt 0 ]; then
+		# Delete threshold is enabled; check if count exceeds threshold
+		if [ $DEL_COUNT -gt $DEL_THRESHOLD ]; then
+			# Too many files deleted; inform user and don't proceed with sync
+			_log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
+			_log "INFO: Please run sync manually if this is not an error condition."
+			echo "Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
+			echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
+
+			# Increment check variable
+			UPD_DEL_CHECK=$((UPD_DEL_CHECK+2))
+		else
+			# Delete threshold is set but not exceeded.  Inform user that DEL_COUNT is below threshold and allow to proceed
+			_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)."
+			echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)." >> $TMP_OUTPUT
+		fi
+	else
+		# DEL_THRESHOLD is disabled, so we reflect this information in email and log
+		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled."
+		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled." >> $TMP_OUTPUT
+	fi
+
+	# Proceed with sync if no check errors
+	if [ $UPD_DEL_CHECK -eq 0 ]; then
+				# start snapraid SYNC
+		_log "INFO: "
+		_log "INFO: SnapRAID SYNC Job started"
+		_log "INFO: ----------------------------------------"
+		echo "" >> $TMP_OUTPUT
+		echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
+		echo "----------------------------------------" >> $TMP_OUTPUT
+
+		# we should eventually grep %
+		$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
+		#wait for the job to finish
+		wait
+
+		_log "INFO: ----------------------------------------"
+		_log "INFO: SnapRAID SYNC Job finished"
+		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
+		echo "----------------------------------------" >> $TMP_OUTPUT
+
+		# start snapraid SCRUB
+		if [ $RUN_SCRUB = "true" ]; then
+			if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
+				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
+				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
+				echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+			else
+				_log "INFO: SnapRAID SCRUB Job started"
+				_log "INFO: ----------------------------------------"
+				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
+				echo "----------------------------------------" >> $TMP_OUTPUT
+				$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
+
+				# wait for the job to finish
+				wait
+
+				# Reset counter
+				echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+
+				_log "INFO: ----------------------------------------"
+				_log "INFO: SnapRAID SCRUB Job finished"
+				echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
+				echo "----------------------------------------" >> $TMP_OUTPUT
+			fi
+		else
+			   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
+			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+		fi
+		
+		# Send success email
+		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	
+	# If update threshold exceeded
+	elif [ $UPD_DEL_CHECK -eq 1 ]; then
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	
+	# If delete threshold exceeded
+	elif [ $UPD_DEL_CHECK -eq 2 ]; then
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+
+	# IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
+	else
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	fi
 	_check_success && _rmtmp
 else
 	# NO, so lets log it and exit
