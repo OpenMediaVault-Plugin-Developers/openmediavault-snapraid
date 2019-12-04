@@ -27,11 +27,13 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
+// require("js/omvextras/window/RootFolderBrowser.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Rule", {
     extend   : "OMV.workspace.window.Form",
     requires : [
-        "OMV.workspace.window.plugin.ConfigObject"
+        "OMV.workspace.window.plugin.ConfigObject",
+        "OmvExtras.window.RootFolderBrowser"
     ],
 
     rpcService   : "SnapRaid",
