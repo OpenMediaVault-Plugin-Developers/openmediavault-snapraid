@@ -82,25 +82,22 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
             name           : "rule1",
             fieldLabel     : _("Rule"),
             allowBlank     : false,
-            triggerCls     : "x-form-folder-trigger",
-            onTriggerClick : function() {
-                // Get the UUID of the selected volume.
-                var field = me.findField("mntentref");
-                var value = field.getValue();
-                if(Ext.isUUID(value)) {
-                    Ext.create("OmvExtras.window.FolderBrowser", {
-                        uuid      : value,
-                        listeners : {
-                            scope  : this,
-                            select : function(wnd, node, path) {
-                                // Set the selected path.
-                                this.setValue(path + "/");
-                            }
-                        }
-                    }).show();
-                } else {
-                    OMV.MessageBox.info(null, _("Please first select a volume."));
+            triggers       : {
+                folder : {
+                    cls     : Ext.baseCSSPrefix + "form-folder-trigger",
+                    handler : "onTriggerClick"
                 }
+            },
+            onTriggerClick : function() {
+                Ext.create("OmvExtras.window.RootFolderBrowser", {
+                    listeners : {
+                        scope  : this,
+                        select : function(wnd, node, path) {
+                            // Set the selected path.
+                            this.setValue(path);
+                        }
+                    }
+                }).show();
             }
         },{
             xtype      : "combo",
