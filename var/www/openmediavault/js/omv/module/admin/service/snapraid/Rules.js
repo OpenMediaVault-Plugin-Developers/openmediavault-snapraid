@@ -88,7 +88,7 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
                 var field = me.findField("mntentref");
                 var value = field.getValue();
                 if(Ext.isUUID(value)) {
-                    Ext.create("OMV.window.FolderBrowser", {
+                    Ext.create("OmvExtras.window.FolderBrowser", {
                         uuid      : value,
                         listeners : {
                             scope  : this,
