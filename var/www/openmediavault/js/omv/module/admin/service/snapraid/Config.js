@@ -56,15 +56,17 @@ Ext.define("OMV.module.admin.service.snapraid.Config", {
 			},
 			items         : [{
 				xtype      : "textarea",
+                                cls        : Ext.baseCSSPrefix + "form-textarea-monospaced",
 				name       : "snapraidconf",
 				fieldLabel : _("snapraid.conf"),
-				readOnly   : true,
+				editable   : false,
 				height     : 250
 			},{
 				xtype      : "textarea",
+                                cls        : Ext.baseCSSPrefix + "form-textarea-monospaced",
 				name       : "snapraiddiff",
 				fieldLabel : _("snapraid-diff.conf"),
-				readOnly   : true,
+				editable   : false,
 				height     : 250
 			}]
 		}];
