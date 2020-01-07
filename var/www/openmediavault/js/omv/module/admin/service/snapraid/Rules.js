@@ -27,13 +27,17 @@
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
 // require("js/omv/data/proxy/Rpc.js")
-// require("js/omvextras/window/RootFolderBrowser.js")
+// require("js/omv/window/FolderBrowser.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Rule", {
     extend   : "OMV.workspace.window.Form",
     requires : [
-        "OMV.workspace.window.plugin.ConfigObject",
-        "OmvExtras.window.RootFolderBrowser"
+        "OMV.workspace.window.plugin.ConfigObject"
+    ],
+    uses: [
+        "OMV.data.Model",
+        "OMV.data.Store",
+        "OMV.window.FolderBrowser"
     ],
 
     rpcService   : "SnapRaid",
@@ -84,22 +88,25 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
             name           : "rule1",
             fieldLabel     : _("Rule"),
             allowBlank     : false,
-            triggers       : {
-                folder : {
-                    cls     : Ext.baseCSSPrefix + "form-folder-trigger",
-                    handler : "onTriggerClick"
-                }
-            },
+            triggerCls     : "x-form-folder-trigger",
             onTriggerClick : function() {
-                Ext.create("OmvExtras.window.RootFolderBrowser", {
-                    listeners : {
-                        scope  : this,
-                        select : function(wnd, node, path) {
-                            // Set the selected path.
-                            this.setValue(path);
+                // Get the UUID of the selected volume.
+                var field = me.findField("mntentref");
+                var value = field.getValue();
+                if (Ext.isUuid(value)) {
+                    Ext.create("OMV.window.FolderBrowser", {
+                        uuid      : value,
+                        listeners : {
+                            scope  : this,
+                            select : function(wnd, node, path) {
+                                // Set the selected path.
+                                this.setValue(path + "/");
+                            }
                         }
-                    }
-                }).show();
+                    }).show();
+                } else {
+                    OMV.MessageBox.info(null, _("Please first select a volume."));
+                }
             }
         },{
             xtype      : "combo",
