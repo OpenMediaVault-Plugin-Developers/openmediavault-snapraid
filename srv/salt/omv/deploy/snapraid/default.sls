@@ -21,7 +21,7 @@ configure_snapraid:
   file.managed:
     - name: "/etc/snapraid.conf"
     - source:
-      - salt://{{ slspath }}/files/etc-snapraid_conf.j2
+      - salt://{{ tpldir }}/files/etc-snapraid_conf.j2
     - template: jinja
     - context:
         config: {{ config | json }}
@@ -33,7 +33,7 @@ configure_snapraid-diff:
   file.managed:
     - name: "/etc/snapraid-diff.conf"
     - source:
-      - salt://{{ slspath }}/files/etc-snapraid-diff_conf.j2
+      - salt://{{ tpldir }}/files/etc-snapraid-diff_conf.j2
     - template: jinja
     - context:
         config: {{ config | json }}
