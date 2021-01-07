@@ -22,45 +22,45 @@
 // require("js/omv/util/Format.js")
 
 Ext.define("OMV.module.admin.diagnostic.log.plugin.SnapRaid", {
-    extend : "OMV.module.admin.diagnostic.log.plugin.Plugin",
-    alias  : "omv.plugin.diagnostic.log.snapraid",
+    extend: "OMV.module.admin.diagnostic.log.plugin.Plugin",
+    alias: "omv.plugin.diagnostic.log.snapraid",
 
-    id       : "snapraid",
-    text     : _("SnapRAID"),
-    stateful : true,
-    stateId  : "11adf193-e76a-481e-b2c0-13cb308c97c0",
-    columns  : [{
-        text      : _("Date & Time"),
-        sortable  : true,
-        dataIndex : "date",
-        stateId   : "date",
-        flex      : 1
+    id: "snapraid",
+    text: _("SnapRAID"),
+    stateful: true,
+    stateId: "11adf193-e76a-481e-b2c0-13cb308c97c0",
+    columns: [{
+        text: _("Date & Time"),
+        sortable: true,
+        dataIndex: "date",
+        stateId: "date",
+        flex: 1
     },{
-        text      : _("Component"),
-        sortable  : true,
-        dataIndex : "component",
-        stateId   : "component",
-        flex      : 1
+        text: _("Component"),
+        sortable: true,
+        dataIndex: "component",
+        stateId: "component",
+        flex: 1
     },{
-        text      : _("Level"),
-        sortable  : true,
-        dataIndex : "level",
-        stateId   : "level",
-        flex      : 1
+        text: _("Level"),
+        sortable: true,
+        dataIndex: "level",
+        stateId: "level",
+        flex: 1
     },{
-        text      : _("Message"),
-        sortable  : true,
-        dataIndex : "message",
-        stateId   : "message",
-        flex      : 1
+        text: _("Message"),
+        sortable: true,
+        dataIndex: "message",
+        stateId: "message",
+        flex: 1
     }],
     rpcParams : {
-        id : "snapraid"
+        id: "snapraid"
     },
-    rpcFields : [
-        { name : "date", type : "string" },
-        { name : "component", type : "string" },
-        { name : "level", type : "string" },
-        { name : "message", type : "string" },
+    rpcFields: [
+        { name: "date", type: "string" },
+        { name: "component", type: "string" },
+        { name: "level", type: "string" },
+        { name: "message", type: "string" },
     ]
 });
