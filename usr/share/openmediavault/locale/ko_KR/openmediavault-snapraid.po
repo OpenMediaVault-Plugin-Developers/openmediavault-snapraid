@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 08:40-0500\n"
-"PO-Revision-Date: 2017-09-23 20:29+0000\n"
+"POT-Creation-Date: 2021-01-07 16:08-0600\n"
+"PO-Revision-Date: 2021-01-07 22:08+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
@@ -71,10 +71,14 @@ msgid "Debug"
 msgstr "디버그"
 
 msgid ""
-"Define threshold of files deleted to start the sync-process. default = 0 to "
-"make sure no sync process is started while testing or if there are any "
-"deleted files"
-msgstr "동기화 처리를 시작하는 삭제된 파일의 임계값을 정의합니다.<br/>default = 0 to make sure no sync process is started while testing or if there are any deleted files"
+"Define threshold of deleted files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
+
+msgid ""
+"Define threshold of updated files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
 
 msgid "Delete Threshold"
 msgstr "삭제 임계값"
@@ -131,6 +135,12 @@ msgstr "수리"
 
 msgid "Fix Silent"
 msgstr "조용히 수리"
+
+msgid "Hash Size"
+msgstr ""
+
+msgid "Hash size in Bytes"
+msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
 msgstr ""
@@ -278,6 +288,9 @@ msgstr "일 단위."
 
 msgid "Up"
 msgstr "올리기"
+
+msgid "Update Threshold"
+msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"

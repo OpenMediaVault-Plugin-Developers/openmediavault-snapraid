@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
+# aoi summer, 2020
 # songming <by@songming.me>, 2013-2015,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 08:40-0500\n"
-"PO-Revision-Date: 2017-09-19 22:42+0000\n"
+"POT-Creation-Date: 2021-01-07 16:08-0600\n"
+"PO-Revision-Date: 2021-01-07 22:08+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -71,10 +72,14 @@ msgid "Debug"
 msgstr "调试"
 
 msgid ""
-"Define threshold of files deleted to start the sync-process. default = 0 to "
-"make sure no sync process is started while testing or if there are any "
-"deleted files"
-msgstr "定义删除文件启动更新校验进程的阈值，默认值=0以确保更新校验进程不会在测试或删除文件时执行。"
+"Define threshold of deleted files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
+
+msgid ""
+"Define threshold of updated files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
 
 msgid "Delete Threshold"
 msgstr "删除阈值"
@@ -132,6 +137,12 @@ msgstr "修复"
 msgid "Fix Silent"
 msgstr "修复隐性错误"
 
+msgid "Hash Size"
+msgstr ""
+
+msgid "Hash size in Bytes"
+msgstr ""
+
 msgid "Illegal rule - cannot end with /*"
 msgstr "无效规则 - 不能以 /* 结尾"
 
@@ -171,16 +182,16 @@ msgid "Please first select a volume."
 msgstr "请先选择卷。"
 
 msgid "Pre-Hash"
-msgstr ""
+msgstr "预哈希"
 
 msgid "Prehash+Sync"
-msgstr ""
+msgstr "预哈希+同步"
 
 msgid "Prints a status report of the array."
 msgstr "显示阵列状态报告。"
 
 msgid "Read all data two times to ensure its integrity."
-msgstr ""
+msgstr "读取所有数据两次以确保完整性。"
 
 msgid "Refresh"
 msgstr "刷新"
@@ -278,6 +289,9 @@ msgstr "以天为单位。"
 
 msgid "Up"
 msgstr "开始"
+
+msgid "Update Threshold"
+msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"

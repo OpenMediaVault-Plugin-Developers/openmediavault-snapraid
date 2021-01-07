@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-28 08:40-0500\n"
-"PO-Revision-Date: 2017-09-19 21:49+0000\n"
+"POT-Creation-Date: 2021-01-07 16:08-0600\n"
+"PO-Revision-Date: 2021-01-07 22:08+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -73,10 +73,14 @@ msgid "Debug"
 msgstr "Fehlersuche"
 
 msgid ""
-"Define threshold of files deleted to start the sync-process. default = 0 to "
-"make sure no sync process is started while testing or if there are any "
-"deleted files"
-msgstr "Definieren Sie den Schwellwert von gelöschten Dateien ab dem eine Synchronisierung gestartet wird. (Standardwert=0: Stellt sicher, dass keine Synchronisierung gestartet wird während des Testens oder wenn Dateien gelöscht werden)"
+"Define threshold of deleted files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
+
+msgid ""
+"Define threshold of updated files above which not to start the sync process."
+" default = 0 to disable this check and always sync"
+msgstr ""
 
 msgid "Delete Threshold"
 msgstr "Schwellenwert löschen"
@@ -133,6 +137,12 @@ msgstr "Reparieren"
 
 msgid "Fix Silent"
 msgstr "Stille Reparieren"
+
+msgid "Hash Size"
+msgstr ""
+
+msgid "Hash size in Bytes"
+msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Unzulässige Regel - darf nicht mit /* enden"
@@ -280,6 +290,9 @@ msgstr "Einheiten in Tagen."
 
 msgid "Up"
 msgstr "Starten"
+
+msgid "Update Threshold"
+msgstr ""
 
 msgid ""
 "Updates the redundancy information. All the modified files in the disk array"
