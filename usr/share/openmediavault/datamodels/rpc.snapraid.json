@@ -10,6 +10,12 @@
 				"maximum": 65535,
 				"required": true
 			},
+			"hashsize": {
+				"type": "integer",
+				"minimum": 0,
+				"maximum": 65535,
+				"required": true
+			},
 			"autosave": {
 				"type": "integer",
 				"minimum": 0,

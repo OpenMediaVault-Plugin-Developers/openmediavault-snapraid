@@ -1,5 +1,10 @@
 {{ pillar['headers']['multiline'] }}
-block_size {{ config.blocksize }}
+{%- if not config.blocksize == 256 %}
+blocksize {{ config.blocksize }}
+{%- endif %}
+{%- if not config.hashsize == 16 %}
+hashsize {{ config.hashsize }}
+{%- endif %}
 autosave {{ config.autosave }}
 {%- if config.nohidden | to_bool %}
 nohidden

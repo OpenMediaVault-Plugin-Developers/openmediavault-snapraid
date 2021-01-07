@@ -76,6 +76,20 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
                 }]
             },{
                 xtype         : "numberfield",
+                name          : "hashsize",
+                fieldLabel    : _("Hash Size"),
+                minValue      : 0,
+                maxValue      : 65535,
+                allowDecimals : false,
+                allowNegative : false,
+                allowBlank    : false,
+                value         : 16,
+                plugins    : [{
+                    ptype : "fieldinfo",
+                    text  : _("Hash size in Bytes")
+                }]
+            },{
+                xtype         : "numberfield",
                 name          : "autosave",
                 fieldLabel    : _("Auto Save"),
                 minValue      : 0,

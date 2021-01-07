@@ -13,6 +13,12 @@
 			"maximum": 65535,
 			"default": 256
 		},
+		"hashsize": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 65535,
+			"default": 16
+		},
 		"autosave": {
 			"type": "integer",
 			"minimum": 0,
