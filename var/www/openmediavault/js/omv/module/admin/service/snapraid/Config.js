@@ -24,59 +24,59 @@
 Ext.define("OMV.module.admin.service.snapraid.Config", {
     extend: "OMV.workspace.form.Panel",
 
-    rpcService   : "SnapRaid",
-    rpcGetMethod : "getConfig",
+    rpcService: "SnapRaid",
+    rpcGetMethod: "getConfig",
 
-    hideOkButton    : true,
-    hideResetButton : true,
+    hideOkButton: true,
+    hideResetButton: true,
 
-    getButtonItems : function() {
+    getButtonItems: function() {
         var me = this;
         var items = me.callParent(arguments);
         items.push({
-            id       : me.getId() + "-refresh",
-            xtype    : "button",
-            text     : _("Refresh"),
-            icon     : "images/refresh.png",
-            iconCls  : Ext.baseCSSPrefix + "btn-icon-16x16",
-            scope    : me,
-            handler  : function() {
+            id: me.getId() + "-refresh",
+            xtype: "button",
+            text: _("Refresh"),
+            icon: "images/refresh.png",
+            iconCls: Ext.baseCSSPrefix + "btn-icon-16x16",
+            scope: me,
+            handler: function() {
                 me.doReload();
             }
         });
         return items;
     },
 
-    getFormItems : function() {
-		return [{
-			xtype         : "fieldset",
-			title         : _("Snapraid Config Files"),
-			fieldDefaults : {
-				labelSeparator : ""
-			},
-			items         : [{
-				xtype      : "textarea",
-                                cls        : Ext.baseCSSPrefix + "form-textarea-monospaced",
-				name       : "snapraidconf",
-				fieldLabel : _("snapraid.conf"),
-				editable   : false,
-				height     : 250
-			},{
-				xtype      : "textarea",
-                                cls        : Ext.baseCSSPrefix + "form-textarea-monospaced",
-				name       : "snapraiddiff",
-				fieldLabel : _("snapraid-diff.conf"),
-				editable   : false,
-				height     : 250
-			}]
-		}];
-	}
+    getFormItems: function() {
+        return [{
+            xtype: "fieldset",
+            title: _("Snapraid Config Files"),
+            fieldDefaults: {
+                labelSeparator: ""
+            },
+            items: [{
+                xtype: "textarea",
+                cls: Ext.baseCSSPrefix + "form-textarea-monospaced",
+                name: "snapraidconf",
+                fieldLabel: _("snapraid.conf"),
+                editable: false,
+                height: 250
+            },{
+                xtype: "textarea",
+                cls: Ext.baseCSSPrefix + "form-textarea-monospaced",
+                name: "snapraiddiff",
+                fieldLabel: _("snapraid-diff.conf"),
+                editable: false,
+                height: 250
+            }]
+        }];
+    }
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "config",
-    path      : "/service/snapraid",
-    text      : _("Config"),
-    position  : 50,
-    className : "OMV.module.admin.service.snapraid.Config"
+    id: "config",
+    path: "/service/snapraid",
+    text: _("Config"),
+    position: 50,
+    className: "OMV.module.admin.service.snapraid.Config"
 });

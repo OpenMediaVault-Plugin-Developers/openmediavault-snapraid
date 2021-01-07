@@ -30,8 +30,8 @@
 // require("js/omv/window/FolderBrowser.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Rule", {
-    extend   : "OMV.workspace.window.Form",
-    requires : [
+    extend: "OMV.workspace.window.Form",
+    requires: [
         "OMV.workspace.window.plugin.ConfigObject"
     ],
     uses: [
@@ -40,65 +40,65 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
         "OMV.window.FolderBrowser"
     ],
 
-    rpcService   : "SnapRaid",
-    rpcGetMethod : "getRule",
-    rpcSetMethod : "setRule",
-    plugins      : [{
-        ptype : "configobject"
+    rpcService: "SnapRaid",
+    rpcGetMethod: "getRule",
+    rpcSetMethod: "setRule",
+    plugins: [{
+        ptype: "configobject"
     }],
 
-    getFormItems : function() {
+    getFormItems: function() {
         var me = this;
         return [{
-            xtype         : "combo",
-            name          : "mntentref",
-            fieldLabel    : _("Volume"),
-            emptyText     : _("Select a volume ..."),
-            editable      : false,
-            triggerAction : "all",
-            displayField  : "description",
-            valueField    : "uuid",
-            allowNone     : true,
-            allowBlank    : true,
-            store         : Ext.create("OMV.data.Store", {
-                autoLoad : true,
-                model    : OMV.data.Model.createImplicit({
-                    idProperty  : "uuid",
-                    fields      : [
-                        { name : "uuid", type : "string" },
-                        { name : "devicefile", type : "string" },
-                        { name : "description", type : "string" }
+            xtype: "combo",
+            name: "mntentref",
+            fieldLabel: _("Volume"),
+            emptyText: _("Select a volume ..."),
+            editable: false,
+            triggerAction: "all",
+            displayField: "description",
+            valueField: "uuid",
+            allowNone: true,
+            allowBlank: true,
+            store: Ext.create("OMV.data.Store", {
+                autoLoad: true,
+                model: OMV.data.Model.createImplicit({
+                    idProperty: "uuid",
+                    fields: [
+                        { name: "uuid", type: "string" },
+                        { name: "devicefile", type: "string" },
+                        { name: "description", type: "string" }
                     ]
                 }),
-                proxy : {
-                    type    : "rpc",
-                    rpcData : {
-                        service : "ShareMgmt",
-                        method  : "getCandidates"
+                proxy: {
+                    type: "rpc",
+                    rpcData: {
+                        service: "ShareMgmt",
+                        method: "getCandidates"
                     },
-                    appendSortParams : false
+                    appendSortParams: false
                 },
-                sorters : [{
-                    direction : "ASC",
-                    property  : "devicefile"
+                sorters: [{
+                    direction: "ASC",
+                    property: "devicefile"
                 }]
             })
         },{
-            xtype          : "trigger",
-            name           : "rule1",
-            fieldLabel     : _("Rule"),
-            allowBlank     : false,
-            triggerCls     : "x-form-folder-trigger",
-            onTriggerClick : function() {
+            xtype: "trigger",
+            name: "rule1",
+            fieldLabel: _("Rule"),
+            allowBlank: false,
+            triggerCls: "x-form-folder-trigger",
+            onTriggerClick: function() {
                 // Get the UUID of the selected volume.
                 var field = me.findField("mntentref");
                 var value = field.getValue();
                 if (Ext.isUuid(value)) {
                     Ext.create("OMV.window.FolderBrowser", {
-                        uuid      : value,
-                        listeners : {
-                            scope  : this,
-                            select : function(wnd, node, path) {
+                        uuid: value,
+                        listeners: {
+                            scope: this,
+                            select: function(wnd, node, path) {
                                 // Set the selected path.
                                 this.setValue(path + "/");
                             }
@@ -109,26 +109,26 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
                 }
             }
         },{
-            xtype      : "combo",
-            name       : "rtype",
-            fieldLabel : _("Rule Type"),
-            mode       : "local",
-            store      : new Ext.data.SimpleStore({
-                fields  : [ "value", "text" ],
-                data    : [
+            xtype: "combo",
+            name: "rtype",
+            fieldLabel: _("Rule Type"),
+            mode: "local",
+            store: new Ext.data.SimpleStore({
+                fields: [ "value", "text" ],
+                data: [
                     [ 0, _("Exclusion") ],
                     [ 1, _("Inclusion") ]
                 ]
             }),
-            displayField  : "text",
-            valueField    : "value",
-            allowBlank    : false,
-            editable      : false,
-            triggerAction : "all",
-            value         : 0,
-            plugins    : [{
-                ptype : "fieldinfo",
-                text  : _("Specify whether the rule is an exclusion or inclusion.")
+            displayField: "text",
+            valueField: "value",
+            allowBlank: false,
+            editable: false,
+            triggerAction: "all",
+            value: 0,
+            plugins: [{
+                ptype: "fieldinfo",
+                text: _("Specify whether the rule is an exclusion or inclusion.")
             }]
         }
         ];
@@ -136,34 +136,34 @@ Ext.define("OMV.module.admin.service.snapraid.Rule", {
 });
 
 Ext.define("OMV.module.admin.service.snapraid.Rules", {
-    extend   : "OMV.workspace.grid.Panel",
-    requires : [
+    extend: "OMV.workspace.grid.Panel",
+    requires: [
         "OMV.Rpc",
         "OMV.data.Store",
         "OMV.data.Model",
         "OMV.data.proxy.Rpc",
         "OMV.util.Format"
     ],
-    uses     : [
+    uses: [
         "OMV.module.admin.service.snapraid.Rule"
     ],
 
-    hidePagingToolbar : false,
-    stateful          : true,
-    stateId           : "a982a76d-6804-4632-b31b-8b48c0ea6dde",
-    columns           : [{
-        xtype     : "textcolumn",
-        text      : _("Rule"),
-        sortable  : true,
-        dataIndex : "rule1",
-        stateId   : "rule1"
+    hidePagingToolbar: false,
+    stateful: true,
+    stateId: "a982a76d-6804-4632-b31b-8b48c0ea6dde",
+    columns: [{
+        xtype: "textcolumn",
+        text: _("Rule"),
+        sortable: true,
+        dataIndex: "rule1",
+        stateId: "rule1"
     },{
-        xtype     : "textcolumn",
-        text      : _("Rule Type"),
-        sortable  : true,
-        dataIndex : "rtype",
-        stateId   : "rtype",
-        renderer  : function (value) {
+        xtype: "textcolumn",
+        text: _("Rule Type"),
+        sortable: true,
+        dataIndex: "rtype",
+        stateId: "rtype",
+        renderer: function (value) {
             if (value == 1)
                 return _("Inclusion");
             else
@@ -171,24 +171,24 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
         }
     }],
 
-    initComponent : function() {
+    initComponent: function() {
         var me = this;
         Ext.apply(me, {
-            store : Ext.create("OMV.data.Store", {
-                autoLoad : true,
-                model    : OMV.data.Model.createImplicit({
-                    idProperty  : "uuid",
-                    fields      : [
-                        { name : "uuid", type : "string" },
-                        { name : "rule1", type : "string" },
-                        { name : "rtype", type : "integer" }
+            store: Ext.create("OMV.data.Store", {
+                autoLoad: true,
+                model: OMV.data.Model.createImplicit({
+                    idProperty: "uuid",
+                    fields: [
+                        { name: "uuid", type: "string" },
+                        { name: "rule1", type: "string" },
+                        { name: "rtype", type: "integer" }
                     ]
                 }),
-                proxy : {
-                    type    : "rpc",
-                    rpcData : {
-                        service : "SnapRaid",
-                        method  : "getRuleList"
+                proxy: {
+                    type: "rpc",
+                    rpcData: {
+                        service: "SnapRaid",
+                        method: "getRuleList"
                     }
                 }
             })
@@ -196,45 +196,45 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
         me.callParent(arguments);
     },
 
-    onAddButton : function() {
+    onAddButton: function() {
         var me = this;
         Ext.create("OMV.module.admin.service.snapraid.Rule", {
-            title     : _("Add rule"),
-            uuid      : OMV.UUID_UNDEFINED,
-            listeners : {
-                scope  : me,
-                submit : function() {
+            title: _("Add rule"),
+            uuid: OMV.UUID_UNDEFINED,
+            listeners: {
+                scope: me,
+                submit: function() {
                     this.doReload();
                 }
             }
         }).show();
     },
 
-    onEditButton : function() {
+    onEditButton: function() {
         var me = this;
         var record = me.getSelected();
         Ext.create("OMV.module.admin.service.snapraid.Rule", {
-            title     : _("Edit rule"),
-            uuid      : record.get("uuid"),
-            listeners : {
-                scope  : me,
-                submit : function() {
+            title: _("Edit rule"),
+            uuid: record.get("uuid"),
+            listeners: {
+                scope: me,
+                submit: function() {
                     this.doReload();
                 }
             }
         }).show();
     },
 
-    doDeletion : function(record) {
+    doDeletion: function(record) {
         var me = this;
         OMV.Rpc.request({
-            scope    : me,
-            callback : me.onDeletion,
-            rpcData  : {
-                service : "SnapRaid",
-                method  : "deleteRule",
-                params  : {
-                    uuid : record.get("uuid")
+            scope: me,
+            callback: me.onDeletion,
+            rpcData: {
+                service: "SnapRaid",
+                method: "deleteRule",
+                params: {
+                    uuid: record.get("uuid")
                 }
             }
         });
@@ -243,9 +243,9 @@ Ext.define("OMV.module.admin.service.snapraid.Rules", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "excludes",
-    path      : "/service/snapraid",
-    text      : _("Rules"),
-    position  : 30,
-    className : "OMV.module.admin.service.snapraid.Rules"
+    id: "excludes",
+    path: "/service/snapraid",
+    text: _("Rules"),
+    position: 30,
+    className: "OMV.module.admin.service.snapraid.Rules"
 });

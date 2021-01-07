@@ -20,9 +20,9 @@
 // require("js/omv/WorkspaceManager.js")
 
 OMV.WorkspaceManager.registerNode({
-    id      : "snapraid",
-    path    : "/service",
-    text    : _("SnapRAID"),
-    icon16  : "images/snapraid.png",
-    iconSvg : "images/snapraid.svg"
+    id: "snapraid",
+    path: "/service",
+    text: _("SnapRAID"),
+    icon16: "images/snapraid.png",
+    iconSvg: "images/snapraid.svg"
 });

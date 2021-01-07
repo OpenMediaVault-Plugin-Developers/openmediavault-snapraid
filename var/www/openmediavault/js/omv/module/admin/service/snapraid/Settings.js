@@ -27,15 +27,15 @@
 // require("js/omv/form/field/SharedFolderComboBox.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Settings", {
-    extend : "OMV.workspace.form.Panel",
-    uses   : [
+    extend: "OMV.workspace.form.Panel",
+    uses: [
         "OMV.data.Model",
         "OMV.data.Store"
     ],
 
-    rpcService   : "SnapRaid",
-    rpcGetMethod : "getSettings",
-    rpcSetMethod : "setSettings",
+    rpcService: "SnapRaid",
+    rpcGetMethod: "getSettings",
+    rpcSetMethod: "setSettings",
 
     getButtonItems: function() {
         var items = this.callParent(arguments);
@@ -53,165 +53,165 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
         return items;
     },
 
-    getFormItems : function() {
+    getFormItems: function() {
         return [{
-            xtype    : "fieldset",
-            title    : _("Settings"),
-            defaults : {
-                labelSeparator : ""
+            xtype: "fieldset",
+            title: _("Settings"),
+            defaults: {
+                labelSeparator: ""
             },
             items : [{
-                xtype         : "numberfield",
-                name          : "blocksize",
-                fieldLabel    : _("Block Size"),
-                minValue      : 0,
-                maxValue      : 65535,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 256,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Block size in KiB")
+                xtype: "numberfield",
+                name: "blocksize",
+                fieldLabel: _("Block Size"),
+                minValue: 0,
+                maxValue: 65535,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 256,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Block size in KiB")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "hashsize",
-                fieldLabel    : _("Hash Size"),
-                minValue      : 0,
-                maxValue      : 65535,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 16,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Hash size in Bytes")
+                xtype: "numberfield",
+                name: "hashsize",
+                fieldLabel: _("Hash Size"),
+                minValue: 0,
+                maxValue: 65535,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 16,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Hash size in Bytes")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "autosave",
-                fieldLabel    : _("Auto Save"),
-                minValue      : 0,
-                maxValue      : 65535,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 0,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
+                xtype: "numberfield",
+                name: "autosave",
+                fieldLabel: _("Auto Save"),
+                minValue: 0,
+                maxValue: 65535,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 0,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "percentscrub",
-                fieldLabel    : _("Scrub Percentage"),
-                minValue      : 0,
-                maxValue      : 100,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 12,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Scrub percentage used for scrub button on Drives tab.")
+                xtype: "numberfield",
+                name: "percentscrub",
+                fieldLabel: _("Scrub Percentage"),
+                minValue: 0,
+                maxValue: 100,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 12,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Scrub percentage used for scrub button on Drives tab.")
                 }]
             },{
-                xtype      : "checkbox",
-                name       : "nohidden",
-                fieldLabel : _("No Hidden"),
-                boxLabel   : _("Excludes hidden files and directories."),
-                checked    : false
+                xtype: "checkbox",
+                name: "nohidden",
+                fieldLabel: _("No Hidden"),
+                boxLabel: _("Excludes hidden files and directories."),
+                checked: false
             }]
         },{
-            xtype    : "fieldset",
-            title    : _("Diff Script Settings"),
-            defaults : {
-                labelSeparator : ""
+            xtype: "fieldset",
+            title: _("Diff Script Settings"),
+            defaults: {
+                labelSeparator: ""
             },
-            items : [{
-                xtype      : "checkbox",
-                name       : "syslog",
-                fieldLabel : _("Syslog"),
-                boxLabel   : _("Write logs to syslog"),
-                checked    : true
+            items: [{
+                xtype: "checkbox",
+                name: "syslog",
+                fieldLabel: _("Syslog"),
+                boxLabel: _("Write logs to syslog"),
+                checked: true
             },{
-                xtype      : "checkbox",
-                name       : "debug",
-                fieldLabel : _("Debug"),
-                checked    : false
+                xtype: "checkbox",
+                name: "debug",
+                fieldLabel: _("Debug"),
+                checked: false
             },{
-                xtype      : "checkbox",
-                name       : "sendmail",
-                fieldLabel : _("Send Mail"),
-                checked    : true
+                xtype: "checkbox",
+                name: "sendmail",
+                fieldLabel: _("Send Mail"),
+                checked: true
             },{
-                xtype      : "checkbox",
-                name       : "runscrub",
-                fieldLabel : _("Run Scrub"),
-                boxLabel   : _("Set to true if you want to scrub after a successful sync"),
-                checked    : true
+                xtype: "checkbox",
+                name: "runscrub",
+                fieldLabel: _("Run Scrub"),
+                boxLabel: _("Set to true if you want to scrub after a successful sync"),
+                checked: true
             },{
-                xtype      : "checkbox",
-                name       : "prehash",
-                fieldLabel : _("Pre-Hash"),
-                boxLabel   : _("Read all data two times to ensure its integrity."),
-                checked    : true
+                xtype: "checkbox",
+                name: "prehash",
+                fieldLabel: _("Pre-Hash"),
+                boxLabel: _("Read all data two times to ensure its integrity."),
+                checked: true
             },{
-                xtype         : "numberfield",
-                name          : "scrubfreq",
-                fieldLabel    : _("Scrub Frequency"),
-                minValue      : 0,
-                maxValue      : 365,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 7,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Units in days.")
+                xtype: "numberfield",
+                name: "scrubfreq",
+                fieldLabel: _("Scrub Frequency"),
+                minValue: 0,
+                maxValu: 365,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 7,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Units in days.")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "scrubpercent",
-                fieldLabel    : _("Scrub Percentage"),
-                minValue      : 0,
-                maxValue      : 100,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 100,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Scrub percentage used for diff script.")
+                xtype: "numberfield",
+                name: "scrubpercent",
+                fieldLabel: _("Scrub Percentage"),
+                minValue: 0,
+                maxValue: 100,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 100,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Scrub percentage used for diff script.")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "updthreshold",
-                fieldLabel    : _("Update Threshold"),
-                minValue      : 0,
-                maxValue      : 65535,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 0,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync")
+                xtype: "numberfield",
+                name: "updthreshold",
+                fieldLabel: _("Update Threshold"),
+                minValue: 0,
+                maxValue: 65535,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 0,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync")
                 }]
             },{
-                xtype         : "numberfield",
-                name          : "delthreshold",
-                fieldLabel    : _("Delete Threshold"),
-                minValue      : 0,
-                maxValue      : 65535,
-                allowDecimals : false,
-                allowNegative : false,
-                allowBlank    : false,
-                value         : 0,
-                plugins    : [{
-                    ptype : "fieldinfo",
-                    text  : _("Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync")
+                xtype: "numberfield",
+                name: "delthreshold",
+                fieldLabel: _("Delete Threshold"),
+                minValue: 0,
+                maxValue: 65535,
+                allowDecimals: false,
+                allowNegative: false,
+                allowBlank: false,
+                value: 0,
+                plugins: [{
+                    ptype: "fieldinfo",
+                    text: _("Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync")
                 }]
             }]
         }];
@@ -225,9 +225,9 @@ Ext.define("OMV.module.admin.service.snapraid.Settings", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "settings",
-    path      : "/service/snapraid",
-    text      : _("Settings"),
-    position  : 10,
-    className : "OMV.module.admin.service.snapraid.Settings"
+    id: "settings",
+    path: "/service/snapraid",
+    text: _("Settings"),
+    position: 10,
+    className: "OMV.module.admin.service.snapraid.Settings"
 });

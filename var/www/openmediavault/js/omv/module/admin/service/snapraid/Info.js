@@ -22,14 +22,14 @@
 // require("js/omv/workspace/panel/Panel.js")
 
 Ext.define("OMV.module.admin.service.snapraid.Info", {
-    extend : "Ext.panel.Panel",
+    extend: "Ext.panel.Panel",
 
-    autoScroll    : true,
-    initComponent : function() {
+    autoScroll: true,
+    initComponent: function() {
         var me = this;
         OMV.Rpc.request({
-            scope    : this,
-            callback : function(id, success, response) {
+            scope: this,
+            callback: function(id, success, response) {
                 me.html = "<b>SnapRAID</b>" +
                   "<ul>" +
                     "<li>Version " + response.version + " by Andrea Mazzoleni, http://snapraid.sourceforge.net</li>" +
@@ -73,10 +73,10 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
                     "<li>aquota.user</li>" +
                   "</ul>";
             },
-            relayErrors : false,
-            rpcData     : {
-                service  : "SnapRaid",
-                method   : "getVersion"
+            relayErrors: false,
+            rpcData: {
+                service: "SnapRaid",
+                method: "getVersion"
             }
         });
 
@@ -85,9 +85,9 @@ Ext.define("OMV.module.admin.service.snapraid.Info", {
 });
 
 OMV.WorkspaceManager.registerPanel({
-    id        : "info",
-    path      : "/service/snapraid",
-    text      : _("Information"),
-    position  : 40,
-    className : "OMV.module.admin.service.snapraid.Info"
+    id: "info",
+    path: "/service/snapraid",
+    text: _("Information"),
+    position: 40,
+    className: "OMV.module.admin.service.snapraid.Info"
 });
