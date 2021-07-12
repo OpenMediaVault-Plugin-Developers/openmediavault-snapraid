@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "services.snapraid.drives"
+  text: _("Drives")
+  position: 20
+  icon: mdi:harddisk
+  url: "/services/snapraid/drives"

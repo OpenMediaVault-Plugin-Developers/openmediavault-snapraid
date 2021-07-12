@@ -1,0 +1,47 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-drive-form-page
+  type: formPage
+  config:
+    request:
+      service: SnapRaid
+      get:
+        method: getDrive
+      post:
+        method: setDrive
+    fields:
+      - type: select
+        name: mntentref
+        label: _('Drive')
+        textField: description
+        valueField: uuid
+        store:
+          proxy:
+            service: 'ShareMgmt'
+            get:
+              method: 'getCandidates'
+      - type: textInput
+        name: name
+        label: _("Name")
+      - type: checkbox
+        name: content
+        label: _("Content")
+        value: false
+        hint: _("Drive where content file is stored.  This file is a list of saved files and contains the details of your backup with all the checksums to verify its integrity.")
+      - type: checkbox
+        name: data
+        label: _("Data")
+        value: false
+        hint: _("Drive where data is stored..")
+      - type: checkbox
+        name: parity
+        label: _("Parity")
+        value: false
+        hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/snapraid/drives"

@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/rules/edit/:uuid"
+  title: _("Edit")
+  editing: true
+  notificationTitle: _("Edit rule.")
+  component: omv-services-snapraid-rule-form-page

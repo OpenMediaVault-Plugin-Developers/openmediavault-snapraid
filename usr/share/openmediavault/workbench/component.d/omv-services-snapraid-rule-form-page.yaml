@@ -1,0 +1,49 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-rule-form-page
+  type: formPage
+  config:
+    request:
+      service: SnapRaid
+      get:
+        method: getRule
+      post:
+        method: setRule
+    fields:
+      - type: select
+        name: mntentref
+        label: _('Drive')
+        textField: description
+        valueField: uuid
+        store:
+          proxy:
+            service: 'ShareMgmt'
+            get:
+              method: 'getCandidates'
+      - type: hidden
+        name: rootfsref
+        label: _("Root ref")
+        value: "79684322-3eac-11ea-a974-63a080abab18"
+      - type: folderBrowser
+        name: rule1
+        label: _("Rule")
+        value: ''
+        dirType: mntent
+        dirRefIdField: rootfsref
+      - type: select
+        name: rtype
+        label: _("Rule Type")
+        value: "0"
+        store:
+          data:
+            - - "0"
+              - _("Exclusion")
+            - - "1"
+              - _("Inclusion")
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/snapraid/drives"

@@ -1,0 +1,46 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-rules-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    stateId: 13a02ad6-e34d-11eb-b90e-8b42e388dd06
+    sorters:
+      - dir: asc
+        prop: rule1
+    store:
+      proxy:
+        service: SnapRaid
+        get:
+          method: getRuleList
+    columns:
+      - name: _("Rule")
+        prop: rule1
+        flexGrow: 1
+        sortable: true
+      - name: _("Rule type")
+        prop: ""
+        flexGrow: 1
+        cellTemplateName: template
+        cellTemplateConfig: |
+          {% set _rtype %}Exclusion{% endset %}
+          {% if rtype %}{% set _rtype %}Inclusion{% endset %}{% endif %}
+          {{ _rtype }}
+    actions:
+      - template: create
+        execute:
+          type: url
+          url: "/services/snapraid/rules/create"
+      - template: edit
+        execute:
+          type: url
+          url: "/services/snapraid/rules/edit/{{ _selected[0].uuid }}"
+      - template: delete
+        execute:
+          type: request
+          request:
+            service: SnapRaid
+            method: deleteRule
+            params:
+              uuid: "{{ _selected[0].uuid }}"

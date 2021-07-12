@@ -1,0 +1,23 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-config-form-page
+  type: formPage
+  config:
+    request:
+      service: SnapRaid
+      get:
+        method: getConfig
+    fields:
+      - type: textarea
+        name: snapraidconf
+        label: _("snapraid.conf")
+        value: ""
+        readonly: true
+        rows: 10
+      - type: textarea
+        name: snapraiddiff
+        label: _("snapraid-diff.conf")
+        value: ""
+        readonly: true
+        rows: 10

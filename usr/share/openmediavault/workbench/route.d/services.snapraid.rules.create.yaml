@@ -1,0 +1,7 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/rules/create"
+  title: _("Create")
+  notificationTitle: _("Created rule.")
+  component: omv-services-snapraid-rule-form-page

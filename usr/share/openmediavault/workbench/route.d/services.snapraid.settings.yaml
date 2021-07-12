@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/settings"
+  title: _("Settings")
+  editing: true
+  notificationTitle: _("Updated SnapRAID settings.")
+  component: omv-services-snapraid-settings-form-page

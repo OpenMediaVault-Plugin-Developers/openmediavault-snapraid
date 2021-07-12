@@ -1,0 +1,7 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/config"
+  title: _("Config")
+  editing: true
+  component: omv-services-snapraid-config-form-page

@@ -1,0 +1,120 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-settings-form-page
+  type: formPage
+  config:
+    request:
+      service: SnapRaid
+      get:
+        method: getSettings
+      post:
+        method: setSettings
+    fields:
+      - type: paragraph
+        text: _("Settings")
+      - type: numberInput
+        name: blocksize
+        label: _("Block size")
+        value: 256
+        validators:
+          min: 0 
+          max: 65535 
+        hint: _("Block size in KiB")
+      - type: numberInput
+        name: hashsize
+        label: _("Hash size")
+        value: 16
+        validators:
+          min: 0 
+          max: 65535 
+        hint: _("Hash size in bytes")
+      - type: numberInput
+        name: autosave
+        label: _("Auto save")
+        value: 0
+        validators:
+          min: 0 
+          max: 65535 
+        hint: _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
+      - type: numberInput
+        name: percentscrub
+        label: _("Scrub percentage")
+        value: 12
+        validators:
+          min: 0 
+          max: 100 
+        hint: _("Scrub percentage used for scrub button on Drives tab.")
+      - type: checkbox
+        name: nohidden
+        label: _("No hidden")
+        value: false
+        hint: _("Excludes hidden files and directories.")
+
+      - type: paragraph
+        text: _("Diff script settings")
+      - type: checkbox
+        name: syslog
+        label: _("Syslog")
+        value: true
+        hint: _("Write logs to syslog.")
+      - type: checkbox
+        name: debug
+        label: _("Debug")
+        value: false
+      - type: checkbox
+        name: sendmail
+        label: _("Send mail")
+        value: true
+      - type: checkbox
+        name: runscrub
+        label: _("Run scrub")
+        value: true
+        hint: _("Set to true if you want to scrub after a successful sync.")
+      - type: checkbox
+        name: prehash
+        label: _("Per-hash")
+        value: true
+        hint: _("Set to true if you want to scrub after a successful sync.")
+      - type: numberInput
+        name: scrubfreq
+        label: _("Scrub frequency")
+        value: 7
+        validators:
+          min: 0 
+          max: 365 
+        hint: _("Units in days.")
+      - type: numberInput
+        name: scrubpercent
+        label: _("Scrub percentage")
+        value: 100
+        validators:
+          min: 0 
+          max: 100 
+        hint: _("Scrub percentage used for diff script.")
+      - type: numberInput
+        name: updthreshold
+        label: _("Update threshold")
+        value: 0
+        validators:
+          min: 0 
+          max: 65535 
+        hint: _("Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync.")
+      - type: numberInput
+        name: delthreshold
+        label: _("Delete threshold")
+        value: 0
+        validators:
+          min: 0 
+          max: 65535 
+        hint: _("Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync.")
+    buttons:
+      - template: submit
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/snapraid"
+      - text: _("Scheduled diff")
+        execute:
+          type: url
+          url: "/system/cron/create"
