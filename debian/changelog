@@ -1,3 +1,10 @@
+openmediavault-snapraid (5.0.8) stable; urgency=low
+
+  * Fix github issue #24 - Diff script ignores number of deleted or
+    changed files
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 18 Jul 2021 09:35:51 -0500
+
 openmediavault-snapraid (5.0.7) stable; urgency=low
 
   * Add hashsize
