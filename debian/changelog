@@ -1,8 +1,8 @@
-openmediavault-snapraid (6.0.0) UNRELEASED; urgency=medium
+openmediavault-snapraid (6.0.0) stable; urgency=low
 
   * Update for omv 6.x
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 12 Jul 2021 10:20:57 -0500
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 30 Oct 2021 11:40:51 -0500
 
 openmediavault-snapraid (5.0.7) stable; urgency=low
 
