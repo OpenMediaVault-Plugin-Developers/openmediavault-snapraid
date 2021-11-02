@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -20,13 +20,7 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr ""
 
-msgid "Add drive"
-msgstr ""
-
-msgid "Add rule"
-msgstr ""
-
-msgid "Auto Save"
+msgid "Auto save"
 msgstr ""
 
 msgid ""
@@ -34,18 +28,13 @@ msgid ""
 "is processed. Default value is 0, meaning disabled."
 msgstr ""
 
-msgid "Block Size"
+msgid "Block size"
 msgstr ""
 
 msgid "Block size in KiB"
 msgstr ""
 
 msgid "Check"
-msgstr ""
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
 msgstr ""
 
 msgid "Component"
@@ -57,7 +46,13 @@ msgstr ""
 msgid "Content"
 msgstr ""
 
-msgid "Create scheduled diff job"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
 msgstr ""
 
 msgid "Data"
@@ -71,18 +66,15 @@ msgstr ""
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr ""
-
-msgid "Description of Buttons on Drives tab"
+msgid "Delete threshold"
 msgstr ""
 
 msgid "Devices"
@@ -91,13 +83,10 @@ msgstr ""
 msgid "Diff"
 msgstr ""
 
-msgid "Diff Script Settings"
+msgid "Diff script settings"
 msgstr ""
 
 msgid "Down"
-msgstr ""
-
-msgid "Drive"
 msgstr ""
 
 msgid ""
@@ -106,7 +95,7 @@ msgid ""
 "integrity."
 msgstr ""
 
-msgid "Drive where data is stored."
+msgid "Drive where data is stored.."
 msgstr ""
 
 msgid ""
@@ -117,10 +106,13 @@ msgstr ""
 msgid "Drives"
 msgstr ""
 
-msgid "Edit drive"
+msgid "Edit"
 msgstr ""
 
-msgid "Edit rule"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
 msgstr ""
 
 msgid "Excludes hidden files and directories."
@@ -132,13 +124,13 @@ msgstr ""
 msgid "Fix"
 msgstr ""
 
-msgid "Fix Silent"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash Size"
+msgid "Hash size"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -150,15 +142,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-msgid "Information"
-msgstr ""
-
 msgid "Level"
-msgstr ""
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
 msgstr ""
 
 msgid "Message"
@@ -167,34 +151,19 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-msgid "No Hidden"
-msgstr ""
-
-msgid "Optional - Enter file or directory to undelete"
+msgid "No hidden"
 msgstr ""
 
 msgid "Parity"
 msgstr ""
 
-msgid "Please first select a volume."
-msgstr ""
-
-msgid "Pre-Hash"
+msgid "Per-hash"
 msgstr ""
 
 msgid "Prehash+Sync"
 msgstr ""
 
-msgid "Prints a status report of the array."
-msgstr ""
-
-msgid "Read all data two times to ensure its integrity."
-msgstr ""
-
-msgid "Refresh"
-msgstr ""
-
-msgid "Restore the last backup/snapshot."
+msgid "Root ref"
 msgstr ""
 
 msgid "Rule"
@@ -203,10 +172,13 @@ msgstr ""
 msgid "Rule Type"
 msgstr ""
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr ""
 
-msgid "Run Scrub"
+msgid "Run scrub"
 msgstr ""
 
 msgid "SMART"
@@ -218,10 +190,10 @@ msgstr ""
 msgid "Scrub"
 msgstr ""
 
-msgid "Scrub Frequency"
+msgid "Scrub frequency"
 msgstr ""
 
-msgid "Scrub Percentage"
+msgid "Scrub percentage"
 msgstr ""
 
 msgid "Scrub percentage used for diff script."
@@ -230,34 +202,16 @@ msgstr ""
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr ""
 
-msgid "Scrubs the array, checking for silent errors."
+msgid "Send mail"
 msgstr ""
 
-msgid "Select a drive ..."
-msgstr ""
-
-msgid "Select a volume ..."
-msgstr ""
-
-msgid "Send Mail"
-msgstr ""
-
-msgid "Set to true if you want to scrub after a successful sync"
+msgid "Set to true if you want to scrub after a successful sync."
 msgstr ""
 
 msgid "Settings"
 msgstr ""
 
 msgid "SnapRAID"
-msgstr ""
-
-msgid "SnapRAID user manual"
-msgstr ""
-
-msgid "Snapraid Config Files"
-msgstr ""
-
-msgid "Specify whether the rule is an exclusion or inclusion."
 msgstr ""
 
 msgid "Spin"
@@ -272,10 +226,6 @@ msgstr ""
 msgid "Syslog"
 msgstr ""
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr ""
-
 msgid "Tools"
 msgstr ""
 
@@ -288,18 +238,46 @@ msgstr ""
 msgid "Up"
 msgstr ""
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
+msgid "Updated SnapRAID settings."
 msgstr ""
 
-msgid "Volume"
+msgid "Write logs to syslog."
 msgstr ""
 
-msgid "Write logs to syslog"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
 msgstr ""
 
 msgid "snapraid-diff.conf"

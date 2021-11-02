@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Stefan Thrane Overby <stoverby@gmail.com>, 2014-2017
+# Stefan Thrane Overby <stoverby@gmail.com>, 2014-2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -21,33 +21,22 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr "En data disk kan ikke være paritets disk."
 
-msgid "Add drive"
-msgstr "Tilføj disk"
-
-msgid "Add rule"
-msgstr "Tilføj regel"
-
-msgid "Auto Save"
-msgstr "Auto Gem"
+msgid "Auto save"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "Gemmer automatisk tilstanden ved synkronisering efter at den angivet mængde af GiB er gennemført. Standard værdi er 0, hvilket betyder deaktiveret."
 
-msgid "Block Size"
-msgstr "Blok Størrelse"
+msgid "Block size"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "Blok størrelse i KiB"
 
 msgid "Check"
 msgstr "Kontroller"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "Kontroller alle filer og redundans data. Alle filer bliver hashed og sammenlignet med det snapshot, der blev gemt ved sidste 'sync' kommando."
 
 msgid "Component"
 msgstr "Komponent"
@@ -58,8 +47,14 @@ msgstr "Konfigurere"
 msgid "Content"
 msgstr "Indhold"
 
-msgid "Create scheduled diff job"
-msgstr "Opret planlagt forskel opgave"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
+msgstr ""
 
 msgid "Data"
 msgstr "Data"
@@ -72,19 +67,16 @@ msgstr "Debug"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr "Slet Tærskel"
-
-msgid "Description of Buttons on Drives tab"
-msgstr "Beskrivelse af Knapper på Disk fane"
+msgid "Delete threshold"
+msgstr ""
 
 msgid "Devices"
 msgstr "Enheder"
@@ -92,14 +84,11 @@ msgstr "Enheder"
 msgid "Diff"
 msgstr "Forskel"
 
-msgid "Diff Script Settings"
-msgstr "Forskel Script Indstillinger"
+msgid "Diff script settings"
+msgstr ""
 
 msgid "Down"
 msgstr "Ned"
-
-msgid "Drive"
-msgstr "Disk"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -107,8 +96,8 @@ msgid ""
 "integrity."
 msgstr "Disk hvor indholds fil bliver gemt. Denne fil er en liste af gemte filer og indeholder detaljer om din backup med alle checksummer for at verificere dens integritet."
 
-msgid "Drive where data is stored."
-msgstr "Disk, hvor data bliver gemt."
+msgid "Drive where data is stored.."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -118,11 +107,14 @@ msgstr "Disk hvor paritets filer bliver gemt som er nødvendige for at genskabe 
 msgid "Drives"
 msgstr "Diske"
 
-msgid "Edit drive"
-msgstr "Rediger disk"
+msgid "Edit"
+msgstr ""
 
-msgid "Edit rule"
-msgstr "Rediger regel"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr "Ekskluder gemte filer og biblioteker."
@@ -133,13 +125,13 @@ msgstr "Undtagelse"
 msgid "Fix"
 msgstr "Ret"
 
-msgid "Fix Silent"
-msgstr "Ret Stille"
-
-msgid "Hash Size"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size"
+msgstr ""
+
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -151,16 +143,8 @@ msgstr "Inddragelse"
 msgid "Info"
 msgstr "Oplysning"
 
-msgid "Information"
-msgstr "Oplysning"
-
 msgid "Level"
 msgstr "Niveau"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "Viser alle ændrede filer fra sidste 'sync' kommando, der skal have genberegnet deres redundans data."
 
 msgid "Message"
 msgstr "Besked"
@@ -168,35 +152,20 @@ msgstr "Besked"
 msgid "Name"
 msgstr "Navn"
 
-msgid "No Hidden"
-msgstr "Ingen Gemte"
-
-msgid "Optional - Enter file or directory to undelete"
-msgstr "Valgfrit - Indtast fil eller bibliotek for gendanne"
+msgid "No hidden"
+msgstr ""
 
 msgid "Parity"
 msgstr "Paritet"
 
-msgid "Please first select a volume."
-msgstr "Vælg venligst først et drev."
-
-msgid "Pre-Hash"
-msgstr "Pre-Hash"
+msgid "Per-hash"
+msgstr ""
 
 msgid "Prehash+Sync"
 msgstr "Prehash+Sync"
 
-msgid "Prints a status report of the array."
-msgstr "Viser en status rapport af opstillingen."
-
-msgid "Read all data two times to ensure its integrity."
-msgstr "Læs data to gange for, at sikre dens integritet."
-
-msgid "Refresh"
-msgstr "Genopfrisk"
-
-msgid "Restore the last backup/snapshot."
-msgstr "Genskab sidste backup/snapshot."
+msgid "Root ref"
+msgstr ""
 
 msgid "Rule"
 msgstr "Regel"
@@ -204,11 +173,14 @@ msgstr "Regel"
 msgid "Rule Type"
 msgstr "Regel Type"
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr "Regler"
 
-msgid "Run Scrub"
-msgstr "Kør Udrens"
+msgid "Run scrub"
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -219,11 +191,11 @@ msgstr "Planlagt forskel"
 msgid "Scrub"
 msgstr "Udrens"
 
-msgid "Scrub Frequency"
-msgstr "Udrens Frekvens"
+msgid "Scrub frequency"
+msgstr ""
 
-msgid "Scrub Percentage"
-msgstr "Udrens Procent"
+msgid "Scrub percentage"
+msgstr ""
 
 msgid "Scrub percentage used for diff script."
 msgstr "Udrens procent brugt til anden script."
@@ -231,35 +203,17 @@ msgstr "Udrens procent brugt til anden script."
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "Udrens procent brugt til udrens-knap på Disk fane."
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "Udrenser opstillingen, kontroller efter stille fejl."
+msgid "Send mail"
+msgstr ""
 
-msgid "Select a drive ..."
-msgstr "Vælg en disk ..."
-
-msgid "Select a volume ..."
-msgstr "Vælg et drev ..."
-
-msgid "Send Mail"
-msgstr "Send Email"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "Marker hvis du vil udrense efter et veludført sync"
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr ""
 
 msgid "Settings"
 msgstr "Indstillinger"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
-
-msgid "SnapRAID user manual"
-msgstr "SnapRAID brugermanual"
-
-msgid "Snapraid Config Files"
-msgstr "Snapraid Konfigurations Filer "
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr " Angiv om reglen er en undtagelse eller inddragelse."
 
 msgid "Spin"
 msgstr "Spin"
@@ -273,10 +227,6 @@ msgstr "Sync"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "Følgende ekskluderer bliver skrevet i snapraid konfiguration fil som standard:"
-
 msgid "Tools"
 msgstr "Værktøjer"
 
@@ -289,19 +239,47 @@ msgstr "Enheder i dage."
 msgid "Up"
 msgstr "Op"
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "Opdatere redundans oplysninger. Alle ændrede filer i disk opstillingen bliver læst, og redundans data bliver genberegnet."
+msgid "Updated SnapRAID settings."
+msgstr ""
 
-msgid "Volume"
-msgstr "Drev"
+msgid "Write logs to syslog."
+msgstr ""
 
-msgid "Write logs to syslog"
-msgstr "Skriv logs til syslog"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
+msgstr ""
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

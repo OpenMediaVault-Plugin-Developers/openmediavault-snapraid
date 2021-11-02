@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2017
+# kochin <kochinc@outlook.com>, 2014-2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -21,33 +21,22 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr "資料磁碟不可做為奇偶性磁碟。"
 
-msgid "Add drive"
-msgstr "新增磁碟"
-
-msgid "Add rule"
-msgstr "新增規則"
-
-msgid "Auto Save"
-msgstr "自動儲存"
+msgid "Auto save"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "做同步時，在處理超過所指定的 GiB 數量後，自動儲存狀態。預設值為 0，表示停用。"
 
-msgid "Block Size"
-msgstr "區塊大小"
+msgid "Block size"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "區塊大小以 KiB 為單位"
 
 msgid "Check"
 msgstr "檢查"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "檢查全部的檔案和冗餘資料。所有檔案會被計算雜湊值來與之前 '同步' 指令所儲存的快照來比較。"
 
 msgid "Component"
 msgstr "元件"
@@ -58,8 +47,14 @@ msgstr "配置"
 msgid "Content"
 msgstr "內容"
 
-msgid "Create scheduled diff job"
-msgstr "新建定期 diff 作業"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
+msgstr ""
 
 msgid "Data"
 msgstr "資料"
@@ -72,19 +67,16 @@ msgstr "除錯"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr "刪除定限"
-
-msgid "Description of Buttons on Drives tab"
-msgstr "磁碟 分頁上按鈕的敘述"
+msgid "Delete threshold"
+msgstr ""
 
 msgid "Devices"
 msgstr "裝置"
@@ -92,14 +84,11 @@ msgstr "裝置"
 msgid "Diff"
 msgstr "差異"
 
-msgid "Diff Script Settings"
-msgstr "Diff 腳本程式設定"
+msgid "Diff script settings"
+msgstr ""
 
 msgid "Down"
 msgstr "停止"
-
-msgid "Drive"
-msgstr "磁碟"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -107,8 +96,8 @@ msgid ""
 "integrity."
 msgstr "儲存內容檔案的磁碟。該檔案是一份被儲存檔案的清單，它包含了您的備份之細節，有所有的核對和來確認它的完整性。"
 
-msgid "Drive where data is stored."
-msgstr "資料儲存的磁碟。"
+msgid "Drive where data is stored.."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -118,11 +107,14 @@ msgstr "儲存奇偶性檔案的磁碟，是在磁碟故障時用來做復原。
 msgid "Drives"
 msgstr "磁碟"
 
-msgid "Edit drive"
-msgstr "編輯磁碟"
+msgid "Edit"
+msgstr ""
 
-msgid "Edit rule"
-msgstr "編輯規則"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隱藏的檔案和目錄。"
@@ -133,13 +125,13 @@ msgstr "排除"
 msgid "Fix"
 msgstr "修復"
 
-msgid "Fix Silent"
-msgstr "修復靜默錯誤"
-
-msgid "Hash Size"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size"
+msgstr ""
+
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -151,16 +143,8 @@ msgstr "含入"
 msgid "Info"
 msgstr "資訊"
 
-msgid "Information"
-msgstr "資訊"
-
 msgid "Level"
 msgstr "層級"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "列出自從前一次 'sync' 指令之後被更改過，必須從新計算它們冗餘資料的所有檔案。"
 
 msgid "Message"
 msgstr "訊息"
@@ -168,35 +152,20 @@ msgstr "訊息"
 msgid "Name"
 msgstr "名稱"
 
-msgid "No Hidden"
-msgstr "不含隱藏"
-
-msgid "Optional - Enter file or directory to undelete"
-msgstr "選項 - 輸入要取消删除的檔案或目錄"
+msgid "No hidden"
+msgstr ""
 
 msgid "Parity"
 msgstr "竒偶性"
 
-msgid "Please first select a volume."
-msgstr "請首先選擇一個磁碟。"
-
-msgid "Pre-Hash"
-msgstr "初步雜湊"
+msgid "Per-hash"
+msgstr ""
 
 msgid "Prehash+Sync"
 msgstr "初步雜湊+同步"
 
-msgid "Prints a status report of the array."
-msgstr "列印一份陣列的狀態報告。"
-
-msgid "Read all data two times to ensure its integrity."
-msgstr "讀入資料兩次以確它的完整性。"
-
-msgid "Refresh"
-msgstr "刷新"
-
-msgid "Restore the last backup/snapshot."
-msgstr "復原到最後的備份/快照。"
+msgid "Root ref"
+msgstr ""
 
 msgid "Rule"
 msgstr "規則"
@@ -204,11 +173,14 @@ msgstr "規則"
 msgid "Rule Type"
 msgstr "規則型式"
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr "規則"
 
-msgid "Run Scrub"
-msgstr "執行清理"
+msgid "Run scrub"
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -219,11 +191,11 @@ msgstr "定期 diff 作業"
 msgid "Scrub"
 msgstr "清理"
 
-msgid "Scrub Frequency"
-msgstr "清理頻率"
+msgid "Scrub frequency"
+msgstr ""
 
-msgid "Scrub Percentage"
-msgstr "清理百分比"
+msgid "Scrub percentage"
+msgstr ""
 
 msgid "Scrub percentage used for diff script."
 msgstr "給 diff 腳本程式使用的清理百分比。"
@@ -231,35 +203,17 @@ msgstr "給 diff 腳本程式使用的清理百分比。"
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "給 磁碟 分頁上的 清理 按鈕使用之清理百分比。"
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "清理陣列，查找靜默錯誤。"
+msgid "Send mail"
+msgstr ""
 
-msgid "Select a drive ..."
-msgstr "選擇一個磁碟 ..."
-
-msgid "Select a volume ..."
-msgstr "選擇一個磁碟 ..."
-
-msgid "Send Mail"
-msgstr "送出電子郵件"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "將它設定成 true，如果你要在一次成功的同步後做清理。"
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
-
-msgid "SnapRAID user manual"
-msgstr "SnapRAID 使用手冊"
-
-msgid "Snapraid Config Files"
-msgstr "Snapraid 設置檔案"
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr "指定這份規則是排除或含入。"
 
 msgid "Spin"
 msgstr "轉動"
@@ -273,10 +227,6 @@ msgstr "同步"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "以下的排除是預設寫入 snapraid 的設置檔案中。"
-
 msgid "Tools"
 msgstr "工具"
 
@@ -289,19 +239,47 @@ msgstr "以天數為單位。"
 msgid "Up"
 msgstr "開始"
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "更新冗餘資訊。所有在磁碟陣列內被更改過的檔案會被讀取，並重新計算冗餘資料。"
+msgid "Updated SnapRAID settings."
+msgstr ""
 
-msgid "Volume"
-msgstr "磁碟"
+msgid "Write logs to syslog."
+msgstr ""
 
-msgid "Write logs to syslog"
-msgstr "將日誌寫入 syslog"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
+msgstr ""
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ko_KR/)\n"
 "MIME-Version: 1.0\n"
@@ -21,33 +21,22 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr "데이터 드라이브는 패리티 드라이브가 될 수 없습니다."
 
-msgid "Add drive"
-msgstr "드라이브 추가"
-
-msgid "Add rule"
-msgstr "규칙 추가"
-
-msgid "Auto Save"
-msgstr "자동 저장"
+msgid "Auto save"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "지정된 GiB가 처리된 후 동기화 할 때, 자동으로 상태를 저장합니다. 기본 값인 0은, 비활성화를 의미합니다."
 
-msgid "Block Size"
-msgstr "블록 크기"
+msgid "Block size"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "블록 크기 KiB"
 
 msgid "Check"
 msgstr "확인"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "모든 파일과 중복 데이터를 확인합니다. 모든 파일이 해시되며 이전 '동기화' 명령에서 저장된 스냅샷과 비교됩니다."
 
 msgid "Component"
 msgstr "구성 요소"
@@ -58,7 +47,13 @@ msgstr "구성"
 msgid "Content"
 msgstr "속성"
 
-msgid "Create scheduled diff job"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
 msgstr ""
 
 msgid "Data"
@@ -72,19 +67,16 @@ msgstr "디버그"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr "삭제 임계값"
-
-msgid "Description of Buttons on Drives tab"
-msgstr "드라이브 탭 버튼 설명"
+msgid "Delete threshold"
+msgstr ""
 
 msgid "Devices"
 msgstr "장치"
@@ -92,14 +84,11 @@ msgstr "장치"
 msgid "Diff"
 msgstr "비교"
 
-msgid "Diff Script Settings"
-msgstr "비교 스크립트 설정"
+msgid "Diff script settings"
+msgstr ""
 
 msgid "Down"
 msgstr "내리기"
-
-msgid "Drive"
-msgstr "드라이브"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -107,8 +96,8 @@ msgid ""
 "integrity."
 msgstr "속성 파일이 저장되는 드라이브. 이 파일은 저장된 파일의 목록과 무결성을 확인하기 위한 모든 검증 값을 포함하는 <b>백업의 세부 사항</b>이 포함되어 있습니다.<br/>파일들의 목록과 검증 값이 저장되는 드라이브."
 
-msgid "Drive where data is stored."
-msgstr "데이터가 저장되는 드라이브."
+msgid "Drive where data is stored.."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -118,11 +107,14 @@ msgstr "디스크 실패를 복구하는 데 필요한, 패리티 파일이 저�
 msgid "Drives"
 msgstr "드라이브"
 
-msgid "Edit drive"
-msgstr "드라이브 편집"
+msgid "Edit"
+msgstr ""
 
-msgid "Edit rule"
-msgstr "규칙 편집"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr "숨김 파일 및 디렉터리를 제외합니다."
@@ -133,13 +125,13 @@ msgstr "제외"
 msgid "Fix"
 msgstr "수리"
 
-msgid "Fix Silent"
-msgstr "조용히 수리"
-
-msgid "Hash Size"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size"
+msgstr ""
+
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -151,16 +143,8 @@ msgstr "포함"
 msgid "Info"
 msgstr "정보"
 
-msgid "Information"
-msgstr "정보"
-
 msgid "Level"
 msgstr "수준"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "마지막 '동기화' 명령 후 중복 데이터를 다시 계산해야 할 수정된 모든 파일을 나열합니다."
 
 msgid "Message"
 msgstr "메시지"
@@ -168,35 +152,20 @@ msgstr "메시지"
 msgid "Name"
 msgstr "이름"
 
-msgid "No Hidden"
-msgstr "숨김 제외"
-
-msgid "Optional - Enter file or directory to undelete"
-msgstr "선택 사항 - 복구할 파일 또는 디렉터리를 입력"
+msgid "No hidden"
+msgstr ""
 
 msgid "Parity"
 msgstr "패리티"
 
-msgid "Please first select a volume."
-msgstr "먼저 볼륨을 선택하십시오."
-
-msgid "Pre-Hash"
+msgid "Per-hash"
 msgstr ""
 
 msgid "Prehash+Sync"
 msgstr ""
 
-msgid "Prints a status report of the array."
-msgstr "배열의 상태 보고서를 인쇄합니다."
-
-msgid "Read all data two times to ensure its integrity."
+msgid "Root ref"
 msgstr ""
-
-msgid "Refresh"
-msgstr "새로 고침"
-
-msgid "Restore the last backup/snapshot."
-msgstr "마지막 백업/스냅샷을 복원합니다."
 
 msgid "Rule"
 msgstr "규칙"
@@ -204,11 +173,14 @@ msgstr "규칙"
 msgid "Rule Type"
 msgstr "규칙 유형"
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr "규칙"
 
-msgid "Run Scrub"
-msgstr "점검 실행"
+msgid "Run scrub"
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -219,11 +191,11 @@ msgstr ""
 msgid "Scrub"
 msgstr "점검"
 
-msgid "Scrub Frequency"
-msgstr "점검 빈도"
+msgid "Scrub frequency"
+msgstr ""
 
-msgid "Scrub Percentage"
-msgstr "점검 비율"
+msgid "Scrub percentage"
+msgstr ""
 
 msgid "Scrub percentage used for diff script."
 msgstr "비교 스크립트에 사용할 점검 비율"
@@ -231,35 +203,17 @@ msgstr "비교 스크립트에 사용할 점검 비율"
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "드라이브 탭의 점검 버튼에 사용할 점검 비율"
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "배열 점검. 숨겨진 오류를 검사합니다,"
+msgid "Send mail"
+msgstr ""
 
-msgid "Select a drive ..."
-msgstr "드라이브 선택 ..."
-
-msgid "Select a volume ..."
-msgstr "볼륨 선택 ..."
-
-msgid "Send Mail"
-msgstr "전자우편 발송"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "선택하면 동기화 성공 후 점검합니다."
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr ""
 
 msgid "Settings"
 msgstr "설정"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
-
-msgid "SnapRAID user manual"
-msgstr "SnapRAID 사용자 설명서"
-
-msgid "Snapraid Config Files"
-msgstr "Snapraid 설정 파일"
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr "규칙의 제외 또는 포함 여부를 지정합니다."
 
 msgid "Spin"
 msgstr "Spin"
@@ -273,10 +227,6 @@ msgstr "동기화"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "다음의 제외는 기본적으로 SnapRAID 설정 파일에 기록됩니다: "
-
 msgid "Tools"
 msgstr "도구"
 
@@ -289,19 +239,47 @@ msgstr "일 단위."
 msgid "Up"
 msgstr "올리기"
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "중복 정보를 갱신합니다. 디스크 배열의 모든 수정된 파일을 판독하고, 중복 데이터가 다시 계산됩니다."
+msgid "Updated SnapRAID settings."
+msgstr ""
 
-msgid "Volume"
-msgstr "볼륨"
+msgid "Write logs to syslog."
+msgstr ""
 
-msgid "Write logs to syslog"
-msgstr "기록을 Syslog에 쓰기"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
+msgstr ""
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

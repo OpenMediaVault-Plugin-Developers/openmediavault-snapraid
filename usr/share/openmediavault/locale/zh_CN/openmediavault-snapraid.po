@@ -4,13 +4,13 @@
 # 
 # Translators:
 # aoi summer, 2020
-# songming <by@songming.me>, 2013-2015,2017
+# songming <by@songming.me>, 2013-2015,2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -22,33 +22,22 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr "数据盘不能做校验盘"
 
-msgid "Add drive"
-msgstr "添加磁盘"
-
-msgid "Add rule"
-msgstr "添加规则"
-
-msgid "Auto Save"
-msgstr "自动保存"
+msgid "Auto save"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "在同步多少GB数据后自动保存校验状态，默认值0，代表不开启该功能。"
 
-msgid "Block Size"
-msgstr "块大小"
+msgid "Block size"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "块大小单位KB"
 
 msgid "Check"
 msgstr "检查"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "检查所有文件和冗余数据，所有文件的哈希值将和之前‘更新校验’命令保存的快照进行比较。"
 
 msgid "Component"
 msgstr "组成"
@@ -59,8 +48,14 @@ msgstr "配置"
 msgid "Content"
 msgstr "校验清单"
 
-msgid "Create scheduled diff job"
-msgstr "创建比较计划任务"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
+msgstr ""
 
 msgid "Data"
 msgstr "数据盘"
@@ -73,19 +68,16 @@ msgstr "调试"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr "删除阈值"
-
-msgid "Description of Buttons on Drives tab"
-msgstr "磁盘标签上按键说明"
+msgid "Delete threshold"
+msgstr ""
 
 msgid "Devices"
 msgstr "设备"
@@ -93,14 +85,11 @@ msgstr "设备"
 msgid "Diff"
 msgstr "比较"
 
-msgid "Diff Script Settings"
-msgstr "比较脚本设置"
+msgid "Diff script settings"
+msgstr ""
 
 msgid "Down"
 msgstr "停转"
-
-msgid "Drive"
-msgstr "磁盘"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -108,8 +97,8 @@ msgid ""
 "integrity."
 msgstr "校验清单存储的磁盘，这个文件保存着备份文件的详情，包括校验文件完整性的信息。"
 
-msgid "Drive where data is stored."
-msgstr "数据存储的磁盘。"
+msgid "Drive where data is stored.."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -119,11 +108,14 @@ msgstr "校验盘是用来存储奇偶校验数据的，校验盘非常重要，
 msgid "Drives"
 msgstr "磁盘"
 
-msgid "Edit drive"
-msgstr "编辑磁盘"
+msgid "Edit"
+msgstr ""
 
-msgid "Edit rule"
-msgstr "编辑规则"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
@@ -134,13 +126,13 @@ msgstr "排除"
 msgid "Fix"
 msgstr "修复"
 
-msgid "Fix Silent"
-msgstr "修复隐性错误"
-
-msgid "Hash Size"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size"
+msgstr ""
+
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -152,16 +144,8 @@ msgstr "包含"
 msgid "Info"
 msgstr "信息"
 
-msgid "Information"
-msgstr "信息"
-
 msgid "Level"
 msgstr "级别"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "列出最后一次 '更新校验' 命令执行以来修改过的文件，这会重新计算它们的冗余数据。"
 
 msgid "Message"
 msgstr "消息"
@@ -169,35 +153,20 @@ msgstr "消息"
 msgid "Name"
 msgstr "名称"
 
-msgid "No Hidden"
-msgstr "隐藏文件选项"
-
-msgid "Optional - Enter file or directory to undelete"
-msgstr "选项 - 恢复输入的文件或目录"
+msgid "No hidden"
+msgstr ""
 
 msgid "Parity"
 msgstr "校验"
 
-msgid "Please first select a volume."
-msgstr "请先选择卷。"
-
-msgid "Pre-Hash"
-msgstr "预哈希"
+msgid "Per-hash"
+msgstr ""
 
 msgid "Prehash+Sync"
 msgstr "预哈希+同步"
 
-msgid "Prints a status report of the array."
-msgstr "显示阵列状态报告。"
-
-msgid "Read all data two times to ensure its integrity."
-msgstr "读取所有数据两次以确保完整性。"
-
-msgid "Refresh"
-msgstr "刷新"
-
-msgid "Restore the last backup/snapshot."
-msgstr "恢复上次备份/快照"
+msgid "Root ref"
+msgstr ""
 
 msgid "Rule"
 msgstr "规则"
@@ -205,11 +174,14 @@ msgstr "规则"
 msgid "Rule Type"
 msgstr "规则类型"
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr "规则"
 
-msgid "Run Scrub"
-msgstr "运行侦测"
+msgid "Run scrub"
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -220,11 +192,11 @@ msgstr "比较计划"
 msgid "Scrub"
 msgstr "侦测"
 
-msgid "Scrub Frequency"
-msgstr "侦测频率"
+msgid "Scrub frequency"
+msgstr ""
 
-msgid "Scrub Percentage"
-msgstr "侦测比例"
+msgid "Scrub percentage"
+msgstr ""
 
 msgid "Scrub percentage used for diff script."
 msgstr "比较脚本的侦测率。"
@@ -232,35 +204,17 @@ msgstr "比较脚本的侦测率。"
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "磁盘标签侦测按钮的侦测率。"
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "侦测阵列，检查“隐性错误”"
+msgid "Send mail"
+msgstr ""
 
-msgid "Select a drive ..."
-msgstr "选择磁盘 ..."
-
-msgid "Select a volume ..."
-msgstr "选择卷 ..."
-
-msgid "Send Mail"
-msgstr "发送邮件"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "更新校验成功后运行侦测"
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr ""
 
 msgid "Settings"
 msgstr "设置"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
-
-msgid "SnapRAID user manual"
-msgstr "SnapRAID用户手册"
-
-msgid "Snapraid Config Files"
-msgstr "Snapraid配置文件"
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr "指定是排除还是包含的规则。"
 
 msgid "Spin"
 msgstr "转动"
@@ -274,10 +228,6 @@ msgstr "更新校验"
 msgid "Syslog"
 msgstr "系统日志"
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "默认配置以及排除了以下内容："
-
 msgid "Tools"
 msgstr "工具"
 
@@ -290,19 +240,47 @@ msgstr "以天为单位。"
 msgid "Up"
 msgstr "开始"
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "更新冗余信息，所有阵列中修改过的文件将被读取，同时重新计算冗余数据。"
+msgid "Updated SnapRAID settings."
+msgstr ""
 
-msgid "Volume"
-msgstr "卷"
+msgid "Write logs to syslog."
+msgstr ""
 
-msgid "Write logs to syslog"
-msgstr "记录到系统日志"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
+msgstr ""
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

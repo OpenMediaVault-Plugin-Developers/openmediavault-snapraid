@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Toshihiro Kan <kansuke4649@gmail.com>, 2014-2017
+# Toshihiro Kan <kansuke4649@gmail.com>, 2014-2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-07 16:08-0600\n"
-"PO-Revision-Date: 2021-01-07 22:08+0000\n"
+"POT-Creation-Date: 2021-11-02 06:04-0500\n"
+"PO-Revision-Date: 2021-11-02 11:05+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Japanese (Japan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ja_JP/)\n"
 "MIME-Version: 1.0\n"
@@ -21,33 +21,22 @@ msgstr ""
 msgid "A data drive cannot be a parity drive."
 msgstr "データドライブはパリティドライブにすることはできません。"
 
-msgid "Add drive"
-msgstr "ドライブの追加"
-
-msgid "Add rule"
-msgstr "ルールの追加"
-
-msgid "Auto Save"
-msgstr "自動保存"
+msgid "Auto save"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "GiB単位で指定された量を処理した後に同期されたとき、自動的に状態を保存します。デフォルト値は無効を意味する0です。"
 
-msgid "Block Size"
-msgstr "ブロックサイズ"
+msgid "Block size"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "KiB単位でのブロックサイズ"
 
 msgid "Check"
 msgstr "チェック"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "すべてのファイルと冗長データをチェックします。すべてのファイルがハッシュされ、以前の「同期」コマンドで保存したスナップショットと比較されます。"
 
 msgid "Component"
 msgstr "コンポーネント"
@@ -58,8 +47,14 @@ msgstr "設定"
 msgid "Content"
 msgstr "コンテンツ"
 
-msgid "Create scheduled diff job"
-msgstr "差分ジョブのスケジュールを作成"
+msgid "Create"
+msgstr ""
+
+msgid "Created drive."
+msgstr ""
+
+msgid "Created rule."
+msgstr ""
 
 msgid "Data"
 msgstr "データ"
@@ -72,19 +67,16 @@ msgstr "デバッグ"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
-" default = 0 to disable this check and always sync"
+" default = 0 to disable this check and always sync."
 msgstr ""
 
-msgid "Delete Threshold"
-msgstr "閾値を削除"
-
-msgid "Description of Buttons on Drives tab"
-msgstr "ドライブタブ上のボタンの説明"
+msgid "Delete threshold"
+msgstr ""
 
 msgid "Devices"
 msgstr "デバイス"
@@ -92,14 +84,11 @@ msgstr "デバイス"
 msgid "Diff"
 msgstr "差分"
 
-msgid "Diff Script Settings"
-msgstr "Diffスクリプト設定"
+msgid "Diff script settings"
+msgstr ""
 
 msgid "Down"
 msgstr "下げる"
-
-msgid "Drive"
-msgstr "ドライブ"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -107,8 +96,8 @@ msgid ""
 "integrity."
 msgstr "コンテンツファイルが保存されているドライブの場所です。 このファイルには保存されたファイルの一覧と、整合性を検証するためのすべてのチェックサムとともに、あなたのバックアップの詳細が含まれています。"
 
-msgid "Drive where data is stored."
-msgstr "データが保存されているドライブの場所。"
+msgid "Drive where data is stored.."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -118,11 +107,14 @@ msgstr "ディスク障害からの復旧にはパリティファイルが保存
 msgid "Drives"
 msgstr "ドライブ"
 
-msgid "Edit drive"
-msgstr "ドライブの編集"
+msgid "Edit"
+msgstr ""
 
-msgid "Edit rule"
-msgstr "ルールの編集"
+msgid "Edit drive."
+msgstr ""
+
+msgid "Edit rule."
+msgstr ""
 
 msgid "Excludes hidden files and directories."
 msgstr "隠しファイルやディレクトリを除外します。"
@@ -133,13 +125,13 @@ msgstr "除外"
 msgid "Fix"
 msgstr "修正"
 
-msgid "Fix Silent"
-msgstr "サイレントモードで修正"
-
-msgid "Hash Size"
+msgid "Fix silent"
 msgstr ""
 
-msgid "Hash size in Bytes"
+msgid "Hash size"
+msgstr ""
+
+msgid "Hash size in bytes"
 msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
@@ -151,16 +143,8 @@ msgstr "含むもの"
 msgid "Info"
 msgstr "情報"
 
-msgid "Information"
-msgstr "情報"
-
 msgid "Level"
 msgstr "レベル"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "冗長データを再計算する必要があり、最後の「同期」コマンドから変更されたすべてのファイルを一覧表示します。"
 
 msgid "Message"
 msgstr "メッセージ"
@@ -168,35 +152,20 @@ msgstr "メッセージ"
 msgid "Name"
 msgstr "名前"
 
-msgid "No Hidden"
-msgstr "隠さない"
-
-msgid "Optional - Enter file or directory to undelete"
-msgstr "オプション - 削除を戻すファイルまたはディレクトリを入力してください"
+msgid "No hidden"
+msgstr ""
 
 msgid "Parity"
 msgstr "パリティ"
 
-msgid "Please first select a volume."
-msgstr "最初にボリュームを選択してください。"
-
-msgid "Pre-Hash"
-msgstr "プレハッシュ"
+msgid "Per-hash"
+msgstr ""
 
 msgid "Prehash+Sync"
 msgstr "プレハッシュ+同期"
 
-msgid "Prints a status report of the array."
-msgstr "アレイのステータスレポートを印刷します。"
-
-msgid "Read all data two times to ensure its integrity."
-msgstr "完全性を保証するために、すべてのデータを2回読みます。"
-
-msgid "Refresh"
-msgstr "リフレッシュ"
-
-msgid "Restore the last backup/snapshot."
-msgstr "最後のバックアップ/スナップショットからリストアします。"
+msgid "Root ref"
+msgstr ""
 
 msgid "Rule"
 msgstr "ルール"
@@ -204,11 +173,14 @@ msgstr "ルール"
 msgid "Rule Type"
 msgstr "ルールタイプ"
 
+msgid "Rule type"
+msgstr ""
+
 msgid "Rules"
 msgstr "ルール"
 
-msgid "Run Scrub"
-msgstr "スクラブを実行"
+msgid "Run scrub"
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -219,11 +191,11 @@ msgstr "差分のスケジュール"
 msgid "Scrub"
 msgstr "スクラブ"
 
-msgid "Scrub Frequency"
-msgstr "スクラブの頻度"
+msgid "Scrub frequency"
+msgstr ""
 
-msgid "Scrub Percentage"
-msgstr "スクラブの割合"
+msgid "Scrub percentage"
+msgstr ""
 
 msgid "Scrub percentage used for diff script."
 msgstr "差分スクリプトに使用するスクラブの割合。"
@@ -231,35 +203,17 @@ msgstr "差分スクリプトに使用するスクラブの割合。"
 msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "ドライブタブ上のスクラブボタンに使用するスクラブの割合。"
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "アレイをスクラブし、サイレントエラーをチェックします。"
+msgid "Send mail"
+msgstr ""
 
-msgid "Select a drive ..."
-msgstr "ドライブの選択 ..."
-
-msgid "Select a volume ..."
-msgstr "ボリュームの選択 ..."
-
-msgid "Send Mail"
-msgstr "メールの送信"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "同期が成功した後にスクラブを行いたい場合はtrueに設定します"
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr ""
 
 msgid "Settings"
 msgstr "設定"
 
 msgid "SnapRAID"
 msgstr "SnapRAID"
-
-msgid "SnapRAID user manual"
-msgstr "SnapRAIDユーザーマニュアル"
-
-msgid "Snapraid Config Files"
-msgstr "Snapraid 設定ファイル"
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr "ルールが除外なのか、含まれるものなのかを指定します。"
 
 msgid "Spin"
 msgstr "スピン"
@@ -273,10 +227,6 @@ msgstr "同期"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "以下の除外は、デフォルトでsnapraid設定ファイルに書き込まれます:"
-
 msgid "Tools"
 msgstr "ツール"
 
@@ -289,19 +239,47 @@ msgstr "1日の単位。"
 msgid "Up"
 msgstr "上げる"
 
-msgid "Update Threshold"
+msgid "Update threshold"
 msgstr ""
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "冗長性情報を更新します。ディスクアレイ内のすべての変更されたファイルが読み取られ、冗長データが再計算されます。"
+msgid "Updated SnapRAID settings."
+msgstr ""
 
-msgid "Volume"
-msgstr "ボリューム"
+msgid "Write logs to syslog."
+msgstr ""
 
-msgid "Write logs to syslog"
-msgstr "ログをsyslogへ書き込む"
+msgid "snapraid check ..."
+msgstr ""
+
+msgid "snapraid devices ..."
+msgstr ""
+
+msgid "snapraid diff ..."
+msgstr ""
+
+msgid "snapraid fix ..."
+msgstr ""
+
+msgid "snapraid scrub ..."
+msgstr ""
+
+msgid "snapraid silent ..."
+msgstr ""
+
+msgid "snapraid smart ..."
+msgstr ""
+
+msgid "snapraid status ..."
+msgstr ""
+
+msgid "snapraid sync -h ..."
+msgstr ""
+
+msgid "snapraid sync ..."
+msgstr ""
+
+msgid "snapraid undelete ..."
+msgstr ""
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"
