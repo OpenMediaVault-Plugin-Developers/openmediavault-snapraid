@@ -8,9 +8,12 @@ data:
       service: SnapRaid
       get:
         method: getRule
+        params:
+          uuid: "{{ _routeParams.uuid }}"
       post:
         method: setRule
     fields:
+      - type: confObjUuid
       - type: select
         name: mntentref
         label: _('Drive')
@@ -25,6 +28,7 @@ data:
         name: rootfsref
         label: _("Root ref")
         value: "79684322-3eac-11ea-a974-63a080abab18"
+        submitValue: false
       - type: folderBrowser
         name: rule1
         label: _("Rule")
@@ -34,16 +38,19 @@ data:
       - type: select
         name: rtype
         label: _("Rule Type")
-        value: "0"
+        value: 0
         store:
           data:
-            - - "0"
+            - - 0
               - _("Exclusion")
-            - - "1"
+            - - 1
               - _("Inclusion")
     buttons:
       - template: submit
+        execute:
+          type: url
+          url: "/services/snapraid/rules"
       - template: cancel
         execute:
           type: url
-          url: "/services/snapraid/drives"
+          url: "/services/snapraid/rules"

@@ -8,9 +8,12 @@ data:
       service: SnapRaid
       get:
         method: getDrive
+        params:
+          uuid: "{{ _routeParams.uuid }}"
       post:
         method: setDrive
     fields:
+      - type: confObjUuid
       - type: select
         name: mntentref
         label: _('Drive')
@@ -41,6 +44,9 @@ data:
         hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
     buttons:
       - template: submit
+        execute:
+          type: url
+          url: "/services/snapraid/drives"
       - template: cancel
         execute:
           type: url
