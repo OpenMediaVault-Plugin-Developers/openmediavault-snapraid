@@ -15,9 +15,11 @@ data:
         value: ""
         readonly: true
         rows: 10
+        monospace: true
       - type: textarea
         name: snapraiddiff
         label: _("snapraid-diff.conf")
         value: ""
         readonly: true
         rows: 10
+        monospace: true
