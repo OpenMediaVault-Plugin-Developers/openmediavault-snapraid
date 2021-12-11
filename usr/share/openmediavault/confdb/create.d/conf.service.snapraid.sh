@@ -46,4 +46,24 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_node "${SERVICE_XPATH}" "rules" ""
 fi
 
+if ! omv_config_exists "//system/crontab/job[uuid='57e13a3c-5a94-11ec-8153-3f587eab8e1f']"; then
+    object="<uuid>57e13a3c-5a94-11ec-8153-3f587eab8e1f</uuid>"
+    object="${object}<enable>0</enable>"
+    object="${object}<execution>exactly</execution>"
+    object="${object}<sendemail>0</sendemail>"
+    object="${object}<comment></comment>"
+    object="${object}<type>userdefined</type>"
+    object="${object}<minute>30</minute>"
+    object="${object}<everynminute>0</everynminute>"
+    object="${object}<hour>2</hour>"
+    object="${object}<everynhour>0</everynhour>"
+    object="${object}<month>*</month>"
+    object="${object}<dayofmonth>*</dayofmonth>"
+    object="${object}<everyndayofmonth>0</everyndayofmonth>"
+    object="${object}<dayofweek>7</dayofweek>"
+    object="${object}<username>root</username>"
+    object="${object}<command>/usr/sbin/omv-snapraid-diff</command>"
+    omv_config_add_node_data "//system/crontab" "job" "${object}"
+fi
+
 exit 0

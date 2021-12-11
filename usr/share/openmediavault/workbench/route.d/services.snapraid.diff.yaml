@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/diff"
+  title: _("Scheduled Diff")
+  editing: true
+  notificationTitle: _("Edit scheduled diff.")
+  component: omv-services-snapraid-diff-form-page

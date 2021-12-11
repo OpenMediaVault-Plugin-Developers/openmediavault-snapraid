@@ -18,32 +18,32 @@ data:
         label: _("Block size")
         value: 256
         validators:
-          min: 0 
-          max: 65535 
+          min: 0
+          max: 65535
         hint: _("Block size in KiB")
       - type: numberInput
         name: hashsize
         label: _("Hash size")
         value: 16
         validators:
-          min: 0 
-          max: 65535 
+          min: 0
+          max: 65535
         hint: _("Hash size in bytes")
       - type: numberInput
         name: autosave
         label: _("Auto save")
         value: 0
         validators:
-          min: 0 
-          max: 65535 
+          min: 0
+          max: 65535
         hint: _("Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled.")
       - type: numberInput
         name: percentscrub
         label: _("Scrub percentage")
         value: 12
         validators:
-          min: 0 
-          max: 100 
+          min: 0
+          max: 100
         hint: _("Scrub percentage used for scrub button on Drives tab.")
       - type: checkbox
         name: nohidden
@@ -81,32 +81,32 @@ data:
         label: _("Scrub frequency")
         value: 7
         validators:
-          min: 0 
-          max: 365 
+          min: 0
+          max: 365
         hint: _("Units in days.")
       - type: numberInput
         name: scrubpercent
         label: _("Scrub percentage")
         value: 100
         validators:
-          min: 0 
-          max: 100 
+          min: 0
+          max: 100
         hint: _("Scrub percentage used for diff script.")
       - type: numberInput
         name: updthreshold
         label: _("Update threshold")
         value: 0
         validators:
-          min: 0 
-          max: 65535 
+          min: 0
+          max: 65535
         hint: _("Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync.")
       - type: numberInput
         name: delthreshold
         label: _("Delete threshold")
         value: 0
         validators:
-          min: 0 
-          max: 65535 
+          min: 0
+          max: 65535
         hint: _("Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync.")
     buttons:
       - template: submit
@@ -117,4 +117,4 @@ data:
       - text: _("Scheduled diff")
         execute:
           type: url
-          url: "/system/cron/create"
+          url: "/services/snapraid/diff"
