@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 06:04-0500\n"
-"PO-Revision-Date: 2021-11-02 11:05+0000\n"
+"POT-Creation-Date: 2021-12-11 10:06-0600\n"
+"PO-Revision-Date: 2021-12-11 16:06+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "A data drive cannot be a parity drive."
 msgstr "数据盘不能做校验盘"
 
 msgid "Auto save"
-msgstr ""
+msgstr "自动保存"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -31,7 +31,7 @@ msgid ""
 msgstr "在同步多少GB数据后自动保存校验状态，默认值0，代表不开启该功能。"
 
 msgid "Block size"
-msgstr ""
+msgstr "块大小"
 
 msgid "Block size in KiB"
 msgstr "块大小单位KB"
@@ -49,13 +49,13 @@ msgid "Content"
 msgstr "校验清单"
 
 msgid "Create"
-msgstr ""
+msgstr "创建"
 
 msgid "Created drive."
-msgstr ""
+msgstr "创建磁盘。"
 
 msgid "Created rule."
-msgstr ""
+msgstr "创建规则"
 
 msgid "Data"
 msgstr "数据盘"
@@ -69,15 +69,15 @@ msgstr "调试"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "设置被删除文件的阈值，大于该阈值则不启动同步过程。 设为 0 则禁用此检查并始终同步。"
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "设置更新文件的阈值，大于该阈值则不启动同步过程。 设为 0 则禁用此检查并始终同步。"
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "删除阈值"
 
 msgid "Devices"
 msgstr "设备"
@@ -86,7 +86,7 @@ msgid "Diff"
 msgstr "比较"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "差异脚本设置"
 
 msgid "Down"
 msgstr "停转"
@@ -98,7 +98,7 @@ msgid ""
 msgstr "校验清单存储的磁盘，这个文件保存着备份文件的详情，包括校验文件完整性的信息。"
 
 msgid "Drive where data is stored.."
-msgstr ""
+msgstr "数据存储的磁盘。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -109,12 +109,15 @@ msgid "Drives"
 msgstr "磁盘"
 
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
 msgid "Edit drive."
-msgstr ""
+msgstr "编辑磁盘"
 
 msgid "Edit rule."
+msgstr "编辑规则"
+
+msgid "Edit scheduled diff."
 msgstr ""
 
 msgid "Excludes hidden files and directories."
@@ -127,13 +130,13 @@ msgid "Fix"
 msgstr "修复"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "修复静默错误"
 
 msgid "Hash size"
-msgstr ""
+msgstr "哈希大小"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "以字节表示的哈希大小"
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "无效规则 - 不能以 /* 结尾"
@@ -154,19 +157,19 @@ msgid "Name"
 msgstr "名称"
 
 msgid "No hidden"
-msgstr ""
+msgstr "隐藏文件选项"
 
 msgid "Parity"
 msgstr "校验"
 
 msgid "Per-hash"
-msgstr ""
+msgstr "预哈希"
 
 msgid "Prehash+Sync"
 msgstr "预哈希+同步"
 
 msgid "Root ref"
-msgstr ""
+msgstr "Root ref"
 
 msgid "Rule"
 msgstr "规则"
@@ -175,16 +178,19 @@ msgid "Rule Type"
 msgstr "规则类型"
 
 msgid "Rule type"
-msgstr ""
+msgstr "规则类型"
 
 msgid "Rules"
 msgstr "规则"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "运行侦测"
 
 msgid "SMART"
 msgstr "SMART"
+
+msgid "Scheduled Diff"
+msgstr ""
 
 msgid "Scheduled diff"
 msgstr "比较计划"
@@ -193,10 +199,10 @@ msgid "Scrub"
 msgstr "侦测"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "侦测频率"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "侦测比例"
 
 msgid "Scrub percentage used for diff script."
 msgstr "比较脚本的侦测率。"
@@ -205,10 +211,10 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "磁盘标签侦测按钮的侦测率。"
 
 msgid "Send mail"
-msgstr ""
+msgstr "发送邮件"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "更新校验成功后运行侦测。"
 
 msgid "Settings"
 msgstr "设置"
@@ -241,46 +247,46 @@ msgid "Up"
 msgstr "开始"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "更新阈值"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "更新 SnapRAID 设置。"
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "记录到系统日志"
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid 检查 ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid 磁盘 ..."
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid 差异 ..."
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid 修复 ..."
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid 侦测 ..."
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid 静默错误 ..."
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid 状态 ..."
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h ..."
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid 同步 ..."
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid 取消删除 ..."
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

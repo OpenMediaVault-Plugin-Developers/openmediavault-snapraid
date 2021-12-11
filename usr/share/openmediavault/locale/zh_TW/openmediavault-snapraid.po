@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 06:04-0500\n"
-"PO-Revision-Date: 2021-11-02 11:05+0000\n"
+"POT-Creation-Date: 2021-12-11 10:06-0600\n"
+"PO-Revision-Date: 2021-12-11 16:06+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -19,18 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "A data drive cannot be a parity drive."
-msgstr "資料磁碟不可做為奇偶性磁碟。"
+msgstr "資料驅動器不可做為奇偶校驗驅動器。"
 
 msgid "Auto save"
-msgstr ""
+msgstr "自動儲存"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr "做同步時，在處理超過所指定的 GiB 數量後，自動儲存狀態。預設值為 0，表示停用。"
+msgstr "做同步時，在處理超過所指定的 GiB 數量後，會自動儲存狀態。預設值為 0，表示停用。"
 
 msgid "Block size"
-msgstr ""
+msgstr "區塊大小"
 
 msgid "Block size in KiB"
 msgstr "區塊大小以 KiB 為單位"
@@ -48,13 +48,13 @@ msgid "Content"
 msgstr "內容"
 
 msgid "Create"
-msgstr ""
+msgstr "新建"
 
 msgid "Created drive."
-msgstr ""
+msgstr "已建立驅動器。"
 
 msgid "Created rule."
-msgstr ""
+msgstr "已建立規則。"
 
 msgid "Data"
 msgstr "資料"
@@ -68,15 +68,15 @@ msgstr "除錯"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "定義被刪除檔案的定限，此數值被超越則不起動同步進程。預設 = 0 停用這項檢查，將每次都執行同步。"
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "定義被更改檔案的定限，此數值被超越則不起動同步進程。預設 = 0 停用這項檢查，將每次都執行同步。"
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "刪除定限"
 
 msgid "Devices"
 msgstr "裝置"
@@ -85,7 +85,7 @@ msgid "Diff"
 msgstr "差異"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "差異（Diff）腳本程式設定"
 
 msgid "Down"
 msgstr "停止"
@@ -94,26 +94,29 @@ msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr "儲存內容檔案的磁碟。該檔案是一份被儲存檔案的清單，它包含了您的備份之細節，有所有的核對和來確認它的完整性。"
+msgstr "儲存內容檔案的驅動器。該檔案是一份被儲存檔案的清單，它包含了您的備份之細節，及所有的核對來確認它的完整性。"
 
 msgid "Drive where data is stored.."
-msgstr ""
+msgstr "資料儲存的驅動器。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr "儲存奇偶性檔案的磁碟，是在磁碟故障時用來做復原。每有一個奇偶性磁碟，就允許一個資料磁碟故障而不會失去資料。"
+msgstr "儲存奇偶校驗檔案的驅動器，是在磁碟故障時用來做復原。每有一個奇偶校驗驅動器，就允許一個資料驅動器故障而不會失去資料。"
 
 msgid "Drives"
-msgstr "磁碟"
+msgstr "驅動器"
 
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 msgid "Edit drive."
-msgstr ""
+msgstr "編輯驅動器。"
 
 msgid "Edit rule."
+msgstr "編輯規則。"
+
+msgid "Edit scheduled diff."
 msgstr ""
 
 msgid "Excludes hidden files and directories."
@@ -126,13 +129,13 @@ msgid "Fix"
 msgstr "修復"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "修復靜默錯誤"
 
 msgid "Hash size"
-msgstr ""
+msgstr "散列大小"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "以位元組計的散列大小"
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "不合法的規則 - 不能以 /* 做結尾"
@@ -153,19 +156,19 @@ msgid "Name"
 msgstr "名稱"
 
 msgid "No hidden"
-msgstr ""
+msgstr "不含隱藏"
 
 msgid "Parity"
 msgstr "竒偶性"
 
 msgid "Per-hash"
-msgstr ""
+msgstr "初步雜湊"
 
 msgid "Prehash+Sync"
 msgstr "初步雜湊+同步"
 
 msgid "Root ref"
-msgstr ""
+msgstr "根檔案系統參考"
 
 msgid "Rule"
 msgstr "規則"
@@ -174,40 +177,43 @@ msgid "Rule Type"
 msgstr "規則型式"
 
 msgid "Rule type"
-msgstr ""
+msgstr "規則型式"
 
 msgid "Rules"
 msgstr "規則"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "執行清理"
 
 msgid "SMART"
 msgstr "SMART"
 
+msgid "Scheduled Diff"
+msgstr ""
+
 msgid "Scheduled diff"
-msgstr "定期 diff 作業"
+msgstr "定期差異作業"
 
 msgid "Scrub"
 msgstr "清理"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "清理頻率"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "清理百分比"
 
 msgid "Scrub percentage used for diff script."
-msgstr "給 diff 腳本程式使用的清理百分比。"
+msgstr "給差異（diff）腳本程式使用的清理百分比。"
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr "給 磁碟 分頁上的 清理 按鈕使用之清理百分比。"
+msgstr "給「驅動器」頁上的「清理」按鈕使用之清理百分比。"
 
 msgid "Send mail"
-msgstr ""
+msgstr "送出電子郵件"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "將它設定成 true，如果要在同步成功後做清理。"
 
 msgid "Settings"
 msgstr "設定"
@@ -240,46 +246,46 @@ msgid "Up"
 msgstr "開始"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "更新定限"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "已更新 SnapRAID 設定。"
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "將日誌寫入 syslog。"
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid 檢查 ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid 裝置 ..."
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid 差異 ..."
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid 修復 ..."
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid 清理 ..."
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid 修復靜默錯誤 ..."
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid 狀態 ..."
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid 初步雜湊+同步（sync -h）..."
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid 同步 ..."
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid 取消刪除 ..."
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

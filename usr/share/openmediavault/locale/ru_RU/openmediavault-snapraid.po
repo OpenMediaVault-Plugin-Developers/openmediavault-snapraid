@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-02 06:04-0500\n"
-"PO-Revision-Date: 2021-11-02 11:05+0000\n"
+"POT-Creation-Date: 2021-12-11 10:06-0600\n"
+"PO-Revision-Date: 2021-12-11 16:06+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,9 @@ msgstr ""
 msgid "Edit rule."
 msgstr ""
 
+msgid "Edit scheduled diff."
+msgstr ""
+
 msgid "Excludes hidden files and directories."
 msgstr "Исключает скрытые файлы и каталоги"
 
@@ -187,6 +190,9 @@ msgstr ""
 
 msgid "SMART"
 msgstr "СМАРТ"
+
+msgid "Scheduled Diff"
+msgstr ""
 
 msgid "Scheduled diff"
 msgstr "Запланированное сравнение"
