@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Dampflok_HD, 2021
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2016
+# Ettore Atalan <atalanttore@googlemail.com>, 2014-2016,2021
 # Jan Neumann <omv@eingeord.net>, 2014
 # Ruben Stein <ruben@rstein.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-11 10:06-0600\n"
-"PO-Revision-Date: 2021-12-11 16:06+0000\n"
+"POT-Creation-Date: 2021-12-12 08:42-0600\n"
+"PO-Revision-Date: 2021-12-12 14:43+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "A data drive cannot be a parity drive."
 msgstr "Ein Datenlaufwerk kann nicht ein Paritätslaufwerk sein."
 
 msgid "Auto save"
-msgstr ""
+msgstr "Automatisches Speichern"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -33,7 +33,7 @@ msgid ""
 msgstr "Automatische Synchronisierungsstatussicherung beim Erreichen der angegebenen Anzahl von verarbeiteten GiB. Voreinstellungswert ist 0; Damit ist die Automatik deaktiviert."
 
 msgid "Block size"
-msgstr ""
+msgstr "Blockgröße"
 
 msgid "Block size in KiB"
 msgstr "Blockgröße in KB"
@@ -51,13 +51,13 @@ msgid "Content"
 msgstr "Verzeichnis"
 
 msgid "Create"
-msgstr ""
+msgstr "Erstellen"
 
 msgid "Created drive."
-msgstr ""
+msgstr "Erstelltes Laufwerk."
 
 msgid "Created rule."
-msgstr ""
+msgstr "Erstellte Regel."
 
 msgid "Data"
 msgstr "Daten"
@@ -79,7 +79,7 @@ msgid ""
 msgstr ""
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "Schwellenwert löschen"
 
 msgid "Devices"
 msgstr "Geräte"
@@ -88,7 +88,7 @@ msgid "Diff"
 msgstr "Diff"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "Diff-Skripteinstellungen"
 
 msgid "Down"
 msgstr "Stoppen"
@@ -99,7 +99,7 @@ msgid ""
 "integrity."
 msgstr "Laufwerk auf dem Verzeichnisdatei gespeichert ist. Diese datei enthält eine Liste von gespeicherten Dateien in Ihrer Sicherung und die Prüfsummen um deren Integrität sicherzustellen."
 
-msgid "Drive where data is stored.."
+msgid "Drive where data is stored."
 msgstr ""
 
 msgid ""
@@ -111,13 +111,13 @@ msgid "Drives"
 msgstr "Laufwerke"
 
 msgid "Edit"
-msgstr ""
+msgstr "Bearbeiten"
 
 msgid "Edit drive."
-msgstr ""
+msgstr "Laufwerk bearbeiten."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "Regel bearbeiten."
 
 msgid "Edit scheduled diff."
 msgstr ""
@@ -135,10 +135,10 @@ msgid "Fix silent"
 msgstr ""
 
 msgid "Hash size"
-msgstr ""
+msgstr "Hash-Größe"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "Hash-Größe in Bytes"
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Unzulässige Regel - darf nicht mit /* enden"
@@ -159,7 +159,7 @@ msgid "Name"
 msgstr "Name"
 
 msgid "No hidden"
-msgstr ""
+msgstr "Keine Versteckten"
 
 msgid "Parity"
 msgstr "Parität"
@@ -180,7 +180,7 @@ msgid "Rule Type"
 msgstr "Regeltyp"
 
 msgid "Rule type"
-msgstr ""
+msgstr "Regeltyp"
 
 msgid "Rules"
 msgstr "Regeln"
@@ -249,19 +249,19 @@ msgid "Up"
 msgstr "Starten"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "Schwellenwert aktualisieren"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "Aktualisierte SnapRAID-Einstellungen."
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "Protokolle in das syslog schreiben."
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid-Prüfung ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid-Geräte ..."
 
 msgid "snapraid diff ..."
 msgstr ""
@@ -279,7 +279,7 @@ msgid "snapraid smart ..."
 msgstr ""
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid-Status ..."
 
 msgid "snapraid sync -h ..."
 msgstr ""
