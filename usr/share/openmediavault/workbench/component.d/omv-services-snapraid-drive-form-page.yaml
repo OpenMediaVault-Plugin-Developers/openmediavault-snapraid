@@ -36,7 +36,7 @@ data:
         name: data
         label: _("Data")
         value: false
-        hint: _("Drive where data is stored..")
+        hint: _("Drive where data is stored.")
       - type: checkbox
         name: parity
         label: _("Parity")
