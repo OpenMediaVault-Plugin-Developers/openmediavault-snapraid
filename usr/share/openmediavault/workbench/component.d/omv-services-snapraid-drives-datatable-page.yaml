@@ -21,13 +21,16 @@ data:
         sortable: true
       - name: _("Content")
         prop: content
+        flexGrow: 1
         cellTemplateName: checkIcon
       - name: _("Data")
         prop: data
+        flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
       - name: _("Parity")
         prop: parity
+        flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
     actions:
