@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-12 08:42-0600\n"
-"PO-Revision-Date: 2021-12-12 14:43+0000\n"
+"POT-Creation-Date: 2022-03-06 10:15-0600\n"
+"PO-Revision-Date: 2022-03-06 16:15+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgid ""
 msgstr "校验清单存储的磁盘，这个文件保存着备份文件的详情，包括校验文件完整性的信息。"
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "数据存储的磁盘。"
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -118,7 +118,7 @@ msgid "Edit rule."
 msgstr "编辑规则"
 
 msgid "Edit scheduled diff."
-msgstr ""
+msgstr "编辑比较计划任务"
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
@@ -190,10 +190,10 @@ msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "比较计划任务"
 
 msgid "Scheduled diff"
-msgstr "比较计划"
+msgstr "比较计划任务"
 
 msgid "Scrub"
 msgstr "侦测"
@@ -233,6 +233,9 @@ msgstr "更新校验"
 
 msgid "Syslog"
 msgstr "系统日志"
+
+msgid "The field should only contain * or a comma separated list of values."
+msgstr ""
 
 msgid "Tools"
 msgstr "工具"

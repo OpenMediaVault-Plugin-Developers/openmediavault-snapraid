@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2015-2017
+# Pavel Borecki <pavel.borecki@gmail.com>, 2015-2017,2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-12 08:42-0600\n"
-"PO-Revision-Date: 2021-12-12 14:43+0000\n"
+"POT-Creation-Date: 2022-03-06 10:15-0600\n"
+"PO-Revision-Date: 2022-03-06 16:15+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Czech (Czech Republic) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "A data drive cannot be a parity drive."
 msgstr "Disk s daty nemůže zároveň sloužit jako paritní disk."
 
 msgid "Auto save"
-msgstr ""
+msgstr "Automaticky ukládat"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -30,7 +30,7 @@ msgid ""
 msgstr "Samočinně ukládat stav při synchronizaci po zpracování zadaného počtu GiB. Výchozí hodnota je 0 (nula), což znamená neukládat."
 
 msgid "Block size"
-msgstr ""
+msgstr "Velikost bloku"
 
 msgid "Block size in KiB"
 msgstr "Velikost bloku v KiB"
@@ -48,13 +48,13 @@ msgid "Content"
 msgstr "Obsah"
 
 msgid "Create"
-msgstr ""
+msgstr "Vytvořit"
 
 msgid "Created drive."
-msgstr ""
+msgstr "Jednotka vytvořena."
 
 msgid "Created rule."
-msgstr ""
+msgstr "Pravidlo vytvořeno."
 
 msgid "Data"
 msgstr "Data"
@@ -68,15 +68,15 @@ msgstr "Ladění"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Definovat práh smazaných souborů nad který nezahajovat proces synchronizace. Výchozí nastavení = 0 (nula) tuto kontrolu vypne a synchronizuje vždy."
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Definovat práh aktualizovaných souborů nad který nezahajovat proces synchronizace. Výchozí nastavení = 0 (nula) tuto kontrolu vypne a synchronizuje vždy."
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "Práh mazání"
 
 msgid "Devices"
 msgstr "Zařízení"
@@ -85,7 +85,7 @@ msgid "Diff"
 msgstr "Porovnání"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "Nastavení porovnávacího skriptu"
 
 msgid "Down"
 msgstr "Dolů"
@@ -97,7 +97,7 @@ msgid ""
 msgstr "Disk, na kterém je ukládán soubor, popisující obsah úložiště. Jedná se o seznam uložených souborů s podrobnostmi o zálohách a kontrolních součtech pro ověření jejich neporušenosti."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Disk, na kterém jsou uložena data."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -108,16 +108,16 @@ msgid "Drives"
 msgstr "Disky"
 
 msgid "Edit"
-msgstr ""
+msgstr "Upravit"
 
 msgid "Edit drive."
-msgstr ""
+msgstr "Upravit disk."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "Upravit pravidlo."
 
 msgid "Edit scheduled diff."
-msgstr ""
+msgstr "Upravit naplánované porovnávání"
 
 msgid "Excludes hidden files and directories."
 msgstr "Vynechá skryté soubory a složky."
@@ -129,13 +129,13 @@ msgid "Fix"
 msgstr "Opravit"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "Tiše opravit"
 
 msgid "Hash size"
-msgstr ""
+msgstr "Velikost otisku"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "Velikost otisku v bajtech"
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Neplatné pravidlo – nemůže končit na /*"
@@ -156,19 +156,19 @@ msgid "Name"
 msgstr "Název"
 
 msgid "No hidden"
-msgstr ""
+msgstr "Bez skrytých"
 
 msgid "Parity"
 msgstr "Parita"
 
 msgid "Per-hash"
-msgstr ""
+msgstr "Před otiskem"
 
 msgid "Prehash+Sync"
 msgstr "Před otisk a synchronizace"
 
 msgid "Root ref"
-msgstr ""
+msgstr "Kořenová ref"
 
 msgid "Rule"
 msgstr "Pravidlo"
@@ -177,19 +177,19 @@ msgid "Rule Type"
 msgstr "Typ pravidla"
 
 msgid "Rule type"
-msgstr ""
+msgstr "Typ pravidla"
 
 msgid "Rules"
 msgstr "Pravidla"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "Spustit kontrolu"
 
 msgid "SMART"
 msgstr "Diagnostika disků (SMART)"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "Naplánované porovnávání"
 
 msgid "Scheduled diff"
 msgstr "Naplánované porovnávání"
@@ -198,10 +198,10 @@ msgid "Scrub"
 msgstr "Kontrola (scrub)"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "Četnost kontrol"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "Jak velkou část kontrolovat (v %)"
 
 msgid "Scrub percentage used for diff script."
 msgstr "Jak velkou část kontrolovat pro účely rozdílového skriptu."
@@ -210,10 +210,10 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "Jak velkou část kontrolovat při stisknutí tlačítka Kontrola na panelu Disky."
 
 msgid "Send mail"
-msgstr ""
+msgstr "Odeslat e-mail"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "Nastavte na hodnotu true (ano), pokud chcete po úspěšné synchronizaci ještě provést kontrolu."
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -233,6 +233,9 @@ msgstr "Synchr."
 msgid "Syslog"
 msgstr "Syslog"
 
+msgid "The field should only contain * or a comma separated list of values."
+msgstr ""
+
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -246,46 +249,46 @@ msgid "Up"
 msgstr "Nahoru"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "Práh mazání"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "Nastavení pro SnapRAID zaktualizována."
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "Zapisovat události do syslog."
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid kontrola…"
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid zařízení…"
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid rozdíl…"
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid oprava"
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid kontrola"
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid tiše"
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart"
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid stav"
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h"
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid synchronizace"
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid obnova smazaného"
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-12 08:42-0600\n"
-"PO-Revision-Date: 2021-12-12 14:43+0000\n"
+"POT-Creation-Date: 2022-03-06 10:15-0600\n"
+"PO-Revision-Date: 2022-03-06 16:15+0000\n"
 "Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "A data drive cannot be a parity drive."
 msgstr "Un disco de datos no puede ser de paridad."
 
 msgid "Auto save"
-msgstr ""
+msgstr "Guardado automático"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -30,7 +30,7 @@ msgid ""
 msgstr "Salvar automáticamente el estado cuando se sincronice una cantidad especificada de GiB. El valor por defecto es 0, que significa deshabilitado."
 
 msgid "Block size"
-msgstr ""
+msgstr "Tamaño del bloque"
 
 msgid "Block size in KiB"
 msgstr "Tamaño de bloque en KiB"
@@ -48,13 +48,13 @@ msgid "Content"
 msgstr "Lista de Contenido"
 
 msgid "Create"
-msgstr ""
+msgstr "Crear"
 
 msgid "Created drive."
-msgstr ""
+msgstr "Disco creado."
 
 msgid "Created rule."
-msgstr ""
+msgstr "Regla creada."
 
 msgid "Data"
 msgstr "Datos"
@@ -68,15 +68,15 @@ msgstr "Depuración"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Defina el umbral de archivos eliminados por encima del cual no iniciar el proceso de sincronización. Por defecto = 0 para deshabilitar esta verificación y sincronizar siempre."
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Defina el umbral de archivos actualizados por encima del cual no iniciar el proceso de sincronización. Por defecto = 0 para deshabilitar esta verificación y sincronizar siempre."
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "Borrar umbral"
 
 msgid "Devices"
 msgstr "Dispositivos"
@@ -85,7 +85,7 @@ msgid "Diff"
 msgstr "Differencias"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "Opciones del script Diff"
 
 msgid "Down"
 msgstr "Abajo"
@@ -97,7 +97,7 @@ msgid ""
 msgstr "Disco donde se almacena el archivo de contenido. Este archivo es una lista de archivos salvados y contiene el detalle de sus copias, con su correspondiente checksum para verificar la integridad del archivo."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Disco donde almacenar los datos."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -108,16 +108,16 @@ msgid "Drives"
 msgstr "Discos"
 
 msgid "Edit"
-msgstr ""
+msgstr "Editar"
 
 msgid "Edit drive."
-msgstr ""
+msgstr "Editar disco."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "Editar regla."
 
 msgid "Edit scheduled diff."
-msgstr ""
+msgstr "Editar diff programadas."
 
 msgid "Excludes hidden files and directories."
 msgstr "Excluir archivos y carpetas ocultos."
@@ -129,13 +129,13 @@ msgid "Fix"
 msgstr "Arreglar"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "Arreglar en silencio"
 
 msgid "Hash size"
-msgstr ""
+msgstr "Tamaño del Hash"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "Tamaño del hash en bytes."
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Regla ilegal - No puede terminar con  /*"
@@ -156,19 +156,19 @@ msgid "Name"
 msgstr "Nombre"
 
 msgid "No hidden"
-msgstr ""
+msgstr "No ocultos"
 
 msgid "Parity"
 msgstr "Paridad"
 
 msgid "Per-hash"
-msgstr ""
+msgstr "Por-Hash"
 
 msgid "Prehash+Sync"
 msgstr "Prehash+Sync"
 
 msgid "Root ref"
-msgstr ""
+msgstr "ref. Root"
 
 msgid "Rule"
 msgstr "Regla"
@@ -177,19 +177,19 @@ msgid "Rule Type"
 msgstr "Tipo de regla"
 
 msgid "Rule type"
-msgstr ""
+msgstr "Tipo de regla"
 
 msgid "Rules"
 msgstr "Reglas"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "Ejecutar un scrub"
 
 msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "Diff programadas"
 
 msgid "Scheduled diff"
 msgstr "Trabajo programado de diferencias"
@@ -198,10 +198,10 @@ msgid "Scrub"
 msgstr "Reparar"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "Frecuencia de scrub"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "Porcentaje de scrub"
 
 msgid "Scrub percentage used for diff script."
 msgstr "Porcentaje de reparación usado por el script de diferencias."
@@ -210,10 +210,10 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "Porcentaje de reparación usado por el botón scrub en la pestaña Discos."
 
 msgid "Send mail"
-msgstr ""
+msgstr "Enviar e-mail"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "Habilitar si desea un scrub después de una sincronización exitosa."
 
 msgid "Settings"
 msgstr "Opciones"
@@ -233,6 +233,9 @@ msgstr "Sync"
 msgid "Syslog"
 msgstr "Syslog"
 
+msgid "The field should only contain * or a comma separated list of values."
+msgstr ""
+
 msgid "Tools"
 msgstr "Herramiental"
 
@@ -246,46 +249,46 @@ msgid "Up"
 msgstr "Arriba"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "Umbral de actualización"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "Opciones de SnapRAID actualizadas."
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "Escribir logs en syslog."
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid check ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid devices ..."
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid diff ..."
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid fix ..."
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid scrub ..."
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid silent ..."
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid status ..."
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h ..."
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid sync ..."
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid undelete ..."
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"
