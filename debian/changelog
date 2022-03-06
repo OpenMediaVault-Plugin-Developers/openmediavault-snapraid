@@ -1,3 +1,9 @@
+openmediavault-snapraid (6.0.4) stable; urgency=low
+
+  * Allow multiple values in scheduled times
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 06 Mar 2022 10:14:39 -0600
+
 openmediavault-snapraid (6.0.3) stable; urgency=low
 
   * Improve scheduled diff
