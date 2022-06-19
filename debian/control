@@ -10,6 +10,7 @@ Homepage: https://omv-extras.org/
 Package: openmediavault-snapraid
 Architecture: all
 Depends: openmediavault (>= 6.0),
+         openmediavault-sharerootfs,
          snapraid (>= 11.5)
 Description: snapraid plugin for OpenMediaVault.
  SnapRAID is a backup program for disk arrays. It stores parity
