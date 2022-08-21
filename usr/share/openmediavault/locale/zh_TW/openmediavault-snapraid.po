@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2017,2021
+# kochin <kochinc@outlook.com>, 2014-2017,2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 10:15-0600\n"
-"PO-Revision-Date: 2022-03-06 16:15+0000\n"
-"Last-Translator: Aaron Murray <aaronmurray27@gmail.com>\n"
+"POT-Creation-Date: 2022-08-21 11:34-0500\n"
+"PO-Revision-Date: 2013-11-12 16:13+0000\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,6 +164,9 @@ msgstr "竒偶性"
 msgid "Per-hash"
 msgstr "初步雜湊"
 
+msgid "Pre-hash"
+msgstr ""
+
 msgid "Prehash+Sync"
 msgstr "初步雜湊+同步"
 
@@ -184,6 +187,11 @@ msgstr "規則"
 
 msgid "Run scrub"
 msgstr "執行清理"
+
+msgid ""
+"Runs a preliminary hashing phase of all the new data to have an additional "
+"verification before the parity computation."
+msgstr ""
 
 msgid "SMART"
 msgstr "SMART"
@@ -234,7 +242,7 @@ msgid "Syslog"
 msgstr "Syslog"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "此欄位應該只含有 * 或一份以逗號分隔的數值列表。"
 
 msgid "Tools"
 msgstr "工具"
