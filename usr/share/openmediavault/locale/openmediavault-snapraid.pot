@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-06 10:15-0600\n"
+"POT-Creation-Date: 2022-08-21 11:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,6 +152,9 @@ msgstr ""
 msgid "Per-hash"
 msgstr ""
 
+msgid "Pre-hash"
+msgstr ""
+
 msgid "Prehash+Sync"
 msgstr ""
 
@@ -171,6 +174,9 @@ msgid "Rules"
 msgstr ""
 
 msgid "Run scrub"
+msgstr ""
+
+msgid "Runs a preliminary hashing phase of all the new data to have an additional verification before the parity computation."
 msgstr ""
 
 msgid "SMART"

@@ -73,9 +73,9 @@ data:
         hint: _("Set to true if you want to scrub after a successful sync.")
       - type: checkbox
         name: prehash
-        label: _("Per-hash")
+        label: _("Pre-hash")
         value: true
-        hint: _("Set to true if you want to scrub after a successful sync.")
+        hint: _("Runs a preliminary hashing phase of all the new data to have an additional verification before the parity computation.")
       - type: numberInput
         name: scrubfreq
         label: _("Scrub frequency")
