@@ -161,7 +161,7 @@ msgstr ""
 msgid "Parity"
 msgstr "Parity"
 
-msgid "Per-hash"
+msgid "Pre-hash"
 msgstr ""
 
 msgid "Prehash+Sync"
