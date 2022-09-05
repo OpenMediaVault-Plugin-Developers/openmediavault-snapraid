@@ -165,7 +165,7 @@ msgid "Per-hash"
 msgstr "初步雜湊"
 
 msgid "Pre-hash"
-msgstr ""
+msgstr "初步雜湊"
 
 msgid "Prehash+Sync"
 msgstr "初步雜湊+同步"
@@ -191,7 +191,7 @@ msgstr "執行清理"
 msgid ""
 "Runs a preliminary hashing phase of all the new data to have an additional "
 "verification before the parity computation."
-msgstr ""
+msgstr "對全部新資料執行初步雜湊階段，以在奇偶性計算之前有額外的驗證。"
 
 msgid "SMART"
 msgstr "SMART"
