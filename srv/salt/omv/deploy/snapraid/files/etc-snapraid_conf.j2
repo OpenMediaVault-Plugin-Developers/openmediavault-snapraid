@@ -1,3 +1,4 @@
+{% set subfolder = salt['pillar.get']('default:OMV_SNAPRAID_CONTENT_SUBFOLDER', '') -%}
 {{ pillar['headers']['multiline'] }}
 {%- if not config.blocksize == 256 %}
 blocksize {{ config.blocksize }}
@@ -15,7 +16,7 @@ nohidden
 #####################################################################
 # OMV-Name: {{ drive.name }}  Drive Label: {{ drive.label }}
 {%- if drive.content | to_bool %}
-content {{ drive.path }}/snapraid.content
+content {{ drive.path }}/{% if subfolder | length > 0 %}{{ subfolder }}/{% endif %}snapraid.content
 {%- endif %}
 {%- if drive.data | to_bool %}
 disk {{ drive.name }} {{ drive.path }}
