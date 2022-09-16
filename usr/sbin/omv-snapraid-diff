@@ -282,15 +282,12 @@ fi
 ### Section to support SnapRAID Scrub ###
 mkdir -p $TMP_SCRUB_DIR
 
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_counter ]; then
-	COUNTER=$(cat $TMP_SCRUB_DIR/snapraid_scrub_counter)
+if [ -f $TMP_SCRUB_DIR/snapraid_last_scrub_date ]; then
+	LAST_SCRUB_DATE=$(cat $TMP_SCRUB_DIR/snapraid_last_scrub_date)
 else
-	echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-	COUNTER=1
+	echo "1" > $TMP_SCRUB_DIR/snapraid_last_scrub_date
+	LAST_SCRUB_DATE=1
 fi
-# enable only one of the two below!!!
-let COUNTER++
-# COUNTER=$(($COUNTER+0))
 
 # define Variables, if not set in snapraid-diff
 if [ -z ${SCRUB_PERCENT} ]; then
@@ -460,10 +457,10 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 
 		# start snapraid SCRUB
 		if [ $RUN_SCRUB = "true" ]; then
-			if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-				echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+			let DAYS_SINCE_LAST_SCRUB=($(date +%s)-$LAST_SCRUB_DATE)/86400
+			if [ $DAYS_SINCE_LAST_SCRUB -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
+				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_SINCE_LAST_SCRUB). No scrub was run."
+				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_SINCE_LAST_SCRUB). No scrub was run. - $(date)" >> $TMP_OUTPUT
 			else
 				_log "INFO: SnapRAID SCRUB Job started"
 				_log "INFO: ----------------------------------------"
@@ -474,8 +471,8 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 				# wait for the job to finish
 				wait
 
-				# Reset counter
-				echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+				# Set last scrub time
+				echo $(date -d "00:00:00" +%s) > $TMP_SCRUB_DIR/snapraid_last_scrub_date
 
 				_log "INFO: ----------------------------------------"
 				_log "INFO: SnapRAID SCRUB Job finished"
