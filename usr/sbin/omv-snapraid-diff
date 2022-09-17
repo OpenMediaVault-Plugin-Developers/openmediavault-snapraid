@@ -280,6 +280,8 @@ else
 fi
 
 ### Section to support SnapRAID Scrub ###
+# if array synced
+IS_SYNCED=0
 mkdir -p $TMP_SCRUB_DIR
 
 if [ -f $TMP_SCRUB_DIR/snapraid_last_scrub_date ]; then
@@ -437,7 +439,7 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 
 	# Proceed with sync if no check errors
 	if [ $UPD_DEL_CHECK -eq 0 ]; then
-				# start snapraid SYNC
+		# start snapraid SYNC
 		_log "INFO: "
 		_log "INFO: SnapRAID SYNC Job started"
 		_log "INFO: ----------------------------------------"
@@ -450,11 +452,36 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 		#wait for the job to finish
 		wait
 
+		# We have synced array here
+		IS_SYNCED=1
 		_log "INFO: ----------------------------------------"
 		_log "INFO: SnapRAID SYNC Job finished"
 		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
 		echo "----------------------------------------" >> $TMP_OUTPUT
+	
+	# If update threshold exceeded
+	elif [ $UPD_DEL_CHECK -eq 1 ]; then
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	
+	# If delete threshold exceeded
+	elif [ $UPD_DEL_CHECK -eq 2 ]; then
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 
+	# IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
+	else
+		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	fi
+else
+	# No file changed indicates synced array
+	IS_SYNCED=1
+	# NO, so lets log it and exit
+	_log "INFO: No change detected."
+fi
+
+# Not hit threashold
+if [ $UPD_DEL_CHECK -eq 0 ]; then
+	# Array synced
+	if [ $IS_SYNCED -eq 1 ]; then
 		# start snapraid SCRUB
 		if [ $RUN_SCRUB = "true" ]; then
 			let DAYS_SINCE_LAST_SCRUB=($(date +%s)-$LAST_SCRUB_DATE)/86400
@@ -480,29 +507,17 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 				echo "----------------------------------------" >> $TMP_OUTPUT
 			fi
 		else
-			   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
-			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+				echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
+				_log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
 		fi
 		
 		# Send success email
 		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-	
-	# If update threshold exceeded
-	elif [ $UPD_DEL_CHECK -eq 1 ]; then
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-	
-	# If delete threshold exceeded
-	elif [ $UPD_DEL_CHECK -eq 2 ]; then
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-
-	# IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
+		_check_success && _rmtmp
 	else
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		_log "INFO: SnapRAID array not synced, won't scrub array"
+		echo "SnapRAID array not synced, won't scrub array" >> $TMP_OUTPUT
 	fi
-	_check_success && _rmtmp
-else
-	# NO, so lets log it and exit
-	_log "INFO: No change detected. Nothing to do"
 fi
 
 _log "INFO: SnapRAID Job ended."
