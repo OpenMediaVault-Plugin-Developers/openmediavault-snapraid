@@ -36,13 +36,10 @@ parity {{ drive.path }}/snapraid.parity
 
 {% include "/etc/default/openmediavault-snapraid" ignore missing %}
 
-{% for rule in config.rules.rule %}
-{%- if rule.rulefolder | length > 0 -%}
-# Rule selected from {{ rule.rulefolder }}
-{%- endif %}
+{%- for rule in config.rules.rule %}
 {%- if rule.rtype | to_bool %}
 include {{ rule.rule1 }}
 {%- else %}
 exclude {{ rule.rule1 }}
 {%- endif %}
-{% endfor %}
+{%- endfor %}

@@ -12,13 +12,6 @@
 			"type": "string",
 			"format": "uuidv4"
 		},
-		"mntentref": {
-			"type": "string",
-			"format": "uuidv4"
-		},
-		"rulefolder": {
-			"type": "string"
-		},
 		"rule1": {
 			"type": "string"
 		},

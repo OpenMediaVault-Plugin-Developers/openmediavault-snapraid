@@ -14,16 +14,6 @@ data:
         method: setRule
     fields:
       - type: confObjUuid
-      - type: select
-        name: mntentref
-        label: _('Drive')
-        textField: description
-        valueField: uuid
-        store:
-          proxy:
-            service: 'ShareMgmt'
-            get:
-              method: 'getCandidates'
       - type: hidden
         name: rootfsref
         label: _("Root ref")

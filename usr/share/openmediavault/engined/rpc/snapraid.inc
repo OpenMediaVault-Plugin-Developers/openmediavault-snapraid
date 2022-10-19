@@ -209,8 +209,6 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             throw new \OMV\Exception(gettext("Illegal rule - cannot end with /*"));
         }
         $db = \OMV\Config\Database::getInstance();
-        $meObject = $db->get("conf.system.filesystem.mountpoint", $params["mntentref"]);
-        $params['rulefolder'] = $meObject->get("dir");
         $object->setAssoc($params);
         // Set the configuration object.
         $db->set($object);

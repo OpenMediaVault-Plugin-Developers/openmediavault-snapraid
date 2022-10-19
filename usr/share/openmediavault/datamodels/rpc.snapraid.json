@@ -123,11 +123,6 @@
 				"format": "uuidv4",
 				"required": true
 			},
-			"mntentref": {
-				"type": "string",
-				"format": "uuidv4",
-				"required": true
-			},
 			"rule1": {
 			    "type": "string",
 				"required": true
