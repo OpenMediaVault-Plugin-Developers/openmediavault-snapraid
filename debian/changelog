@@ -1,3 +1,9 @@
+openmediavault-snapraid (6.1) stable; urgency=low
+
+  * Remove drive selector and associated database fields
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 19 Oct 2022 16:08:23 -0500
+
 openmediavault-snapraid (6.0.6) stable; urgency=low
 
   * Add environment variable to set content file subfolder
