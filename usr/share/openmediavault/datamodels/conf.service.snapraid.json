@@ -1,145 +1,145 @@
 {
-	"type": "config",
-	"id": "conf.service.snapraid",
-	"title": "SnapRAID",
-	"queryinfo": {
-		"xpath": "//services/snapraid",
-		"iterable": false
-	},
-	"properties": {
-		"blocksize": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 65535,
-			"default": 256
-		},
-		"hashsize": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 65535,
-			"default": 16
-		},
-		"autosave": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 65535,
-			"default": 0
-		},
-		"percentscrub": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 100,
-			"default": 12
-		},
-		"nohidden": {
-			"type": "boolean",
-			"default": false
-		},
-		"syslog": {
-			"type": "boolean",
-			"default": true
-		},
-		"debug": {
-			"type": "boolean",
-			"default": false
-		},
-		"sendmail": {
-			"type": "boolean",
-			"default": true
-		},
-		"runscrub": {
-			"type": "boolean",
-			"default": true
-		},
-		"scrubfreq": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 365,
-			"default": 7
-		},
-		"updthreshold": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 65535,
-			"default": 0
-		},
-		"delthreshold": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 65535,
-			"default": 0
-		},
-		"scrubpercent": {
-			"type": "integer",
-			"minimum": 0,
-			"maximum": 100,
-			"default": 100
-		},
-		"prehash": {
-			"type": "boolean",
-			"default": true
-		},
-		"drives": {
-			"type": "object",
-			"properties": {
-				"drive": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"uuid": {
-								"type": "string",
-								"format": "uuidv4"
-							},
-							"mntentref": {
-								"type": "string",
-								"format": "uuidv4"
-							},
-							"name": {
-								"type": "string"
-							},
-							"label": {
-								"type": "string"
-							},
-							"path": {
-								"type": "string"
-							},
-							"content": {
-								"type": "boolean"
-							},
-							"data": {
-								"type": "boolean"
-							},
-							"parity": {
-								"type": "boolean"
-							}
-						}
-					}
-				}
-			}
-		},
-		"rules": {
-			"type": "object",
-			"properties": {
-				"rule": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"uuid": {
-								"type": "string",
-								"format": "uuidv4"
-							},
-							"rule1": {
-								"type": "string"
-							},
-							"rtype": {
-								"type": "integer"
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+  "type": "config",
+  "id": "conf.service.snapraid",
+  "title": "SnapRAID",
+  "queryinfo": {
+    "xpath": "//services/snapraid",
+    "iterable": false
+  },
+  "properties": {
+    "blocksize": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "default": 256
+    },
+    "hashsize": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "default": 16
+    },
+    "autosave": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "default": 0
+    },
+    "percentscrub": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 12
+    },
+    "nohidden": {
+      "type": "boolean",
+      "default": false
+    },
+    "syslog": {
+      "type": "boolean",
+      "default": true
+    },
+    "debug": {
+      "type": "boolean",
+      "default": false
+    },
+    "sendmail": {
+      "type": "boolean",
+      "default": true
+    },
+    "runscrub": {
+      "type": "boolean",
+      "default": true
+    },
+    "scrubfreq": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 365,
+      "default": 7
+    },
+    "updthreshold": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "default": 0
+    },
+    "delthreshold": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 65535,
+      "default": 0
+    },
+    "scrubpercent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 100
+    },
+    "prehash": {
+      "type": "boolean",
+      "default": true
+    },
+    "drives": {
+      "type": "object",
+      "properties": {
+        "drive": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuidv4"
+              },
+              "mntentref": {
+                "type": "string",
+                "format": "uuidv4"
+              },
+              "name": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "path": {
+                "type": "string"
+              },
+              "content": {
+                "type": "boolean"
+              },
+              "data": {
+                "type": "boolean"
+              },
+              "parity": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "rules": {
+      "type": "object",
+      "properties": {
+        "rule": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuidv4"
+              },
+              "rule1": {
+                "type": "string"
+              },
+              "rtype": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

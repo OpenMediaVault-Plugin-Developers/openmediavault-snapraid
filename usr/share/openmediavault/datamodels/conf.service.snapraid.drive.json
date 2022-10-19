@@ -1,38 +1,38 @@
 {
-	"type": "config",
-	"id": "conf.service.snapraid.drive",
-	"title": "SnapRAID drive",
-	"queryinfo": {
-		"xpath": "//services/snapraid/drives/drive",
-		"iterable": true,
-		"idproperty": "uuid"
-	},
-	"properties": {
-		"uuid": {
-			"type": "string",
-			"format": "uuidv4"
-		},
-		"mntentref": {
-			"type": "string",
-			"format": "uuidv4"
-		},
-		"name": {
-			"type": "string"
-		},
-		"label": {
-			"type": "string"
-		},
-		"path": {
-			"type": "string"
-		},
-		"content": {
-			"type": "boolean"
-		},
-		"data": {
-			"type": "boolean"
-		},
-		"parity": {
-			"type": "boolean"
-		}
-	}
+  "type": "config",
+  "id": "conf.service.snapraid.drive",
+  "title": "SnapRAID drive",
+  "queryinfo": {
+    "xpath": "//services/snapraid/drives/drive",
+    "iterable": true,
+    "idproperty": "uuid"
+  },
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuidv4"
+    },
+    "mntentref": {
+      "type": "string",
+      "format": "uuidv4"
+    },
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "content": {
+      "type": "boolean"
+    },
+    "data": {
+      "type": "boolean"
+    },
+    "parity": {
+      "type": "boolean"
+    }
+  }
 }
