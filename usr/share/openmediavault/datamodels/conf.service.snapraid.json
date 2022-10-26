@@ -79,6 +79,26 @@
       "type": "boolean",
       "default": true
     },
+    "arrays": {
+      "type": "object",
+      "properties": {
+        "array": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "uuid": {
+                "type": "string",
+                "format": "uuidv4"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
     "drives": {
       "type": "object",
       "properties": {
@@ -88,6 +108,10 @@
             "type": "object",
             "properties": {
               "uuid": {
+                "type": "string",
+                "format": "uuidv4"
+              },
+              "arrayref": {
                 "type": "string",
                 "format": "uuidv4"
               },
@@ -111,6 +135,12 @@
                 "type": "boolean"
               },
               "parity": {
+                "type": "boolean"
+              },
+              "paritynum": {
+                "type": "integer"
+              },
+              "paritysplit": {
                 "type": "boolean"
               }
             }

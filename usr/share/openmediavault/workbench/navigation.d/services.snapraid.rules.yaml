@@ -3,6 +3,6 @@ type: navigation-item
 data:
   path: "services.snapraid.rules"
   text: _("Rules")
-  position: 30
+  position: 40
   icon: mdi:note-text-outline
   url: "/services/snapraid/rules"

@@ -1,6 +1,6 @@
 # @license   http://www.gnu.org/licenses/gpl.html GPL Version 3
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-# @copyright Copyright (c) 2019-2021 OpenMediaVault Plugin Developers
+# @copyright Copyright (c) 2019-2022 OpenMediaVault Plugin Developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,15 +16,36 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 {% set config = salt['omv_conf.get']('conf.service.snapraid') %}
+{% set confDir = '/etc/snapraid' %}
+{% set confPrefix = 'omv-snapraid-' %}
 
-configure_snapraid:
+configure_borg_envvar_dir:
+  file.directory:
+    - name: "{{ confDir }}"
+    - user: root
+    - group: root
+    - mode: 755
+
+remove_snapraid_conf_files:
+  module.run:
+    - file.find:
+      - path: "{{ confDir }}"
+      - iname: "{{ confPrefix }}*"
+      - delete: "f"
+
+{% for array in config.arrays.array %}
+{% set drives = config.drives %}
+{% set confFile = confDir ~ '/' ~ confPrefix ~ array.uuid ~ '.conf' %}
+
+configure_snapraid_{{ array.uuid }}:
   file.managed:
-    - name: "/etc/snapraid.conf"
+    - name: "{{ confFile }}"
     - source:
       - salt://{{ tpldir }}/files/etc-snapraid_conf.j2
     - template: jinja
     - context:
-        config: {{ config | json }}
+        array: {{ array | json }}
+        drives: {{ drives | json }}
     - user: root
     - group: root
     - mode: 644
@@ -40,3 +61,5 @@ configure_snapraid-diff:
     - user: root
     - group: root
     - mode: 644
+
+{% endfor %}

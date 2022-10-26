@@ -3,6 +3,6 @@ type: navigation-item
 data:
   path: "services.snapraid.drives"
   text: _("Drives")
-  position: 20
+  position: 30
   icon: mdi:harddisk
   url: "/services/snapraid/drives"

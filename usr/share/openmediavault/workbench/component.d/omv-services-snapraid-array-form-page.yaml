@@ -1,0 +1,28 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-array-form-page
+  type: formPage
+  config:
+    request:
+      service: SnapRaid
+      get:
+        method: getArry
+        params:
+          uuid: "{{ _routeParams.uuid }}"
+      post:
+        method: setArray
+    fields:
+      - type: confObjUuid
+      - type: textInput
+        name: name
+        label: _("Name")
+    buttons:
+      - template: submit
+        execute:
+          type: url
+          url: "/services/snapraid/arrays"
+      - template: cancel
+        execute:
+          type: url
+          url: "/services/snapraid/arrays"

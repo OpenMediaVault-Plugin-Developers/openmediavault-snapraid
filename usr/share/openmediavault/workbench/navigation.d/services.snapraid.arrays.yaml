@@ -1,0 +1,8 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "services.snapraid.arrays"
+  text: _("Arrays")
+  position: 20
+  icon: mdi:note-text-outline
+  url: "/services/snapraid/arrays"

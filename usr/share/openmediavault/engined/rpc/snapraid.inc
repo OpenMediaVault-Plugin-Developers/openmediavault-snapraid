@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2021 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2022 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,12 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
     {
         $this->registerMethod('getSettings');
         $this->registerMethod('setSettings');
+
+        $this->registerMethod('getArrayList');
+        $this->registerMethod('getArray');
+        $this->registerMethod('setArray');
+        $this->registerMethod('deleteArray');
+        $this->registerMethod('enumerateArrays');
 
         $this->registerMethod('getDriveList');
         $this->registerMethod('getDrive');
@@ -77,10 +83,115 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $object->setAssoc($params);
         $db->set($object);
         // Remove useless properties from the object.
+        $object->remove("arrays");
         $object->remove("drives");
         $object->remove("rules");
         // Return the configuration object.
         return $object->getAssoc();
+    }
+
+    public function getArrayList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, 'rpc.common.getlist');
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $objects = $db->get('conf.service.snapraid.array');
+        $drives = $db->get('conf.service.snapraid.drive');
+        // Add additional share informations.
+        $objectsAssoc = [];
+        foreach ($objects as $objectk => &$objectv) {
+            // get number of drives in array
+            $driveCount = 0;
+            foreach ($drives as $drivek => $drivev) {
+                if ($drivev->get('arrayref') == $objectv->get('uuid')) {
+                    $driveCount++;
+                }
+            }
+            // Add the new property 'drives'.
+            $objectv->add('drives', 'integer', $driveCount);
+            $objectsAssoc[] = $objectv->getAssoc();
+        }
+        // Filter the result.
+        return $this->applyFilter($objectsAssoc, $params['start'], $params['limit'],
+            $params['sortfield'], $params['sortdir']);
+    }
+
+    public function getArray($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.common.objectuuid");
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        return $db->getAssoc("conf.service.snapraid.array", $params['uuid']);
+    }
+
+    public function setArray($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.snapraid.setarray");
+        // Prepare the configuration object.
+        $object = new \OMV\Config\ConfigObject("conf.service.snapraid.array");
+        // Remove spaces from name
+        $params['name'] = str_replace(" ", "_", $params['name']);
+        // Check that data drive is not also a parity drive
+        if ( TRUE === $params['data'] && TRUE === $params['parity'] ) {
+            throw new \OMV\Exception(
+                gettext("A data drive cannot be a parity drive.")
+            );
+        }
+        $db = \OMV\Config\Database::getInstance();
+        $object->setAssoc($params);
+        // Set the configuration object.
+        $isNew = $object->isNew();
+        $db = \OMV\Config\Database::getInstance();
+        if (TRUE === $isNew) {
+            // Check uniqueness - Shared folder
+            $db->assertIsUnique($object, "name");
+        }
+        $db->set($object);
+        // Return the configuration object.
+        return $object->getAssoc();
+    }
+
+    public function deleteArray($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.common.objectuuid");
+        // Delete the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $object = $db->get("conf.service.snapraid.drive", $params['uuid']);
+        $db->delete($object);
+        // Return the deleted configuration object.
+        return $object->getAssoc();
+    }
+
+    public function enumerateArrays($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Get configuration data.
+        $db = \OMV\Config\Database::getInstance();
+        $objects = $db->get("conf.service.snapraid.array");
+        $arrays = [];
+        foreach ($objects as $objectk => &$objectv) {
+            $arrayuuid = $objectv->get("uuid");
+            $arrayname = $objectv->get("name");
+            $arrays[] = [
+                'uuid' => $arrayuuid,
+                'name' => $arrayname
+            ];
+        }
+        // Filter the result.
+        return ($arrays);
     }
 
     public function getDriveList($params, $context)
@@ -89,11 +200,22 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
         // Validate the parameters of the RPC service method.
         $this->validateMethodParams($params, "rpc.common.getlist");
-        // Get configuration data.
+        // Get the configuration object.
         $db = \OMV\Config\Database::getInstance();
-        $objects = $db->getAssoc("conf.service.snapraid.drive");
+        $objects = $db->get("conf.service.snapraid.drive");
+        // Add additional share informations.
+        $objectsAssoc = [];
+        foreach ($objects as $objectk => &$objectv) {
+            // Add the new property 'sharedfoldername'.
+            $objectv->add("arrayname", "string", gettext("n/a"));
+            // Get the shared folder configuration object.
+            $array = $db->get("conf.service.snapraid.array", $objectv->get("arrayref"));
+            // Update the 'arrayname' property.
+            $objectv->set("arrayname", $array->get("name"));
+            $objectsAssoc[] = $objectv->getAssoc();
+        }
         // Filter the result.
-        return $this->applyFilter($objects, $params['start'], $params['limit'],
+        return $this->applyFilter($objectsAssoc, $params['start'], $params['limit'],
             $params['sortfield'], $params['sortdir']);
     }
 

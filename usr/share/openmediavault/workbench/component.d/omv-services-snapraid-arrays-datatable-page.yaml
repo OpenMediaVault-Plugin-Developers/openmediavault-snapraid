@@ -1,0 +1,282 @@
+version: "1.0"
+type: component
+data:
+  name: omv-services-snapraid-arrays-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: 1d9c06c0-53fb-11ed-a77a-73e24045a6ae
+    sorters:
+      - dir: asc
+        prop: name
+    store:
+      proxy:
+        service: SnapRaid
+        get:
+          method: getArrayList
+    columns:
+      - name: _("Name")
+        prop: name
+        flexGrow: 1
+        sortable: true
+      - name: _("Drives")
+        prop: drives
+        flexGrow: 1
+        sortable: true
+    actions:
+      - template: create
+        execute:
+          type: url
+          url: "/services/snapraid/arrays/create"
+      - template: edit
+        execute:
+          type: url
+          url: "/services/snapraid/arrays/edit/{{ _selected[0].uuid }}"
+      - template: delete
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+          constraint:
+            - operator: eq
+              arg0:
+                prop: drives
+              arg1: 0
+        execute:
+          type: request
+          request:
+            service: SnapRaid
+            method: deleteArray
+            params:
+              uuid: "{{ _selected[0].uuid }}"
+      - type: menu
+        icon: mdi:tools
+        tooltip: _("Tools")
+        actions:
+          - text: _("Sync")
+            icon: mdi:sync
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid sync ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "sync"
+                successUrl: /services/snapraid/arrays
+          - text: _("Prehash+Sync")
+            icon: mdi:sync-alert
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid sync -h ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "sync -h"
+                successUrl: /services/snapraid/arrays
+          - text: _("Scrub")
+            icon: mdi:toothbrush
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid scrub ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "scrub"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Check")
+            icon: mdi:check-underline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid check ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "check"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Diff")
+            icon: mdi:vector-difference
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid diff ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "diff"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Fix")
+            icon: mdi:wrench-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid fix ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "fix"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Fix silent")
+            icon: mdi:progress-wrench
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid silent ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "silent"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Undelete")
+            icon: mdi:delete-off-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid undelete ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "undelete"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+      - type: menu
+        icon: mdi:rotate-left
+        tooltip: _("Spin")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        actions:
+          - text: _("Up")
+            icon: mdi:arrow-up-bold-outline
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: executeCommand
+                params:
+                  uuid: "{{ _selected[0].uuid }}"
+                  command: "up"
+                task: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Down")
+            icon: mdi:arrow-down-bold-outline
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: executeCommand
+                params:
+                  uuid: "{{ _selected[0].uuid }}"
+                  command: "down"
+                task: true
+                successUrl: /services/snapraid/arrays
+      - type: menu
+        icon: mdi:information
+        tooltip: _("Info")
+        actions:
+          - text: _("Devices")
+            icon: mdi:devices
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid devices ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "devices"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("SMART")
+            icon: mdi:details
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid smart ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "smart"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays
+          - text: _("Status")
+            icon: mdi:list-status
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid status ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "status"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/arrays

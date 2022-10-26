@@ -1,0 +1,19 @@
+{
+  "type": "config",
+  "id": "conf.service.snapraid.array",
+  "title": "SnapRAID array",
+  "queryinfo": {
+    "xpath": "//services/snapraid/arrays/array",
+    "iterable": true,
+    "idproperty": "uuid"
+  },
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "format": "uuidv4"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

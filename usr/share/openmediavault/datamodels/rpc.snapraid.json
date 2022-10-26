@@ -1,6 +1,24 @@
 [
   {
     "type": "rpc",
+    "id": "rpc.snapraid.setarray",
+    "params": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuidv4",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+  },
+  {
+    "type": "rpc",
     "id": "rpc.snapraid.setsettings",
     "params": {
       "type": "object",
@@ -91,6 +109,11 @@
           "format": "uuidv4",
           "required": true
         },
+        "arrayref": {
+          "type": "string",
+          "format": "uuidv4",
+          "required": true
+        },
         "mntentref": {
           "type": "string",
           "format": "uuidv4",
@@ -109,6 +132,14 @@
           "required": true
         },
         "parity": {
+          "type": "boolean",
+          "required": true
+        },
+        "paritynum": {
+          "type": "integer",
+          "required": true
+        },
+        "paritysplit": {
           "type": "boolean",
           "required": true
         }

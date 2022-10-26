@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2021 OpenMediaVault Plugin Developers
+ * @copyright Copyright (c) 2013-2022 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,18 +27,16 @@ class OMVModuleSnapRaid extends \OMV\Engine\Module\ServiceAbstract
         return "snapraid";
     }
 
-    public function applyConfig()
-    {
-        $cmd = new \OMV\System\Process("omv-mkconf", "snapraid");
-        $cmd->setRedirect2to1();
-        $cmd->execute();
-    }
-
     public function bindListeners(\OMV\Engine\Notify\Dispatcher $dispatcher)
     {
         $dispatcher->addListener(
             OMV_NOTIFY_MODIFY,
             "org.openmediavault.conf.service.snapraid",
+            [ $this, "setDirty" ]
+        );
+        $dispatcher->addListener(
+            OMV_NOTIFY_CREATE | OMV_NOTIFY_MODIFY | OMV_NOTIFY_DELETE,
+            "org.openmediavault.conf.service.snapraid.array",
             [ $this, "setDirty" ]
         );
         $dispatcher->addListener(

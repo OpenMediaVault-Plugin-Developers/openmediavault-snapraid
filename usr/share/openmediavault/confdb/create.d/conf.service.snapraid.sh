@@ -42,6 +42,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "delthreshold" "0"
     omv_config_add_key "${SERVICE_XPATH}" "percentscrub" "12"
     omv_config_add_key "${SERVICE_XPATH}" "scrubpercent" "100"
+    omv_config_add_node "${SERVICE_XPATH}" "arrays" ""
     omv_config_add_node "${SERVICE_XPATH}" "drives" ""
     omv_config_add_node "${SERVICE_XPATH}" "rules" ""
 fi

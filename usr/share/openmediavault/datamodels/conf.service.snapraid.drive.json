@@ -12,6 +12,10 @@
       "type": "string",
       "format": "uuidv4"
     },
+    "arrayref": {
+      "type": "string",
+      "format": "uuidv4"
+    },
     "mntentref": {
       "type": "string",
       "format": "uuidv4"
@@ -32,6 +36,12 @@
       "type": "boolean"
     },
     "parity": {
+      "type": "boolean"
+    },
+    "paritynum": {
+      "type": "integer"
+    },
+    "paritysplit": {
       "type": "boolean"
     }
   }

@@ -15,6 +15,16 @@ data:
     fields:
       - type: confObjUuid
       - type: select
+        name: arrayref
+        label: _('Array')
+        textField: name
+        valueField: uuid
+        store:
+          proxy:
+            service: SnapRaid
+            get:
+              method: enumerateArrays
+      - type: select
         name: mntentref
         label: _('Drive')
         textField: description
@@ -40,6 +50,18 @@ data:
       - type: checkbox
         name: parity
         label: _("Parity")
+        value: false
+        hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+      - type: numberInput
+        name: paritynum
+        label: _("Parity #")
+        value: 1
+        validators:
+          min: 1
+          max: 999
+      - type: checkbox
+        name: paritysplit
+        label: _("Split Parity")
         value: false
         hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
     buttons:
