@@ -52,6 +52,9 @@ data:
       - type: menu
         icon: mdi:tools
         tooltip: _("Tools")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
         actions:
           - text: _("Sync")
             icon: mdi:sync
@@ -225,6 +228,9 @@ data:
       - type: menu
         icon: mdi:information
         tooltip: _("Info")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
         actions:
           - text: _("Devices")
             icon: mdi:devices
@@ -280,3 +286,8 @@ data:
                     stop:
                       hidden: true
                 successUrl: /services/snapraid/arrays
+          - text: _("Config")
+            icon: mdi:xml
+            execute:
+              type: url
+              url: "/services/snapraid/arrays/config/{{ _selected[0].uuid }}"

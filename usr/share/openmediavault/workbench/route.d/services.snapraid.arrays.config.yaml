@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/services/snapraid/arrays/config/:uuid"
+  title: _("Config")
+  editing: true
+  notificationTitle: _("Array config.")
+  component: omv-services-snapraid-array-config-form-page

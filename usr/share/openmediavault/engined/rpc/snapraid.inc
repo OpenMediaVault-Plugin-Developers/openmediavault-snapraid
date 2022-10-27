@@ -41,6 +41,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('setArray');
         $this->registerMethod('deleteArray');
         $this->registerMethod('enumerateArrays');
+        $this->registerMethod('getArrayConfig');
 
         $this->registerMethod('getDriveList');
         $this->registerMethod('getDrive');
@@ -192,6 +193,18 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         }
         // Filter the result.
         return ($arrays);
+    }
+
+    public function getArrayConfig($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        $config = "";
+        $confFile = sprintf('/etc/snapraid/omv-snapraid-%s.conf', $params['uuid']);
+        if (file_exists($confFile)) {
+            $config = file_get_contents($confFile);
+        }
+        return ["config" => $config];
     }
 
     public function getDriveList($params, $context)
@@ -398,41 +411,56 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         );
         file_put_contents($this->getLogFile, $log, FILE_APPEND);
 
+        $confFile = sprintf('/etc/snapraid/omv-snapraid-%s.conf', $params['uuid']);
+        if (! file_exist($confFile)) {
+            throw new \OMV\Exception(
+                gettext("A config file for this array does not exist.")
+            );
+        }
+        $conf = sprintf('--conf %s', $confFile);
+
         // Child process.
         try {
             $bgOutputFilename = $this->createBgProcOutput();
             $this->updateBgProcStatus($bgStatusFilename, "outputfilename", $bgOutputFilename);
 
+            $cmdArgs = [];
+            $cmdArgs[] = $this->getProgram;
+
             switch ($params['command']) {
                 case "scrub":
-                    $cmd = sprintf("export LANG=C; %s %s -p %s 2>&1", $this->getProgram,
-                        $params['command'], $object->get('percentscrub')
-                    );
+                    $cmdArgs[] = $params['command'];
+                    $cmdArgs[] = sprintf('-p %s', $object->get('percentScrub'));
                     break;
                 case "silent":
                     // Fix known silent errors - snapraid -e fix && snapraid scrub -p0
-                    $cmd = sprintf("export LANG=C; %s -e fix && %s scrub -p0 2>&1",
-                        $this->getProgram, $this->getProgram
-                    );
+                    $cmdArgs[] = '-e fix';
+                    $cmdArgs[] = $conf;
+                    $cmdArgs[] = '&&';
+                    $cmdArgs[] = $this->getProgram;
+                    $cmdArgs[] = 'scrub';
+                    $cmdArgs[] = '-p0';
                     break;
                 case "undelete":
                     // undelete files - snapraid fix -m [-f %FILENAME%]
+                    $cmdArgs[] = 'fix';
                     if (empty($params['file'])) {
-                        $cmd = sprintf("export LANG=C; %s fix -m 2>&1",
-                            $this->getProgram
-                        );
+                        $cmdArgs[] = '-m';
                     } else {
-                        $cmd = sprintf("export LANG=C; %s fix -m -f %s 2>&1",
-                            $this->getProgram, $params['file']
-                        );
+                        $cmdArgs[] = '-m';
+                        $cmdArgs[] = sprinft('-f %s', $params['file']);
                     }
                     break;
                 default:
-                    $cmd = sprintf("export LANG=C; %s %s 2>&1",
-                        $this->getProgram, $params['command']
-                    );
+                    $cmdArgs[] = $params['command'];
             }
-            $this->exec($cmd, $output, $bgOutputFilename);
+            $cmdArgs[] = $conf;
+            // create command
+            $cmd = new \OMV\System\Process($cmdArgs);
+            $cmd->setRedirect2to1();
+            $cmdLine = $cmd->getCommandLine();
+            // execute command
+            $this->exec($cmdLine, $output, $bgOutputFilename);
             $this->finalizeBgProcStatus($bgStatusFilename, $output);
             $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Finished\r\n",
                 date("Y-m-d H:i:s"), strtoupper($params['command'])
@@ -452,8 +480,13 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
     function getVersion($params, $context)
     {
         $output = [];
-        $cmd = "export LANG=C; dpkg-query -W -f='\${Version}' snapraid";
-        exec($cmd, $output);
+        $cmdArgs = [];
+        $cmdArgs[] = 'dpkg-query';
+        $cmdArgs[] = '-W';
+        $cmdArgs[] = "-f='\${Version}'";
+        $cmdArgs[] = 'snapraid';
+        $cmd = new \OMV\System\Process($cmdArgs);
+        $cmd->execute($output, $exitStatus);
         $object['version'] = $output[0];
         return $object;
     }

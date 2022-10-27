@@ -7,7 +7,7 @@ data:
     request:
       service: SnapRaid
       get:
-        method: getArry
+        method: getArray
         params:
           uuid: "{{ _routeParams.uuid }}"
       post:

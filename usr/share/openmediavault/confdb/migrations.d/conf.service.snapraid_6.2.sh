@@ -27,7 +27,7 @@ while [ ${index} -le ${count} ]; do
     if ! omv_config_exists "${drive}/paritynum"; then
         parity=$(omv_config_get "${drive}[position()=${index}]/parity")
         if [ ${parity} -eq 0 ]; then
-            omv_config_add_key "${drive}" "paritynum" "0"
+            omv_config_add_key "${drive}" "paritynum" "1"
         else
             omv_config_add_key "${drive}" "paritynum" "${parity_num}"
             parity_num=$((parity_num+1))

@@ -44,11 +44,14 @@ configure_snapraid_{{ array.uuid }}:
       - salt://{{ tpldir }}/files/etc-snapraid_conf.j2
     - template: jinja
     - context:
+        config: {{ config | json }}
         array: {{ array | json }}
         drives: {{ drives | json }}
     - user: root
     - group: root
     - mode: 644
+
+{% endfor %}
 
 configure_snapraid-diff:
   file.managed:
@@ -61,5 +64,3 @@ configure_snapraid-diff:
     - user: root
     - group: root
     - mode: 644
-
-{% endfor %}

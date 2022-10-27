@@ -1,18 +1,12 @@
-{% set subfolder = salt['pillar.get']('default:OMV_SNAPRAID_CONTENT_SUBFOLDER', '') -%}
+{% set subfolder = salt['pillar.get']('default:OMV_SNAPRAID_CONTENT_SUBFOLDER', '') %}
 {{ pillar['headers']['multiline'] }}
-{%- if not config.blocksize == 256 %}
-blocksize {{ config.blocksize }}
-{%- endif %}
-{%- if not config.hashsize == 16 %}
-hashsize {{ config.hashsize }}
-{%- endif %}
 autosave {{ config.autosave }}
-{%- if config.nohidden | to_bool %}
-nohidden
-{%- endif %}
-{% set count = namespace(a=0) -%}
-{% for drive in config.drives.drive %}
-{%- if drive.path | length > 0 -%}
+{% if not config.blocksize == 256 %}blocksize {{ config.blocksize }}{% endif %}
+{% if not config.hashsize == 16 %}hashsize {{ config.hashsize }}{% endif %}
+{% if config.nohidden | to_bool %}nohidden{% endif %}
+# drives
+{%- for drive in drives.drive | selectattr("arrayref", "equalto", array.uuid) | rejectattr("paritysplit") %}
+{%- if drive.path | length > 0 %}
 #####################################################################
 # OMV-Name: {{ drive.name }}  Drive Label: {{ drive.label }}
 {%- if drive.content | to_bool %}
@@ -21,18 +15,60 @@ content {{ drive.path }}/{% if subfolder | length > 0 %}{{ subfolder }}/{% endif
 {%- if drive.data | to_bool %}
 disk {{ drive.name }} {{ drive.path }}
 {%- endif %}
-{%- if drive.parity | to_bool -%}
-{% set count.a = count.a + 1 -%}
-{%- if count.a < 6 -%}
-{%- if count.a > 1 %}
-{{ count.a }}-parity {{ drive.path }}/snapraid.{{ count.a }}-parity
+{%- if drive.parity | to_bool and not drive.paritysplit | to_bool -%}
+{%- if drive.paritynum > 1 %}
+{{ drive.paritynum }}-parity {{ drive.path }}/snapraid.{{ drive.paritynum }}-parity
 {%- else %}
 parity {{ drive.path }}/snapraid.parity
 {%- endif %}
 {%- endif %}
 {%- endif %}
+{% endfor %}
+{%- set paritysplit1 = [] %}
+{%- set paritysplit2 = [] %}
+{%- set paritysplit3 = [] %}
+{%- set paritysplit4 = [] %}
+{%- set paritysplit5 = [] %}
+{%- set paritysplit6 = [] %}
+{% for drive in drives.drive | selectattr("arrayref", "equalto", array.uuid) | selectattr("parity") | selectattr("paritysplit") %}
+{%- if drive.paritynum == 2 %}
+{%- set _ = paritysplit2.append(drive.path ~ "/snapraid.2-parity") %}
+{%- elif drive.paritynum == 3 %}
+{%- set _ = paritysplit3.append(drive.path ~ "/snapraid.3-parity") %}
+{%- elif drive.paritynum == 4 %}
+{%- set _ = paritysplit4.append(drive.path ~ "/snapraid.4-parity") %}
+{%- elif drive.paritynum == 5 %}
+{%- set _ = paritysplit5.append(drive.path ~ "/snapraid.5-parity") %}
+{%- elif drive.paritynum == 6 %}
+{%- set _ = paritysplit6.append(drive.path ~ "/snapraid.6-parity") %}
+{%- else %}
+{%- set _ = paritysplit1.append(drive.path ~ "/snapraid.parity") %}
 {%- endif %}
 {% endfor %}
+{%- if paritysplit1 | length > 0 %}
+{%- set parity = 'parity ' ~ paritysplit1 | join(',') %}
+{{ parity }}
+{%- endif %}
+{%- if paritysplit2 | length > 0 %}
+{%- set parity = '2-parity ' ~ paritysplit2 | join(',') %}
+{{ parity }}
+{%- endif %}
+{%- if paritysplit3 | length > 0 %}
+{%- set parity = '3-parity ' ~ paritysplit3 | join(',') %}
+{{ parity }}
+{%- endif %}
+{%- if paritysplit4 | length > 0 %}
+{%- set parity = '4-parity ' ~ paritysplit4 | join(',') %}
+{{ parity }}
+{%- endif %}
+{%- if paritysplit5 | length > 0 %}
+{%- set parity = '5-parity ' ~ paritysplit5 | join(',') %}
+{{ parity }}
+{%- endif %}
+{%- if paritysplit6 | length > 0 %}
+{%- set parity = '6-parity ' ~ paritysplit6 | join(',') %}
+{{ parity }}
+{%- endif %}
 
 {% include "/etc/default/openmediavault-snapraid" ignore missing %}
 

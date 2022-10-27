@@ -58,7 +58,7 @@ data:
         value: 1
         validators:
           min: 1
-          max: 999
+          max: 6
       - type: checkbox
         name: paritysplit
         label: _("Split Parity")
