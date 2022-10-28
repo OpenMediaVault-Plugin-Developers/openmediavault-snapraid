@@ -47,23 +47,48 @@ data:
         label: _("Data")
         value: false
         hint: _("Drive where data is stored.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: falsy
+              arg0:
+                prop: parity
       - type: checkbox
         name: parity
         label: _("Parity")
         value: false
         hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: falsy
+              arg0:
+                prop: data
       - type: numberInput
         name: paritynum
-        label: _("Parity #")
+        label: _("Parity number")
         value: 1
         validators:
           min: 1
           max: 6
+        modifiers:
+          - type: visible
+            constraint:
+              operator: falsy
+              arg0:
+                prop: data
+        hint: _("Used to set number for multiple parity.")
       - type: checkbox
         name: paritysplit
         label: _("Split Parity")
         value: false
         hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+        modifiers:
+          - type: visible
+            constraint:
+              operator: falsy
+              arg0:
+                prop: data
     buttons:
       - template: submit
         execute:

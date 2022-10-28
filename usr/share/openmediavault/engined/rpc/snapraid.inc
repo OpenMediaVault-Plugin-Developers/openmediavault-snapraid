@@ -254,11 +254,19 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         // Remove spaces from name
         $params['name'] = str_replace(" ", "_", $params['name']);
         // Check that data drive is not also a parity drive
-        if ( TRUE === $params['data'] && TRUE === $params['parity'] ) {
+        if ( TRUE === $params['data'] && (TRUE === $params['parity'] || TRUE === $params['paritysplit'] )) {
             throw new \OMV\Exception(
                 gettext("A data drive cannot be a parity drive.")
             );
         }
+        if ( TRUE === $params['data'] ) {
+            $params['parity'] = false;
+            $params['paritynum'] = 1;
+            $params['paritysplit'] = false;
+        } elseif ( TRUE === $params['parity'] ) {
+            $params['data'] = false;
+        }
+
         $db = \OMV\Config\Database::getInstance();
         if ($db->exists("conf.system.filesystem.mountpoint", [
             "operator" => "stringEquals",
