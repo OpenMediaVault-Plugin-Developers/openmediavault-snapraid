@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:11-0500\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: zubr139, 2013\n"
 "Language-Team: Ukrainian (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/uk/)\n"
@@ -18,7 +18,19 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
+msgid "A config file for this array does not exist."
+msgstr ""
+
 msgid "A data drive cannot be a parity drive."
+msgstr ""
+
+msgid "Array"
+msgstr ""
+
+msgid "Array config."
+msgstr ""
+
+msgid "Arrays"
 msgstr ""
 
 msgid "Auto save"
@@ -48,6 +60,9 @@ msgid "Content"
 msgstr ""
 
 msgid "Create"
+msgstr ""
+
+msgid "Created array."
 msgstr ""
 
 msgid "Created drive."
@@ -110,6 +125,9 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+msgid "Edit array."
+msgstr ""
+
 msgid "Edit drive."
 msgstr ""
 
@@ -159,6 +177,12 @@ msgid "No hidden"
 msgstr ""
 
 msgid "Parity"
+msgstr ""
+
+msgid "Parity Num"
+msgstr ""
+
+msgid "Parity number"
 msgstr ""
 
 msgid "Per-hash"
@@ -232,6 +256,9 @@ msgstr ""
 msgid "Spin"
 msgstr ""
 
+msgid "Split Parity"
+msgstr ""
+
 msgid "Status"
 msgstr "Статус"
 
@@ -262,7 +289,13 @@ msgstr ""
 msgid "Updated SnapRAID settings."
 msgstr ""
 
+msgid "Used to set number for multiple parity."
+msgstr ""
+
 msgid "Write logs to syslog."
+msgstr ""
+
+msgid "n/a"
 msgstr ""
 
 msgid "snapraid check ..."

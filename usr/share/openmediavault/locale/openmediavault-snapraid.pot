@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:11-0500\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "A config file for this array does not exist."
+msgstr ""
+
 msgid "A data drive cannot be a parity drive."
+msgstr ""
+
+msgid "Array"
+msgstr ""
+
+msgid "Array config."
+msgstr ""
+
+msgid "Arrays"
 msgstr ""
 
 msgid "Auto save"
@@ -45,6 +57,9 @@ msgid "Content"
 msgstr ""
 
 msgid "Create"
+msgstr ""
+
+msgid "Created array."
 msgstr ""
 
 msgid "Created drive."
@@ -98,6 +113,9 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+msgid "Edit array."
+msgstr ""
+
 msgid "Edit drive."
 msgstr ""
 
@@ -147,6 +165,12 @@ msgid "No hidden"
 msgstr ""
 
 msgid "Parity"
+msgstr ""
+
+msgid "Parity Num"
+msgstr ""
+
+msgid "Parity number"
 msgstr ""
 
 msgid "Per-hash"
@@ -218,6 +242,9 @@ msgstr ""
 msgid "Spin"
 msgstr ""
 
+msgid "Split Parity"
+msgstr ""
+
 msgid "Status"
 msgstr ""
 
@@ -248,7 +275,13 @@ msgstr ""
 msgid "Updated SnapRAID settings."
 msgstr ""
 
+msgid "Used to set number for multiple parity."
+msgstr ""
+
 msgid "Write logs to syslog."
+msgstr ""
+
+msgid "n/a"
 msgstr ""
 
 msgid "snapraid check ..."

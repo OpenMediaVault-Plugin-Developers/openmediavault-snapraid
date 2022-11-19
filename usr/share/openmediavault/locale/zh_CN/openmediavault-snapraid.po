@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:11-0500\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: songming <by@songming.me>, 2013-2015,2017,2021-2022\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
@@ -19,8 +19,20 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "A config file for this array does not exist."
+msgstr ""
+
 msgid "A data drive cannot be a parity drive."
 msgstr "数据盘不能做校验盘"
+
+msgid "Array"
+msgstr ""
+
+msgid "Array config."
+msgstr ""
+
+msgid "Arrays"
+msgstr ""
 
 msgid "Auto save"
 msgstr "自动保存"
@@ -50,6 +62,9 @@ msgstr "校验清单"
 
 msgid "Create"
 msgstr "创建"
+
+msgid "Created array."
+msgstr ""
 
 msgid "Created drive."
 msgstr "创建磁盘。"
@@ -111,6 +126,9 @@ msgstr "磁盘"
 msgid "Edit"
 msgstr "编辑"
 
+msgid "Edit array."
+msgstr ""
+
 msgid "Edit drive."
 msgstr "编辑磁盘"
 
@@ -161,6 +179,12 @@ msgstr "隐藏文件选项"
 
 msgid "Parity"
 msgstr "校验"
+
+msgid "Parity Num"
+msgstr ""
+
+msgid "Parity number"
+msgstr ""
 
 msgid "Per-hash"
 msgstr "预哈希"
@@ -233,6 +257,9 @@ msgstr "SnapRAID"
 msgid "Spin"
 msgstr "转动"
 
+msgid "Split Parity"
+msgstr ""
+
 msgid "Status"
 msgstr "状态"
 
@@ -263,8 +290,14 @@ msgstr "更新阈值"
 msgid "Updated SnapRAID settings."
 msgstr "更新 SnapRAID 设置。"
 
+msgid "Used to set number for multiple parity."
+msgstr ""
+
 msgid "Write logs to syslog."
 msgstr "记录到系统日志"
+
+msgid "n/a"
+msgstr ""
 
 msgid "snapraid check ..."
 msgstr "snapraid 检查 ..."

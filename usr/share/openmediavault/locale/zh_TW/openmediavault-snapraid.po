@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:11-0500\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
@@ -18,8 +18,20 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "A config file for this array does not exist."
+msgstr ""
+
 msgid "A data drive cannot be a parity drive."
 msgstr "資料驅動器不可做為奇偶校驗驅動器。"
+
+msgid "Array"
+msgstr ""
+
+msgid "Array config."
+msgstr ""
+
+msgid "Arrays"
+msgstr ""
 
 msgid "Auto save"
 msgstr "自動儲存"
@@ -49,6 +61,9 @@ msgstr "內容"
 
 msgid "Create"
 msgstr "新建"
+
+msgid "Created array."
+msgstr ""
 
 msgid "Created drive."
 msgstr "已建立驅動器。"
@@ -110,6 +125,9 @@ msgstr "驅動器"
 msgid "Edit"
 msgstr "編輯"
 
+msgid "Edit array."
+msgstr ""
+
 msgid "Edit drive."
 msgstr "編輯驅動器。"
 
@@ -160,6 +178,12 @@ msgstr "不含隱藏"
 
 msgid "Parity"
 msgstr "竒偶性"
+
+msgid "Parity Num"
+msgstr ""
+
+msgid "Parity number"
+msgstr ""
 
 msgid "Per-hash"
 msgstr "初步雜湊"
@@ -232,6 +256,9 @@ msgstr "SnapRAID"
 msgid "Spin"
 msgstr "轉動"
 
+msgid "Split Parity"
+msgstr ""
+
 msgid "Status"
 msgstr "狀態"
 
@@ -262,8 +289,14 @@ msgstr "更新定限"
 msgid "Updated SnapRAID settings."
 msgstr "已更新 SnapRAID 設定。"
 
+msgid "Used to set number for multiple parity."
+msgstr ""
+
 msgid "Write logs to syslog."
 msgstr "將日誌寫入 syslog。"
+
+msgid "n/a"
+msgstr ""
 
 msgid "snapraid check ..."
 msgstr "snapraid 檢查 ..."

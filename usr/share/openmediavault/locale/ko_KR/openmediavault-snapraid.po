@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-19 16:11-0500\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014-2015\n"
 "Language-Team: Korean (Korea) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ko_KR/)\n"
@@ -18,8 +18,20 @@ msgstr ""
 "Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "A config file for this array does not exist."
+msgstr ""
+
 msgid "A data drive cannot be a parity drive."
 msgstr "데이터 드라이브는 패리티 드라이브가 될 수 없습니다."
+
+msgid "Array"
+msgstr ""
+
+msgid "Array config."
+msgstr ""
+
+msgid "Arrays"
+msgstr ""
 
 msgid "Auto save"
 msgstr ""
@@ -48,6 +60,9 @@ msgid "Content"
 msgstr "속성"
 
 msgid "Create"
+msgstr ""
+
+msgid "Created array."
 msgstr ""
 
 msgid "Created drive."
@@ -110,6 +125,9 @@ msgstr "드라이브"
 msgid "Edit"
 msgstr ""
 
+msgid "Edit array."
+msgstr ""
+
 msgid "Edit drive."
 msgstr ""
 
@@ -160,6 +178,12 @@ msgstr ""
 
 msgid "Parity"
 msgstr "패리티"
+
+msgid "Parity Num"
+msgstr ""
+
+msgid "Parity number"
+msgstr ""
 
 msgid "Per-hash"
 msgstr ""
@@ -232,6 +256,9 @@ msgstr "SnapRAID"
 msgid "Spin"
 msgstr "Spin"
 
+msgid "Split Parity"
+msgstr ""
+
 msgid "Status"
 msgstr "상태"
 
@@ -262,7 +289,13 @@ msgstr ""
 msgid "Updated SnapRAID settings."
 msgstr ""
 
+msgid "Used to set number for multiple parity."
+msgstr ""
+
 msgid "Write logs to syslog."
+msgstr ""
+
+msgid "n/a"
 msgstr ""
 
 msgid "snapraid check ..."
