@@ -420,7 +420,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         file_put_contents($this->getLogFile, $log, FILE_APPEND);
 
         $confFile = sprintf('/etc/snapraid/omv-snapraid-%s.conf', $params['uuid']);
-        if (! file_exist($confFile)) {
+        if (! file_exists($confFile)) {
             throw new \OMV\Exception(
                 gettext("A config file for this array does not exist.")
             );
