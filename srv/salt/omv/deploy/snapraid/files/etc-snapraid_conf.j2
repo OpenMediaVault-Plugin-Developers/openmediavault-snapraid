@@ -13,7 +13,7 @@ autosave {{ config.autosave }}
 content {{ drive.path }}/{% if subfolder | length > 0 %}{{ subfolder }}/{% endif %}snapraid.content
 {%- endif %}
 {%- if drive.data | to_bool %}
-disk {{ drive.name }} {{ drive.path }}
+data {{ drive.name }} {{ drive.path }}
 {%- endif %}
 {%- if drive.parity | to_bool and not drive.paritysplit | to_bool -%}
 {%- if drive.paritynum > 1 %}
