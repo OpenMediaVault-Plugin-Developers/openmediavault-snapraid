@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC1090,SC1091,SC2086,SC2129,SC2162,SC2181,SC2219
+
 #######################################################################
 # this is a helper script that keeps snapraid parity info in sync with
 # your data. Here's how it works:
@@ -29,14 +31,27 @@
 ################################################################
 
 # Changes from v 1.1.0: Fix deleted and updated files logic
-SCRIPTVERSION="1.2.0"
+# Changes from v 1.2.0: Add support for multiple arrays
+SCRIPTVERSION="1.3.0"
+
+# get basic info
+. /etc/default/openmediavault
+
+# needed for omv_config_get command
+. /usr/share/openmediavault/scripts/helper-functions
 
 # Set error count variable
 # 0 for no thresholds exceeded; 1 for update threshold exceeded; 2 for delete threshold exceeded; 3 for both exceeded
 declare -i UPD_DEL_CHECK=0
 
+ARRAY_UUID="${1}"
+
 # Set path to snapraid.conf
-SNAPRAIDCONF="/etc/snapraid.conf"
+if omv_isuuid "${ARRAY_UUID}"; then
+    SNAPRAIDCONF="/etc/snapraid/omv-snapraid-${ARRAY_UUID}.conf"
+else
+    SNAPRAIDCONF="/etc/snapraid.conf"
+fi
 
 # the following file is created by the OMV-GUI
 SR_DIFF_CONF="/etc/snapraid-diff.conf"
@@ -44,12 +59,6 @@ SR_DIFF_CONF="/etc/snapraid-diff.conf"
 EMAIL_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
-
-# get basic info
-. /etc/default/openmediavault
-
-# needed for omv_config_get command
-. /usr/share/openmediavault/scripts/helper-functions
 
 # declare variables as integers
 declare -i DEL_COUNT=0
@@ -210,9 +219,9 @@ fi
 #    </email>
 
 # read CONTENT and PARITY from $SNAPRAIDCONF
-OMV_CONTENT_FILES="$(egrep '^content /(media|srv)/' $SNAPRAIDCONF | awk '{print $2}')"
-PARITY_FILE="$(egrep '^parity /' $SNAPRAIDCONF | awk '{print $2}')"
-OMV_SNAPRAID_DISKS="$(egrep '^disk .* /(media|srv)/' $SNAPRAIDCONF | awk '{print $3}')"
+OMV_CONTENT_FILES="$(awk '$1 == "content" { print $2 }' ${SNAPRAIDCONF})"
+PARITY_FILE="$(awk '$1 == "parity" { print $2 }' ${SNAPRAIDCONF})"
+OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAIDCONF})"
 
 ## INTERNAL TEMP VARS ##
 TMP_DIR="/tmp/snapraid"
@@ -272,12 +281,14 @@ if [ $CONTENT_FILES_COUNTER -eq 0 ]; then
 	exit 1
 fi
 
-if [ -e $PARITY_FILE ]; then
-	if $DEBUG; then _log "DEBUG: found: PARITY_FILE: $PARITY_FILE"; fi
-else
-  _log "WARN: Parity file ($PARITY_FILE) not found!"
-  exit 1
-fi
+IFS=','; for parity in ${PARITY_FILE}; do
+    if [ -e ${parity} ]; then
+	    if $DEBUG; then _log "DEBUG: found: PARITY_FILE: ${parity}"; fi
+    else
+        _log "WARN: Parity file (${parity}) not found!"
+        exit 1
+    fi
+done
 
 ### Section to support SnapRAID Scrub ###
 mkdir -p $TMP_SCRUB_DIR
