@@ -11,8 +11,8 @@ data:
       post:
         method: setSettings
     fields:
-      - type: paragraph
-        text: _("Settings")
+      - type: divider
+        title: _("Settings")
       - type: numberInput
         name: blocksize
         label: _("Block size")
@@ -50,9 +50,8 @@ data:
         label: _("No hidden")
         value: false
         hint: _("Excludes hidden files and directories.")
-
-      - type: paragraph
-        text: _("Diff script settings")
+      - type: divider
+        title: _("Diff script settings")
       - type: checkbox
         name: syslog
         label: _("Syslog")
@@ -114,7 +113,3 @@ data:
         execute:
           type: url
           url: "/services/snapraid"
-      - text: _("Scheduled diff")
-        execute:
-          type: url
-          url: "/services/snapraid/diff"
