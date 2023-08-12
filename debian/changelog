@@ -1,3 +1,10 @@
+openmediavault-snapraid (6.2.2) stable; urgency=low
+
+  * Fix scheduled diff to work with all arrays
+  * Fix separators on Settings tab
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 12 Aug 2023 11:53:11 -0500
+
 openmediavault-snapraid (6.2.1) stable; urgency=low
 
   * Fix typo
