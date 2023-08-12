@@ -63,7 +63,7 @@ if ! omv_config_exists "//system/crontab/job[uuid='57e13a3c-5a94-11ec-8153-3f587
     object="${object}<everyndayofmonth>0</everyndayofmonth>"
     object="${object}<dayofweek>7</dayofweek>"
     object="${object}<username>root</username>"
-    object="${object}<command>/usr/sbin/omv-snapraid-diff</command>"
+    object="${object}<command>for conf in /etc/snapraid/omv-snapraid-*.conf; do /usr/sbin/omv-snapraid-diff ${conf}; done</command>"
     omv_config_add_node_data "//system/crontab" "job" "${object}"
 fi
 

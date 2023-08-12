@@ -113,3 +113,7 @@ data:
         execute:
           type: url
           url: "/services/snapraid"
+      - text: _("Scheduled diff")
+        execute:
+          type: url
+          url: "/services/snapraid/diff"

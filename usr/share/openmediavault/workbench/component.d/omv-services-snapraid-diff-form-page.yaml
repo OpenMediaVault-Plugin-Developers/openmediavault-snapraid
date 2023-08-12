@@ -390,7 +390,7 @@ data:
         value: 'root'
       - type: hidden
         name: command
-        value: '/usr/sbin/omv-snapraid-diff'
+        value: 'for conf in /etc/snapraid/omv-snapraid-*.conf; do /usr/sbin/omv-snapraid-diff ${conf}; done'
       - type: hidden
         name: type
         value: 'userdefined'
