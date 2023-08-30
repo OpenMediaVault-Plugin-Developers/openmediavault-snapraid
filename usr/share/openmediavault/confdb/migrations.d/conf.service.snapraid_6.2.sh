@@ -7,7 +7,7 @@ set -e
 array_uuid="114a88d2-53ed-11ed-8eee-b3f2573b9c38"
 
 count=$(omv_config_get_count "/config/services/snapraid/arrays/array")
-if [ ${count} -eq 0 ]; then
+if [ "${count}" -eq 0 ]; then
     if ! omv_config_exists "/config/services/snapraid/arrays"; then
         omv_config_add_node "/config/services/snapraid" "arrays" ""
     fi
@@ -26,7 +26,7 @@ while [ ${index} -le ${count} ]; do
     fi
     if ! omv_config_exists "${drive}/paritynum"; then
         parity=$(omv_config_get "${drive}[position()=${index}]/parity")
-        if [ ${parity} -eq 0 ]; then
+        if [ "${parity}" -eq 0 ]; then
             omv_config_add_key "${drive}" "paritynum" "1"
         else
             omv_config_add_key "${drive}" "paritynum" "${parity_num}"
