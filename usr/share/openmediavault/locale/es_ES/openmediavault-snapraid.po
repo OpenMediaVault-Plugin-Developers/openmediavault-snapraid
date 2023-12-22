@@ -1,53 +1,54 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2017,2021-2022
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:17-0600\n"
-"PO-Revision-Date: 2014-12-31 18:26+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>\n"
-"Language-Team: Spanish (Spain) (http://www.transifex.com/projects/p/openmediavault-snapraid/language/es_ES/)\n"
+"POT-Creation-Date: 2022-11-19 15:02-0600\n"
+"PO-Revision-Date: 2013-11-12 16:13+0000\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2017,2021-2022\n"
+"Language-Team: Spanish (Spain) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_ES\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+msgid "A config file for this array does not exist."
+msgstr "La configuración para este array no existe."
 
 msgid "A data drive cannot be a parity drive."
 msgstr "Un disco de datos no puede ser de paridad."
 
-msgid "Add drive"
-msgstr "Añadir Disco"
+msgid "Array"
+msgstr "Array"
 
-msgid "Add rule"
-msgstr "Añadir regla"
+msgid "Array config."
+msgstr "Configuración del Array."
 
-msgid "Auto Save"
-msgstr "Salvado automático"
+msgid "Arrays"
+msgstr "Arrays"
+
+msgid "Auto save"
+msgstr "Guardado automático"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
 msgstr "Salvar automáticamente el estado cuando se sincronice una cantidad especificada de GiB. El valor por defecto es 0, que significa deshabilitado."
 
-msgid "Block Size"
-msgstr "Tamaño de Bloque"
+msgid "Block size"
+msgstr "Tamaño del bloque"
 
 msgid "Block size in KiB"
 msgstr "Tamaño de bloque en KiB"
 
 msgid "Check"
 msgstr "Comprobar"
-
-msgid ""
-"Checks all the files and the redundancy data. All the files are hashed and "
-"compared with the snapshot saved in the previous 'sync' command."
-msgstr "Revisar todos los archivos y su firma de redundancia. Todos los ficheros son revisados y comparados con el snapshot previo generado por el comando 'sincronizar'"
 
 msgid "Component"
 msgstr "Componentes"
@@ -58,9 +59,17 @@ msgstr "Configuración"
 msgid "Content"
 msgstr "Lista de Contenido"
 
-msgid ""
-"Creates a virtual view of all the files in your array using symbolic links."
-msgstr "Crear una vista virtual de todos los archivos en su array usando enlaces simbolicos."
+msgid "Create"
+msgstr "Crear"
+
+msgid "Created array."
+msgstr "Array creado."
+
+msgid "Created drive."
+msgstr "Disco creado."
+
+msgid "Created rule."
+msgstr "Regla creada."
 
 msgid "Data"
 msgstr "Datos"
@@ -72,25 +81,29 @@ msgid "Debug"
 msgstr "Depuración"
 
 msgid ""
-"Define threshold of files deleted to start the sync-process. default = 0 to "
-"make sure no sync process is started while testing or if there are any "
-"deleted files"
-msgstr "Definir el numero de archivos borrados para empezar el proceso de sincronización. Por defecto 0 para estar seguros que no se inicia el proceso mientras se este comprobando o si no hay ningun archivo borrado."
+"Define threshold of deleted files above which not to start the sync process."
+" default = 0 to disable this check and always sync."
+msgstr "Defina el umbral de archivos eliminados por encima del cual no iniciar el proceso de sincronización. Por defecto = 0 para deshabilitar esta verificación y sincronizar siempre."
 
-msgid "Delete Threshold"
-msgstr "Borrar marca"
+msgid ""
+"Define threshold of updated files above which not to start the sync process."
+" default = 0 to disable this check and always sync."
+msgstr "Defina el umbral de archivos actualizados por encima del cual no iniciar el proceso de sincronización. Por defecto = 0 para deshabilitar esta verificación y sincronizar siempre."
 
-msgid "Description of Buttons on Drives tab"
-msgstr "Descripción de los botones en la pestaña de discos"
+msgid "Delete threshold"
+msgstr "Borrar umbral"
+
+msgid "Devices"
+msgstr "Dispositivos"
 
 msgid "Diff"
 msgstr "Differencias"
 
-msgid "Diff Script Settings"
-msgstr "Opciones del script de diferencias"
+msgid "Diff script settings"
+msgstr "Opciones del script Diff"
 
-msgid "Drive"
-msgstr "Disco"
+msgid "Down"
+msgstr "Abajo"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
@@ -99,7 +112,7 @@ msgid ""
 msgstr "Disco donde se almacena el archivo de contenido. Este archivo es una lista de archivos salvados y contiene el detalle de sus copias, con su correspondiente checksum para verificar la integridad del archivo."
 
 msgid "Drive where data is stored."
-msgstr "Disco donde se almacenan ls datos."
+msgstr "Disco donde almacenar los datos."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -109,14 +122,20 @@ msgstr "Disco donde se almacena los archivos de paridad, que son necesarios para
 msgid "Drives"
 msgstr "Discos"
 
-msgid "Edit drive"
-msgstr "Editar disco"
+msgid "Edit"
+msgstr "Editar"
 
-msgid "Edit rule"
-msgstr "Editar regla"
+msgid "Edit array."
+msgstr "Editar Array."
 
-msgid "Enable Pool"
-msgstr "Habilitar Pool"
+msgid "Edit drive."
+msgstr "Editar disco."
+
+msgid "Edit rule."
+msgstr "Editar regla."
+
+msgid "Edit scheduled diff."
+msgstr "Editar diff programadas."
 
 msgid "Excludes hidden files and directories."
 msgstr "Excluir archivos y carpetas ocultos."
@@ -127,22 +146,26 @@ msgstr "Exclusiones"
 msgid "Fix"
 msgstr "Arreglar"
 
+msgid "Fix silent"
+msgstr "Arreglar en silencio"
+
+msgid "Hash size"
+msgstr "Tamaño del Hash"
+
+msgid "Hash size in bytes"
+msgstr "Tamaño del hash en bytes."
+
+msgid "Illegal rule - cannot end with /*"
+msgstr "Regla ilegal - No puede terminar con  /*"
+
 msgid "Inclusion"
 msgstr "Inclusiones"
 
-msgid "Information"
-msgstr "Información"
-
-msgid "Label"
-msgstr "Etiqueta"
+msgid "Info"
+msgstr "Info"
 
 msgid "Level"
 msgstr "Nivel"
-
-msgid ""
-"Lists all the files modified from the last 'sync' command that have to "
-"recompute their redundancy data."
-msgstr "Mostrar todos los archivos modificados desde el ultimo comando 'sincronizar' cuya firma de redundancia tenga que ser regenerada."
 
 msgid "Message"
 msgstr "Mensaje"
@@ -150,29 +173,29 @@ msgstr "Mensaje"
 msgid "Name"
 msgstr "Nombre"
 
-msgid "No Hidden"
-msgstr "No mostrar ocultos"
+msgid "No hidden"
+msgstr "No ocultos"
 
 msgid "Parity"
 msgstr "Paridad"
 
-msgid "Please first select a volume."
-msgstr "Por favor seleccione primero un volumen"
+msgid "Parity Num"
+msgstr "Paridad."
 
-msgid "Pool"
-msgstr "Pool"
+msgid "Parity number"
+msgstr "Paridad"
 
-msgid "Pool Share Name"
-msgstr "Nombre del pool compartido"
+msgid "Per-hash"
+msgstr "Por-Hash"
 
-msgid "Prints a status report of the array."
-msgstr "Generar un informe del estado del Array."
+msgid "Pre-hash"
+msgstr "Pre-hash"
 
-msgid "Refresh"
-msgstr "Refresco"
+msgid "Prehash+Sync"
+msgstr "Prehash+Sync"
 
-msgid "Restore the last backup/snapshot."
-msgstr "Restaura el ultimo backup/snapshot."
+msgid "Root ref"
+msgstr "ref. Root"
 
 msgid "Rule"
 msgstr "Regla"
@@ -180,41 +203,49 @@ msgstr "Regla"
 msgid "Rule Type"
 msgstr "Tipo de regla"
 
+msgid "Rule type"
+msgstr "Tipo de regla"
+
 msgid "Rules"
 msgstr "Reglas"
 
-msgid "Run Scrub"
-msgstr "Ejecutar reparación"
+msgid "Run scrub"
+msgstr "Ejecutar un scrub"
+
+msgid ""
+"Runs a preliminary hashing phase of all the new data to have an additional "
+"verification before the parity computation."
+msgstr "Ejecuta una fase de hash preliminar de todos los datos nuevos para tener una verificación adicional antes del cálculo de la paridad."
+
+msgid "SMART"
+msgstr "SMART"
+
+msgid "Scheduled Diff"
+msgstr "Diff programadas"
+
+msgid "Scheduled diff"
+msgstr "Trabajo programado de diferencias"
 
 msgid "Scrub"
 msgstr "Reparar"
 
-msgid "Scrub Frequency"
-msgstr "Frecuencia de la reparación"
+msgid "Scrub frequency"
+msgstr "Frecuencia de scrub"
 
-msgid "Scrub Percentage"
-msgstr "Porcentaje de Scrub"
+msgid "Scrub percentage"
+msgstr "Porcentaje de scrub"
 
 msgid "Scrub percentage used for diff script."
-msgstr "Porcentaje de Scrub usado por el script de diferencias."
+msgstr "Porcentaje de reparación usado por el script de diferencias."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr "Porcentaje de Scrub usado por el botón scrub en la pestaña Discos."
+msgstr "Porcentaje de reparación usado por el botón scrub en la pestaña Discos."
 
-msgid "Scrubs the array, checking for silent errors."
-msgstr "Reparar el array, Buscando errores silenciosos."
+msgid "Send mail"
+msgstr "Enviar e-mail"
 
-msgid "Select a drive ..."
-msgstr "Seleccione un disco ..."
-
-msgid "Select a volume ..."
-msgstr "Seleccione un volumen..."
-
-msgid "Send Mail"
-msgstr "Enviar mail"
-
-msgid "Set to true if you want to scrub after a successful sync"
-msgstr "Marcar como cierto si desea una reparación despues de una sincronización correcta."
+msgid "Set to true if you want to scrub after a successful sync."
+msgstr "Habilitar si desea un scrub después de una sincronización exitosa."
 
 msgid "Settings"
 msgstr "Opciones"
@@ -222,14 +253,11 @@ msgstr "Opciones"
 msgid "SnapRAID"
 msgstr "SnapRAID"
 
-msgid "SnapRAID user manual"
-msgstr "Manual de usuario de SnapRAID"
+msgid "Spin"
+msgstr "Spin"
 
-msgid "Snapraid Config Files"
-msgstr "Archivos de config. Snapraid"
-
-msgid "Specify whether the rule is an exclusion or inclusion."
-msgstr "Especificar si la regla es de exclusión o de inclusión."
+msgid "Split Parity"
+msgstr "Dividir la paridad."
 
 msgid "Status"
 msgstr "Estado"
@@ -240,32 +268,68 @@ msgstr "Sync"
 msgid "Syslog"
 msgstr "Syslog"
 
-msgid "That name has already been used."
-msgstr "Este nombre está en uso."
+msgid "The field should only contain * or a comma separated list of values."
+msgstr "El campo solo debe contener * o una lista de valores separados por comas."
 
-msgid ""
-"The following excludes are written to the snapraid config file by default:"
-msgstr "Las siguientes exclusiones por defecto se incluirán en el archivo de configuración de SnapRAID:"
+msgid "Tools"
+msgstr "Herramiental"
 
-msgid "This volume has already been added."
-msgstr "Este disco ya ha sido añadido."
+msgid "Undelete"
+msgstr "Recuperar"
 
 msgid "Units in days."
 msgstr "Unidades en dias."
 
-msgid "Update the pool."
-msgstr "Actualizar el pool."
+msgid "Up"
+msgstr "Arriba"
 
-msgid ""
-"Updates the redundancy information. All the modified files in the disk array"
-" are read, and the redundancy data is recomputed."
-msgstr "Actualizar la información de redundancia. Todos los archivos en el pool serán leidos y su firma de redundancia será regenerada."
+msgid "Update threshold"
+msgstr "Umbral de actualización"
 
-msgid "Volume"
-msgstr "Volumen"
+msgid "Updated SnapRAID settings."
+msgstr "Opciones de SnapRAID actualizadas."
 
-msgid "Write logs to syslog"
-msgstr "Escribir logs en el syslog"
+msgid "Used to set number for multiple parity."
+msgstr "Se usa para paridad múltiple."
+
+msgid "Write logs to syslog."
+msgstr "Escribir logs en syslog."
+
+msgid "n/a"
+msgstr "n/a"
+
+msgid "snapraid check ..."
+msgstr "snapraid check ..."
+
+msgid "snapraid devices ..."
+msgstr "snapraid devices ..."
+
+msgid "snapraid diff ..."
+msgstr "snapraid diff ..."
+
+msgid "snapraid fix ..."
+msgstr "snapraid fix ..."
+
+msgid "snapraid scrub ..."
+msgstr "snapraid scrub ..."
+
+msgid "snapraid silent ..."
+msgstr "snapraid silent ..."
+
+msgid "snapraid smart ..."
+msgstr "snapraid smart ..."
+
+msgid "snapraid status ..."
+msgstr "snapraid status ..."
+
+msgid "snapraid sync -h ..."
+msgstr "snapraid sync -h ..."
+
+msgid "snapraid sync ..."
+msgstr "snapraid sync ..."
+
+msgid "snapraid undelete ..."
+msgstr "snapraid undelete ..."
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"

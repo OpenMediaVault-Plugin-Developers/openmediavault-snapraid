@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2015-2017,2021
+# Andi Chandler <andi@gowling.com>, 2015-2017,2021,2023
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-19 15:02-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2015-2017,2021\n"
-"Language-Team: English (United Kingdom) (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/en_GB/)\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2015-2017,2021,2023\n"
+"Language-Team: English (United Kingdom) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,22 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A config file for this array does not exist."
-msgstr ""
+msgstr "A config file for this array does not exist."
 
 msgid "A data drive cannot be a parity drive."
 msgstr "A data drive cannot be a parity drive."
 
 msgid "Array"
-msgstr ""
+msgstr "Array"
 
 msgid "Array config."
-msgstr ""
+msgstr "Array config."
 
 msgid "Arrays"
-msgstr ""
+msgstr "Arrays"
 
 msgid "Auto save"
-msgstr ""
+msgstr "Auto save"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -42,7 +42,7 @@ msgid ""
 msgstr "Automatically save the state when syncing after the specified amount of GiB is processed. Default value is 0, meaning disabled."
 
 msgid "Block size"
-msgstr ""
+msgstr "Block size"
 
 msgid "Block size in KiB"
 msgstr "Block size in KiB"
@@ -60,16 +60,16 @@ msgid "Content"
 msgstr "Content"
 
 msgid "Create"
-msgstr ""
+msgstr "Create"
 
 msgid "Created array."
-msgstr ""
+msgstr "Created array."
 
 msgid "Created drive."
-msgstr ""
+msgstr "Created drive."
 
 msgid "Created rule."
-msgstr ""
+msgstr "Created rule."
 
 msgid "Data"
 msgstr "Data"
@@ -83,15 +83,15 @@ msgstr "Debug"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Define threshold of deleted files above which not to start the sync process. default = 0 to disable this check and always sync."
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Define threshold of updated files above which not to start the sync process. default = 0 to disable this check and always sync."
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "Delete threshold"
 
 msgid "Devices"
 msgstr "Devices"
@@ -100,7 +100,7 @@ msgid "Diff"
 msgstr "Diff"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "Diff script settings"
 
 msgid "Down"
 msgstr "Down"
@@ -112,7 +112,7 @@ msgid ""
 msgstr "Drive where content file is stored.  This file is a list of saved files and contains the details of your backup with all the checksums to verify its integrity."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Drive where data is stored."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
@@ -123,19 +123,19 @@ msgid "Drives"
 msgstr "Drives"
 
 msgid "Edit"
-msgstr ""
+msgstr "Edit"
 
 msgid "Edit array."
-msgstr ""
+msgstr "Edit array."
 
 msgid "Edit drive."
-msgstr ""
+msgstr "Edit drive."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "Edit rule."
 
 msgid "Edit scheduled diff."
-msgstr ""
+msgstr "Edit scheduled diff."
 
 msgid "Excludes hidden files and directories."
 msgstr "Excludes hidden files and directories."
@@ -147,13 +147,13 @@ msgid "Fix"
 msgstr "Fix"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "Fix silent"
 
 msgid "Hash size"
-msgstr ""
+msgstr "Hash size"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "Hash size in bytes"
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Illegal rule - cannot end with /*"
@@ -174,28 +174,28 @@ msgid "Name"
 msgstr "Name"
 
 msgid "No hidden"
-msgstr ""
+msgstr "No hidden"
 
 msgid "Parity"
 msgstr "Parity"
 
 msgid "Parity Num"
-msgstr ""
+msgstr "Parity Num"
 
 msgid "Parity number"
-msgstr ""
+msgstr "Parity number"
 
 msgid "Per-hash"
-msgstr ""
+msgstr "Per-hash"
 
 msgid "Pre-hash"
-msgstr ""
+msgstr "Pre-hash"
 
 msgid "Prehash+Sync"
 msgstr "Prehash+Sync"
 
 msgid "Root ref"
-msgstr ""
+msgstr "Root ref"
 
 msgid "Rule"
 msgstr "Rule"
@@ -204,24 +204,24 @@ msgid "Rule Type"
 msgstr "Rule Type"
 
 msgid "Rule type"
-msgstr ""
+msgstr "Rule type"
 
 msgid "Rules"
 msgstr "Rules"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "Run scrub"
 
 msgid ""
 "Runs a preliminary hashing phase of all the new data to have an additional "
 "verification before the parity computation."
-msgstr ""
+msgstr "Runs a preliminary hashing phase of all the new data to have an additional verification before the parity computation."
 
 msgid "SMART"
 msgstr "SMART"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "Scheduled Diff"
 
 msgid "Scheduled diff"
 msgstr "Scheduled diff"
@@ -230,10 +230,10 @@ msgid "Scrub"
 msgstr "Scrub"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "Scrub frequency"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "Scrub percentage"
 
 msgid "Scrub percentage used for diff script."
 msgstr "Scrub percentage used for diff script."
@@ -242,10 +242,10 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "Scrub percentage used for scrub button on Drives tab."
 
 msgid "Send mail"
-msgstr ""
+msgstr "Send mail"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "Set to true if you want to scrub after a successful sync."
 
 msgid "Settings"
 msgstr "Settings"
@@ -257,7 +257,7 @@ msgid "Spin"
 msgstr "Spin"
 
 msgid "Split Parity"
-msgstr ""
+msgstr "Split Parity"
 
 msgid "Status"
 msgstr "Status"
@@ -269,7 +269,7 @@ msgid "Syslog"
 msgstr "Syslog"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "The field should only contain * or a comma separated list of values."
 
 msgid "Tools"
 msgstr "Tools"
@@ -284,52 +284,52 @@ msgid "Up"
 msgstr "Up"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "Update threshold"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "Updated SnapRAID settings."
 
 msgid "Used to set number for multiple parity."
-msgstr ""
+msgstr "Used to set number for multiple parity."
 
 msgid "Write logs to syslog."
-msgstr ""
+msgstr "Write logs to syslog."
 
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid check ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid devices ..."
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid diff ..."
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid fix ..."
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid scrub ..."
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid silent ..."
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid status ..."
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h ..."
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid sync ..."
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid undelete ..."
 
 msgid "snapraid-diff.conf"
 msgstr "snapraid-diff.conf"
