@@ -1,8 +1,8 @@
-openmediavault-snapraid (7.0.1) UNRELEASED; urgency=medium
+openmediavault-snapraid (7.0.1) stable; urgency=low
 
   * Fix scrub
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 22 Dec 2023 07:46:11 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 22 Dec 2023 08:07:47 -0600
 
 openmediavault-snapraid (7.0) stable; urgency=low
 
