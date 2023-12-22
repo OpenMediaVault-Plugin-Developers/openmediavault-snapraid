@@ -438,7 +438,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             switch ($params['command']) {
                 case "scrub":
                     $cmdArgs[] = $params['command'];
-                    $cmdArgs[] = sprintf('-p %s', $object->get('percentScrub'));
+                    $cmdArgs[] = sprintf('-p %s', $object->get('percentscrub'));
                     break;
                 case "silent":
                     // Fix known silent errors - snapraid -e fix && snapraid scrub -p0
