@@ -32,7 +32,7 @@
 
 # Changes from v 1.1.0: Fix deleted and updated files logic
 # Changes from v 1.2.0: Add support for multiple arrays
-SCRIPTVERSION="1.3.0"
+SCRIPTVERSION="1.3.1"
 
 # get basic info
 . /etc/default/openmediavault
@@ -44,11 +44,11 @@ SCRIPTVERSION="1.3.0"
 # 0 for no thresholds exceeded; 1 for update threshold exceeded; 2 for delete threshold exceeded; 3 for both exceeded
 declare -i UPD_DEL_CHECK=0
 
-ARRAY_UUID="${1}"
+ARRAY_CONF="${1}"
 
 # Set path to snapraid.conf
-if omv_isuuid "${ARRAY_UUID}"; then
-    SNAPRAIDCONF="/etc/snapraid/omv-snapraid-${ARRAY_UUID}.conf"
+if [ -f "${ARRAY_CONF}" ]; then
+    SNAPRAIDCONF="${ARRAY_CONF}"
 else
     SNAPRAIDCONF="/etc/snapraid.conf"
 fi
