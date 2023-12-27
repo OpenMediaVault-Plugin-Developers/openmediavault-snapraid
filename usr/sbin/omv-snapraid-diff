@@ -32,7 +32,7 @@
 
 # Changes from v 1.1.0: Fix deleted and updated files logic
 # Changes from v 1.2.0: Add support for multiple arrays
-SCRIPTVERSION="1.3.1"
+SCRIPTVERSION="1.3.2"
 
 # get basic info
 . /etc/default/openmediavault
@@ -48,9 +48,9 @@ ARRAY_CONF="${1}"
 
 # Set path to snapraid.conf
 if [ -f "${ARRAY_CONF}" ]; then
-    SNAPRAIDCONF="${ARRAY_CONF}"
+    SNAPRAID_CONF="${ARRAY_CONF}"
 else
-    SNAPRAIDCONF="/etc/snapraid.conf"
+    SNAPRAID_CONF="/etc/snapraid.conf"
 fi
 
 # the following file is created by the OMV-GUI
@@ -218,10 +218,10 @@ fi
 #      <secondaryemail></secondaryemail>
 #    </email>
 
-# read CONTENT and PARITY from $SNAPRAIDCONF
-OMV_CONTENT_FILES="$(awk '$1 == "content" { print $2 }' ${SNAPRAIDCONF})"
-PARITY_FILE="$(awk '$1 == "parity" { print $2 }' ${SNAPRAIDCONF})"
-OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAIDCONF})"
+# read CONTENT and PARITY from $SNAPRAID_CONF
+OMV_CONTENT_FILES="$(awk '$1 == "content" { print $2 }' ${SNAPRAID_CONF})"
+PARITY_FILE="$(awk '$1 == "parity" { print $2 }' ${SNAPRAID_CONF})"
+OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAID_CONF})"
 
 ## INTERNAL TEMP VARS ##
 TMP_DIR="/tmp/snapraid"
@@ -323,7 +323,7 @@ _log "INFO: SnapRAID Job started - Script-version: $SCRIPTVERSION"
 _log "INFO: SnapRAID-Version: $SNAPRAIDVERSION"
 _add_mail_header # all info above is in that function
 
-_log "INFO: Checking 'disks' in '$SNAPRAIDCONF'"
+_log "INFO: Checking 'disks' in '$SNAPRAID_CONF'"
 ### check if all hdds in the config are there
 for OMV_DISK in $OMV_SNAPRAID_DISKS; do
 
@@ -363,7 +363,7 @@ echo "SnapRAID DIFF started - $(date)" >> $TMP_OUTPUT
 
 # run diff:
 # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
-$SNAPRAID_BIN diff 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
+$SNAPRAID_BIN --conf $SNAPRAID_CONF diff 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
 do
 	_log "WARN: $line"
 done
@@ -460,7 +460,7 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
 		# we should eventually grep %
-		$SNAPRAID_BIN sync${prehash} >> $TMP_OUTPUT
+		$SNAPRAID_BIN --conf $SNAPRAID_CONF sync${prehash} >> $TMP_OUTPUT
 		#wait for the job to finish
 		wait
 
@@ -480,7 +480,7 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 				_log "INFO: ----------------------------------------"
 				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
 				echo "----------------------------------------" >> $TMP_OUTPUT
-				$SNAPRAID_BIN scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
+				$SNAPRAID_BIN --conf $SNAPRAID_CONF scrub -p $SCRUB_PERCENT -o $SCRUB_OLDER_THAN_DAYS >> $TMP_OUTPUT
 
 				# wait for the job to finish
 				wait
