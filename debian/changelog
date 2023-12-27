@@ -1,3 +1,9 @@
+openmediavault-snapraid (7.0.2) stable; urgency=low
+
+  * Pass config file path to snapraid in snapraid diff script
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 27 Dec 2023 09:23:40 -0600
+
 openmediavault-snapraid (7.0.1) stable; urgency=low
 
   * Fix scrub
