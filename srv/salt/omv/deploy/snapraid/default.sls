@@ -36,6 +36,7 @@ remove_snapraid_conf_files:
 {% for array in config.arrays.array %}
 {% set drives = config.drives %}
 {% set confFile = confDir ~ '/' ~ confPrefix ~ array.uuid ~ '.conf' %}
+{% set confLink = confDir ~ '/' ~ confPrefix ~ array.name ~ '.conf' %}
 
 configure_snapraid_{{ array.uuid }}:
   file.managed:
@@ -50,6 +51,11 @@ configure_snapraid_{{ array.uuid }}:
     - user: root
     - group: root
     - mode: 644
+
+symlink_snapraid_{{ array.uuid }}:
+  file.symlink:
+    - name: {{ confLink }}
+    - target: {{ confFile }}
 
 {% endfor %}
 
