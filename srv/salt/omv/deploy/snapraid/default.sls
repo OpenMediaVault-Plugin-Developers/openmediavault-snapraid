@@ -27,16 +27,13 @@ configure_borg_envvar_dir:
     - mode: 755
 
 remove_snapraid_conf_files:
-  module.run:
-    - file.find:
-      - path: "{{ confDir }}"
-      - iname: "{{ confPrefix }}*"
-      - delete: "f"
+  cmd.run:
+    - name: "rm -fv {{ confDir }}/*.conf"
 
 {% for array in config.arrays.array %}
 {% set drives = config.drives %}
 {% set confFile = confDir ~ '/' ~ confPrefix ~ array.uuid ~ '.conf' %}
-{% set confLink = confDir ~ '/' ~ confPrefix ~ array.name ~ '.conf' %}
+{% set confLink = confDir ~ '/' ~ array.name ~ '.conf' %}
 
 configure_snapraid_{{ array.uuid }}:
   file.managed:
