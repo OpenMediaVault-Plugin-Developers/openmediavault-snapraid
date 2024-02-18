@@ -53,11 +53,6 @@ data:
       - type: divider
         title: _("Diff script settings")
       - type: checkbox
-        name: syslog
-        label: _("Syslog")
-        value: true
-        hint: _("Write logs to syslog.")
-      - type: checkbox
         name: debug
         label: _("Debug")
         value: false

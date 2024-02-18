@@ -1,24 +1,7 @@
 {{ pillar['headers']['multiline'] }}
-{%- if config.syslog | to_bool %}
-SYSLOG=true
-{%- else %}
-SYSLOG=false
-{%- endif %}
-{%- if config.debug | to_bool %}
-DEBUG=true
-{%- else %}
-DEBUG=false
-{%- endif %}
-{%- if config.sendmail | to_bool %}
-SENDMAIL=true
-{%- else %}
-SENDMAIL=false
-{%- endif %}
-{%- if config.runscrub | to_bool %}
-RUN_SCRUB=true
-{%- else %}
-RUN_SCRUB=false
-{%- endif %}
+{{ 'DEBUG=true' if config.debug | to_bool else 'DEBUG=false' }}
+{{ 'SENDMAIL=true' if config.sendmail | to_bool else 'SENDMAIL=false' }}
+{{ 'RUN_SCRUB=true' if config.runscrub | to_bool else 'RUN_SCRUB=false' }}
 SCRUB_FREQUENCY_IN_DAYS={{ config.scrubfreq }}
 UPD_THRESHOLD={{ config.updthreshold }}
 DEL_THRESHOLD={{ config.delthreshold }}
