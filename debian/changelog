@@ -1,8 +1,9 @@
-openmediavault-snapraid (7.0.3) UNRELEASED; urgency=medium
+openmediavault-snapraid (7.0.3) stable; urgency=low
 
-  * create symlink to each array's config using array name
+  * Create symlink to each array's config using array name
+  * Remove unused syslog option
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 18 Feb 2024 10:01:46 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 18 Feb 2024 16:48:46 -0600
 
 openmediavault-snapraid (7.0.2) stable; urgency=low
 
