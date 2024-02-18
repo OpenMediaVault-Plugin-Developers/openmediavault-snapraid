@@ -35,10 +35,6 @@
       "type": "boolean",
       "default": false
     },
-    "syslog": {
-      "type": "boolean",
-      "default": true
-    },
     "debug": {
       "type": "boolean",
       "default": false

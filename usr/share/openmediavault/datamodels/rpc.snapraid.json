@@ -51,10 +51,6 @@
           "type": "boolean",
           "required": true
         },
-        "syslog": {
-          "type": "boolean",
-          "required": true
-        },
         "debug": {
           "type": "boolean",
           "required": true
