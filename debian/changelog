@@ -1,3 +1,9 @@
+openmediavault-snapraid (7.0.4) stable; urgency=low
+
+  * Fix diff script issues on some systems
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 21 Feb 2024 06:05:05 -0600
+
 openmediavault-snapraid (7.0.3) stable; urgency=low
 
   * Create symlink to each array's config using array name
