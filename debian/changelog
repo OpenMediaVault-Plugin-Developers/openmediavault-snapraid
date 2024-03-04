@@ -1,3 +1,9 @@
+openmediavault-snapraid (7.0.5) stable; urgency=low
+
+  * Fix typo in salt code to fix issue #44
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 04 Mar 2024 05:35:54 -0600
+
 openmediavault-snapraid (7.0.4) stable; urgency=low
 
   * Fix diff script issues on some systems
