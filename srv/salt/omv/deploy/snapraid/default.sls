@@ -19,7 +19,7 @@
 {% set confDir = '/etc/snapraid' %}
 {% set confPrefix = 'omv-snapraid-' %}
 
-configure_borg_envvar_dir:
+configure_snapraid_envvar_dir:
   file.directory:
     - name: "{{ confDir }}"
     - user: root
