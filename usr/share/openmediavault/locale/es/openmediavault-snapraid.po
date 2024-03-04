@@ -8,10 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-19 15:02-0600\n"
+"POT-Creation-Date: 2024-02-18 16:49-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2015,2017,2021-2022\n"
-"Language-Team: Spanish (http://www.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es/)\n"
+"Language-Team: Spanish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,19 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "A config file for this array does not exist."
-msgstr ""
+msgstr "La configuración para este array no existe."
 
 msgid "A data drive cannot be a parity drive."
 msgstr "Un disco de datos no puede ser de paridad."
 
 msgid "Array"
-msgstr ""
+msgstr "Array"
 
 msgid "Array config."
-msgstr ""
+msgstr "Configuración del Array."
 
 msgid "Arrays"
-msgstr ""
+msgstr "Arrays"
 
 msgid "Auto save"
 msgstr "Guardado automático"
@@ -63,7 +63,7 @@ msgid "Create"
 msgstr "Crear"
 
 msgid "Created array."
-msgstr ""
+msgstr "Array creado."
 
 msgid "Created drive."
 msgstr "Disco creado."
@@ -126,7 +126,7 @@ msgid "Edit"
 msgstr "Editar"
 
 msgid "Edit array."
-msgstr ""
+msgstr "Editar Array."
 
 msgid "Edit drive."
 msgstr "Editar disco."
@@ -180,10 +180,10 @@ msgid "Parity"
 msgstr "Paridad"
 
 msgid "Parity Num"
-msgstr ""
+msgstr "Paridad."
 
 msgid "Parity number"
-msgstr ""
+msgstr "Paridad"
 
 msgid "Per-hash"
 msgstr "Por-Hash"
@@ -257,7 +257,7 @@ msgid "Spin"
 msgstr "Spin"
 
 msgid "Split Parity"
-msgstr ""
+msgstr "Dividir la paridad."
 
 msgid "Status"
 msgstr "Estado"
@@ -290,13 +290,13 @@ msgid "Updated SnapRAID settings."
 msgstr "Opciones de SnapRAID actualizadas."
 
 msgid "Used to set number for multiple parity."
-msgstr ""
+msgstr "Se usa para paridad múltiple."
 
 msgid "Write logs to syslog."
 msgstr "Escribir logs en syslog."
 
 msgid "n/a"
-msgstr ""
+msgstr "n/a"
 
 msgid "snapraid check ..."
 msgstr "snapraid check ..."
