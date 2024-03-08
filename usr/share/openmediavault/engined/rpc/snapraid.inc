@@ -169,7 +169,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodParams($params, "rpc.common.objectuuid");
         // Delete the configuration object.
         $db = \OMV\Config\Database::getInstance();
-        $object = $db->get("conf.service.snapraid.drive", $params['uuid']);
+        $object = $db->get("conf.service.snapraid.array", $params['uuid']);
         $db->delete($object);
         // Return the deleted configuration object.
         return $object->getAssoc();
