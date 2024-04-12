@@ -225,6 +225,12 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             $array = $db->get("conf.service.snapraid.array", $objectv->get("arrayref"));
             // Update the 'arrayname' property.
             $objectv->set("arrayname", $array->get("name"));
+            if ($objectv->get("parity") !== true) {
+                $objectv->set("paritynum", 1);
+            }
+            if ($objectv->get("paritynum") > 6) {
+                $objectv->set("paritynum", 6);
+            }
             $objectsAssoc[] = $objectv->getAssoc();
         }
         // Filter the result.
