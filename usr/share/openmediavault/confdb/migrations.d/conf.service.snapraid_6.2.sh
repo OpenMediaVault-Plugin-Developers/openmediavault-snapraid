@@ -25,7 +25,7 @@ while [ ${index} -le ${count} ]; do
         omv_config_add_key "${drive}" "arrayref" "${array_uuid}"
     fi
     if ! omv_config_exists "${drive}/paritynum"; then
-        parity=$(omv_config_get "${drive}[position()=${index}]/parity")
+        parity=$(omv_config_get "${drive}/parity")
         if [ "${parity}" -eq 0 ]; then
             omv_config_add_key "${drive}" "paritynum" "1"
         else
@@ -35,6 +35,9 @@ while [ ${index} -le ${count} ]; do
     fi
     if ! omv_config_exists "${drive}/paritysplit"; then
         omv_config_add_key "${drive}" "paritysplit" "0"
+    fi
+    if [ ${parity_num} -gt 6 ];
+        parity_num=6
     fi
     index=$((index+1))
 done
