@@ -77,6 +77,12 @@ data:
               operator: falsy
               arg0:
                 prop: data
+          - type: value
+            typeConfig: "1"
+            constraint:
+              operator: falsy
+              arg0:
+                prop: parity
         hint: _("Used to set number for multiple parity.")
       - type: checkbox
         name: paritysplit
