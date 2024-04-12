@@ -32,7 +32,7 @@
 
 # Changes from v 1.1.0: Fix deleted and updated files logic
 # Changes from v 1.2.0: Add support for multiple arrays
-SCRIPTVERSION="1.3.4"
+SCRIPTVERSION="1.3.5"
 
 # get basic info
 . /etc/default/openmediavault
@@ -249,7 +249,7 @@ if [ ! -x $SNAPRAID_BIN ]; then
 	_log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
 fi
 
-SNAPRAIDVERSION="$(${SNAPRAID_BIN} -V | sed 's/snapraid v//g')"
+SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
 
 # check tmp-dirs
 if [ ! -d $TMP_DIR ]; then
