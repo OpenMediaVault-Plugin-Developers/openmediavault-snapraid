@@ -42,6 +42,11 @@ data:
         prop: paritynum
         flexGrow: 1
         sortable: true
+        cellTemplateName: template
+        cellTemplateConfig: |
+          {% set _pn = '' %}
+          {% if parity %}{% set _pn = paritynum %}{% endif %}
+          {{ _pn }}
       - name: _("Split Parity")
         prop: paritysplit
         flexGrow: 1
