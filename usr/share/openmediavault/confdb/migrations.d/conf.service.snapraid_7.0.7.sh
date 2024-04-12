@@ -9,8 +9,6 @@ index=1
 while [ ${index} -le ${count} ]; do
     drive="/config/services/snapraid/drives/drive[position()=${index}]"
     parity=$(omv_config_get "${drive}/parity")
-    echo ${drive}
-    echo ${parity}
     if [ ${parity} -eq 0 ]; then
         omv_config_update "${drive}" "paritynum" "1"
     fi
