@@ -78,7 +78,7 @@ data:
               arg0:
                 prop: data
           - type: value
-            typeConfig: "1"
+            typeConfig: 1
             constraint:
               operator: falsy
               arg0:
