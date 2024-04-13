@@ -1,3 +1,9 @@
+openmediavault-snapraid (7.0.8) stable; urgency=low
+
+  * Fix typo in migration script
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 13 Apr 2024 07:52:44 -0500
+
 openmediavault-snapraid (7.0.7) stable; urgency=low
 
   * Fix parity number issues on upgrades
