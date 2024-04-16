@@ -36,7 +36,7 @@ while [ ${index} -le ${count} ]; do
     if ! omv_config_exists "${drive}/paritysplit"; then
         omv_config_add_key "${drive}" "paritysplit" "0"
     fi
-    if [ ${parity_num} -gt 6 ];
+    if [ ${parity_num} -gt 6 ]; then
         parity_num=6
     fi
     index=$((index+1))
