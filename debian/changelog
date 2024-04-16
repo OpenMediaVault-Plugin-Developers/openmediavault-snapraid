@@ -1,3 +1,9 @@
+openmediavault-snapraid (7.0.10) stable; urgency=low
+
+  * Fix migration script
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 16 Apr 2024 05:37:42 -0500
+
 openmediavault-snapraid (7.0.9) stable; urgency=low
 
   * Fix data drive parity number default
