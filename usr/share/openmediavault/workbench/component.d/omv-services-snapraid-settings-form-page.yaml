@@ -67,13 +67,13 @@ data:
       - type: textInput
         name: apprisecmd
         label: _("Apprise URL or config argument.")
-        hint: _("E.g. --config /myConfig.yml | gotifys://myTopic\nYou can use multiple URLs, separate them with a ','.")
+        hint: _("E.g. --config /myConfig.yml | gotifys://myHost/myToken | mailtos://userid:pass@domain.com;gotifys://myHost/myToken<br/>You can use multiple URLs, separate them with a ';'.")
         value: ""
         language: shell
         trim: true
         validators:
           pattern:
-            pattern: "^(--config\\s\\/[^\"'\\s][^\"'\\n]+|[\\w]+?:\\/\\/[^\"'\\s]+)$"
+            pattern: "^(--config\\s\\/[^\"'\\s\\|\\&][^\"'\\n]+|[\\w]+?:\\/\\/[^\"'\\s\\|]+)$"
             errorData: _("The field is invalid, it can't contain quotes and the path to the config file and URL can't contain spaces. Path to config file must be full (start with '/').")
       - type: checkbox
         name: ntfy
@@ -88,7 +88,7 @@ data:
         language: shell
         validators:
           pattern:
-            pattern: "^(([\\w\\.]+\\/)?[-\\w]{1,64}|--config\\s\\/[^\"'\\s]+)$"
+            pattern: "^(([\\w\\.]+\\/)?[-\\w]{1,64}|--config\\s\\/[^\"'\\s\\|\\&]+)$"
             errorData: _("The field can only contain a config command, a valid topic name or host and topic (don't add https:// at the start). No quotes or spaces are allowed. Path to config file must be full (start with '/').")
       - type: checkbox
         name: runscrub

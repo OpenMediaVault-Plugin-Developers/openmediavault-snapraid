@@ -67,6 +67,11 @@ SR_DIFF_CONF="/etc/snapraid-diff.conf"
 NOTIFICATION_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
+SNAPRAID_NOTIF_LOG="/var/log/snapraid-notif.log"
+
+if [ -f "${SNAPRAID_NOTIF_LOG}" ]; then
+    rm -f "$SNAPRAID_NOTIF_LOG"
+fi
 
 ################################################################
 #####     Functions
@@ -137,27 +142,45 @@ _send_email() {
     mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" <$2
 
     if [ $? -eq 0 ]; then
-        _log "INFO: Full statusreport sent to '$MAIL'"
+        _log "INFO: Full status report sent to '$MAIL'"
         return 0
     else
-        _log "WARN: Mail with full statusreport could not be sent. There was an error. Please have a look at /var/log/mail.log"
+        _log "WARN: Mail with full status report could not be sent. There was an error. Please have a look at /var/log/mail.log"
         return 1
     fi
 }
 
 _send_apprise() {
-    if _is_in_path apprise; then
-        if [ $3 != "" ]; then
-            apprise --title "$3 - $1" --body "$(cat $2)" ${APPRISE_CMD//,/ }
-        else
-            apprise --title "$1" --body "$(cat $2)" ${APPRISE_CMD//,/ }
-        fi
+    local CMD
+    local APPRISE_CMD_ARRAY
+    local VERBOSE_LEVEL
 
+    if $DEBUG; then
+        VERBOSE_LEVEL=-D
+    else
+        VERBOSE_LEVEL=-vv
+    fi
+
+    echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
+    echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
+    echo "APPRISE LOGS - $(date +'%Y/%m/%d %H:%M:%S')" >>$SNAPRAID_NOTIF_LOG
+
+    if _is_in_path apprise; then
+        read -r -a APPRISE_CMD_ARRAY <<<"$(_split_cmd $APPRISE_CMD)"
+        for CMD in "${APPRISE_CMD_ARRAY[@]}"; do
+            if [ $3 != "" ]; then
+                apprise $VERBOSE_LEVEL --title "$3 - $1" --body "$(cat $2)" "$CMD" >>$SNAPRAID_NOTIF_LOG
+            else
+                apprise $VERBOSE_LEVEL --title "$1" --body "$(cat $2)" "$CMD" >>$SNAPRAID_NOTIF_LOG
+            fi
+        done
+
+        wait
         if [ $? -eq 0 ]; then
-            _log "INFO: Full statusreport sent through 'Apprise'"
+            _log "INFO: Full status report sent through 'Apprise'"
             return 0
         else
-            _log "WARN: Apprise notification with full statusreport could not be sent. There was an error."
+            _log "WARN: Apprise notification with full status report could not be sent. Please have a look at $SNAPRAID_NOTIF_LOG."
             return 1
         fi
     else
@@ -168,17 +191,29 @@ _send_apprise() {
 
 _send_ntfy() {
     if _is_in_path ntfy; then
-        if [ $3 != "" ]; then
-            ntfy publish --title "$3 - $1" --message "$(cat $2)" $NTFY_CMD
+        local VERBOSE_LEVEL
+
+        if $DEBUG; then
+            VERBOSE_LEVEL=debug
         else
-            ntfy publish --title "$1" --message "$(cat $2)" $NTFY_CMD
+            VERBOSE_LEVEL=warn
+        fi
+
+        echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
+        echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
+        echo "NTFY LOGS - $(date +'%Y/%m/%d %H:%M:%S')" >>$SNAPRAID_NOTIF_LOG
+
+        if [ $3 != "" ]; then
+            ntfy publish --log-level $VERBOSE_LEVEL --title "$3 - $1" --message "$(cat $2)" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG
+        else
+            ntfy publish --log-level $VERBOSE_LEVEL --title "$1" --message "$(cat $2)" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG
         fi
 
         if [ $? -eq 0 ]; then
-            _log "INFO: Full statusreport sent through 'Ntfy'"
+            _log "INFO: Full status report sent through 'Ntfy'"
             return 0
         else
-            _log "WARN: Ntfy notification with full statusreport could not be sent. There was an error."
+            _log "WARN: Ntfy notification with full status report could not be sent. Please have a look at $SNAPRAID_NOTIF_LOG."
             return 1
         fi
     else
@@ -214,7 +249,18 @@ _log() {
         echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
     fi
 }
+_split_cmd() {
+    local CMD_QUOTED="$1"
 
+    local IFS
+    local CMDS
+
+    IFS=';'
+    read -r -a CMDS <<<"${CMD_QUOTED}"
+
+    IFS=" "
+    echo "${CMDS[*]}"
+}
 ################################################################
 #
 #   name      : _rmtmp
@@ -495,7 +541,7 @@ if $DEBUG; then
     _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
     _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
     _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
-    _log "DEBUG: APPRISE_CMD: $APPRISE_CMD"
+    _log "DEBUG: APPRISE_CMD: ${APPRISE_CMD}"
     _log "DEBUG: NTFY_CMD: $NTFY_CMD"
     _log "DEBUG: LAST_SCRUB_DATE: $LAST_SCRUB_DATE"
     _log "DEBUG: LAST_SCRUB_FREQUENCY: $LAST_SCRUB_FREQUENCY"
