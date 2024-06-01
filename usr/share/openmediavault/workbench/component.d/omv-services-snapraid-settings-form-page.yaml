@@ -61,6 +61,36 @@ data:
         label: _("Send mail")
         value: true
       - type: checkbox
+        name: apprise
+        label: _("Use Apprise")
+        value: false
+      - type: textInput
+        name: apprisecmd
+        label: _("Apprise URL or config argument.")
+        hint: _("E.g. --config /myConfig.yml | ntfy://myTopic")
+        value: ""
+        language: shell
+        trim: true
+        validators:
+          pattern:
+            pattern: "^(--config\\s\\/[^\"'\\s][^\"'\\n]+|[\\w]+?:\\/\\/[^\"'\\s]+)$"
+            errorData: _("The field is invalid, it can't contain quotes and the path to the config file and URL can't contain spaces. Path to config file must be full (start with '/').")
+      - type: checkbox
+        name: ntfy
+        label: _("Use Ntfy")
+        value: false
+      - type: textInput
+        name: ntfycmd
+        label: _("Ntfy config command or host and/or topic.")
+        hint: _("E.g. ntfy.local/myTopic | myTopic | --config /someConfig.yml")
+        value: "OMV_SnapRAID"
+        trim: true
+        language: shell
+        validators:
+          pattern:
+            pattern: "^(([\\w\\.]+\\/)?[-\\w]{1,64}|--config\\s\\/[^\"'\\s]+)$"
+            errorData: _("The field can only contain a config command, a valid topic name or host and topic (don't add https:// at the start). No quotes or spaces are allowed. Path to config file must be full (start with '/').")
+      - type: checkbox
         name: runscrub
         label: _("Run scrub")
         value: true

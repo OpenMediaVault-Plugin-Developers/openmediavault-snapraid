@@ -52,7 +52,6 @@ declare -i UPDATE_COUNT=0
 
 declare -i PREHASH_VALUE=0
 
-
 ARRAY_CONF="${1}"
 
 # Set path to snapraid.conf
@@ -75,43 +74,128 @@ SNAPRAID_LOG="/var/log/snapraid.log"
 
 ################################################################
 #
-#   name:	_send_email
-#   parameter : 	# $1 = Subject
-					# $2 = file with mailtext
-					# Optional:
-					# $3 = Who sent this message (full name), e.g. "Server Status-Report"
-					# $4 = Answer to this adress
-#   return: 	0 = All OK
-#				1 = Error happend
+#   name:	_send_notification
+#   parameter :
+#               $1 = Subject
+#               $2 = file with mailtext
+#      Optional:
+#               $3 = Who sent this message (full name), e.g. "Server Status-Report"
+#               $4 = Answer to this address
+#   return:     0 = All OK
+#	              1 = Error happened
 #
-_send_email(){
-## the below does not work with the internal OMV-Settings
-#	mail -s "$1" -a 'Content-Type: text/plain; charset=utf-8' $MAIL -- -F "$3" -f "$4" < $2
+_send_notification() {
 
-if [ $SENDMAIL = "false" ]; then
-	_log "INFO: Mail should be sent here - SENDMAIL set to false"
-	echo "Mail should be sent here - SENDMAIL set to false"
-	return 0
-fi
+    MAIL_FAIL=false
+    APPRISE_FAIL=false
+    NTFY_FAIL=false
 
-# add mail footer
-cat >> $TMP_OUTPUT <<EOF
+    if [ $SENDMAIL = "false" ] && [ $USE_APPRISE = "false" ] && [ $USE_NTFY = "false" ]; then
+        _log "INFO: Notifications should be sent here - SENDMAIL, USE_APPRISE and USE_NTFY set to false"
+        echo "Notifications should be sent here - SENDMAIL, USE_APPRISE and USE_NTFY set to false"
+        return 0
+    fi
+
+    # add mail footer
+    cat >>$TMP_OUTPUT <<EOF
 
 Yours, SnapRAID-diff script
 EOF
 
-#mail [-a header] [-b bcc-addr] [-c cc-addr] [-s subject] to-addr
-mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" < $2
+    if [ $SENDMAIL = "true" ]; then
+        _send_email "$1" "$2"
+        if [ $? -eq 1 ]; then
+            MAIL_FAIL=true
+        fi
+    fi
 
-	if [ $? -eq 0 ]; then
-		_log "INFO: Full statusreport sent to '$MAIL'"
-		return 0
-	else
-		_log "WARN: Mail with full statusreport could not be sent. There was an error. Please have a look at /var/log/mail.log"
-		return 1
-	fi
+    if [ $USE_APPRISE = "true" ]; then
+        _send_apprise "$1" "$2" "$3"
+        if [ $? -eq 1 ]; then
+            APPRISE_FAIL=true
+        fi
+    fi
+
+    if [ $USE_NTFY = "true" ]; then
+        _send_ntfy "$1" "$2" "$3"
+        if [ $? -eq 1 ]; then
+            NTFY_FAIL=true
+        fi
+    fi
+
+    if [ $MAIL_FAIL = "true" ] || [ $APPRISE_FAIL = "true" ] || [ $NTFY_FAIL = "true" ]; then
+        return 1
+    else
+        return 0
+    fi
 }
 
+_send_email() {
+    ## the below does not work with the internal OMV-Settings
+    #	mail -s "$1" -a 'Content-Type: text/plain; charset=utf-8' $MAIL -- -F "$3" -f "$4" < $2
+
+    #mail [-a header] [-b bcc-addr] [-c cc-addr] [-s subject] to-addr
+    mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" <$2
+
+    if [ $? -eq 0 ]; then
+        _log "INFO: Full statusreport sent to '$MAIL'"
+        return 0
+    else
+        _log "WARN: Mail with full statusreport could not be sent. There was an error. Please have a look at /var/log/mail.log"
+        return 1
+    fi
+}
+
+_send_apprise() {
+    if _is_in_path apprise; then
+
+        if [ $3 != "" ]; then
+            apprise --title "$3 - $1" --body "$(cat $2)" $APPRISE_CMD
+        else
+            apprise --title "$1" --body "$(cat $2)" $APPRISE_CMD
+        fi
+
+        if [ $? -eq 0 ]; then
+            _log "INFO: Full statusreport sent through 'Apprise'"
+            return 0
+        else
+            _log "WARN: Apprise notification with full statusreport could not be sent. There was an error."
+            return 1
+        fi
+    else
+        _log "WARN: Apprise not found in PATH."
+        return 1
+    fi
+}
+
+_send_ntfy() {
+    if _is_in_path ntfy; then
+        if [ $3 != "" ]; then
+            ntfy publish --title "$3 - $1" --message "$(cat $2)" $NTFY_CMD
+        else
+            ntfy publish --title "$1" --message "$(cat $2)" $NTFY_CMD
+        fi
+
+        if [ $? -eq 0 ]; then
+            _log "INFO: Full statusreport sent through 'Ntfy'"
+            return 0
+        else
+            _log "WARN: Ntfy notification with full statusreport could not be sent. There was an error."
+            return 1
+        fi
+    else
+        _log "WARN: Ntfy not found in PATH."
+        return 1
+    fi
+}
+
+_is_in_path() {
+    if which "$1" >/dev/null 2>&1; then
+        return 0
+    else
+        return 1
+    fi
+}
 ################################################################
 #
 #   name      : _log
@@ -119,18 +203,18 @@ mail -c "$OMV_MAIL_secondarymail" -s "$1" "$OMV_MAIL_primarymail" < $2
 #   return      : none
 #
 _log() {
-	   [[ "$*" =~ ^([A-Za-z]*):\ (.*) ]] &&
-		 {
-			PRIORITY=${BASH_REMATCH[1]} # INFO, DEBUG, WARN
-			LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
-		 }
+    [[ "$*" =~ ^([A-Za-z]*):\ (.*) ]] &&
+        {
+            PRIORITY=${BASH_REMATCH[1]}   # INFO, DEBUG, WARN
+            LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
+        }
 
-	  if $DEBUG ; then
-		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
-		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >> $SNAPRAID_LOG
-	else
-		echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >> $SNAPRAID_LOG
-	fi
+    if $DEBUG; then
+        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
+        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
+    else
+        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
+    fi
 }
 
 ################################################################
@@ -141,8 +225,8 @@ _log() {
 #
 # removes $TMP_OUTPUT
 _rmtmp() {
-	rm $TMP_OUTPUT >/dev/null 2>&1
-	rm $TMP_DIR >/dev/null 2>&1
+    rm $TMP_OUTPUT >/dev/null 2>&1
+    rm $TMP_DIR >/dev/null 2>&1
 }
 
 ################################################################
@@ -153,11 +237,11 @@ _rmtmp() {
 #				: 1 = last command ended with an error -> [ $? -gt 1 ]
 #
 _check_success() {
-	if [ $? = 0 ]; then
-		return 0
-	else
-		return 1
-	fi
+    if [ $? = 0 ]; then
+        return 0
+    else
+        return 1
+    fi
 }
 
 ################################################################
@@ -168,7 +252,7 @@ _check_success() {
 # adds mail text
 #
 _add_mail_header() {
-	cat > $TMP_OUTPUT <<EOF
+    cat >$TMP_OUTPUT <<EOF
 SnapRAID Script - Version: $SCRIPTVERSION
 running SnapRAID $SNAPRAIDVERSION
 ---------------------------------------------
@@ -184,10 +268,10 @@ EOF
 
 # read config
 if [ -f $SR_DIFF_CONF ]; then
-	. $SR_DIFF_CONF
+    . $SR_DIFF_CONF
 else
-	_log "WARN: $SR_DIFF_CONF not found! Exiting ..."
-	echo "$SR_DIFF_CONF not found! Exiting ..."
+    _log "WARN: $SR_DIFF_CONF not found! Exiting ..."
+    echo "$SR_DIFF_CONF not found! Exiting ..."
 fi
 
 ############################
@@ -197,8 +281,8 @@ OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
 OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
 
 if $DEBUG; then
-	_log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
-	_log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
+    _log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
+    _log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
 fi
 
 # structure in /etc/openmediavault/config.xml
@@ -229,35 +313,35 @@ TMP_OUTPUT="$TMP_DIR/snapraid.out"
 TMP_SCRUB_DIR="/root/.snapraid"
 
 if $DEBUG; then
-	_log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
-	_log "DEBUG: PARITY_FILE: $PARITY_FILE"
-	_log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
-	_log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
-	_log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
-	_log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
-	_log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
-	_log "DEBUG: SCRUB_OLDER_THAN_DAYS: $SCRUB_OLDER_THAN_DAYS"
-	_log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
-	_log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
+    _log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
+    _log "DEBUG: PARITY_FILE: $PARITY_FILE"
+    _log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
+    _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
+    _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
+    _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
+    _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
+    _log "DEBUG: SCRUB_OLDER_THAN_DAYS: $SCRUB_OLDER_THAN_DAYS"
+    _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
+    _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
 fi
 
 SNAPRAID_BIN="/usr/bin/snapraid"
 if [ -z $SNAPRAID_BIN ]; then
-	_log "WARN: snapraid executable not found!"
+    _log "WARN: snapraid executable not found!"
 fi
 if [ ! -x $SNAPRAID_BIN ]; then
-	_log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
+    _log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
 fi
 
 SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
 
 # check tmp-dirs
 if [ ! -d $TMP_DIR ]; then
-		mkdir $TMP_DIR
+    mkdir $TMP_DIR
 fi
 
 if [ -f $TMP_OUTPUT ]; then
-	rm $TMP_OUTPUT && _log "INFO: '$TMP_OUTPUT' deleted - creating a new one"
+    rm $TMP_OUTPUT && _log "INFO: '$TMP_OUTPUT' deleted - creating a new one"
 fi
 
 #sanity check first to make sure we can access the content and parity files
@@ -266,24 +350,25 @@ CONTENT_FILES_COUNTER=0
 # check, if at least one content file is found
 for SINGLE_CONTENT_FILE in $OMV_CONTENT_FILES; do
 
-	if $DEBUG; then _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"; fi
+    if $DEBUG; then _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"; fi
 
-	if [ -e $SINGLE_CONTENT_FILE ]; then
-		let CONTENT_FILES_COUNTER++
-		continue
-	else
-		_log "WARN: Content file ($SINGLE_CONTENT_FILE) not found!"
-	fi
+    if [ -e $SINGLE_CONTENT_FILE ]; then
+        let CONTENT_FILES_COUNTER++
+        continue
+    else
+        _log "WARN: Content file ($SINGLE_CONTENT_FILE) not found!"
+    fi
 done
 
 if [ $CONTENT_FILES_COUNTER -eq 0 ]; then
-	_log "WARN: No Content files found! Exiting ..."
-	exit 1
+    _log "WARN: No Content files found! Exiting ..."
+    exit 1
 fi
 
-IFS=','; for parity in ${PARITY_FILE}; do
+IFS=','
+for parity in ${PARITY_FILE}; do
     if [ -e ${parity} ]; then
-	    if $DEBUG; then _log "DEBUG: found: PARITY_FILE: ${parity}"; fi
+        if $DEBUG; then _log "DEBUG: found: PARITY_FILE: ${parity}"; fi
     else
         _log "WARN: Parity file (${parity}) not found!"
         exit 1
@@ -294,10 +379,10 @@ done
 mkdir -p $TMP_SCRUB_DIR
 
 if [ -f $TMP_SCRUB_DIR/snapraid_scrub_counter ]; then
-	COUNTER=$(cat $TMP_SCRUB_DIR/snapraid_scrub_counter)
+    COUNTER=$(cat $TMP_SCRUB_DIR/snapraid_scrub_counter)
 else
-	echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-	COUNTER=1
+    echo "1" >$TMP_SCRUB_DIR/snapraid_scrub_counter
+    COUNTER=1
 fi
 # enable only one of the two below!!!
 let COUNTER++
@@ -305,14 +390,14 @@ let COUNTER++
 
 # define Variables, if not set in snapraid-diff
 if [ -z ${SCRUB_PERCENT} ]; then
-	SCRUB_PERCENT=100
-	_log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
-	_log "INFO: set it to $SCRUB_PERCENT"
+    SCRUB_PERCENT=100
+    _log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
+    _log "INFO: set it to $SCRUB_PERCENT"
 fi
 if [ -z ${SCRUB_OLDER_THAN_DAYS} ]; then
-	SCRUB_OLDER_THAN_DAYS=0
-	_log "INFO: SCRUB_OLDER_THAN_DAYS not set in '$SR_DIFF_CONF'"
-	_log "INFO: set it to $SCRUB_OLDER_THAN_DAYS"
+    SCRUB_OLDER_THAN_DAYS=0
+    _log "INFO: SCRUB_OLDER_THAN_DAYS not set in '$SR_DIFF_CONF'"
+    _log "INFO: set it to $SCRUB_OLDER_THAN_DAYS"
 fi
 ### End Scrub Section ###
 
@@ -327,45 +412,44 @@ _log "INFO: Checking 'disks' in '$SNAPRAID_CONF'"
 ### check if all hdds in the config are there
 for OMV_DISK in $OMV_SNAPRAID_DISKS; do
 
-	if $DEBUG; then _log "DEBUG: found: OMV_DISK: $OMV_DISK"; fi
+    if $DEBUG; then _log "DEBUG: found: OMV_DISK: $OMV_DISK"; fi
 
-	if ! grep $OMV_DISK /etc/mtab > /dev/null 2>&1; then
+    if ! grep $OMV_DISK /etc/mtab >/dev/null 2>&1; then
 
-	#if [ ! -b $OMV_DISK ]; then # doesn't work - no block device found :o
-		_log "WARN: ERROR: Disk $OMV_DISK was not found or is not mounted!"
-		_log "WARN: Sync job cancelled to prevent data loss."
-		_log "WARN: Please check your disks!"
-		_log "WARN: Replace damaged Disk and proceed with 'snapraid fix'"
-		_log "WARN: to rebuild the raid array and recover your data."
-		_log "WARN: Then, use 'snapraid check' to verify the integrity of the recovered files."
-		_log "WARN: Lastly, use 'snapraid sync' to update the parity files."
+        #if [ ! -b $OMV_DISK ]; then # doesn't work - no block device found :o
+        _log "WARN: ERROR: Disk $OMV_DISK was not found or is not mounted!"
+        _log "WARN: Sync job cancelled to prevent data loss."
+        _log "WARN: Please check your disks!"
+        _log "WARN: Replace damaged Disk and proceed with 'snapraid fix'"
+        _log "WARN: to rebuild the raid array and recover your data."
+        _log "WARN: Then, use 'snapraid check' to verify the integrity of the recovered files."
+        _log "WARN: Lastly, use 'snapraid sync' to update the parity files."
 
-		echo "ERROR - Data Disk $OMV_DISK not found or is not mounted!" >> $TMP_OUTPUT
-		echo "Sync job cancelled to prevent data loss." >> $TMP_OUTPUT
-		echo " " >> $TMP_OUTPUT
-		echo "Please check your disks!"  >> $TMP_OUTPUT
-		echo "Replace damaged Disk and proceed with 'snapraid fix'" >> $TMP_OUTPUT
-		echo "to rebuild the raid array and recover your data." >> $TMP_OUTPUT
-		echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >> $TMP_OUTPUT
-		echo "Lastly, use 'snapraid sync' to update the parity files." >> $TMP_OUTPUT
+        echo "ERROR - Data Disk $OMV_DISK not found or is not mounted!" >>$TMP_OUTPUT
+        echo "Sync job cancelled to prevent data loss." >>$TMP_OUTPUT
+        echo " " >>$TMP_OUTPUT
+        echo "Please check your disks!" >>$TMP_OUTPUT
+        echo "Replace damaged Disk and proceed with 'snapraid fix'" >>$TMP_OUTPUT
+        echo "to rebuild the raid array and recover your data." >>$TMP_OUTPUT
+        echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >>$TMP_OUTPUT
+        echo "Lastly, use 'snapraid sync' to update the parity files." >>$TMP_OUTPUT
 
-		_send_email "$EMAIL_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-		_check_success && _rmtmp
-		_log "WARN: script exits here due to missing disk ..."
-		exit 1;
-	fi
+        _send_notification "$EMAIL_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _check_success && _rmtmp
+        _log "WARN: script exits here due to missing disk ..."
+        exit 1
+    fi
 done
 
 ################################################################
 # start snapraid DIFF command
 _log "INFO: SnapRAID DIFF started"
-echo "SnapRAID DIFF started - $(date)" >> $TMP_OUTPUT
+echo "SnapRAID DIFF started - $(date)" >>$TMP_OUTPUT
 
 # run diff:
 # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
-/usr/bin/snapraid diff --conf ${SNAPRAID_CONF} 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
-do
-	_log "WARN: $line"
+/usr/bin/snapraid diff --conf ${SNAPRAID_CONF} 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
+    _log "WARN: $line"
 done
 
 # wait for the above cmd to finish
@@ -373,8 +457,8 @@ wait
 
 _log "INFO: SnapRAID DIFF finished"
 _log "INFO: ----------------------------------------"
-echo "SnapRAID DIFF finished - $(date)" >> $TMP_OUTPUT
-echo "----------------------------------------" >> $TMP_OUTPUT
+echo "SnapRAID DIFF finished - $(date)" >>$TMP_OUTPUT
+echo "----------------------------------------" >>$TMP_OUTPUT
 
 # read the values of deleted, added, etc. files since the last sync
 DEL_COUNT=$(grep -w '^ \{1,\}[0-9]* removed$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
@@ -389,133 +473,133 @@ _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] -
 # set pre-hash option
 PREHASH_VALUE=$(omv_config_get "/config/services/snapraid/prehash")
 if $DEBUG; then
-	_log "DEBUG: Pre-Hash option: ${PREHASH_VALUE}"
+    _log "DEBUG: Pre-Hash option: ${PREHASH_VALUE}"
 fi
 
 # check if files have changed
 if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $COPY_COUNT -gt 0 ] || [ $UPDATE_COUNT -gt 0 ]; then
 
-	UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
-	DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
+    UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
+    DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
-	# New Logic for v 1.2.0 - check whether update threshold is enabled or not
-	if [ $UPD_THRESHOLD -gt 0 ]; then
-		# Update threshold is enabled; check if count exceeds threshold
-		if [ $UPDATE_COUNT -gt $UPD_THRESHOLD ]; then
-			# Too many files updated; inform user and don't proceed with sync
-			_log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
-			_log "INFO: Please run sync manually if this is not an error condition."
-			echo "Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
-			echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
+    # New Logic for v 1.2.0 - check whether update threshold is enabled or not
+    if [ $UPD_THRESHOLD -gt 0 ]; then
+        # Update threshold is enabled; check if count exceeds threshold
+        if [ $UPDATE_COUNT -gt $UPD_THRESHOLD ]; then
+            # Too many files updated; inform user and don't proceed with sync
+            _log "INFO: Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job."
+            _log "INFO: Please run sync manually if this is not an error condition."
+            echo "Number of updated files ($UPDATE_COUNT) exceeded threshold ($UPD_THRESHOLD). NOT proceeding with sync job." >>$TMP_OUTPUT
+            echo "Please run sync manually if this is not an error condition" >>$TMP_OUTPUT
 
-			# Increment check variable
-			UPD_DEL_CHECK=$((UPD_DEL_CHECK+1))
-		else
-			# Update threshold is set but not exceeded.  Inform user that UPDATE_COUNT is below threshold and allow to proceed
-			_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)."
-			echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)." >> $TMP_OUTPUT
-		fi
-	else
-		# UPD_THRESHOLD is disabled, so we reflect this information in email and log
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled." >> $TMP_OUTPUT
-	fi
+            # Increment check variable
+            UPD_DEL_CHECK=$((UPD_DEL_CHECK + 1))
+        else
+            # Update threshold is set but not exceeded.  Inform user that UPDATE_COUNT is below threshold and allow to proceed
+            _log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)."
+            echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> updated files ($UPDATE_COUNT) is below threshold ($UPD_THRESHOLD)." >>$TMP_OUTPUT
+        fi
+    else
+        # UPD_THRESHOLD is disabled, so we reflect this information in email and log
+        _log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled."
+        echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are updated files ($UPDATE_COUNT) but update threshold ($UPD_THRESHOLD) is disabled." >>$TMP_OUTPUT
+    fi
 
-	# New Logic for v 1.2.0 - check whether delete threshold is enabled or not
-	if [ $DEL_THRESHOLD -gt 0 ]; then
-		# Delete threshold is enabled; check if count exceeds threshold
-		if [ $DEL_COUNT -gt $DEL_THRESHOLD ]; then
-			# Too many files deleted; inform user and don't proceed with sync
-			_log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
-			_log "INFO: Please run sync manually if this is not an error condition."
-			echo "Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job." >> $TMP_OUTPUT
-			echo "Please run sync manually if this is not an error condition" >> $TMP_OUTPUT
+    # New Logic for v 1.2.0 - check whether delete threshold is enabled or not
+    if [ $DEL_THRESHOLD -gt 0 ]; then
+        # Delete threshold is enabled; check if count exceeds threshold
+        if [ $DEL_COUNT -gt $DEL_THRESHOLD ]; then
+            # Too many files deleted; inform user and don't proceed with sync
+            _log "INFO: Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job."
+            _log "INFO: Please run sync manually if this is not an error condition."
+            echo "Number of deleted files ($DEL_COUNT) exceeded threshold ($DEL_THRESHOLD). NOT proceeding with sync job." >>$TMP_OUTPUT
+            echo "Please run sync manually if this is not an error condition" >>$TMP_OUTPUT
 
-			# Increment check variable
-			UPD_DEL_CHECK=$((UPD_DEL_CHECK+2))
-		else
-			# Delete threshold is set but not exceeded.  Inform user that DEL_COUNT is below threshold and allow to proceed
-			_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)."
-			echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)." >> $TMP_OUTPUT
-		fi
-	else
-		# DEL_THRESHOLD is disabled, so we reflect this information in email and log
-		_log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled."
-		echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled." >> $TMP_OUTPUT
-	fi
+            # Increment check variable
+            UPD_DEL_CHECK=$((UPD_DEL_CHECK + 2))
+        else
+            # Delete threshold is set but not exceeded.  Inform user that DEL_COUNT is below threshold and allow to proceed
+            _log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)."
+            echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> deleted files ($DEL_COUNT) is below threshold ($DEL_THRESHOLD)." >>$TMP_OUTPUT
+        fi
+    else
+        # DEL_THRESHOLD is disabled, so we reflect this information in email and log
+        _log "INFO: Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled."
+        echo "Changes detected [A-$ADD_COUNT,D-$DEL_COUNT,M-$MOVE_COUNT,C-$COPY_COUNT,U-$UPDATE_COUNT] -> there are deleted files ($DEL_COUNT) but delete threshold ($DEL_THRESHOLD) is disabled." >>$TMP_OUTPUT
+    fi
 
-	# Proceed with sync if no check errors
-	if [ $UPD_DEL_CHECK -eq 0 ]; then
-				# start snapraid SYNC
-		_log "INFO: "
-		_log "INFO: SnapRAID SYNC Job started"
-		_log "INFO: ----------------------------------------"
-		echo "" >> $TMP_OUTPUT
-		echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
-		echo "----------------------------------------" >> $TMP_OUTPUT
+    # Proceed with sync if no check errors
+    if [ $UPD_DEL_CHECK -eq 0 ]; then
+        # start snapraid SYNC
+        _log "INFO: "
+        _log "INFO: SnapRAID SYNC Job started"
+        _log "INFO: ----------------------------------------"
+        echo "" >>$TMP_OUTPUT
+        echo "SnapRAID SYNC Job started - $(date)" >>$TMP_OUTPUT
+        echo "----------------------------------------" >>$TMP_OUTPUT
 
-		# we should eventually grep %
-		if [ ${PREHASH_VALUE} -eq 1 ]; then
-			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >> $TMP_OUTPUT
-		else
-			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >> $TMP_OUTPUT
-		fi
-		#wait for the job to finish
-		wait
+        # we should eventually grep %
+        if [ ${PREHASH_VALUE} -eq 1 ]; then
+            /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >>$TMP_OUTPUT
+        else
+            /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >>$TMP_OUTPUT
+        fi
+        #wait for the job to finish
+        wait
 
-		_log "INFO: ----------------------------------------"
-		_log "INFO: SnapRAID SYNC Job finished"
-		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
-		echo "----------------------------------------" >> $TMP_OUTPUT
+        _log "INFO: ----------------------------------------"
+        _log "INFO: SnapRAID SYNC Job finished"
+        echo "SnapRAID SYNC Job finished - $(date)" >>$TMP_OUTPUT
+        echo "----------------------------------------" >>$TMP_OUTPUT
 
-		# start snapraid SCRUB
-		if [ $RUN_SCRUB = "true" ]; then
-			if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
-				echo "$COUNTER" > $TMP_SCRUB_DIR/snapraid_scrub_counter
-			else
-				_log "INFO: SnapRAID SCRUB Job started"
-				_log "INFO: ----------------------------------------"
-				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-				/usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${SCRUB_OLDER_THAN_DAYS} >> $TMP_OUTPUT
+        # start snapraid SCRUB
+        if [ $RUN_SCRUB = "true" ]; then
+            if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
+                _log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
+                echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >>$TMP_OUTPUT
+                echo "$COUNTER" >$TMP_SCRUB_DIR/snapraid_scrub_counter
+            else
+                _log "INFO: SnapRAID SCRUB Job started"
+                _log "INFO: ----------------------------------------"
+                echo "SnapRAID SCRUB Job started - $(date)" >>$TMP_OUTPUT
+                echo "----------------------------------------" >>$TMP_OUTPUT
+                /usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${SCRUB_OLDER_THAN_DAYS} >>$TMP_OUTPUT
 
-				# wait for the job to finish
-				wait
+                # wait for the job to finish
+                wait
 
-				# Reset counter
-				echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
+                # Reset counter
+                echo "1" >$TMP_SCRUB_DIR/snapraid_scrub_counter
 
-				_log "INFO: ----------------------------------------"
-				_log "INFO: SnapRAID SCRUB Job finished"
-				echo "SnapRAID SCRUB Job finished - $(date)" >> $TMP_OUTPUT
-				echo "----------------------------------------" >> $TMP_OUTPUT
-			fi
-		else
-			   echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."  >> $TMP_OUTPUT
-			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
-		fi
-		
-		# Send success email
-		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-	
-	# If update threshold exceeded
-	elif [ $UPD_DEL_CHECK -eq 1 ]; then
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-	
-	# If delete threshold exceeded
-	elif [ $UPD_DEL_CHECK -eq 2 ]; then
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+                _log "INFO: ----------------------------------------"
+                _log "INFO: SnapRAID SCRUB Job finished"
+                echo "SnapRAID SCRUB Job finished - $(date)" >>$TMP_OUTPUT
+                echo "----------------------------------------" >>$TMP_OUTPUT
+            fi
+        else
+            echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
+            _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+        fi
 
-	# IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
-	else
-		_send_email "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
-	fi
-	_check_success && _rmtmp
+        # Send success email
+        _send_notification "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+
+    # If update threshold exceeded
+    elif [ $UPD_DEL_CHECK -eq 1 ]; then
+        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+
+    # If delete threshold exceeded
+    elif [ $UPD_DEL_CHECK -eq 2 ]; then
+        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+
+    # IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
+    else
+        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+    fi
+    _check_success && _rmtmp
 else
-	# NO, so lets log it and exit
-	_log "INFO: No change detected. Nothing to do"
+    # NO, so lets log it and exit
+    _log "INFO: No change detected. Nothing to do"
 fi
 
 _log "INFO: SnapRAID Job ended."

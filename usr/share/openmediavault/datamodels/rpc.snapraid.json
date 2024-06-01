@@ -59,6 +59,22 @@
           "type": "boolean",
           "required": true
         },
+        "apprise": {
+          "type": "boolean",
+          "required": true
+        },
+        "apprisecmd": {
+          "type": "string",
+          "required": true
+        },
+        "ntfy": {
+          "type": "boolean",
+          "required": true
+        },
+        "ntfycmd": {
+          "type": "string",
+          "required": true
+        },
         "runscrub": {
           "type": "boolean",
           "required": true

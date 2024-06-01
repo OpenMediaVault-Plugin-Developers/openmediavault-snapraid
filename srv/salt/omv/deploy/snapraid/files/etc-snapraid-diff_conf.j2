@@ -6,3 +6,8 @@ SCRUB_FREQUENCY_IN_DAYS={{ config.scrubfreq }}
 UPD_THRESHOLD={{ config.updthreshold }}
 DEL_THRESHOLD={{ config.delthreshold }}
 SCRUB_PERCENT={{ config.scrubpercent }}
+{{ 'USE_APPRISE=true' if config.apprise | to_bool else 'USE_APPRISE=false' }}
+{{ 'USE_NTFY=true' if config.ntfy | to_bool else 'USE_NTFY=false' }}
+APPRISE_CMD={{ config.apprisecmd }}
+NTFY_CMD={{ config.ntfycmd }}
+
