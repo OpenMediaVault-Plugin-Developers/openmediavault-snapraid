@@ -3,7 +3,7 @@
 # shellcheck disable=SC1090,SC1091,SC2086,SC2129,SC2162,SC2181,SC2219
 
 #######################################################################
-# this is a helper script that keeps snapraid parity info in sync with
+# this is a helper script that keeps SnapRAID parity info in sync with
 # your data. Here's how it works:
 #   1) it first calls diff to figure out if the parity info is out of sync
 #   2) if there are changed files (i.e. new, changed, moved or removed),
@@ -64,7 +64,7 @@ fi
 # the following file is created by the OMV-GUI
 SR_DIFF_CONF="/etc/snapraid-diff.conf"
 
-EMAIL_SUBJECT_PREFIX="SnapRAID"
+NOTIFICATION_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
 
@@ -74,20 +74,20 @@ SNAPRAID_LOG="/var/log/snapraid.log"
 
 ################################################################
 #
-#   name:	_send_notification
-#   parameter :
+#   name:       _send_notification
+#   parameter:
 #               $1 = Subject
 #               $2 = file with mailtext
 #      Optional:
 #               $3 = Who sent this message (full name), e.g. "Server Status-Report"
 #               $4 = Answer to this address
 #   return:     0 = All OK
-#	              1 = Error happened
+#               1 = Error happened
 #
 _send_notification() {
-    MAIL_FAIL=false
-    APPRISE_FAIL=false
-    NTFY_FAIL=false
+    local MAIL_FAIL=false
+    local APPRISE_FAIL=false
+    local NTFY_FAIL=false
 
     if [ $SENDMAIL = "false" ] && [ $USE_APPRISE = "false" ] && [ $USE_NTFY = "false" ]; then
         _log "INFO: Notifications should be sent here - SENDMAIL, USE_APPRISE and USE_NTFY set to false"
@@ -203,8 +203,8 @@ _is_in_path() {
 _log() {
     [[ "$*" =~ ^([A-Za-z]*):\ (.*) ]] &&
         {
-            PRIORITY=${BASH_REMATCH[1]}   # INFO, DEBUG, WARN
-            LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
+            local PRIORITY=${BASH_REMATCH[1]}   # INFO, DEBUG, WARN
+            local LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
         }
 
     if $DEBUG; then
@@ -229,10 +229,10 @@ _rmtmp() {
 
 ################################################################
 #
-#   name      : _check_success
+#   name        : _check_success
 #   parameter   : none
 #   return      : 0 = last command was successful
-#				: 1 = last command ended with an error -> [ $? -gt 1 ]
+#               : 1 = last command ended with an error -> [ $? -gt 1 ]
 #
 _check_success() {
     if [ $? = 0 ]; then
@@ -244,7 +244,7 @@ _check_success() {
 
 ################################################################
 #
-#   name      : _add_mail_header
+#   name        : _add_mail_header
 #   parameter   : none
 #
 # adds mail text
@@ -258,6 +258,73 @@ SnapRAID Job started - $(date)
 Warnings about 'Ignoring mount point' are possibly due to AUFS or mhddfs-Pooling in OMV
 
 EOF
+}
+
+date_to_epoch() {
+    date -d "$1" +%s
+}
+
+epoch_to_date() {
+    date -d @"$1" +%Y%m%d
+}
+
+date_to_seconds() {
+    echo $(($1 * 24 * 60 * 60))
+}
+_run_scrub() {
+    local CURRENT_DATE_EPOCH
+    local CURRENT_DATE_DATE
+    local DAYS_DIFF_DATE
+    local DAYS_DIFF_EPOCH
+
+    SCRUB_SUCCESS="no"
+
+    CURRENT_DATE_EPOCH=$(date +%s)
+    CURRENT_DATE_DATE=$(epoch_to_date $CURRENT_DATE_EPOCH)
+
+    DAYS_DIFF_EPOCH=$((CURRENT_DATE_EPOCH - $(date_to_epoch $LAST_SCRUB_DATE)))
+    DAYS_DIFF_DATE=$(epoch_to_date $DAYS_DIFF_EPOCH)
+
+    if [ $LAST_SCRUB_DATE -ne 0 ] && [ $DAYS_DIFF -lt $(($(date_to_seconds $SCRUB_FREQUENCY_IN_DAYS))) ]; then
+        _log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_DIFF_DATE). No scrub was run."
+        echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_DIFF_DATE). No scrub was run. - $(date)" >>$TMP_OUTPUT
+        SCRUB_SUCCESS="none"
+    else
+        if [ $ACCUMULATED_DAYS_SCRUBBED_FILES -ne 0 ]; then
+            local MAX_NUM_DAYS=$((100 * SCRUB_FREQUENCY_IN_DAYS / SCRUB_PERCENT))
+            if [ $ACCUMULATED_DAYS_SCRUBBED_FILES -ge $MAX_NUM_DAYS ]; then
+                # We reached the max num of days, this means we must restart and scrub everything again,
+                # in an ideal (non-file-changing) scenario we scrubbed all the data
+                ACCUMULATED_DAYS_SCRUBBED_FILES=0
+            fi
+        fi
+        _log "INFO: SnapRAID SCRUB Job started"
+        _log "INFO: ----------------------------------------"
+        echo "SnapRAID SCRUB Job started - $(date)" >>$TMP_OUTPUT
+        echo "----------------------------------------" >>$TMP_OUTPUT
+        /usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${ACCUMULATED_DAYS_SCRUBBED_FILES} >>$TMP_OUTPUT
+
+        # wait for the job to finish
+        wait
+        if [ $? -eq 0 ]; then
+            SCRUB_SUCCESS="yes"
+        else
+            SCRUB_SUCCESS="no"
+        fi
+
+        ((ACCUMULATED_DAYS_SCRUBBED_FILES += SCRUB_FREQUENCY_IN_DAYS))
+        LAST_SCRUB_DATE=$CURRENT_DATE_DATE
+
+        echo "$LAST_SCRUB_DATE" >$TMP_SCRUB_DIR/snapraid_scrub_last_date
+        echo "$LAST_SCRUB_FREQUENCY" >$TMP_SCRUB_DIR/snapraid_scrub_last_frequency
+        echo "$LAST_SCRUB_PERCENTAGE" >$TMP_SCRUB_DIR/snapraid_scrub_last_percentage
+        echo "$ACCUMULATED_DAYS_SCRUBBED_FILES" >$TMP_SCRUB_DIR/snapraid_scrub_accumulated_days
+
+        _log "INFO: ----------------------------------------"
+        _log "INFO: SnapRAID SCRUB Job finished"
+        echo "SnapRAID SCRUB Job finished - $(date)" >>$TMP_OUTPUT
+        echo "----------------------------------------" >>$TMP_OUTPUT
+    fi
 }
 
 ################################################################
@@ -309,21 +376,6 @@ OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAID_CONF})"
 TMP_DIR="/tmp/snapraid"
 TMP_OUTPUT="$TMP_DIR/snapraid.out"
 TMP_SCRUB_DIR="/root/.snapraid"
-
-if $DEBUG; then
-    _log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
-    _log "DEBUG: PARITY_FILE: $PARITY_FILE"
-    _log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
-    _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
-    _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
-    _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
-    _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
-    _log "DEBUG: SCRUB_OLDER_THAN_DAYS: $SCRUB_OLDER_THAN_DAYS"
-    _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
-    _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
-    _log "DEBUG: APPRISE_CMD: $APPRISE_CMD"
-    _log "DEBUG: NTFY_CMD: $NTFY_CMD"
-fi
 
 SNAPRAID_BIN="/usr/bin/snapraid"
 if [ -z $SNAPRAID_BIN ]; then
@@ -378,28 +430,78 @@ done
 ### Section to support SnapRAID Scrub ###
 mkdir -p $TMP_SCRUB_DIR
 
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_counter ]; then
-    COUNTER=$(cat $TMP_SCRUB_DIR/snapraid_scrub_counter)
-else
-    echo "1" >$TMP_SCRUB_DIR/snapraid_scrub_counter
-    COUNTER=1
-fi
-# enable only one of the two below!!!
-let COUNTER++
-# COUNTER=$(($COUNTER+0))
-
 # define Variables, if not set in snapraid-diff
 if [ -z ${SCRUB_PERCENT} ]; then
     SCRUB_PERCENT=100
     _log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
     _log "INFO: set it to $SCRUB_PERCENT"
 fi
-if [ -z ${SCRUB_OLDER_THAN_DAYS} ]; then
-    SCRUB_OLDER_THAN_DAYS=0
-    _log "INFO: SCRUB_OLDER_THAN_DAYS not set in '$SR_DIFF_CONF'"
-    _log "INFO: set it to $SCRUB_OLDER_THAN_DAYS"
+if [ -z ${SCRUB_FREQUENCY_IN_DAYS} ]; then
+    SCRUB_FREQUENCY_IN_DAYS=0
+    _log "INFO: SCRUB_FREQUENCY_IN_DAYS not set in '$SR_DIFF_CONF'"
+    _log "INFO: set it to $SCRUB_FREQUENCY_IN_DAYS"
+fi
+
+# for scrub
+RESET_SCRUB_CALC="false"
+
+if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_date ]; then
+    LAST_SCRUB_DATE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_date)
+else
+    LAST_SCRUB_DATE=0
+fi
+
+if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_freq ]; then
+    LAST_SCRUB_FREQUENCY=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_frequency)
+    if $LAST_SCRUB_FREQUENCY != $SCRUB_FREQUENCY_IN_DAYS; then
+        RESET_SCRUB_CALC="true"
+    fi
+fi
+
+LAST_SCRUB_FREQUENCY=$SCRUB_FREQUENCY_IN_DAYS
+
+if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_percentage ]; then
+    LAST_SCRUB_PERCENTAGE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_percentage)
+    if $LAST_SCRUB_PERCENTAGE != $SCRUB_PERCENT; then
+        RESET_SCRUB_CALC="true"
+    fi
+fi
+
+LAST_SCRUB_PERCENTAGE=$SCRUB_PERCENT
+
+# We'll store the accumulated days of the scrubbed files,
+# that way if we use 10% every 7 days, we are sure in 70 days the whole array is scrubbed
+if [ -f $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days ]; then
+    ACCUMULATED_DAYS_SCRUBBED_FILES=$(cat $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days)
+else
+    ACCUMULATED_DAYS_SCRUBBED_FILES=0
+fi
+
+if [ $RESET_SCRUB_CALC = "true" ]; then
+    # If the user changes either the scrub frequency or percentage then we start the scrub from 0,
+    # resetting the current progress.
+    ACCUMULATED_DAYS_SCRUBBED_FILES=0
+    LAST_SCRUB_DATE=0
 fi
 ### End Scrub Section ###
+
+if $DEBUG; then
+    _log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
+    _log "DEBUG: PARITY_FILE: $PARITY_FILE"
+    _log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
+    _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
+    _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
+    _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
+    _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
+    _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
+    _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
+    _log "DEBUG: APPRISE_CMD: $APPRISE_CMD"
+    _log "DEBUG: NTFY_CMD: $NTFY_CMD"
+    _log "DEBUG: LAST_SCRUB_DATE: $LAST_SCRUB_DATE"
+    _log "DEBUG: LAST_SCRUB_FREQUENCY: $LAST_SCRUB_FREQUENCY"
+    _log "DEBUG: LAST_SCRUB_PERCENTAGE: $LAST_SCRUB_PERCENTAGE"
+    _log "DEBUG: ACCUMULATED_DAYS_SCRUBBED_FILES: $ACCUMULATED_DAYS_SCRUBBED_FILES"
+fi
 
 ################################################################
 ## Start of the script
@@ -434,7 +536,7 @@ for OMV_DISK in $OMV_SNAPRAID_DISKS; do
         echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >>$TMP_OUTPUT
         echo "Lastly, use 'snapraid sync' to update the parity files." >>$TMP_OUTPUT
 
-        _send_notification "$EMAIL_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _send_notification "$NOTIFICATION_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
         _check_success && _rmtmp
         _log "WARN: script exits here due to missing disk ..."
         exit 1
@@ -442,7 +544,7 @@ for OMV_DISK in $OMV_SNAPRAID_DISKS; do
 done
 
 ################################################################
-# start snapraid DIFF command
+# start SnapRAID DIFF command
 _log "INFO: SnapRAID DIFF started"
 echo "SnapRAID DIFF started - $(date)" >>$TMP_OUTPUT
 
@@ -530,7 +632,7 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 
     # Proceed with sync if no check errors
     if [ $UPD_DEL_CHECK -eq 0 ]; then
-        # start snapraid SYNC
+        # start SnapRAID SYNC
         _log "INFO: "
         _log "INFO: SnapRAID SYNC Job started"
         _log "INFO: ----------------------------------------"
@@ -541,60 +643,58 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
         # we should eventually grep %
         if [ ${PREHASH_VALUE} -eq 1 ]; then
             /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >>$TMP_OUTPUT
+
+            #wait for the job to finish
+            wait
+            SYNC_EXIT_CODE=$?
         else
             /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >>$TMP_OUTPUT
+
+            #wait for the job to finish
+            wait
+            SYNC_EXIT_CODE=$?
         fi
-        #wait for the job to finish
-        wait
 
         _log "INFO: ----------------------------------------"
         _log "INFO: SnapRAID SYNC Job finished"
         echo "SnapRAID SYNC Job finished - $(date)" >>$TMP_OUTPUT
         echo "----------------------------------------" >>$TMP_OUTPUT
 
-        # start snapraid SCRUB
-        if [ $RUN_SCRUB = "true" ]; then
-            if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
-                _log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
-                echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >>$TMP_OUTPUT
-                echo "$COUNTER" >$TMP_SCRUB_DIR/snapraid_scrub_counter
+        # start SnapRAID SCRUB
+        if [ $SYNC_EXIT_CODE -eq 0 ]; then
+            if [ $RUN_SCRUB = "true" ]; then
+                _run_scrub
+                if [ $SCRUB_SUCCESS = "yes" ]; then
+                    NOTIFICATION_TITLE="Sync & Scrub Job COMPLETED"
+                elif [ $SCRUB_SUCCESS = "no" ]; then
+                    NOTIFICATION_TITLE="Sync job COMPLETED & Scrub Job FAILED"
+                else
+                    # No scrub was executed because of the scrub conditions
+                    NOTIFICATION_TITLE="Sync Job COMPLETED"
+                fi
             else
-                _log "INFO: SnapRAID SCRUB Job started"
-                _log "INFO: ----------------------------------------"
-                echo "SnapRAID SCRUB Job started - $(date)" >>$TMP_OUTPUT
-                echo "----------------------------------------" >>$TMP_OUTPUT
-                /usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${SCRUB_OLDER_THAN_DAYS} >>$TMP_OUTPUT
-
-                # wait for the job to finish
-                wait
-
-                # Reset counter
-                echo "1" >$TMP_SCRUB_DIR/snapraid_scrub_counter
-
-                _log "INFO: ----------------------------------------"
-                _log "INFO: SnapRAID SCRUB Job finished"
-                echo "SnapRAID SCRUB Job finished - $(date)" >>$TMP_OUTPUT
-                echo "----------------------------------------" >>$TMP_OUTPUT
+                echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
+                _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+                NOTIFICATION_TITLE="Sync Job COMPLETED"
             fi
         else
-            echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
-            _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+            NOTIFICATION_TITLE="Sync Job FAILED"
         fi
 
-        # Send success email
-        _send_notification "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        # Send job finished email
+        _send_notification "$NOTIFICATION_SUBJECT_PREFIX - $NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 
     # If update threshold exceeded
     elif [ $UPD_DEL_CHECK -eq 1 ]; then
-        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 
     # If delete threshold exceeded
     elif [ $UPD_DEL_CHECK -eq 2 ]; then
-        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 
     # IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
     else
-        _send_notification "$EMAIL_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
     fi
     _check_success && _rmtmp
 else
