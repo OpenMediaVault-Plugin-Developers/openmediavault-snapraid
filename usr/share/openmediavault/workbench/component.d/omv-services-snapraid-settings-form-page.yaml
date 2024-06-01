@@ -67,7 +67,7 @@ data:
       - type: textInput
         name: apprisecmd
         label: _("Apprise URL or config argument.")
-        hint: _("E.g. --config /myConfig.yml | ntfy://myTopic")
+        hint: _("E.g. --config /myConfig.yml | gotifys://myTopic\nYou can use multiple URLs, separate them with a ','.")
         value: ""
         language: shell
         trim: true

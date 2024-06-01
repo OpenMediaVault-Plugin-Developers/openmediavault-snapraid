@@ -85,7 +85,6 @@ SNAPRAID_LOG="/var/log/snapraid.log"
 #	              1 = Error happened
 #
 _send_notification() {
-
     MAIL_FAIL=false
     APPRISE_FAIL=false
     NTFY_FAIL=false
@@ -148,11 +147,10 @@ _send_email() {
 
 _send_apprise() {
     if _is_in_path apprise; then
-
         if [ $3 != "" ]; then
-            apprise --title "$3 - $1" --body "$(cat $2)" $APPRISE_CMD
+            apprise -D --title "$3 - $1" --body "$(cat $2)" ${APPRISE_CMD//,/ }
         else
-            apprise --title "$1" --body "$(cat $2)" $APPRISE_CMD
+            apprise -D --title "$1" --body "$(cat $2)" ${APPRISE_CMD//,/ }
         fi
 
         if [ $? -eq 0 ]; then
