@@ -40,35 +40,6 @@ SCRIPTVERSION="1.3.5"
 # needed for omv_config_get command
 . /usr/share/openmediavault/scripts/helper-functions
 
-# Set error count variable
-# 0 for no thresholds exceeded; 1 for update threshold exceeded; 2 for delete threshold exceeded; 3 for both exceeded
-declare -i UPD_DEL_CHECK=0
-
-declare -i DEL_COUNT=0
-declare -i ADD_COUNT=0
-declare -i MOVE_COUNT=0
-declare -i COPY_COUNT=0
-declare -i UPDATE_COUNT=0
-
-DIFF_EXECUTED="no"
-SYNC_EXECUTED="no"
-SCRUB_EXECUTED="no"
-
-ARRAY_CONF="${1}"
-
-# Set path to snapraid.conf
-if [ -f "${ARRAY_CONF}" ]; then
-    SNAPRAID_CONF="${ARRAY_CONF}"
-elif [ -f "/etc/snapraid.conf" ]; then
-    SNAPRAID_CONF="/etc/snapraid.conf"
-else
-    _log "WARN: No SnapRAID configuration file found. Exiting..."
-    exit 1
-fi
-
-# the following file is created by the OMV-GUI
-SR_DIFF_CONF="/etc/snapraid-diff.conf"
-
 NOTIFICATION_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
@@ -77,9 +48,12 @@ SNAPRAID_SYNC_LOG="/var/log/snapraid-sync.log"
 SNAPRAID_SCRUB_LOG="/var/log/snapraid-scrub.log"
 SNAPRAID_NOTIF_LOG="/var/log/snapraid-notif.log"
 
-if [ -f "${SNAPRAID_NOTIF_LOG}" ]; then
-    rm -f "$SNAPRAID_NOTIF_LOG"
-fi
+## INTERNAL TEMP VARS ##
+TMP_DIR="/tmp/snapraid"
+TMP_OUTPUT="$TMP_DIR/snapraid.out"
+TMP_SCRUB_DIR="/root/.snapraid"
+
+SNAPRAID_BIN="/usr/bin/snapraid"
 
 ################################################################
 #####     Functions
@@ -170,7 +144,7 @@ _zip_logs() {
 
     local ARCHIVE_PATH="$TMP_DIR/snap_logs.xz"
 
-    tar -cJf "$ARCHIVE_PATH" $FILE_NAMES
+    tar -cJf "$ARCHIVE_PATH" $FILE_NAMES &>/dev/null
 
     echo "$ARCHIVE_PATH"
 }
@@ -235,7 +209,7 @@ _send_apprise() {
 
         if [ $APPRISE_RETURN_CODE -eq 0 ]; then
             if [ "$SEND_SNAPRAID_CMD_LOGS" = "true" ]; then
-                _log "INFO: Full status report and command logs sent through 'Apprise'"
+                _log "INFO: Full status report and SnapRAID command logs sent through 'Apprise'"
             else
                 _log "INFO: Full status report sent through 'Apprise'"
             fi
@@ -421,192 +395,251 @@ seconds_to_days() {
 #####     MAIN BODY of the script
 ################################################################
 
-# read config
-if [ -f $SR_DIFF_CONF ]; then
-    . $SR_DIFF_CONF
-else
-    _log "WARN: $SR_DIFF_CONF not found! Exiting ..."
-    exit 1
-fi
-
-############################
-# Mail settings:
-#primary and secondary recipients
-OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
-OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
-
-if $DEBUG; then
-    _log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
-    _log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
-fi
-
-# structure in /etc/openmediavault/config.xml
-
-#    <email>
-#      <enable>1</enable>
-#      <server>mail.blablabla.com</server>
-#      <port>25</port>
-#      <tls>0</tls>
-#      <sender>server@blablabla.com</sender>
-#      <authentication>
-#        <enable>0</enable>
-#        <username></username>
-#        <password></password>
-#      </authentication>
-#      <primaryemail>someuser@blablabla.net</primaryemail>
-#      <secondaryemail></secondaryemail>
-#    </email>
-
-# read CONTENT and PARITY from $SNAPRAID_CONF
-OMV_CONTENT_FILES="$(awk '$1 == "content" { print $2 }' ${SNAPRAID_CONF})"
-PARITY_FILE="$(awk '$1 == "parity" { print $2 }' ${SNAPRAID_CONF})"
-OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAID_CONF})"
-
-## INTERNAL TEMP VARS ##
-TMP_DIR="/tmp/snapraid"
-TMP_OUTPUT="$TMP_DIR/snapraid.out"
-TMP_SCRUB_DIR="/root/.snapraid"
-
-SNAPRAID_BIN="/usr/bin/snapraid"
-if [ -z $SNAPRAID_BIN ]; then
-    _log "WARN: snapraid executable not found!"
-    exit 1
-fi
-if [ ! -x $SNAPRAID_BIN ]; then
-    _log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
-    exit 1
-fi
-
-SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
-
-# check tmp-dirs
-if [ ! -d $TMP_DIR ]; then
-    mkdir $TMP_DIR
-fi
-
-if [ -f $TMP_OUTPUT ]; then
-    rm $TMP_OUTPUT && _log "INFO: '$TMP_OUTPUT' deleted - creating a new one"
-fi
-
-#sanity check first to make sure we can access the content and parity files
-CONTENT_FILES_COUNTER=0
-
-# check, if at least one content file is found
-for SINGLE_CONTENT_FILE in $OMV_CONTENT_FILES; do
-
-    if $DEBUG; then
-        _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"
-    fi
-
-    if [ -e $SINGLE_CONTENT_FILE ]; then
-        let CONTENT_FILES_COUNTER++
-        continue
-    else
-        _log "WARN: Content file ($SINGLE_CONTENT_FILE) not found!"
-    fi
-done
-
-if [ $CONTENT_FILES_COUNTER -eq 0 ]; then
-    _log "WARN: No Content files found! Exiting ..."
-    exit 1
-fi
-
-IFS=','
-for parity in ${PARITY_FILE}; do
-    if [ -e ${parity} ]; then
-        if $DEBUG; then
-            _log "DEBUG: found: PARITY_FILE: ${parity}"
-        fi
-    else
-        _log "WARN: Parity file (${parity}) not found!"
-        exit 1
-    fi
-done
-
-### Section to support SnapRAID Scrub ###
-mkdir -p $TMP_SCRUB_DIR
-
-# define Variables, if not set in snapraid-diff
-if [ -z ${SCRUB_PERCENT} ]; then
-    SCRUB_PERCENT=100
-    _log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
-    _log "INFO: set it to $SCRUB_PERCENT"
-fi
-if [ -z ${SCRUB_FREQUENCY_IN_DAYS} ]; then
-    SCRUB_FREQUENCY_IN_DAYS=0
-    _log "INFO: SCRUB_FREQUENCY_IN_DAYS not set in '$SR_DIFF_CONF'"
-    _log "INFO: set it to $SCRUB_FREQUENCY_IN_DAYS"
-fi
-
-# for scrub
-RESET_SCRUB_CALC="false"
-
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_date ]; then
-    LAST_SCRUB_DATE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_date)
-else
-    LAST_SCRUB_DATE=0
-fi
-
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_freq ]; then
-    LAST_SCRUB_FREQUENCY=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_frequency)
-    if [ $LAST_SCRUB_FREQUENCY -ne $SCRUB_FREQUENCY_IN_DAYS ]; then
-        RESET_SCRUB_CALC="true"
-    fi
-fi
-
-LAST_SCRUB_FREQUENCY=$SCRUB_FREQUENCY_IN_DAYS
-
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_percentage ]; then
-    LAST_SCRUB_PERCENTAGE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_percentage)
-    if [ $LAST_SCRUB_PERCENTAGE -ne $SCRUB_PERCENT ]; then
-        RESET_SCRUB_CALC="true"
-    fi
-fi
-
-LAST_SCRUB_PERCENTAGE=$SCRUB_PERCENT
-
-# We'll store the accumulated days of the scrubbed files,
-# that way if we use 10% every 7 days, we are sure in 70 days the whole array is scrubbed
-if [ -f $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days ]; then
-    ACCUMULATED_DAYS_SCRUBBED_FILES=$(cat $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days)
-else
-    ACCUMULATED_DAYS_SCRUBBED_FILES=0
-fi
-
-if [ "$RESET_SCRUB_CALC" = "true" ]; then
-    # If the user changes either the scrub frequency or percentage then we start the scrub from 0,
-    # resetting the current progress.
-    ACCUMULATED_DAYS_SCRUBBED_FILES=0
-    LAST_SCRUB_DATE=0
-fi
-### End Scrub Section ###
-
-if $DEBUG; then
-    _log "DEBUG: OMV_CONTENT_FILES: $OMV_CONTENT_FILES"
-    _log "DEBUG: PARITY_FILE: $PARITY_FILE"
-    _log "DEBUG: OMV_SNAPRAID_DISKS: $OMV_SNAPRAID_DISKS"
-    _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
-    _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
-    _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
-    _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
-    _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
-    _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
-    _log "DEBUG: APPRISE_CMD: ${APPRISE_CMD}"
-    _log "DEBUG: NTFY_CMD: $NTFY_CMD"
-    _log "DEBUG: LAST_SCRUB_DATE: $LAST_SCRUB_DATE"
-    _log "DEBUG: LAST_SCRUB_FREQUENCY: $LAST_SCRUB_FREQUENCY"
-    _log "DEBUG: LAST_SCRUB_PERCENTAGE: $LAST_SCRUB_PERCENTAGE"
-    _log "DEBUG: ACCUMULATED_DAYS_SCRUBBED_FILES: $ACCUMULATED_DAYS_SCRUBBED_FILES"
-fi
-
-_start_job() {
-    ################################################################
-    ## Start of the script
+_pre_work() {
     _log "INFO: ========================================"
     _log "INFO: SnapRAID Job started - Script-version: $SCRIPTVERSION"
     _log "INFO: SnapRAID-Version: $SNAPRAIDVERSION"
     _log "INFO: ========================================"
+
     _add_mail_header # all info above is in that function
+
+    # Set error count variable
+    # 0 for no thresholds exceeded; 1 for update threshold exceeded; 2 for delete threshold exceeded; 3 for both exceeded
+    declare -gi UPD_DEL_CHECK=0
+
+    declare -gi DEL_COUNT=0
+    declare -gi ADD_COUNT=0
+    declare -gi MOVE_COUNT=0
+    declare -gi COPY_COUNT=0
+    declare -gi UPDATE_COUNT=0
+
+    DIFF_EXECUTED="no"
+    SYNC_EXECUTED="no"
+    SCRUB_EXECUTED="no"
+
+    local ARRAY_CONF
+    local OMV_CONTENT_FILES
+    local PARITY_FILE
+    local SR_DIFF_CONF
+    local SINGLE_CONTENT_FILE
+    local RESET_SCRUB_CALC
+
+    ARRAY_CONF="${1}"
+
+    # Set path to snapraid.conf
+    if [ -f "${ARRAY_CONF}" ]; then
+        SNAPRAID_CONF="${ARRAY_CONF}"
+    elif [ -f "/etc/snapraid.conf" ]; then
+        SNAPRAID_CONF="/etc/snapraid.conf"
+    else
+        _log "WARN: No SnapRAID configuration file found. Exiting..."
+        exit 1
+    fi
+
+    # the following file is created by the OMV-GUI
+    SR_DIFF_CONF="/etc/snapraid-diff.conf"
+
+    if [ -f "${SNAPRAID_NOTIF_LOG}" ]; then
+        rm -f "$SNAPRAID_NOTIF_LOG"
+    fi
+
+    # read config
+    if [ -f $SR_DIFF_CONF ]; then
+        . $SR_DIFF_CONF
+    else
+        _log "WARN: $SR_DIFF_CONF not found! Exiting ..."
+        exit 1
+    fi
+
+    ############################
+    # Mail settings:
+    # primary and secondary recipients
+    OMV_MAIL_primarymail=$(omv_config_get "//system/email/primaryemail")
+    OMV_MAIL_secondarymail=$(omv_config_get "//system/email/secondaryemail")
+
+    # structure in /etc/openmediavault/config.xml
+
+    #    <email>
+    #      <enable>1</enable>
+    #      <server>mail.blablabla.com</server>
+    #      <port>25</port>
+    #      <tls>0</tls>
+    #      <sender>server@blablabla.com</sender>
+    #      <authentication>
+    #        <enable>0</enable>
+    #        <username></username>
+    #        <password></password>
+    #      </authentication>
+    #      <primaryemail>someuser@blablabla.net</primaryemail>
+    #      <secondaryemail></secondaryemail>
+    #    </email>
+
+    # read CONTENT and PARITY from $SNAPRAID_CONF
+
+    OMV_CONTENT_FILES="$(awk '$1 == "content" { print $2 }' ${SNAPRAID_CONF})"
+    PARITY_FILE="$(awk '$1 == "parity" { print $2 }' ${SNAPRAID_CONF})"
+    OMV_SNAPRAID_DISKS="$(awk '$1 == "data" { print $3 }' ${SNAPRAID_CONF})"
+
+    if [ -z $SNAPRAID_BIN ]; then
+        _log "WARN: snapraid executable not found!"
+        exit 1
+    fi
+    if [ ! -x $SNAPRAID_BIN ]; then
+        _log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
+        exit 1
+    fi
+
+    SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
+
+    # check tmp-dirs
+    if [ ! -d $TMP_DIR ]; then
+        mkdir $TMP_DIR
+    fi
+
+    if [ -f $TMP_OUTPUT ]; then
+        rm $TMP_OUTPUT && _log "INFO: '$TMP_OUTPUT' deleted - creating a new one"
+    fi
+
+    #sanity check first to make sure we can access the content and parity files
+    local CONTENT_FILES_COUNTER=0
+
+    # check, if at least one content file is found
+    local IFS=$'\n'
+    for SINGLE_CONTENT_FILE in $OMV_CONTENT_FILES; do
+        if $DEBUG; then
+            _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"
+        fi
+
+        if [ -e $SINGLE_CONTENT_FILE ]; then
+            let CONTENT_FILES_COUNTER++
+            continue
+        else
+            _log "WARN: Content file ($SINGLE_CONTENT_FILE) not found!"
+        fi
+    done
+
+    if [ $CONTENT_FILES_COUNTER -eq 0 ]; then
+        _log "WARN: No Content files found! Exiting ..."
+        exit 1
+    fi
+
+    IFS=','
+    local parity
+    for parity in ${PARITY_FILE}; do
+        if [ -e ${parity} ]; then
+            if $DEBUG; then
+                _log "DEBUG: found: PARITY_FILE: ${parity}"
+            fi
+        else
+            _log "WARN: Parity file (${parity}) not found!"
+            exit 1
+        fi
+    done
+
+    ### Section to support SnapRAID Scrub ###
+    mkdir -p $TMP_SCRUB_DIR
+
+    # define Variables, if not set in snapraid-diff
+    if [ -z ${SCRUB_PERCENT} ]; then
+        SCRUB_PERCENT=100
+        _log "INFO: SCRUB_PERCENT not set in '$SR_DIFF_CONF'"
+        _log "INFO: set it to $SCRUB_PERCENT"
+    fi
+    if [ -z ${SCRUB_FREQUENCY_IN_DAYS} ]; then
+        SCRUB_FREQUENCY_IN_DAYS=0
+        _log "INFO: SCRUB_FREQUENCY_IN_DAYS not set in '$SR_DIFF_CONF'"
+        _log "INFO: set it to $SCRUB_FREQUENCY_IN_DAYS"
+    fi
+
+    # for scrub
+    RESET_SCRUB_CALC="false"
+
+    if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_date ]; then
+        LAST_SCRUB_DATE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_date)
+    else
+        LAST_SCRUB_DATE=0
+    fi
+
+    if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_freq ]; then
+        LAST_SCRUB_FREQUENCY=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_frequency)
+        if [ $LAST_SCRUB_FREQUENCY -ne $SCRUB_FREQUENCY_IN_DAYS ]; then
+            RESET_SCRUB_CALC="true"
+        fi
+    fi
+
+    LAST_SCRUB_FREQUENCY=$SCRUB_FREQUENCY_IN_DAYS
+
+    if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_percentage ]; then
+        LAST_SCRUB_PERCENTAGE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_percentage)
+        if [ $LAST_SCRUB_PERCENTAGE -ne $SCRUB_PERCENT ]; then
+            RESET_SCRUB_CALC="true"
+        fi
+    fi
+
+    LAST_SCRUB_PERCENTAGE=$SCRUB_PERCENT
+
+    # We'll store the accumulated days of the scrubbed files,
+    # that way if we use 10% every 7 days, we are sure in 70 days the whole array is scrubbed
+    if [ -f $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days ]; then
+        ACCUMULATED_DAYS_SCRUBBED_FILES=$(cat $TMP_SCRUB_DIR/snapraid_scrub_accumulated_days)
+    else
+        ACCUMULATED_DAYS_SCRUBBED_FILES=0
+    fi
+
+    if [ "$RESET_SCRUB_CALC" = "true" ]; then
+        # If the user changes either the scrub frequency or percentage then we start the scrub from 0,
+        # resetting the current progress.
+        ACCUMULATED_DAYS_SCRUBBED_FILES=0
+        LAST_SCRUB_DATE=0
+    fi
+    ### End Scrub Section ###
+
+    if $DEBUG; then
+        _log "INFO: ----------------------------------------"
+        _log "INFO: Configuration Variables"
+        _log "INFO: ----------------------------------------"
+
+        local IFS=$'\n'
+        local CONTENT_FILE
+        for CONTENT_FILE in $OMV_CONTENT_FILES; do
+            _log "DEBUG: OMV_CONTENT_FILES: $CONTENT_FILE"
+        done
+
+        local PAR_FILE
+        for PAR_FILE in $PARITY_FILE; do
+            _log "DEBUG: PARITY_FILE: $PAR_FILE"
+        done
+
+        local DATA_DISK
+        for DATA_DISK in $OMV_SNAPRAID_DISKS; do
+            _log "DEBUG: OMV_SNAPRAID_DISKS: $DATA_DISK"
+        done
+        _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
+        _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
+        _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
+        _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
+        _log "DEBUG: DEL_THRESHOLD: $DEL_THRESHOLD"
+        _log "DEBUG: UPD_THRESHOLD: $UPD_THRESHOLD"
+        _log "DEBUG: APPRISE_CMD: ${APPRISE_CMD}"
+        _log "DEBUG: NTFY_CMD: $NTFY_CMD"
+        _log "DEBUG: LAST_SCRUB_DATE: $LAST_SCRUB_DATE"
+        _log "DEBUG: LAST_SCRUB_FREQUENCY: $LAST_SCRUB_FREQUENCY"
+        _log "DEBUG: LAST_SCRUB_PERCENTAGE: $LAST_SCRUB_PERCENTAGE"
+        _log "DEBUG: ACCUMULATED_DAYS_SCRUBBED_FILES: $ACCUMULATED_DAYS_SCRUBBED_FILES"
+        _log "DEBUG: OMV_MAIL_primarymail $OMV_MAIL_primarymail"
+        _log "DEBUG: OMV_MAIL_secondarymail $OMV_MAIL_secondarymail"
+        _log "DEBUG: PREHASH: $PREHASH"
+        _log "DEBUG: SEND_SNAPRAID_CMD_LOGS: $SEND_SNAPRAID_CMD_LOGS"
+        _log "DEBUG: ALWAYS_SEND_NOTIFICATION: $ALWAYS_SEND_NOTIFICATION"
+        _log "DEBUG: OMV_MAIL_sender: $OMV_MAIL_sender"
+
+        _log "INFO: ----------------------------------------"
+    fi
+}
+
+_start() {
+    ################################################################
+    ## Start of the script
 
     _check_disks
 
@@ -629,6 +662,7 @@ _check_disks() {
 
     ### check if all hdds in the config are there
 
+    local IFS=$'\n'
     for OMV_DISK in $OMV_SNAPRAID_DISKS; do
         if $DEBUG; then
             _log "DEBUG: found: OMV_DISK: $OMV_DISK"
@@ -706,10 +740,6 @@ _start_diff() {
 
     _log "INFO: SUMMARY of changes since last sync:"
     _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
-
-    if $DEBUG; then
-        _log "DEBUG: Pre-Hash option: '$PREHASH'"
-    fi
 
     # check if files have changed
     if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $COPY_COUNT -gt 0 ] || [ $UPDATE_COUNT -gt 0 ]; then
@@ -910,5 +940,7 @@ _start_scrub() {
     fi
 }
 
+# Prepare everything and perform checks
+_pre_work "$1"
 # Start SnapRAID Job
-_start_job
+_start
