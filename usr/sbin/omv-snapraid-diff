@@ -116,6 +116,10 @@ EOF
         fi
     fi
 
+    if [ -f "$SNAP_LOG_ARCHIVE_PATH" ]; then
+        rm -f "$SNAP_LOG_ARCHIVE_PATH"
+    fi
+
     if [ "$MAIL_FAIL" = "true" ] || [ "$APPRISE_FAIL" = "true" ] || [ "$NTFY_FAIL" = "true" ]; then
         return 1
     else
