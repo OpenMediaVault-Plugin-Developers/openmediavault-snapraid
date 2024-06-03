@@ -50,15 +50,20 @@ declare -i MOVE_COUNT=0
 declare -i COPY_COUNT=0
 declare -i UPDATE_COUNT=0
 
-declare -i PREHASH_VALUE=0
+DIFF_EXECUTED="no"
+SYNC_EXECUTED="no"
+SCRUB_EXECUTED="no"
 
 ARRAY_CONF="${1}"
 
 # Set path to snapraid.conf
 if [ -f "${ARRAY_CONF}" ]; then
     SNAPRAID_CONF="${ARRAY_CONF}"
-else
+elif [ -f "/etc/snapraid.conf" ]; then
     SNAPRAID_CONF="/etc/snapraid.conf"
+else
+    _log "WARN: No SnapRAID configuration file found. Exiting..."
+    exit 1
 fi
 
 # the following file is created by the OMV-GUI
@@ -67,6 +72,9 @@ SR_DIFF_CONF="/etc/snapraid-diff.conf"
 NOTIFICATION_SUBJECT_PREFIX="SnapRAID"
 
 SNAPRAID_LOG="/var/log/snapraid.log"
+SNAPRAID_DIFF_LOG="/var/log/snapraid-diff.log"
+SNAPRAID_SYNC_LOG="/var/log/snapraid-sync.log"
+SNAPRAID_SCRUB_LOG="/var/log/snapraid-scrub.log"
 SNAPRAID_NOTIF_LOG="/var/log/snapraid-notif.log"
 
 if [ -f "${SNAPRAID_NOTIF_LOG}" ]; then
@@ -95,9 +103,8 @@ _send_notification() {
     local APPRISE_FAIL=false
     local NTFY_FAIL=false
 
-    if [ $SENDMAIL = "false" ] && [ $USE_APPRISE = "false" ] && [ $USE_NTFY = "false" ]; then
+    if [ "$SENDMAIL" = "false" ] && [ "$USE_APPRISE" = "false" ] && [ "$USE_NTFY" = "false" ]; then
         _log "INFO: Notifications should be sent here - SENDMAIL, USE_APPRISE and USE_NTFY set to false"
-        echo "Notifications should be sent here - SENDMAIL, USE_APPRISE and USE_NTFY set to false"
         return 0
     fi
 
@@ -107,32 +114,65 @@ _send_notification() {
 Yours, SnapRAID-diff script
 EOF
 
-    if [ $SENDMAIL = "true" ]; then
+    if [ "$USE_APPRISE" = "true" ] || [ "$USE_NTFY" = "true" ]; then
+        if [ "$SEND_SNAPRAID_CMD_LOGS" = "true" ]; then
+            SNAP_LOG_ARCHIVE_PATH="$(_zip_logs)"
+        fi
+    fi
+
+    if [ "$SENDMAIL" = "true" ]; then
         _send_email "$1" "$2"
-        if [ $? -eq 1 ]; then
+        if [ $? -ne 0 ]; then
             MAIL_FAIL=true
         fi
     fi
 
-    if [ $USE_APPRISE = "true" ]; then
+    if [ "$USE_APPRISE" = "true" ]; then
         _send_apprise "$1" "$2" "$3"
-        if [ $? -eq 1 ]; then
+        if [ $? -ne 0 ]; then
             APPRISE_FAIL=true
         fi
     fi
 
-    if [ $USE_NTFY = "true" ]; then
+    if [ "$USE_NTFY" = "true" ]; then
         _send_ntfy "$1" "$2" "$3"
-        if [ $? -eq 1 ]; then
+        if [ $? -ne 0 ]; then
             NTFY_FAIL=true
         fi
     fi
 
-    if [ $MAIL_FAIL = "true" ] || [ $APPRISE_FAIL = "true" ] || [ $NTFY_FAIL = "true" ]; then
+    if [ "$MAIL_FAIL" = "true" ] || [ "$APPRISE_FAIL" = "true" ] || [ "$NTFY_FAIL" = "true" ]; then
         return 1
     else
         return 0
     fi
+}
+
+_zip_logs() {
+    local FILE_NAMES=""
+
+    if [ "$DIFF_EXECUTED" = "yes" ]; then
+        FILE_NAMES+="$SNAPRAID_DIFF_LOG"
+    fi
+
+    if [ "$SYNC_EXECUTED" = "yes" ]; then
+        FILE_NAMES+=" $SNAPRAID_SYNC_LOG"
+    fi
+
+    if [ "$SCRUB_EXECUTED" = "yes" ]; then
+        FILE_NAMES+=" $SNAPRAID_SCRUB_LOG"
+    fi
+
+    if [ "$FILE_NAMES" = "" ]; then
+        echo "none"
+        return
+    fi
+
+    local ARCHIVE_PATH="$TMP_DIR/snap_logs.xz"
+
+    tar -cJf "$ARCHIVE_PATH" $FILE_NAMES
+
+    echo "$ARCHIVE_PATH"
 }
 
 _send_email() {
@@ -153,14 +193,13 @@ _send_email() {
 
 _send_apprise() {
     local CMD
-    local APPRISE_CMD_ARRAY
     local VERBOSE_LEVEL
     local APPRISE_RETURN_CODE
 
     if $DEBUG; then
-        VERBOSE_LEVEL=-D
+        VERBOSE_LEVEL="-vvv"
     else
-        VERBOSE_LEVEL=-vv
+        VERBOSE_LEVEL="-vv"
     fi
 
     echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
@@ -168,21 +207,38 @@ _send_apprise() {
     echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
 
     if _is_in_path apprise; then
-        read -r -a APPRISE_CMD_ARRAY <<<"$(_split_cmd $APPRISE_CMD)"
-        for CMD in "${APPRISE_CMD_ARRAY[@]}"; do
-            if [ $3 != "" ]; then
-                apprise $VERBOSE_LEVEL --title "$3 - $1" --body "$(cat $2)" "$CMD" >>$SNAPRAID_NOTIF_LOG 2>&1
-                wait
-                APPRISE_RETURN_CODE=$?
-            else
-                apprise $VERBOSE_LEVEL --title "$1" --body "$(cat $2)" "$CMD" >>$SNAPRAID_NOTIF_LOG 2>&1
-                wait
-                APPRISE_RETURN_CODE=$?
+        local NOTIF_TITLE
+
+        if [ $3 != "" ]; then
+            NOTIF_TITLE="$3 - $1"
+        else
+            NOTIF_TITLE="$1"
+        fi
+
+        local ATTACH_COMMAND=""
+
+        if [ "$SEND_SNAPRAID_CMD_LOGS" = "true" ] && [ "$SNAP_LOG_ARCHIVE_PATH" != "none" ]; then
+            ATTACH_COMMAND=("--attach" "$SNAP_LOG_ARCHIVE_PATH")
+        fi
+
+        local IFS=';'
+        for CMD in $APPRISE_CMD; do
+            if $DEBUG; then
+                local IFS=" "
+                echo "Apprise command:" >>$SNAPRAID_NOTIF_LOG
+                echo "apprise $VERBOSE_LEVEL --title \"$NOTIF_TITLE\" \"${ATTACH_COMMAND[*]}\" \"$CMD\" <\"$2\" >>$SNAPRAID_NOTIF_LOG 2>&1" >>$SNAPRAID_NOTIF_LOG
+                echo "" >>$SNAPRAID_NOTIF_LOG
             fi
+            apprise $VERBOSE_LEVEL --title "$NOTIF_TITLE" "${ATTACH_COMMAND[@]}" "$CMD" <"$2" >>$SNAPRAID_NOTIF_LOG 2>&1
+            APPRISE_RETURN_CODE=$?
         done
 
         if [ $APPRISE_RETURN_CODE -eq 0 ]; then
-            _log "INFO: Full status report sent through 'Apprise'"
+            if [ "$SEND_SNAPRAID_CMD_LOGS" = "true" ]; then
+                _log "INFO: Full status report and command logs sent through 'Apprise'"
+            else
+                _log "INFO: Full status report sent through 'Apprise'"
+            fi
             return 0
         else
             _log "WARN: Apprise notification with full status report could not be sent. Please have a look at $SNAPRAID_NOTIF_LOG."
@@ -200,30 +256,67 @@ _send_ntfy() {
     echo "----------------------------------------" >>$SNAPRAID_NOTIF_LOG
 
     local VERBOSE_LEVEL
-    local NTFY_RETURN_CODE
+    local NTFY_MAIN_RETURN_CODE=-1
+    local NTFY_EXTRA_RETURN_CODE=-1
 
     if $DEBUG; then
-        VERBOSE_LEVEL=debug
+        VERBOSE_LEVEL="debug"
     else
-        VERBOSE_LEVEL=warn
+        VERBOSE_LEVEL="warn"
     fi
 
     if _is_in_path ntfy; then
+
+        local NOTIF_TITLE
+
         if [ $3 != "" ]; then
-            ntfy publish --log-level $VERBOSE_LEVEL --title "$3 - $1" --message "$(cat $2)" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1
-            wait
-            NTFY_RETURN_CODE=$?
+            NOTIF_TITLE="$3 - $1"
         else
-            ntfy publish --log-level $VERBOSE_LEVEL --title "$1" --message "$(cat $2)" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1
-            wait
-            NTFY_RETURN_CODE=$?
+            NOTIF_TITLE="$1"
         fi
 
-        if [ $NTFY_RETURN_CODE -eq 0 ]; then
-            _log "INFO: Full status report sent through 'Ntfy'"
+        # Ntfy cli doesn't support grabbing the message from the standard input so we have to send the report as an attachment
+        if $DEBUG; then
+            echo "Ntfy command:" >>$SNAPRAID_NOTIF_LOG
+            echo "ntfy publish --log-level $VERBOSE_LEVEL --title \"$NOTIF_TITLE\" --file \"$2\" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1" >>$SNAPRAID_NOTIF_LOG
+            echo "" >>$SNAPRAID_NOTIF_LOG
+        fi
+
+        ntfy publish --log-level $VERBOSE_LEVEL --title "$NOTIF_TITLE" --file "$2" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1
+        NTFY_MAIN_RETURN_CODE=$?
+
+        if [ $NTFY_MAIN_RETURN_CODE -eq 0 ] && [ $SEND_SNAPRAID_CMD_LOGS = "true" ] && [ $SNAP_LOG_ARCHIVE_PATH != "none" ]; then
+            local NOTIF_TITLE="$3 - Command Logs"
+
+            # Ntfy doesn't support sending more than one attachment at the same time, we have to send two notifications.
+            if $DEBUG; then
+                echo "Ntfy command:" >>$SNAPRAID_NOTIF_LOG
+                echo "ntfy publish --log-level $VERBOSE_LEVEL --title \"$NOTIF_TITLE\" --file \"$SNAP_LOG_ARCHIVE_PATH\" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1" >>$SNAPRAID_NOTIF_LOG
+                echo "" >>$SNAPRAID_NOTIF_LOG
+            fi
+
+            ntfy publish --log-level $VERBOSE_LEVEL --title "$NOTIF_TITLE" --file "$SNAP_LOG_ARCHIVE_PATH" $NTFY_CMD >>$SNAPRAID_NOTIF_LOG 2>&1
+            NTFY_EXTRA_RETURN_CODE=$?
+        fi
+
+        if [ $NTFY_MAIN_RETURN_CODE -eq 0 ]; then
+            if [ $NTFY_EXTRA_RETURN_CODE -eq 0 ]; then
+                _log "INFO: Full status report and SnapRAID command logs sent through 'Ntfy'"
+            elif [ $NTFY_EXTRA_RETURN_CODE -ne -1 ]; then
+                _log "WARN: Full status report sent successfully but Ntfy notification with SnapRAID command logs could not be sent. Please have a look at $SNAPRAID_NOTIF_LOG"
+                return 1
+            else
+                _log "INFO: Full status report sent through 'Ntfy'"
+            fi
+
             return 0
         else
             _log "WARN: Ntfy notification with full status report could not be sent. Please have a look at $SNAPRAID_NOTIF_LOG."
+
+            if [ "$SEND_SNAPRAID_CMD_LOGS" = "true" ]; then
+                _log "WARN: Ntfy notification with SnapRAID logs was not sent because main notification failed."
+            fi
+
             return 1
         fi
     else
@@ -254,25 +347,13 @@ _log() {
             local LOGMESSAGE=${BASH_REMATCH[2]} # the Log-Message
         }
 
-    if $DEBUG; then
+    if [ "$PRIORITY" = "WARN" ]; then
         echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
-        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
-    else
-        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
+    elif $DEBUG; then
+        echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'"
     fi
-}
 
-_split_cmd() {
-    local CMD_QUOTED="$1"
-
-    local IFS
-    local CMDS
-
-    IFS=';'
-    read -r -a CMDS <<<"${CMD_QUOTED}"
-
-    IFS=" "
-    echo "${CMDS[*]}"
+    echo "$(date '+[%Y-%m-%d %H:%M:%S]') $(basename "$0"): $PRIORITY: '$LOGMESSAGE'" >>$SNAPRAID_LOG
 }
 
 ################################################################
@@ -295,7 +376,7 @@ _rmtmp() {
 #               : 1 = last command ended with an error -> [ $? -gt 1 ]
 #
 _check_success() {
-    if [ $1 = 0 ]; then
+    if [ $1 -eq 0 ]; then
         return 0
     else
         return 1
@@ -345,7 +426,7 @@ if [ -f $SR_DIFF_CONF ]; then
     . $SR_DIFF_CONF
 else
     _log "WARN: $SR_DIFF_CONF not found! Exiting ..."
-    echo "$SR_DIFF_CONF not found! Exiting ..."
+    exit 1
 fi
 
 ############################
@@ -389,9 +470,11 @@ TMP_SCRUB_DIR="/root/.snapraid"
 SNAPRAID_BIN="/usr/bin/snapraid"
 if [ -z $SNAPRAID_BIN ]; then
     _log "WARN: snapraid executable not found!"
+    exit 1
 fi
 if [ ! -x $SNAPRAID_BIN ]; then
     _log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
+    exit 1
 fi
 
 SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
@@ -411,7 +494,9 @@ CONTENT_FILES_COUNTER=0
 # check, if at least one content file is found
 for SINGLE_CONTENT_FILE in $OMV_CONTENT_FILES; do
 
-    if $DEBUG; then _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"; fi
+    if $DEBUG; then
+        _log "DEBUG: found: SINGLE_CONTENT_FILE: $SINGLE_CONTENT_FILE"
+    fi
 
     if [ -e $SINGLE_CONTENT_FILE ]; then
         let CONTENT_FILES_COUNTER++
@@ -429,7 +514,9 @@ fi
 IFS=','
 for parity in ${PARITY_FILE}; do
     if [ -e ${parity} ]; then
-        if $DEBUG; then _log "DEBUG: found: PARITY_FILE: ${parity}"; fi
+        if $DEBUG; then
+            _log "DEBUG: found: PARITY_FILE: ${parity}"
+        fi
     else
         _log "WARN: Parity file (${parity}) not found!"
         exit 1
@@ -462,7 +549,7 @@ fi
 
 if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_freq ]; then
     LAST_SCRUB_FREQUENCY=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_frequency)
-    if $LAST_SCRUB_FREQUENCY != $SCRUB_FREQUENCY_IN_DAYS; then
+    if [ $LAST_SCRUB_FREQUENCY -ne $SCRUB_FREQUENCY_IN_DAYS ]; then
         RESET_SCRUB_CALC="true"
     fi
 fi
@@ -471,7 +558,7 @@ LAST_SCRUB_FREQUENCY=$SCRUB_FREQUENCY_IN_DAYS
 
 if [ -f $TMP_SCRUB_DIR/snapraid_scrub_last_percentage ]; then
     LAST_SCRUB_PERCENTAGE=$(cat $TMP_SCRUB_DIR/snapraid_scrub_last_percentage)
-    if $LAST_SCRUB_PERCENTAGE != $SCRUB_PERCENT; then
+    if [ $LAST_SCRUB_PERCENTAGE -ne $SCRUB_PERCENT ]; then
         RESET_SCRUB_CALC="true"
     fi
 fi
@@ -486,7 +573,7 @@ else
     ACCUMULATED_DAYS_SCRUBBED_FILES=0
 fi
 
-if [ $RESET_SCRUB_CALC = "true" ]; then
+if [ "$RESET_SCRUB_CALC" = "true" ]; then
     # If the user changes either the scrub frequency or percentage then we start the scrub from 0,
     # resetting the current progress.
     ACCUMULATED_DAYS_SCRUBBED_FILES=0
@@ -515,9 +602,10 @@ fi
 _start_job() {
     ################################################################
     ## Start of the script
-    _log "INFO: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+    _log "INFO: ========================================"
     _log "INFO: SnapRAID Job started - Script-version: $SCRIPTVERSION"
     _log "INFO: SnapRAID-Version: $SNAPRAIDVERSION"
+    _log "INFO: ========================================"
     _add_mail_header # all info above is in that function
 
     _check_disks
@@ -529,7 +617,12 @@ _start_job() {
 }
 
 _check_disks() {
+    _log "INFO: ----------------------------------------"
     _log "INFO: Checking 'disks' in '$SNAPRAID_CONF'"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
+    echo "Checking 'disks' in '$SNAPRAID_CONF'" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
 
     local OMV_DISK
     local NOTIFICATION_RETURN_CODE
@@ -560,91 +653,47 @@ _check_disks() {
             echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >>$TMP_OUTPUT
             echo "Lastly, use 'snapraid sync' to update the parity files." >>$TMP_OUTPUT
 
-            _send_notification "$NOTIFICATION_SUBJECT_PREFIX - ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
             NOTIFICATION_RETURN_CODE=$?
             _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
             _log "WARN: script exits here due to missing disk ..."
             exit 1
         fi
     done
-}
-
-_start_sync() {
-    _log "INFO: "
-    _log "INFO: SnapRAID SYNC Job started"
-    _log "INFO: ----------------------------------------"
-    echo " " >>$TMP_OUTPUT
-    echo "SnapRAID SYNC Job started - $(date)" >>$TMP_OUTPUT
-    echo "----------------------------------------" >>$TMP_OUTPUT
-
-    local SYNC_EXIT_CODE
-    local NOTIFICATION_TITLE
-
-    # we should eventually grep %
-    if [ ${PREHASH_VALUE} -eq 1 ]; then
-        /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >>$TMP_OUTPUT
-
-        #wait for the job to finish
-        wait
-        SYNC_EXIT_CODE=$?
-    else
-        /usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >>$TMP_OUTPUT
-
-        #wait for the job to finish
-        wait
-        SYNC_EXIT_CODE=$?
-    fi
 
     _log "INFO: ----------------------------------------"
-    _log "INFO: SnapRAID SYNC Job finished"
-    echo "SnapRAID SYNC Job finished - $(date)" >>$TMP_OUTPUT
+    _log "INFO: Finished checking 'disks'"
+    _log "INFO: ----------------------------------------"
     echo "----------------------------------------" >>$TMP_OUTPUT
-
-    # start SnapRAID SCRUB
-    if [ $SYNC_EXIT_CODE -eq 0 ]; then
-        if [ $RUN_SCRUB = "true" ]; then
-            _start_scrub
-            if [ $SCRUB_SUCCESS = "yes" ]; then
-                NOTIFICATION_TITLE="Sync & Scrub Job COMPLETED"
-            elif [ $SCRUB_SUCCESS = "no" ]; then
-                NOTIFICATION_TITLE="Sync job COMPLETED & Scrub Job FAILED"
-            else
-                # No scrub was executed because of the scrub conditions
-                NOTIFICATION_TITLE="Sync Job COMPLETED"
-            fi
-        else
-            echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
-            _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
-            NOTIFICATION_TITLE="Sync Job COMPLETED"
-        fi
-    else
-        NOTIFICATION_TITLE="Sync Job FAILED"
-    fi
-
-    # Send job finished email
-    _send_notification "$NOTIFICATION_SUBJECT_PREFIX - $NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+    echo "Finished checking 'disks'" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
 }
 
 _start_diff() {
+    _log "INFO: ----------------------------------------"
     _log "INFO: SnapRAID DIFF started"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
     echo "SnapRAID DIFF started - $(date)" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
 
-    local UPD_THRESHOLD
-    local DEL_THRESHOLD
     local NOTIFICATION_RETURN_CODE
     local line
 
     # run diff:
     # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
-    /usr/bin/snapraid diff --conf ${SNAPRAID_CONF} 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
+    $SNAPRAID_BIN diff --conf ${SNAPRAID_CONF} --log "$SNAPRAID_DIFF_LOG" 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
         _log "WARN: $line"
     done
 
     # wait for the above cmd to finish
     wait
+    DIFF_EXECUTED=yes
 
+    _log "INFO: ----------------------------------------"
     _log "INFO: SnapRAID DIFF finished"
     _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
     echo "SnapRAID DIFF finished - $(date)" >>$TMP_OUTPUT
     echo "----------------------------------------" >>$TMP_OUTPUT
 
@@ -658,17 +707,12 @@ _start_diff() {
     _log "INFO: SUMMARY of changes since last sync:"
     _log "INFO: Added: [$ADD_COUNT] - Deleted: [$DEL_COUNT] - Moved: [$MOVE_COUNT] - Copied: [$COPY_COUNT] - Updated: [$UPDATE_COUNT]"
 
-    # set pre-hash option
-    PREHASH_VALUE=$(omv_config_get "/config/services/snapraid/prehash")
     if $DEBUG; then
-        _log "DEBUG: Pre-Hash option: ${PREHASH_VALUE}"
+        _log "DEBUG: Pre-Hash option: '$PREHASH'"
     fi
 
     # check if files have changed
     if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $COPY_COUNT -gt 0 ] || [ $UPDATE_COUNT -gt 0 ]; then
-
-        UPD_THRESHOLD=$(omv_config_get "/config/services/snapraid/updthreshold")
-        DEL_THRESHOLD=$(omv_config_get "/config/services/snapraid/delthreshold")
 
         # New Logic for v 1.2.0 - check whether update threshold is enabled or not
         if [ $UPD_THRESHOLD -gt 0 ]; then
@@ -723,28 +767,85 @@ _start_diff() {
 
         # If update threshold exceeded
         elif [ $UPD_DEL_CHECK -eq 1 ]; then
-            _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
             NOTIFICATION_RETURN_CODE=$?
 
         # If delete threshold exceeded
         elif [ $UPD_DEL_CHECK -eq 2 ]; then
-            _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
             NOTIFICATION_RETURN_CODE=$?
 
         # IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
         else
-            _send_notification "$NOTIFICATION_SUBJECT_PREFIX - WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
             NOTIFICATION_RETURN_CODE=$?
         fi
         _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
     else
         # NO, so lets log it and exit
         _log "INFO: No change detected. Nothing to do"
+
+        if [ "$ALWAYS_SEND_NOTIFICATION" = "true" ]; then
+            _send_notification "No changes on data disks" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+        fi
     fi
 
     _log "INFO: SnapRAID Job ended."
     _rmtmp
     exit 0
+}
+
+_start_sync() {
+    _log "INFO: ----------------------------------------"
+    _log "INFO: SnapRAID SYNC Job started"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
+    echo "SnapRAID SYNC Job started - $(date)" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
+
+    local SYNC_EXIT_CODE
+    local NOTIFICATION_TITLE
+    local PREHASH_COMMAND=""
+
+    # we should eventually grep %
+    if [ "$PREHASH" = "true" ]; then
+        PREHASH_COMMAND="--pre-hash"
+    fi
+
+    $SNAPRAID_BIN sync --conf ${SNAPRAID_CONF} $PREHASH_COMMAND --log "$SNAPRAID_SYNC_LOG" >>$TMP_OUTPUT
+    SYNC_EXIT_CODE=$?
+    SYNC_EXECUTED="yes"
+
+    _log "INFO: ----------------------------------------"
+    _log "INFO: SnapRAID SYNC Job finished"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
+    echo "SnapRAID SYNC Job finished - $(date)" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
+
+    # start SnapRAID SCRUB
+    if [ $SYNC_EXIT_CODE -eq 0 ]; then
+        if [ $RUN_SCRUB = "true" ]; then
+            _start_scrub
+            if [ $SCRUB_SUCCESS = "yes" ]; then
+                NOTIFICATION_TITLE="Sync & Scrub Job COMPLETED"
+            elif [ $SCRUB_SUCCESS = "no" ]; then
+                NOTIFICATION_TITLE="Sync job COMPLETED & Scrub Job FAILED"
+            else
+                # No scrub was executed because of the scrub conditions
+                NOTIFICATION_TITLE="Sync Job COMPLETED"
+            fi
+        else
+            echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
+            _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+            NOTIFICATION_TITLE="Sync Job COMPLETED"
+        fi
+    else
+        NOTIFICATION_TITLE="Sync Job FAILED"
+    fi
+
+    # Send job finished email
+    _send_notification "$NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
 }
 
 _start_scrub() {
@@ -774,19 +875,23 @@ _start_scrub() {
                 ACCUMULATED_DAYS_SCRUBBED_FILES=0
             fi
         fi
+
+        _log "INFO: ----------------------------------------"
         _log "INFO: SnapRAID SCRUB Job started"
         _log "INFO: ----------------------------------------"
+        echo "----------------------------------------" >>$TMP_OUTPUT
         echo "SnapRAID SCRUB Job started - $(date)" >>$TMP_OUTPUT
         echo "----------------------------------------" >>$TMP_OUTPUT
-        /usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${ACCUMULATED_DAYS_SCRUBBED_FILES} >>$TMP_OUTPUT
 
-        # wait for the job to finish
-        wait
+        $SNAPRAID_BIN scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${ACCUMULATED_DAYS_SCRUBBED_FILES} --log "$SNAPRAID_SCRUB_LOG" >>$TMP_OUTPUT
+
         if [ $? -eq 0 ]; then
             SCRUB_SUCCESS="yes"
         else
             SCRUB_SUCCESS="no"
         fi
+
+        SCRUB_EXECUTED="yes"
 
         ((ACCUMULATED_DAYS_SCRUBBED_FILES += SCRUB_FREQUENCY_IN_DAYS))
         LAST_SCRUB_DATE=$CURRENT_DATE_DATE
@@ -798,6 +903,8 @@ _start_scrub() {
 
         _log "INFO: ----------------------------------------"
         _log "INFO: SnapRAID SCRUB Job finished"
+        _log "INFO: ----------------------------------------"
+        echo "----------------------------------------" >>$TMP_OUTPUT
         echo "SnapRAID SCRUB Job finished - $(date)" >>$TMP_OUTPUT
         echo "----------------------------------------" >>$TMP_OUTPUT
     fi

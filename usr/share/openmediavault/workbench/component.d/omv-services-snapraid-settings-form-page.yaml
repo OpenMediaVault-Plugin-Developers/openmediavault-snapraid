@@ -58,11 +58,11 @@ data:
         value: false
       - type: checkbox
         name: sendmail
-        label: _("Send mail")
+        label: _("Send Mail notification")
         value: true
       - type: checkbox
         name: apprise
-        label: _("Use Apprise")
+        label: _("Send Apprise notification")
         value: false
       - type: textInput
         name: apprisecmd
@@ -77,19 +77,29 @@ data:
             errorData: _("The field is invalid, it can't contain quotes and the path to the config file and URL can't contain spaces. Path to config file must be full (start with '/').")
       - type: checkbox
         name: ntfy
-        label: _("Use Ntfy")
+        label: _("Send Ntfy notification")
         value: false
       - type: textInput
         name: ntfycmd
-        label: _("Ntfy config command or host and/or topic.")
+        label: _("Ntfy config command or host and/or topic. Report will be sent as an attachment.")
         hint: _("E.g. ntfy.local/myTopic | myTopic | --config /someConfig.yml")
-        value: "OMV_SnapRAID"
+        value: ""
         trim: true
         language: shell
         validators:
           pattern:
             pattern: "^(([\\w\\.]+\\/)?[-\\w]{1,64}|--config\\s\\/[^\"'\\s\\|\\&]+)$"
             errorData: _("The field can only contain a config command, a valid topic name or host and topic (don't add https:// at the start). No quotes or spaces are allowed. Path to config file must be full (start with '/').")
+      - type: checkbox
+        name: sendsnaplog
+        label: _("Send SnapRAID command logs")
+        value: true
+        hint: _("Also send a compressed file with the SnapRAID commands (sync, diff, scrub) debug logs as attachment for Apprise and Ntfy notifications.")
+      - type: checkbox
+        name: sendnotifalways
+        label: _("Always send notifications")
+        value: false
+        hint: _("Send notifications even if there are no data changes.")
       - type: checkbox
         name: runscrub
         label: _("Run scrub")

@@ -75,6 +75,14 @@
           "type": "string",
           "required": true
         },
+        "sendsnaplog": {
+          "type": "boolean",
+          "required": true
+        },
+        "sendnotifalways": {
+          "type": "boolean",
+          "required": true
+        },
         "runscrub": {
           "type": "boolean",
           "required": true
