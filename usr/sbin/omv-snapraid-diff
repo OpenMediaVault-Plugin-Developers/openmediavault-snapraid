@@ -631,7 +631,6 @@ _pre_work() {
         _log "DEBUG: PREHASH: $PREHASH"
         _log "DEBUG: SEND_SNAPRAID_CMD_LOGS: $SEND_SNAPRAID_CMD_LOGS"
         _log "DEBUG: ALWAYS_SEND_NOTIFICATION: $ALWAYS_SEND_NOTIFICATION"
-        _log "DEBUG: OMV_MAIL_sender: $OMV_MAIL_sender"
 
         _log "INFO: ----------------------------------------"
     fi
@@ -687,7 +686,7 @@ _check_disks() {
             echo "Then, use 'snapraid check' to verify the integrity of the recovered files." >>$TMP_OUTPUT
             echo "Lastly, use 'snapraid sync' to update the parity files." >>$TMP_OUTPUT
 
-            _send_notification "ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
             NOTIFICATION_RETURN_CODE=$?
             _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
             _log "WARN: script exits here due to missing disk ..."
@@ -797,17 +796,17 @@ _start_diff() {
 
         # If update threshold exceeded
         elif [ $UPD_DEL_CHECK -eq 1 ]; then
-            _send_notification "WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of updated files (${UPDATE_COUNT}) exceeded threshold (${UPD_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
             NOTIFICATION_RETURN_CODE=$?
 
         # If delete threshold exceeded
         elif [ $UPD_DEL_CHECK -eq 2 ]; then
-            _send_notification "WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of deleted files (${DEL_COUNT}) exceeded threshold (${DEL_THRESHOLD})" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
             NOTIFICATION_RETURN_CODE=$?
 
         # IF both thresholds exceeded (UPD_DEL_CHECK -eq 3)
         else
-            _send_notification "WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "WARNING - Number of updated (${UPDATE_COUNT}) and deleted (${DEL_COUNT}) files exceeded updated (${UPD_THRESHOLD}) and deleted (${DEL_THRESHOLD}) thresholds" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
             NOTIFICATION_RETURN_CODE=$?
         fi
         _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
@@ -816,7 +815,7 @@ _start_diff() {
         _log "INFO: No change detected. Nothing to do"
 
         if [ "$ALWAYS_SEND_NOTIFICATION" = "true" ]; then
-            _send_notification "No changes on data disks" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+            _send_notification "No changes on data disks" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
         fi
     fi
 
@@ -875,7 +874,7 @@ _start_sync() {
     fi
 
     # Send job finished email
-    _send_notification "$NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+    _send_notification "$NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
 }
 
 _start_scrub() {
