@@ -43,6 +43,28 @@
       "type": "boolean",
       "default": true
     },
+    "apprise": {
+      "type": "boolean",
+      "default": false
+    },
+    "apprisecmd": {
+      "type": "string"
+    },
+    "ntfy": {
+      "type": "boolean",
+      "default": false
+    },
+    "ntfycmd": {
+      "type": "string"
+    },
+    "sendsnaplog": {
+      "type": "boolean",
+      "default": false
+    },
+    "sendnotifalways": {
+      "type": "boolean",
+      "default": false
+    },
     "runscrub": {
       "type": "boolean",
       "default": true
