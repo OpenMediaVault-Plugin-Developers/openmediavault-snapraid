@@ -32,7 +32,7 @@
 
 # Changes from v 1.1.0: Fix deleted and updated files logic
 # Changes from v 1.2.0: Add support for multiple arrays
-SCRIPTVERSION="1.3.5"
+SCRIPTVERSION="1.3.6"
 
 # get basic info
 . /etc/default/openmediavault
