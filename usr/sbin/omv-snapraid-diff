@@ -392,6 +392,17 @@ seconds_to_days() {
     echo $(($1 / 60 / 60 / 24))
 }
 
+_calc_max_days() {
+    local QUOT=$((100 * $1 / $2))
+    local REMA=$((100 * $1 % $2))
+
+    if [ $REMA -eq 0 ]; then
+        echo $QUOT
+    else
+        echo $((QUOT + 1))
+    fi
+}
+
 ################################################################
 #####     MAIN BODY of the script
 ################################################################
@@ -881,6 +892,7 @@ _start_scrub() {
     local CURRENT_DATE_DATE
     local DAYS_DIFF_DATE
     local DAYS_DIFF_EPOCH
+    local MAX_NUM_DAYS
 
     SCRUB_SUCCESS="no"
 
@@ -890,13 +902,13 @@ _start_scrub() {
     DAYS_DIFF_EPOCH=$((CURRENT_DATE_EPOCH - $(date_to_epoch $LAST_SCRUB_DATE)))
     DAYS_DIFF_DATE=$(seconds_to_days $DAYS_DIFF_EPOCH)
 
-    if [ $LAST_SCRUB_DATE -ne 0 ] && [ $DAYS_DIFF -lt $(($(date_to_seconds $SCRUB_FREQUENCY_IN_DAYS))) ]; then
+    if [ $LAST_SCRUB_DATE -ne 0 ] && [ $DAYS_DIFF_EPOCH -lt $(($(date_to_seconds $SCRUB_FREQUENCY_IN_DAYS))) ]; then
         _log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_DIFF_DATE). No scrub was run."
         echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($DAYS_DIFF_DATE). No scrub was run. - $(date)" >>$TMP_OUTPUT
         SCRUB_SUCCESS="none"
     else
         if [ $ACCUMULATED_DAYS_SCRUBBED_FILES -ne 0 ]; then
-            local MAX_NUM_DAYS=$((100 * SCRUB_FREQUENCY_IN_DAYS / SCRUB_PERCENT))
+            MAX_NUM_DAYS=$(_calc_max_days "$SCRUB_FREQUENCY_IN_DAYS" "$SCRUB_PERCENT")
             if [ $ACCUMULATED_DAYS_SCRUBBED_FILES -ge $MAX_NUM_DAYS ]; then
                 # We reached the max num of days, this means we must restart and scrub everything again,
                 # in an ideal (non-file-changing) scenario we scrubbed all the data
