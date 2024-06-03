@@ -54,6 +54,7 @@ TMP_OUTPUT="$TMP_DIR/snapraid.out"
 TMP_SCRUB_DIR="/root/.snapraid"
 
 SNAPRAID_BIN="/usr/bin/snapraid"
+SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
 
 ################################################################
 #####     Functions
@@ -488,8 +489,6 @@ _pre_work() {
         _log "WARN: snapraid '$SNAPRAID_BIN' not executable! Please do a 'chmod +x $SNAPRAID_BIN'"
         exit 1
     fi
-
-    SNAPRAIDVERSION="$(dpkg-query -W -f='${Version}' snapraid)"
 
     # check tmp-dirs
     if [ ! -d $TMP_DIR ]; then
