@@ -88,7 +88,7 @@ data:
         name: paritysplit
         label: _("Split Parity")
         value: false
-        hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+        hint: _("Used to split parity across more than one drive.")
         modifiers:
           - type: visible
             constraint:
