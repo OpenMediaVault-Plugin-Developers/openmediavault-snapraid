@@ -1,3 +1,12 @@
+openmediavault-snapraid (7.0.11) stable; urgency=low
+
+  * Add default array setting on Settings tab that will create symlink
+    from the array's config file to /etc/snapraid.conf allowing snapraid
+    commands to work on default array without specifying the config
+    file flag (-c)
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 10 Nov 2024 09:30:33 -0600
+
 openmediavault-snapraid (7.0.10) stable; urgency=low
 
   * Fix migration script
