@@ -24,6 +24,8 @@ data:
             service: SnapRaid
             get:
               method: enumerateArrays
+              params:
+                addnone: false
       - type: select
         name: mntentref
         label: _('Drive')

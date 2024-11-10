@@ -183,6 +183,12 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $db = \OMV\Config\Database::getInstance();
         $objects = $db->get("conf.service.snapraid.array");
         $arrays = [];
+        if ($params['addnone']) {
+            $arrays[] = [
+                'uuid' => '',
+                'name' => 'None'
+            ];
+        }
         foreach ($objects as $objectk => &$objectv) {
             $arrayuuid = $objectv->get("uuid");
             $arrayname = $objectv->get("name");

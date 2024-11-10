@@ -18,6 +18,7 @@
 {% set config = salt['omv_conf.get']('conf.service.snapraid') %}
 {% set confDir = '/etc/snapraid' %}
 {% set confPrefix = 'omv-snapraid-' %}
+{% set confDefault = '/etc/snapraid.conf' %}
 
 configure_snapraid_envvar_dir:
   file.directory:
@@ -55,6 +56,23 @@ symlink_snapraid_{{ array.uuid }}:
     - target: {{ confFile }}
 
 {% endfor %}
+
+{% if config.defaultarray | length == 36 %}
+
+{% set confFile = confDir ~ '/' ~ confPrefix ~ config.defaultarray ~ '.conf' %}
+symlink_snapraid_defaultarray:
+  file.symlink:
+    - name: {{ confDefault }}
+    - target: {{ confFile }}
+    - force: True
+
+{% else %}
+
+remove_snapraid_defaultarray:
+  file.absent:
+    - name: {{ confDefault }}
+
+{% endif %}
 
 configure_snapraid-diff:
   file.managed:

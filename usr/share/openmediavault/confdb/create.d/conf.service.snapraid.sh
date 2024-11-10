@@ -33,6 +33,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "hashsize" "16"
     omv_config_add_key "${SERVICE_XPATH}" "autosave" "0"
     omv_config_add_key "${SERVICE_XPATH}" "nohidden" "0"
+    omv_config_add_key "${SERVICE_XPATH}" "defaultarray" ""
     omv_config_add_key "${SERVICE_XPATH}" "debug" "0"
     omv_config_add_key "${SERVICE_XPATH}" "sendmail" "1"
     omv_config_add_key "${SERVICE_XPATH}" "runscrub" "1"

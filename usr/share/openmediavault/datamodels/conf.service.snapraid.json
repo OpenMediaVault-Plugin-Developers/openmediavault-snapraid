@@ -35,6 +35,20 @@
       "type": "boolean",
       "default": false
     },
+    "defaultarray": {
+      "type": "string",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuidv4"
+        },
+        {
+          "type": "string",
+          "maxLength": 0
+        }
+      ],
+      "required": false
+    },
     "debug": {
       "type": "boolean",
       "default": false
