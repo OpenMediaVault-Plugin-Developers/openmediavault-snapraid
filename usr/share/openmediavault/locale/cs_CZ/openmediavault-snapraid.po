@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-04 05:36-0600\n"
+"POT-Creation-Date: 2024-11-10 10:13-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2015-2017,2021\n"
 "Language-Team: Czech (Czech Republic) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/cs_CZ/)\n"
@@ -70,6 +70,12 @@ msgstr "Jednotka vytvořena."
 
 msgid "Created rule."
 msgstr "Pravidlo vytvořeno."
+
+msgid ""
+"Creates symlink from array config file to /etc/snapraid.conf allowing "
+"snapraid commands to work on default array without specifying the config "
+"file flag"
+msgstr ""
 
 msgid "Data"
 msgstr "Data"
@@ -290,6 +296,9 @@ msgid "Updated SnapRAID settings."
 msgstr "Nastavení pro SnapRAID zaktualizována."
 
 msgid "Used to set number for multiple parity."
+msgstr ""
+
+msgid "Used to split parity across more than one drive."
 msgstr ""
 
 msgid "Write logs to syslog."

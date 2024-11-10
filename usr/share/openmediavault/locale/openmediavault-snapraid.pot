@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-27 06:22-0500\n"
+"POT-Creation-Date: 2024-11-10 10:13-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,9 @@ msgid "Created drive."
 msgstr ""
 
 msgid "Created rule."
+msgstr ""
+
+msgid "Creates symlink from array config file to /etc/snapraid.conf allowing snapraid commands to work on default array without specifying the config file flag"
 msgstr ""
 
 msgid "Data"

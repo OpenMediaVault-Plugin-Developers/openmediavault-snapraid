@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2017,2021-2022
+# kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-04 05:36-0600\n"
+"POT-Creation-Date: 2024-11-10 10:13-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,6 +70,12 @@ msgstr "已建立驅動器。"
 
 msgid "Created rule."
 msgstr "已建立規則。"
+
+msgid ""
+"Creates symlink from array config file to /etc/snapraid.conf allowing "
+"snapraid commands to work on default array without specifying the config "
+"file flag"
+msgstr ""
 
 msgid "Data"
 msgstr "資料"
@@ -257,7 +263,7 @@ msgid "Spin"
 msgstr "轉動"
 
 msgid "Split Parity"
-msgstr "分裂式奇偶性"
+msgstr "分割式奇偶性"
 
 msgid "Status"
 msgstr "狀態"
@@ -291,6 +297,9 @@ msgstr "已更新 SnapRAID 設定。"
 
 msgid "Used to set number for multiple parity."
 msgstr "用來設定多個奇偶性的個數。"
+
+msgid "Used to split parity across more than one drive."
+msgstr "用來將奇偶性分割存到多個驅動器上。"
 
 msgid "Write logs to syslog."
 msgstr "將日誌寫入 syslog。"
