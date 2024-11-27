@@ -359,10 +359,16 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodParams($params, "rpc.snapraid.setrule");
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject("conf.service.snapraid.rule");
+        // Prepend a slash if prepend checkbox is checked
+        $newuuid = \OMV\Environment::get('OMV_CONFIGOBJECT_NEW_UUID');
+        if (($params['prepend']) && ($params['uuid'] == $newuuid)) {
+            $params['rule1'] = (substr($params['rule1'],0) == '/' ? $params['rule1'] : '/' . $params['rule1']);
+        }
         // Check for illegal rule
         if ( substr($params['rule1'], -2) == "/*" ) {
             throw new \OMV\Exception(gettext("Illegal rule - cannot end with /*"));
         }
+        unset($params['prepend']);
         $db = \OMV\Config\Database::getInstance();
         $object->setAssoc($params);
         // Set the configuration object.

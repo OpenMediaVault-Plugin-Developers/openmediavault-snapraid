@@ -173,6 +173,10 @@
           "type": "string",
           "required": true
         },
+        "prepend": {
+          "type": "boolean",
+          "required": false
+        },
         "rtype": {
           "type": "integer",
           "minimum": 0,
