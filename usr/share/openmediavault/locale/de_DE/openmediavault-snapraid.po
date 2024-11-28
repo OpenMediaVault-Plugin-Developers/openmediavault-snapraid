@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-10 10:13-0600\n"
+"POT-Creation-Date: 2024-11-27 10:13-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Dampflok_HD, 2021\n"
 "Language-Team: German (Germany) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/de_DE/)\n"
@@ -201,6 +201,9 @@ msgstr ""
 msgid "Prehash+Sync"
 msgstr "Pre-Hash und Sync"
 
+msgid "Prepend"
+msgstr ""
+
 msgid "Root ref"
 msgstr ""
 
@@ -276,6 +279,9 @@ msgid "Syslog"
 msgstr "Syslog"
 
 msgid "The field should only contain * or a comma separated list of values."
+msgstr ""
+
+msgid "This will ensure that the rule path has a leading slash."
 msgstr ""
 
 msgid "Tools"

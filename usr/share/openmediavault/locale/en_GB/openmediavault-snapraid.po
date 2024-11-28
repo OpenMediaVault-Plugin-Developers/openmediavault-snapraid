@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-10 10:13-0600\n"
+"POT-Creation-Date: 2024-11-27 10:13-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2015-2017,2021,2023-2024\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/en_GB/)\n"
@@ -75,7 +75,7 @@ msgid ""
 "Creates symlink from array config file to /etc/snapraid.conf allowing "
 "snapraid commands to work on default array without specifying the config "
 "file flag"
-msgstr ""
+msgstr "Creates symlink from array config file to /etc/snapraid.conf allowing snapraid commands to work on default array without specifying the config file flag"
 
 msgid "Data"
 msgstr "Data"
@@ -200,6 +200,9 @@ msgstr "Pre-hash"
 msgid "Prehash+Sync"
 msgstr "Prehash+Sync"
 
+msgid "Prepend"
+msgstr ""
+
 msgid "Root ref"
 msgstr "Root ref"
 
@@ -276,6 +279,9 @@ msgstr "Syslog"
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "The field should only contain * or a comma separated list of values."
+
+msgid "This will ensure that the rule path has a leading slash."
+msgstr ""
 
 msgid "Tools"
 msgstr "Tools"
