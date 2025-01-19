@@ -56,6 +56,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getConfig');
 
         $this->registerMethod('executeCommand');
+        $this->registerMethod('executeDriveCommand');
         $this->registerMethod('getVersion');
     }
 
@@ -501,6 +502,69 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             file_put_contents($this->getLogFile, $log, FILE_APPEND);
             exit(1);
         }
+    }
+
+    public function executeDriveCommand($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.snapraid.executedrivecommand");
+        // build snapraid config file path
+        $confFile = sprintf('/etc/snapraid/%s.conf', $params['arrayname']);
+        if (! file_exists($confFile)) {
+            throw new \OMV\Exception(
+                gettext("A config file for this array does not exist."). $confFile
+            );
+        }
+        $conf = sprintf('--conf %s', $confFile);
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params, $conf) {
+                try {
+                    // log starting message
+                    $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Manually started\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    // start command
+                    $cmdArgs = [];
+                    $cmdArgs[] = $this->getProgram;
+                    $cmdArgs[] = sprintf('--filter-disk %s', $params['diskname']);
+                    if ($params['auditonly']) {
+                        $cmdArgs[] = '--audit-only';
+                    }
+                    if ($params['command'] == 'missing') {
+                        $cmdArgs[] = '--filter-missing';
+                        $cmdArgs[] = 'fix';
+                    } else {
+                        $cmdArgs[] = $params['command'];
+                    }
+                    $cmd = new \OMV\System\Process($cmdArgs);
+                    $cmd->setRedirect2to1();
+                    $cmdLine = $cmd->getCommandLine();
+                    file_put_contents($this->getLogFile, $cmdLine, FILE_APPEND);
+                    if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename)) {
+                        throw new \OMV\ExecException($cmdLine, $output);
+                    }
+                    // execute command
+                    $this->exec($cmdLine, $output, $bgOutputFilename);
+                    $this->finalizeBgProcStatus($bgStatusFilename, $output);
+                    $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Finished\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    exit(0);
+                } catch(\Exception $e) {
+                    $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+                    $log = sprintf("[%s] omv-snapraid-gui: ERROR: %s - Error!\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    exit(1);
+                }
+                return $output;
+            }
+        );
     }
 
     function getVersion($params, $context)

@@ -217,5 +217,37 @@
         }
       }
     }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.snapraid.executedrivecommand",
+    "params": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "enum": [
+            "check",
+            "fix",
+            "missing",
+            "up",
+            "down"
+          ],
+          "required": true
+        },
+        "diskname": {
+          "type": "string",
+          "required": true
+        },
+        "arrayname": {
+          "type": "string",
+          "required": true
+        },
+        "auditonly": {
+          "type": "boolean",
+          "required": false
+        }
+      }
+    }
   }
 ]
