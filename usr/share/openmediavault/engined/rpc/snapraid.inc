@@ -542,7 +542,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
                     $cmd = new \OMV\System\Process($cmdArgs);
                     $cmd->setRedirect2to1();
                     $cmdLine = $cmd->getCommandLine();
-                    file_put_contents($this->getLogFile, $cmdLine, FILE_APPEND);
+                    file_put_contents($bgOutputFilename, $cmdLine . PHP_EOL, FILE_APPEND);
                     if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename)) {
                         throw new \OMV\ExecException($cmdLine, $output);
                     }
