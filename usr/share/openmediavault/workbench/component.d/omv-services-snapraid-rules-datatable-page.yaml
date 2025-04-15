@@ -7,9 +7,6 @@ data:
     autoReload: false
     hasSearchField: true
     stateId: 13a02ad6-e34d-11eb-b90e-8b42e388dd06
-    sorters:
-      - dir: asc
-        prop: rule1
     store:
       proxy:
         service: SnapRaid
@@ -19,7 +16,6 @@ data:
       - name: _("Rule")
         prop: rule1
         flexGrow: 1
-        sortable: true
       - name: _("Rule type")
         prop: ""
         flexGrow: 1
