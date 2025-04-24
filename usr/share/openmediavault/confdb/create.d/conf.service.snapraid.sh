@@ -65,6 +65,7 @@ if ! omv_config_exists "//system/crontab/job[uuid='57e13a3c-5a94-11ec-8153-3f587
     object="${object}<username>root</username>"
     object="${object}<command>for conf in /etc/snapraid/omv-snapraid-*.conf; do /usr/sbin/omv-snapraid-diff \${conf}; done</command>"
     omv_config_add_node_data "//system/crontab" "job" "${object}"
+    omv_module_set_dirty cron
 fi
 
 exit 0
