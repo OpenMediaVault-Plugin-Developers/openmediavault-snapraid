@@ -47,6 +47,8 @@ SNAPRAID_DIFF_LOG="/var/log/snapraid-diff.log"
 SNAPRAID_SYNC_LOG="/var/log/snapraid-sync.log"
 SNAPRAID_SCRUB_LOG="/var/log/snapraid-scrub.log"
 SNAPRAID_NOTIF_LOG="/var/log/snapraid-notif.log"
+SNAPRAID_STATUS_LOG="/var/log/snapraid-status.log"
+SNAPRAID_TOUCH_LOG="/var/log/snapraid-touch.log"
 
 ## INTERNAL TEMP VARS ##
 TMP_DIR="/tmp/snapraid"
@@ -130,8 +132,16 @@ EOF
 _zip_logs() {
     local FILE_NAMES=""
 
+    if [ "$STATUS_EXECUTED" = "yes" ]; then
+        FILE_NAMES+=" $SNAPRAID_STATUS_LOG"
+    fi
+
+    if [ "$TOUCH_EXECUTED" = "yes" ]; then
+        FILE_NAMES+=" $SNAPRAID_TOUCH_LOG"
+    fi
+
     if [ "$DIFF_EXECUTED" = "yes" ]; then
-        FILE_NAMES+="$SNAPRAID_DIFF_LOG"
+        FILE_NAMES+=" $SNAPRAID_DIFF_LOG"
     fi
 
     if [ "$SYNC_EXECUTED" = "yes" ]; then
@@ -355,7 +365,7 @@ _rmtmp() {
 #               : 1 = last command ended with an error -> [ $? -gt 1 ]
 #
 _check_success() {
-    if [ $1 -eq 0 ]; then
+    if [ "$1" -eq 0 ]; then
         return 0
     else
         return 1
@@ -429,6 +439,8 @@ _pre_work() {
     declare -gi COPY_COUNT=0
     declare -gi UPDATE_COUNT=0
 
+    STATUS_EXECUTED="no"
+    TOUCH_EXECUTED="no"
     DIFF_EXECUTED="no"
     SYNC_EXECUTED="no"
     SCRUB_EXECUTED="no"
@@ -551,6 +563,7 @@ _pre_work() {
     done
 
     ### Section to support SnapRAID Scrub ###
+
     mkdir -p $TMP_SCRUB_DIR
 
     # define Variables, if not set in snapraid-diff
@@ -629,6 +642,7 @@ _pre_work() {
             _log "DEBUG: OMV_SNAPRAID_DISKS: $DATA_DISK"
         done
         _log "DEBUG: TMP_OUTPUT: $TMP_OUTPUT"
+        _log "DEBUG: RUN_TOUCH: $RUN_TOUCH"
         _log "DEBUG: RUN_SCRUB: $RUN_SCRUB"
         _log "DEBUG: SCRUB_FREQUENCY_IN_DAYS: $SCRUB_FREQUENCY_IN_DAYS"
         _log "DEBUG: SCRUB_PERCENT: $SCRUB_PERCENT"
@@ -655,6 +669,10 @@ _start() {
     ## Start of the script
 
     _check_disks
+
+    if [ "$RUN_TOUCH" = "true" ]; then
+        _start_status
+    fi
 
     ################################################################
     # start SnapRAID DIFF command
@@ -702,7 +720,7 @@ _check_disks() {
 
             _send_notification "ERROR: Data disk not found!" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
             NOTIFICATION_RETURN_CODE=$?
-            _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
+            _check_success "$NOTIFICATION_RETURN_CODE" && _rmtmp
             _log "WARN: script exits here due to missing disk ..."
             exit 1
         fi
@@ -716,6 +734,56 @@ _check_disks() {
     echo "----------------------------------------" >>$TMP_OUTPUT
 }
 
+_start_status() {
+    _log "INFO: ----------------------------------------"
+    _log "INFO: SnapRAID STATUS started"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
+    echo "SnapRAID STATUS started - $(date)" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
+
+    # Check for required touch operation
+
+    if $DEBUG; then
+        VERBOSE_LEVEL="--verbose"
+    else
+        VERBOSE_LEVEL=""
+    fi
+
+    if $SNAPRAID_BIN status --conf "${SNAPRAID_CONF}" --log "$SNAPRAID_STATUS_LOG" $VERBOSE_LEVEL 2>&1 | tee -a "$TMP_OUTPUT" | grep -q "No file has a zero sub-second timestamp"; then
+        _log "INFO: Array doesn't require touch."
+        STATUS_EXECUTED="yes"
+    else
+        _log "INFO: Array requires touch."
+        STATUS_EXECUTED="yes"
+        _start_touch
+    fi
+}
+
+_start_touch() {
+    _log "INFO: ----------------------------------------"
+    _log "INFO: SnapRAID TOUCH started"
+    _log "INFO: ----------------------------------------"
+    echo "----------------------------------------" >>$TMP_OUTPUT
+    echo "SnapRAID TOUCH started - $(date)" >>$TMP_OUTPUT
+    echo "----------------------------------------" >>$TMP_OUTPUT
+
+    if $DEBUG; then
+        VERBOSE_LEVEL="--verbose"
+    else
+        VERBOSE_LEVEL=""
+    fi
+
+    $SNAPRAID_BIN touch --conf "${SNAPRAID_CONF}" --log "$SNAPRAID_TOUCH_LOG" $VERBOSE_LEVEL >"$TMP_OUTPUT" 2>&1
+    local TOUCH_EXIT_CODE=$?
+    TOUCH_EXECUTED="yes"
+    if [ "$TOUCH_EXIT_CODE" -ne 0 ]; then
+        _log "WARN: Touch command failed"
+        _send_notification "TOUCH failed" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
+        exit 1
+    fi
+}
+
 _start_diff() {
     _log "INFO: ----------------------------------------"
     _log "INFO: SnapRAID DIFF started"
@@ -726,15 +794,20 @@ _start_diff() {
 
     local NOTIFICATION_RETURN_CODE
     local line
+    local NOTIFICATION_TITLE
+
+    if $DEBUG; then
+        VERBOSE_LEVEL="--verbose"
+    else
+        VERBOSE_LEVEL=""
+    fi
 
     # run diff:
     # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
-    $SNAPRAID_BIN diff --conf ${SNAPRAID_CONF} --log "$SNAPRAID_DIFF_LOG" 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
+    $SNAPRAID_BIN diff --conf ${SNAPRAID_CONF} --log "$SNAPRAID_DIFF_LOG" $VERBOSE_LEVEL 2>&1 | tee -a "$TMP_OUTPUT" | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line; do
         _log "WARN: $line"
     done
 
-    # wait for the above cmd to finish
-    wait
     DIFF_EXECUTED=yes
 
     _log "INFO: ----------------------------------------"
@@ -756,7 +829,6 @@ _start_diff() {
 
     # check if files have changed
     if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $COPY_COUNT -gt 0 ] || [ $UPDATE_COUNT -gt 0 ]; then
-
         # New Logic for v 1.2.0 - check whether update threshold is enabled or not
         if [ $UPD_THRESHOLD -gt 0 ]; then
             # Update threshold is enabled; check if count exceeds threshold
@@ -807,6 +879,8 @@ _start_diff() {
         if [ $UPD_DEL_CHECK -eq 0 ]; then
             # start SnapRAID SYNC
             _start_sync
+            # Function returns the return code of the _send_notification function
+            NOTIFICATION_RETURN_CODE=$?
 
         # If update threshold exceeded
         elif [ $UPD_DEL_CHECK -eq 1 ]; then
@@ -825,13 +899,29 @@ _start_diff() {
         fi
         _check_success $NOTIFICATION_RETURN_CODE && _rmtmp
     else
-        # NO, so lets log it and exit
-        _log "INFO: No change detected. Nothing to do"
-
-        if [ "$ALWAYS_SEND_NOTIFICATION" = "true" ]; then
-            _send_notification "No changes on data disks" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
+        # no files changed, check for scrub
+        if [ $RUN_SCRUB = "true" ]; then
+            _start_scrub
+            if [ "$SCRUB_SUCCESS" = "yes" ]; then
+                NOTIFICATION_TITLE="Scrub Job COMPLETED"
+            elif [ "$SCRUB_SUCCESS" = "no" ]; then
+                NOTIFICATION_TITLE="Scrub Job FAILED"
+            else
+                # No scrub was executed because of the scrub conditions
+                _log "INFO: No change detected. Nothing to do"
+                NOTIFICATION_TITLE="No changes on data disks"
+            fi
+        else
+            _log "INFO: No change detected. Nothing to do"
+            echo "Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true." >>$TMP_OUTPUT
+            _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
+            NOTIFICATION_TITLE="No changes on data disks"
         fi
-    fi
+
+        if { [ "$SCRUB_SUCCESS" = "none" ] && [ "$ALWAYS_SEND_NOTIFICATION" = "true" ]; } || [ "$SCRUB_SUCCESS" != "none" ]; then
+            _send_notification "${NOTIFICATION_TITLE}" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
+        fi
+fi
 
     _log "INFO: SnapRAID Job ended."
     _rmtmp
@@ -855,7 +945,13 @@ _start_sync() {
         PREHASH_COMMAND="--pre-hash"
     fi
 
-    $SNAPRAID_BIN sync --conf ${SNAPRAID_CONF} $PREHASH_COMMAND --log "$SNAPRAID_SYNC_LOG" >>$TMP_OUTPUT
+    if $DEBUG; then
+        VERBOSE_LEVEL="--verbose"
+    else
+        VERBOSE_LEVEL=""
+    fi
+
+    $SNAPRAID_BIN sync --conf ${SNAPRAID_CONF} $PREHASH_COMMAND --log "$SNAPRAID_SYNC_LOG" $VERBOSE_LEVEL >>$TMP_OUTPUT
     SYNC_EXIT_CODE=$?
     SYNC_EXECUTED="yes"
 
@@ -887,8 +983,9 @@ _start_sync() {
         NOTIFICATION_TITLE="Sync Job FAILED"
     fi
 
-    # Send job finished email
+    # Send job finished notification
     _send_notification "$NOTIFICATION_TITLE" "${TMP_OUTPUT}" "${NOTIFICATION_SUBJECT_PREFIX}"
+    return $?
 }
 
 _start_scrub() {
@@ -927,7 +1024,13 @@ _start_scrub() {
         echo "SnapRAID SCRUB Job started - $(date)" >>$TMP_OUTPUT
         echo "----------------------------------------" >>$TMP_OUTPUT
 
-        $SNAPRAID_BIN scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${ACCUMULATED_DAYS_SCRUBBED_FILES} --log "$SNAPRAID_SCRUB_LOG" >>$TMP_OUTPUT
+        if $DEBUG; then
+            VERBOSE_LEVEL="--verbose"
+        else
+            VERBOSE_LEVEL=""
+        fi
+
+        $SNAPRAID_BIN scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${ACCUMULATED_DAYS_SCRUBBED_FILES} $VERBOSE_LEVEL --log "$SNAPRAID_SCRUB_LOG" >>$TMP_OUTPUT
 
         if [ $? -eq 0 ]; then
             SCRUB_SUCCESS="yes"

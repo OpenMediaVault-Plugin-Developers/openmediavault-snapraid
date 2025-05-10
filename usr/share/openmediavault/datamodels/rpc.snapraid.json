@@ -114,6 +114,10 @@
         "prehash": {
           "type": "boolean",
           "required": true
+        },
+        "runtouch": {
+          "type": "boolean",
+          "required": true
         }
       }
     }

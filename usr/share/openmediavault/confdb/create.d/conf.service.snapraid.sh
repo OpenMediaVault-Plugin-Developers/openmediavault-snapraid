@@ -42,6 +42,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "sendsnaplog" "0"
     omv_config_add_key "${SERVICE_XPATH}" "sendnotifalways" "0"
     omv_config_add_key "${SERVICE_XPATH}" "runscrub" "1"
+omv_config_add_key "${SERVICE_XPATH}" "runtouch" "0"
     omv_config_add_key "${SERVICE_XPATH}" "scrubfreq" "7"
     omv_config_add_key "${SERVICE_XPATH}" "updthreshold" "0"
     omv_config_add_key "${SERVICE_XPATH}" "delthreshold" "0"

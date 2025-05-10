@@ -69,6 +69,10 @@
       "type": "boolean",
       "default": true
     },
+    "runtouch": {
+      "type": "boolean",
+      "default": false
+    },
     "scrubfreq": {
       "type": "integer",
       "minimum": 0,

@@ -13,3 +13,4 @@ APPRISE_CMD='{{ config.apprisecmd }}'
 NTFY_CMD="{{ config.ntfycmd }}"
 {{ 'SEND_SNAPRAID_CMD_LOGS=true' if config.sendsnaplog | to_bool else 'SEND_SNAPRAID_CMD_LOGS=false' }}
 {{ 'ALWAYS_SEND_NOTIFICATION=true' if config.sendnotifalways | to_bool else 'ALWAYS_SEND_NOTIFICATION=false' }}
+{{ 'RUN_TOUCH=true' if config.runtouch | to_bool else 'RUN_TOUCH=false' }}

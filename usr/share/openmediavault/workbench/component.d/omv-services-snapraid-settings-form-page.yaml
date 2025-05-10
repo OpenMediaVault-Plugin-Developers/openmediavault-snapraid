@@ -110,6 +110,11 @@ data:
         label: _("Pre-hash")
         value: true
         hint: _("Runs a preliminary hashing phase of all the new data to have an additional verification before the parity computation.")
+      - type: checkbox
+        name: runtouch
+        label: _("Run touch if needed")
+        value: false
+        hint: _("Check array status and run touch if needed.")
       - type: numberInput
         name: scrubfreq
         label: _("Scrub frequency")
