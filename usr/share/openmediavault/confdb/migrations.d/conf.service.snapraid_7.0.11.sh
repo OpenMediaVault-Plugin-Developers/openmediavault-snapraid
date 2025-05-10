@@ -30,4 +30,8 @@ if ! omv_config_exists "${SERVICE_XPATH}/sendnotifalways"; then
     omv_config_add_key "${SERVICE_XPATH}" "sendnotifalways" "0"
 fi
 
+if ! omv_config_exists "${SERVICE_XPATH}/runtouch"; then
+    omv_config_add_key "${SERVICE_XPATH}" "runtouch" "0"
+fi
+
 exit 0
