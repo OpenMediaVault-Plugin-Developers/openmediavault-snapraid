@@ -4,7 +4,7 @@
 # @author    Volker Theile <volker.theile@openmediavault.org>
 # @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
 # @copyright Copyright (c) 2009-2013 Volker Theile
-# @copyright Copyright (c) 2013-2024 openmediavault plugin developers
+# @copyright Copyright (c) 2013-2025 openmediavault plugin developers
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@ if ! omv_config_exists "${SERVICE_XPATH}"; then
     omv_config_add_key "${SERVICE_XPATH}" "hashsize" "16"
     omv_config_add_key "${SERVICE_XPATH}" "autosave" "0"
     omv_config_add_key "${SERVICE_XPATH}" "nohidden" "0"
+    omv_config_add_key "${SERVICE_XPATH}" "defaultarray" ""
     omv_config_add_key "${SERVICE_XPATH}" "debug" "0"
     omv_config_add_key "${SERVICE_XPATH}" "sendmail" "1"
     omv_config_add_key "${SERVICE_XPATH}" "apprise" "0"
@@ -71,6 +72,7 @@ if ! omv_config_exists "//system/crontab/job[uuid='57e13a3c-5a94-11ec-8153-3f587
     object="${object}<username>root</username>"
     object="${object}<command>for conf in /etc/snapraid/omv-snapraid-*.conf; do /usr/sbin/omv-snapraid-diff \${conf}; done</command>"
     omv_config_add_node_data "//system/crontab" "job" "${object}"
+    omv_module_set_dirty cron
 fi
 
 exit 0

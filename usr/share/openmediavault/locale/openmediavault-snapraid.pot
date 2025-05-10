@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-04 05:36-0600\n"
+"POT-Creation-Date: 2024-11-27 10:13-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,9 @@ msgid "Created drive."
 msgstr ""
 
 msgid "Created rule."
+msgstr ""
+
+msgid "Creates symlink from array config file to /etc/snapraid.conf allowing snapraid commands to work on default array without specifying the config file flag"
 msgstr ""
 
 msgid "Data"
@@ -182,6 +185,9 @@ msgstr ""
 msgid "Prehash+Sync"
 msgstr ""
 
+msgid "Prepend"
+msgstr ""
+
 msgid "Root ref"
 msgstr ""
 
@@ -257,6 +263,9 @@ msgstr ""
 msgid "The field should only contain * or a comma separated list of values."
 msgstr ""
 
+msgid "This will ensure that the rule path has a leading slash."
+msgstr ""
+
 msgid "Tools"
 msgstr ""
 
@@ -276,6 +285,9 @@ msgid "Updated SnapRAID settings."
 msgstr ""
 
 msgid "Used to set number for multiple parity."
+msgstr ""
+
+msgid "Used to split parity across more than one drive."
 msgstr ""
 
 msgid "Write logs to syslog."

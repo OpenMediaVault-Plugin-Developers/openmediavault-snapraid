@@ -51,6 +51,20 @@
           "type": "boolean",
           "required": true
         },
+        "defaultarray": {
+          "type": "string",
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "uuidv4"
+            },
+            {
+              "type": "string",
+              "maxLength": 0
+            }
+          ],
+          "required": true
+        },
         "debug": {
           "type": "boolean",
           "required": true
@@ -187,6 +201,10 @@
           "type": "string",
           "required": true
         },
+        "prepend": {
+          "type": "boolean",
+          "required": false
+        },
         "rtype": {
           "type": "integer",
           "minimum": 0,
@@ -223,6 +241,38 @@
         },
         "file": {
           "type": "string",
+          "required": false
+        }
+      }
+    }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.snapraid.executedrivecommand",
+    "params": {
+      "type": "object",
+      "properties": {
+        "command": {
+          "type": "string",
+          "enum": [
+            "check",
+            "fix",
+            "missing",
+            "up",
+            "down"
+          ],
+          "required": true
+        },
+        "diskname": {
+          "type": "string",
+          "required": true
+        },
+        "arrayname": {
+          "type": "string",
+          "required": true
+        },
+        "auditonly": {
+          "type": "boolean",
           "required": false
         }
       }

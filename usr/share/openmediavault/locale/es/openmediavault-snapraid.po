@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2015,2017,2021-2022
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2015,2017,2021-2022,2024
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-18 16:49-0600\n"
+"POT-Creation-Date: 2024-11-27 10:13-0600\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2015,2017,2021-2022\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2014-2015,2017,2021-2022,2024\n"
 "Language-Team: Spanish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,6 +70,12 @@ msgstr "Disco creado."
 
 msgid "Created rule."
 msgstr "Regla creada."
+
+msgid ""
+"Creates symlink from array config file to /etc/snapraid.conf allowing "
+"snapraid commands to work on default array without specifying the config "
+"file flag"
+msgstr "Crea un enlace simbólico desde el archivo de configuración del array a /etc/snapraid.conf, lo que permite que los comandos snapraid funcionen en elarray predeterminado sin especificar el indicador del archivo de configuración"
 
 msgid "Data"
 msgstr "Datos"
@@ -194,6 +200,9 @@ msgstr "Pre-hash"
 msgid "Prehash+Sync"
 msgstr "Prehash+Sync"
 
+msgid "Prepend"
+msgstr ""
+
 msgid "Root ref"
 msgstr "ref. Root"
 
@@ -271,6 +280,9 @@ msgstr "Syslog"
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "El campo solo debe contener * o una lista de valores separados por comas."
 
+msgid "This will ensure that the rule path has a leading slash."
+msgstr ""
+
 msgid "Tools"
 msgstr "Herramiental"
 
@@ -291,6 +303,9 @@ msgstr "Opciones de SnapRAID actualizadas."
 
 msgid "Used to set number for multiple parity."
 msgstr "Se usa para paridad múltiple."
+
+msgid "Used to split parity across more than one drive."
+msgstr "Se utiliza para dividir la paridad entre más de una unidad."
 
 msgid "Write logs to syslog."
 msgstr "Escribir logs en syslog."

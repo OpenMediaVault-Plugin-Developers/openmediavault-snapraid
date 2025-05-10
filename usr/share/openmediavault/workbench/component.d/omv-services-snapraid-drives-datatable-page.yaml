@@ -69,3 +69,142 @@ data:
             method: deleteDrive
             params:
               uuid: "{{ _selected[0].uuid }}"
+      - type: menu
+        icon: mdi:tools
+        tooltip: _("Tools")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        actions:
+          - text: _("Check - Audit only")
+            icon: mdi:check
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --filter-disk diskname --audit-only check ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeDriveCommand
+                    params:
+                      diskname: "{{ _selected[0].name }}"
+                      arrayname: "{{ _selected[0].arrayname }}"
+                      auditonly: true
+                      command: "check"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/drives
+          - text: _("Check")
+            icon: mdi:check-underline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --filter-disk diskname check ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeDriveCommand
+                    params:
+                      diskname: "{{ _selected[0].name }}"
+                      arrayname: "{{ _selected[0].arrayname }}"
+                      auditonly: false
+                      command: "check"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/drives
+          - text: _("Fix by drive - Audit only")
+            icon: mdi:wrench
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --filter-disk diskname --audit-only fix ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeDriveCommand
+                    params:
+                      diskname: "{{ _selected[0].name }}"
+                      arrayname: "{{ _selected[0].arrayname }}"
+                      auditonly: false
+                      command: "fix"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/drives
+          - text: _("Fix by drive")
+            icon: mdi:wrench-outline
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --filter-disk diskname fix ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeDriveCommand
+                    params:
+                      diskname: "{{ _selected[0].name }}"
+                      arrayname: "{{ _selected[0].arrayname }}"
+                      auditonly: false
+                      command: "fix"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/drives
+          - text: _("Fix missing")
+            icon: mdi:progress-wrench
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --filter-disk diskname --filter-missing fix ...")
+                  startOnInit: false
+                  request:
+                    service: SnapRaid
+                    method: executeDriveCommand
+                    params:
+                      diskname: "{{ _selected[0].name }}"
+                      arrayname: "{{ _selected[0].arrayname }}"
+                      command: "missing"
+                  buttons:
+                    stop:
+                      hidden: true
+                successUrl: /services/snapraid/drives
+      - type: menu
+        icon: mdi:rotate-left
+        tooltip: _("Spin")
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+        actions:
+          - text: _("Up")
+            icon: mdi:arrow-up-bold-outline
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: executeDriveCommand
+                params:
+                  diskname: "{{ _selected[0].name }}"
+                  arrayname: "{{ _selected[0].arrayname }}"
+                  command: "up"
+                task: true
+                successUrl: /services/snapraid/drives
+          - text: _("Down")
+            icon: mdi:arrow-down-bold-outline
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: executeDriveCommand
+                params:
+                  diskname: "{{ _selected[0].name }}"
+                  arrayname: "{{ _selected[0].arrayname }}"
+                  command: "down"
+                task: true
+                successUrl: /services/snapraid/drives

@@ -24,6 +24,8 @@ data:
             service: SnapRaid
             get:
               method: enumerateArrays
+              params:
+                addnone: false
       - type: select
         name: mntentref
         label: _('Drive')
@@ -78,7 +80,7 @@ data:
               arg0:
                 prop: data
           - type: value
-            typeConfig: "1"
+            typeConfig: 1
             constraint:
               operator: falsy
               arg0:
@@ -88,7 +90,7 @@ data:
         name: paritysplit
         label: _("Split Parity")
         value: false
-        hint: _("Drive where parity files are stored which are necessary to recover from disk failure.  For each parity drive, one data drive can fail without data loss.")
+        hint: _("Used to split parity across more than one drive.")
         modifiers:
           - type: visible
             constraint:

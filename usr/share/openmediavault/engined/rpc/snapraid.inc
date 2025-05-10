@@ -3,7 +3,7 @@
  * @author    Volker Theile <volker.theile@openmediavault.org>
  * @author    OpenMediaVault Plugin Developers <plugins@omv-extras.org>
  * @copyright Copyright (c) 2009-2013 Volker Theile
- * @copyright Copyright (c) 2013-2024 openmediavault plugin developers
+ * @copyright Copyright (c) 2013-2025 openmediavault plugin developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod('getConfig');
 
         $this->registerMethod('executeCommand');
+        $this->registerMethod('executeDriveCommand');
         $this->registerMethod('getVersion');
     }
 
@@ -183,6 +184,12 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $db = \OMV\Config\Database::getInstance();
         $objects = $db->get("conf.service.snapraid.array");
         $arrays = [];
+        if ($params['addnone']) {
+            $arrays[] = [
+                'uuid' => '',
+                'name' => 'None'
+            ];
+        }
         foreach ($objects as $objectk => &$objectv) {
             $arrayuuid = $objectv->get("uuid");
             $arrayname = $objectv->get("name");
@@ -353,10 +360,16 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
         $this->validateMethodParams($params, "rpc.snapraid.setrule");
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject("conf.service.snapraid.rule");
+        // Prepend a slash if prepend checkbox is checked
+        $newuuid = \OMV\Environment::get('OMV_CONFIGOBJECT_NEW_UUID');
+        if (($params['prepend']) && ($params['uuid'] == $newuuid)) {
+            $params['rule1'] = (substr($params['rule1'],0) == '/' ? $params['rule1'] : '/' . $params['rule1']);
+        }
         // Check for illegal rule
         if ( substr($params['rule1'], -2) == "/*" ) {
             throw new \OMV\Exception(gettext("Illegal rule - cannot end with /*"));
         }
+        unset($params['prepend']);
         $db = \OMV\Config\Database::getInstance();
         $object->setAssoc($params);
         // Set the configuration object.
@@ -489,6 +502,69 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
             file_put_contents($this->getLogFile, $log, FILE_APPEND);
             exit(1);
         }
+    }
+
+    public function executeDriveCommand($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.snapraid.executedrivecommand");
+        // build snapraid config file path
+        $confFile = sprintf('/etc/snapraid/%s.conf', $params['arrayname']);
+        if (! file_exists($confFile)) {
+            throw new \OMV\Exception(
+                gettext("A config file for this array does not exist."). $confFile
+            );
+        }
+        $conf = sprintf('--conf %s', $confFile);
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($params, $conf) {
+                try {
+                    // log starting message
+                    $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Manually started\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    // start command
+                    $cmdArgs = [];
+                    $cmdArgs[] = $this->getProgram;
+                    $cmdArgs[] = sprintf('--filter-disk %s', $params['diskname']);
+                    if ($params['auditonly']) {
+                        $cmdArgs[] = '--audit-only';
+                    }
+                    if ($params['command'] == 'missing') {
+                        $cmdArgs[] = '--filter-missing';
+                        $cmdArgs[] = 'fix';
+                    } else {
+                        $cmdArgs[] = $params['command'];
+                    }
+                    $cmd = new \OMV\System\Process($cmdArgs);
+                    $cmd->setRedirect2to1();
+                    $cmdLine = $cmd->getCommandLine();
+                    file_put_contents($bgOutputFilename, $cmdLine . PHP_EOL, FILE_APPEND);
+                    if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename)) {
+                        throw new \OMV\ExecException($cmdLine, $output);
+                    }
+                    // execute command
+                    $this->exec($cmdLine, $output, $bgOutputFilename);
+                    $this->finalizeBgProcStatus($bgStatusFilename, $output);
+                    $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Finished\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    exit(0);
+                } catch(\Exception $e) {
+                    $this->finalizeBgProcStatus($bgStatusFilename, "", $e);
+                    $log = sprintf("[%s] omv-snapraid-gui: ERROR: %s - Error!\r\n",
+                        date("Y-m-d H:i:s"), strtoupper($params['command'])
+                    );
+                    file_put_contents($this->getLogFile, $log, FILE_APPEND);
+                    exit(1);
+                }
+                return $output;
+            }
+        );
     }
 
     function getVersion($params, $context)

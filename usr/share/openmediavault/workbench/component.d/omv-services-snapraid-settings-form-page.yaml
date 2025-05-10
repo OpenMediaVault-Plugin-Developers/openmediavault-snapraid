@@ -50,6 +50,19 @@ data:
         label: _("No hidden")
         value: false
         hint: _("Excludes hidden files and directories.")
+      - type: select
+        name: defaultarray
+        label: _('Default array')
+        textField: name
+        valueField: uuid
+        store:
+          proxy:
+            service: SnapRaid
+            get:
+              method: enumerateArrays
+              params:
+                addnone: true
+        hint: _("Creates symlink from array config file to /etc/snapraid.conf allowing snapraid commands to work on default array without specifying the config file flag")
       - type: divider
         title: _("Diff script settings")
       - type: checkbox

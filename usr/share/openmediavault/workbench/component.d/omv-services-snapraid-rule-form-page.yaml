@@ -25,6 +25,21 @@ data:
         value: ''
         dirType: mntent
         dirRefIdField: rootfsref
+      - type: hidden
+        name: prependShow
+        value: '{{ _routeConfig.data.editing | toboolean }}'
+        submitValue: false
+      - type: checkbox
+        name: prepend
+        label: _("Prepend")
+        value: true
+        modifiers:
+          - type: hidden
+            constraint:
+              operator: truthy
+              arg0:
+                prop: prependShow
+        hint: _("This will ensure that the rule path has a leading slash.")
       - type: select
         name: rtype
         label: _("Rule Type")
