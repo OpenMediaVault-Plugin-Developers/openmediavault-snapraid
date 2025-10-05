@@ -9,7 +9,7 @@ Homepage: https://omv-extras.org/
 
 Package: openmediavault-snapraid
 Architecture: all
-Depends: openmediavault (>= 7),
+Depends: openmediavault (>= 8),
          openmediavault-sharerootfs,
          snapraid (>= 12)
 Description: snapraid plugin for OpenMediaVault.

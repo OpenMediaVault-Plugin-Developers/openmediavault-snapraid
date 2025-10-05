@@ -1,8 +1,9 @@
-openmediavault-snapraid (7.0.13) UNRELEASED; urgency=medium
+openmediavault-snapraid (8.0) stable; urgency=low
 
   * Add per drive commands
+  * Update for omv 8.x
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 19 Jan 2025 12:15:26 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 05 Oct 2025 16:20:13 +0000
 
 openmediavault-snapraid (7.0.12) stable; urgency=low
 
