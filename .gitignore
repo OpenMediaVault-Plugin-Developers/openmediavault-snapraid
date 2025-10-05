@@ -42,3 +42,4 @@ debian/*.debhelper.log
 debian/*.debhelper
 debian/*substvars
 snapraid-*
+debian/debhelper-build-stamp
