@@ -197,6 +197,7 @@
           "enum": [
             "sync",
             "sync -h",
+            "sync -F",
             "scrub",
             "check",
             "diff",

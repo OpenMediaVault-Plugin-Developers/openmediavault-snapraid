@@ -86,6 +86,24 @@ data:
                       uuid: "{{ _selected[0].uuid }}"
                       command: "sync -h"
                 successUrl: /services/snapraid/arrays
+          - text: _("Force Sync")
+            icon: mdi:sync-circle
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to force a full sync? This will recompute all parity blocks from scratch and may take a very long time.")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid sync -F ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "sync -F"
+                successUrl: /services/snapraid/arrays
           - text: _("Scrub")
             icon: mdi:toothbrush
             execute:
