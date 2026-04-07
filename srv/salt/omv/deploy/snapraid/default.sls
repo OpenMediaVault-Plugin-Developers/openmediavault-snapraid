@@ -27,10 +27,7 @@ configure_snapraid_envvar_dir:
     - group: root
     - mode: 755
 
-remove_snapraid_conf_files:
-  cmd.run:
-    - name: "rm -fv {{ confDir }}/*.conf"
-
+{% set keep_confs = [] %}
 {% for array in config.arrays.array %}
 {% set drives = config.drives %}
 {% set confFile = confDir ~ '/' ~ confPrefix ~ array.uuid ~ '.conf' %}
@@ -55,7 +52,21 @@ symlink_snapraid_{{ array.uuid }}:
     - name: {{ confLink }}
     - target: {{ confFile }}
 
+{% do keep_confs.append(confPrefix ~ array.uuid ~ '.conf') %}
+{% do keep_confs.append(array.name ~ '.conf') %}
 {% endfor %}
+
+purge_stale_snapraid_confs:
+  file.tidied:
+    - name: "{{ confDir }}"
+    - matches:
+      - ".*\\.conf$"
+    - exclude:
+{%- for f in keep_confs %}
+      - "{{ f }}"
+{%- endfor %}
+    - rmdirs: False
+    - rmlinks: True
 
 {% if config.defaultarray | length == 36 %}
 
