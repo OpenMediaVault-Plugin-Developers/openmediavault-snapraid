@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 10:13-0600\n"
+"POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
@@ -23,6 +23,28 @@ msgstr "此陣列的設置檔案並不存在。"
 
 msgid "A data drive cannot be a parity drive."
 msgstr "資料驅動器不可做為奇偶校驗驅動器。"
+
+msgid ""
+"Are you sure you want to force a full sync? This will recompute all parity "
+"blocks from scratch and may take a very long time."
+msgstr ""
+
+msgid ""
+"Are you sure you want to redirect this data drive to an empty directory in "
+"the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
+"on the array."
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore this drive to its original mount path? "
+"Apply settings afterwards to update the snapraid config."
+msgstr ""
+
+msgid ""
+"Are you sure you want to run Force Empty Sync? Use this after setting a data"
+" drive to an empty directory and applying settings. SnapRAID will update "
+"parity to reflect the now-empty drive."
+msgstr ""
 
 msgid "Array"
 msgstr "陣列"
@@ -49,6 +71,9 @@ msgstr "區塊大小以 KiB 為單位"
 
 msgid "Check"
 msgstr "檢查"
+
+msgid "Check - Audit only"
+msgstr ""
 
 msgid "Component"
 msgstr "元件"
@@ -108,6 +133,9 @@ msgstr "差異"
 msgid "Diff script settings"
 msgstr "差異（Diff）腳本程式設定"
 
+msgid "Docs"
+msgstr ""
+
 msgid "Down"
 msgstr "停止"
 
@@ -143,17 +171,38 @@ msgstr "編輯規則。"
 msgid "Edit scheduled diff."
 msgstr "編輯定期差異作業"
 
+msgid "Empty Dir"
+msgstr ""
+
 msgid "Excludes hidden files and directories."
 msgstr "排除隱藏的檔案和目錄。"
 
 msgid "Exclusion"
 msgstr "排除"
 
+msgid "Failed to create empty directory: %s"
+msgstr ""
+
 msgid "Fix"
 msgstr "修復"
 
+msgid "Fix by drive"
+msgstr ""
+
+msgid "Fix by drive - Audit only"
+msgstr ""
+
+msgid "Fix missing"
+msgstr ""
+
 msgid "Fix silent"
 msgstr "修復靜默錯誤"
+
+msgid "Force Empty Sync"
+msgstr ""
+
+msgid "Force Sync"
+msgstr ""
 
 msgid "Hash size"
 msgstr "散列大小"
@@ -182,6 +231,9 @@ msgstr "名稱"
 msgid "No hidden"
 msgstr "不含隱藏"
 
+msgid "Only data drives can be redirected to an empty directory."
+msgstr ""
+
 msgid "Parity"
 msgstr "竒偶性"
 
@@ -191,9 +243,6 @@ msgstr "奇偶性個數"
 msgid "Parity number"
 msgstr "奇偶性個數"
 
-msgid "Per-hash"
-msgstr "初步雜湊"
-
 msgid "Pre-hash"
 msgstr "初步雜湊"
 
@@ -202,6 +251,9 @@ msgstr "初步雜湊+同步"
 
 msgid "Prepend"
 msgstr "前置"
+
+msgid "Restore drive path"
+msgstr ""
 
 msgid "Root ref"
 msgstr "根檔案系統參考"
@@ -253,6 +305,9 @@ msgstr "給「驅動器」頁上的「清理」按鈕使用之清理百分比。
 msgid "Send mail"
 msgstr "送出電子郵件"
 
+msgid "Set to empty dir"
+msgstr ""
+
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr "將它設定成 true，如果要在同步成功後做清理。"
 
@@ -273,9 +328,6 @@ msgstr "狀態"
 
 msgid "Sync"
 msgstr "同步"
-
-msgid "Syslog"
-msgstr "Syslog"
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "此欄位應該只含有 * 或一份以逗號分隔的數值列表。"
@@ -307,11 +359,32 @@ msgstr "用來設定多個奇偶性的個數。"
 msgid "Used to split parity across more than one drive."
 msgstr "用來將奇偶性分割存到多個驅動器上。"
 
-msgid "Write logs to syslog."
-msgstr "將日誌寫入 syslog。"
-
 msgid "n/a"
 msgstr "不適用 (n/a)"
+
+msgid "omv-extras wiki"
+msgstr ""
+
+msgid "snapraid"
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --filter-missing fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname fix ..."
+msgstr ""
+
+msgid "snapraid --force-empty sync ..."
+msgstr ""
 
 msgid "snapraid check ..."
 msgstr "snapraid 檢查 ..."
@@ -337,6 +410,9 @@ msgstr "snapraid smart ..."
 msgid "snapraid status ..."
 msgstr "snapraid 狀態 ..."
 
+msgid "snapraid sync -F ..."
+msgstr ""
+
 msgid "snapraid sync -h ..."
 msgstr "snapraid 初步雜湊+同步（sync -h）..."
 
@@ -345,9 +421,3 @@ msgstr "snapraid 同步 ..."
 
 msgid "snapraid undelete ..."
 msgstr "snapraid 取消刪除 ..."
-
-msgid "snapraid-diff.conf"
-msgstr "snapraid-diff.conf"
-
-msgid "snapraid.conf"
-msgstr "snapraid.conf"

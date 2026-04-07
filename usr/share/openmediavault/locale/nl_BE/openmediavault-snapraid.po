@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 10:13-0600\n"
+"POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch (Belgium) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/nl_BE/)\n"
@@ -21,6 +21,28 @@ msgid "A config file for this array does not exist."
 msgstr ""
 
 msgid "A data drive cannot be a parity drive."
+msgstr ""
+
+msgid ""
+"Are you sure you want to force a full sync? This will recompute all parity "
+"blocks from scratch and may take a very long time."
+msgstr ""
+
+msgid ""
+"Are you sure you want to redirect this data drive to an empty directory in "
+"the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
+"on the array."
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore this drive to its original mount path? "
+"Apply settings afterwards to update the snapraid config."
+msgstr ""
+
+msgid ""
+"Are you sure you want to run Force Empty Sync? Use this after setting a data"
+" drive to an empty directory and applying settings. SnapRAID will update "
+"parity to reflect the now-empty drive."
 msgstr ""
 
 msgid "Array"
@@ -47,6 +69,9 @@ msgid "Block size in KiB"
 msgstr ""
 
 msgid "Check"
+msgstr ""
+
+msgid "Check - Audit only"
 msgstr ""
 
 msgid "Component"
@@ -107,6 +132,9 @@ msgstr ""
 msgid "Diff script settings"
 msgstr ""
 
+msgid "Docs"
+msgstr ""
+
 msgid "Down"
 msgstr ""
 
@@ -142,16 +170,37 @@ msgstr ""
 msgid "Edit scheduled diff."
 msgstr ""
 
+msgid "Empty Dir"
+msgstr ""
+
 msgid "Excludes hidden files and directories."
 msgstr ""
 
 msgid "Exclusion"
 msgstr ""
 
+msgid "Failed to create empty directory: %s"
+msgstr ""
+
 msgid "Fix"
 msgstr ""
 
+msgid "Fix by drive"
+msgstr ""
+
+msgid "Fix by drive - Audit only"
+msgstr ""
+
+msgid "Fix missing"
+msgstr ""
+
 msgid "Fix silent"
+msgstr ""
+
+msgid "Force Empty Sync"
+msgstr ""
+
+msgid "Force Sync"
 msgstr ""
 
 msgid "Hash size"
@@ -181,6 +230,9 @@ msgstr ""
 msgid "No hidden"
 msgstr ""
 
+msgid "Only data drives can be redirected to an empty directory."
+msgstr ""
+
 msgid "Parity"
 msgstr ""
 
@@ -190,9 +242,6 @@ msgstr ""
 msgid "Parity number"
 msgstr ""
 
-msgid "Per-hash"
-msgstr ""
-
 msgid "Pre-hash"
 msgstr ""
 
@@ -200,6 +249,9 @@ msgid "Prehash+Sync"
 msgstr ""
 
 msgid "Prepend"
+msgstr ""
+
+msgid "Restore drive path"
 msgstr ""
 
 msgid "Root ref"
@@ -252,6 +304,9 @@ msgstr ""
 msgid "Send mail"
 msgstr ""
 
+msgid "Set to empty dir"
+msgstr ""
+
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr ""
 
@@ -271,9 +326,6 @@ msgid "Status"
 msgstr ""
 
 msgid "Sync"
-msgstr ""
-
-msgid "Syslog"
 msgstr ""
 
 msgid "The field should only contain * or a comma separated list of values."
@@ -306,10 +358,31 @@ msgstr ""
 msgid "Used to split parity across more than one drive."
 msgstr ""
 
-msgid "Write logs to syslog."
+msgid "n/a"
 msgstr ""
 
-msgid "n/a"
+msgid "omv-extras wiki"
+msgstr ""
+
+msgid "snapraid"
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --filter-missing fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname fix ..."
+msgstr ""
+
+msgid "snapraid --force-empty sync ..."
 msgstr ""
 
 msgid "snapraid check ..."
@@ -336,6 +409,9 @@ msgstr ""
 msgid "snapraid status ..."
 msgstr ""
 
+msgid "snapraid sync -F ..."
+msgstr ""
+
 msgid "snapraid sync -h ..."
 msgstr ""
 
@@ -343,10 +419,4 @@ msgid "snapraid sync ..."
 msgstr ""
 
 msgid "snapraid undelete ..."
-msgstr ""
-
-msgid "snapraid-diff.conf"
-msgstr ""
-
-msgid "snapraid.conf"
 msgstr ""

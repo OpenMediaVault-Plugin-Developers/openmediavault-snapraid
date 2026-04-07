@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 10:13-0600\n"
+"POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: songming <by@songming.me>, 2013-2015,2017,2021-2022,2024\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
@@ -24,6 +24,28 @@ msgstr "此整列的配置文件不存在。"
 
 msgid "A data drive cannot be a parity drive."
 msgstr "数据盘不能做校验盘"
+
+msgid ""
+"Are you sure you want to force a full sync? This will recompute all parity "
+"blocks from scratch and may take a very long time."
+msgstr ""
+
+msgid ""
+"Are you sure you want to redirect this data drive to an empty directory in "
+"the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
+"on the array."
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore this drive to its original mount path? "
+"Apply settings afterwards to update the snapraid config."
+msgstr ""
+
+msgid ""
+"Are you sure you want to run Force Empty Sync? Use this after setting a data"
+" drive to an empty directory and applying settings. SnapRAID will update "
+"parity to reflect the now-empty drive."
+msgstr ""
 
 msgid "Array"
 msgstr "整列"
@@ -50,6 +72,9 @@ msgstr "块大小单位KB"
 
 msgid "Check"
 msgstr "检查"
+
+msgid "Check - Audit only"
+msgstr ""
 
 msgid "Component"
 msgstr "组成"
@@ -109,6 +134,9 @@ msgstr "比较"
 msgid "Diff script settings"
 msgstr "差异脚本设置"
 
+msgid "Docs"
+msgstr ""
+
 msgid "Down"
 msgstr "停转"
 
@@ -144,17 +172,38 @@ msgstr "编辑规则"
 msgid "Edit scheduled diff."
 msgstr "编辑比较计划任务"
 
+msgid "Empty Dir"
+msgstr ""
+
 msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
 
 msgid "Exclusion"
 msgstr "排除"
 
+msgid "Failed to create empty directory: %s"
+msgstr ""
+
 msgid "Fix"
 msgstr "修复"
 
+msgid "Fix by drive"
+msgstr ""
+
+msgid "Fix by drive - Audit only"
+msgstr ""
+
+msgid "Fix missing"
+msgstr ""
+
 msgid "Fix silent"
 msgstr "修复静默错误"
+
+msgid "Force Empty Sync"
+msgstr ""
+
+msgid "Force Sync"
+msgstr ""
 
 msgid "Hash size"
 msgstr "哈希大小"
@@ -183,6 +232,9 @@ msgstr "名称"
 msgid "No hidden"
 msgstr "隐藏文件选项"
 
+msgid "Only data drives can be redirected to an empty directory."
+msgstr ""
+
 msgid "Parity"
 msgstr "校验"
 
@@ -192,9 +244,6 @@ msgstr "校验号"
 msgid "Parity number"
 msgstr "校验序号"
 
-msgid "Per-hash"
-msgstr "预哈希"
-
 msgid "Pre-hash"
 msgstr "预哈希"
 
@@ -203,6 +252,9 @@ msgstr "预哈希+同步"
 
 msgid "Prepend"
 msgstr "Prepend"
+
+msgid "Restore drive path"
+msgstr ""
 
 msgid "Root ref"
 msgstr "Root ref"
@@ -254,6 +306,9 @@ msgstr "磁盘标签侦测按钮的侦测率。"
 msgid "Send mail"
 msgstr "发送邮件"
 
+msgid "Set to empty dir"
+msgstr ""
+
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr "更新校验成功后运行侦测。"
 
@@ -274,9 +329,6 @@ msgstr "状态"
 
 msgid "Sync"
 msgstr "更新校验"
-
-msgid "Syslog"
-msgstr "系统日志"
 
 msgid "The field should only contain * or a comma separated list of values."
 msgstr "此处应仅包含 * 或逗号分隔的值列表。"
@@ -308,11 +360,32 @@ msgstr "设置多重校验的序号。"
 msgid "Used to split parity across more than one drive."
 msgstr "奇偶校验分开存到多个硬盘上。"
 
-msgid "Write logs to syslog."
-msgstr "记录到系统日志"
-
 msgid "n/a"
 msgstr "n/a"
+
+msgid "omv-extras wiki"
+msgstr ""
+
+msgid "snapraid"
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --filter-missing fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname fix ..."
+msgstr ""
+
+msgid "snapraid --force-empty sync ..."
+msgstr ""
 
 msgid "snapraid check ..."
 msgstr "snapraid 检查 ..."
@@ -338,6 +411,9 @@ msgstr "snapraid smart ..."
 msgid "snapraid status ..."
 msgstr "snapraid 状态 ..."
 
+msgid "snapraid sync -F ..."
+msgstr ""
+
 msgid "snapraid sync -h ..."
 msgstr "snapraid sync -h ..."
 
@@ -346,9 +422,3 @@ msgstr "snapraid 同步 ..."
 
 msgid "snapraid undelete ..."
 msgstr "snapraid 取消删除 ..."
-
-msgid "snapraid-diff.conf"
-msgstr "snapraid-diff.conf"
-
-msgid "snapraid.conf"
-msgstr "snapraid.conf"

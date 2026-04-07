@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
+# Stephan Paternotte <stephan@paternottes.net>, 2025
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-27 10:13-0600\n"
+"POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
 "Language-Team: Dutch (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,335 +19,405 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A config file for this array does not exist."
-msgstr ""
+msgstr "Er bestaat geen configuratiebestand voor deze array."
 
 msgid "A data drive cannot be a parity drive."
+msgstr "Een gegevensstation kan geen pariteitsstation zijn."
+
+msgid ""
+"Are you sure you want to force a full sync? This will recompute all parity "
+"blocks from scratch and may take a very long time."
+msgstr ""
+
+msgid ""
+"Are you sure you want to redirect this data drive to an empty directory in "
+"the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
+"on the array."
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore this drive to its original mount path? "
+"Apply settings afterwards to update the snapraid config."
+msgstr ""
+
+msgid ""
+"Are you sure you want to run Force Empty Sync? Use this after setting a data"
+" drive to an empty directory and applying settings. SnapRAID will update "
+"parity to reflect the now-empty drive."
 msgstr ""
 
 msgid "Array"
-msgstr ""
+msgstr "Array"
 
 msgid "Array config."
-msgstr ""
+msgstr "Array config."
 
 msgid "Arrays"
-msgstr ""
+msgstr "Arrays"
 
 msgid "Auto save"
-msgstr ""
+msgstr "Auto. opslaan"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr ""
+msgstr "De toestand automatisch opslaan bij het synchroniseren nadat de opgegeven hoeveelheid GiB is verwerkt. Standaardwaarde is 0, wat betekent uitgeschakeld."
 
 msgid "Block size"
-msgstr ""
+msgstr "Blokgrootte"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "Blokgrootte in KiB"
 
 msgid "Check"
+msgstr "Controleren"
+
+msgid "Check - Audit only"
 msgstr ""
 
 msgid "Component"
-msgstr ""
+msgstr "Component"
 
 msgid "Config"
-msgstr ""
+msgstr "Config"
 
 msgid "Content"
-msgstr ""
+msgstr "Content"
 
 msgid "Create"
-msgstr ""
+msgstr "Aanmaken"
 
 msgid "Created array."
-msgstr ""
+msgstr "Array aangemaak."
 
 msgid "Created drive."
-msgstr ""
+msgstr "Station aangemaakt."
 
 msgid "Created rule."
-msgstr ""
+msgstr "Regel aangemaakt."
 
 msgid ""
 "Creates symlink from array config file to /etc/snapraid.conf allowing "
 "snapraid commands to work on default array without specifying the config "
 "file flag"
-msgstr ""
+msgstr "Maakt symlink van array-configbestand naar/etc/snapraid.conf waardoor snapraid commando's kunnen werken op standaard array zonder de configbestand vlag op te geven"
 
 msgid "Data"
-msgstr ""
+msgstr "Gegevens"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "Datum & Tijd"
 
 msgid "Debug"
-msgstr ""
+msgstr "Foutopsporing"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Definieer de drempel van verwijderde bestanden waarboven u het synchronisatieproces niet hoeft te starten. standaard = 0 om deze controle uit te schakelen en altijd te synchroniseren."
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "Definieer de drempel van bijgewerkte bestanden waarboven u het synchronisatieproces niet hoeft te starten. standaard = 0 om deze controle uit te schakelen en altijd te synchroniseren."
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "Drempelwaarde verwijderen"
 
 msgid "Devices"
-msgstr ""
+msgstr "Apparaten"
 
 msgid "Diff"
-msgstr ""
+msgstr "Diff"
 
 msgid "Diff script settings"
+msgstr "Instellingen voor diff-script"
+
+msgid "Docs"
 msgstr ""
 
 msgid "Down"
-msgstr ""
+msgstr "Down"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "Station waar contentbestand wordt opgeslagen. Dit bestand is een lijst met opgeslagen bestanden en bevat de details van uw back-up met alle controlesommen om de integriteit ervan te verifiëren."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "Station waar gegevens worden opgeslagen."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr ""
+msgstr "Station waar pariteitsbestanden worden opgeslagen die nodig zijn om te herstellen van schijfstoringen. Voor elk pariteitsstation kan één datastation uitvallen zonder gegevensverlies."
 
 msgid "Drives"
-msgstr ""
+msgstr "Stations"
 
 msgid "Edit"
-msgstr ""
+msgstr "Bewerken"
 
 msgid "Edit array."
-msgstr ""
+msgstr "Array bewerken."
 
 msgid "Edit drive."
-msgstr ""
+msgstr "Station bewerken."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "Regel bewerken."
 
 msgid "Edit scheduled diff."
+msgstr "Geplande diff bewerken."
+
+msgid "Empty Dir"
 msgstr ""
 
 msgid "Excludes hidden files and directories."
-msgstr ""
+msgstr "Exclusief verborgen bestanden en mappen."
 
 msgid "Exclusion"
+msgstr "Uitsluiting"
+
+msgid "Failed to create empty directory: %s"
 msgstr ""
 
 msgid "Fix"
+msgstr "Repareren"
+
+msgid "Fix by drive"
+msgstr ""
+
+msgid "Fix by drive - Audit only"
+msgstr ""
+
+msgid "Fix missing"
 msgstr ""
 
 msgid "Fix silent"
+msgstr "In stilte repareren"
+
+msgid "Force Empty Sync"
+msgstr ""
+
+msgid "Force Sync"
 msgstr ""
 
 msgid "Hash size"
-msgstr ""
+msgstr "Hash-grootte"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "Hash-grootte in bytes"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "Ongeldige regel - mag niet eindigen met /*"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "Inclusief"
 
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 msgid "Level"
-msgstr ""
+msgstr "Niveau"
 
 msgid "Message"
-msgstr ""
+msgstr "Bericht"
 
 msgid "Name"
-msgstr ""
+msgstr "Naam"
 
 msgid "No hidden"
+msgstr "Geen verborgen"
+
+msgid "Only data drives can be redirected to an empty directory."
 msgstr ""
 
 msgid "Parity"
-msgstr ""
+msgstr "Pariteit"
 
 msgid "Parity Num"
-msgstr ""
+msgstr "Pariteitsaant."
 
 msgid "Parity number"
-msgstr ""
-
-msgid "Per-hash"
-msgstr ""
+msgstr "Pariteitsaantal"
 
 msgid "Pre-hash"
-msgstr ""
+msgstr "Pre-hash"
 
 msgid "Prehash+Sync"
-msgstr ""
+msgstr "Prehash+Sync"
 
 msgid "Prepend"
+msgstr "Voorvoegen"
+
+msgid "Restore drive path"
 msgstr ""
 
 msgid "Root ref"
-msgstr ""
+msgstr "Root ref"
 
 msgid "Rule"
-msgstr ""
+msgstr "Regel"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "Type regel"
 
 msgid "Rule type"
-msgstr ""
+msgstr "Type regel"
 
 msgid "Rules"
-msgstr ""
+msgstr "Regels"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "Scrub uitvoeren"
 
 msgid ""
 "Runs a preliminary hashing phase of all the new data to have an additional "
 "verification before the parity computation."
-msgstr ""
+msgstr "Voert een voorlopige hashfase uit van alle nieuwe gegevens om een aanvullende verificatie te ondergaan vóór de pariteitsberekening."
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "Geplande Diff"
 
 msgid "Scheduled diff"
-msgstr ""
+msgstr "Geplande Diff"
 
 msgid "Scrub"
-msgstr ""
+msgstr "Scrub"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "Scrub-frequentie"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "Scrub-percentage"
 
 msgid "Scrub percentage used for diff script."
-msgstr ""
+msgstr "Scrub-percentage gebruikt voor diff-script."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr ""
+msgstr "Scrub-percentage gebruikt voor knop Scrub op tabblad Drives."
 
 msgid "Send mail"
+msgstr "E-mail versturen"
+
+msgid "Set to empty dir"
 msgstr ""
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "Op waar instellen als u wilt scrub wilt uitvoeren na een succesvolle synchronisatie."
 
 msgid "Settings"
-msgstr ""
+msgstr "Instellingen"
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "Spin"
-msgstr ""
+msgstr "Spin"
 
 msgid "Split Parity"
-msgstr ""
+msgstr "Split-pariteit"
 
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 msgid "Sync"
-msgstr ""
-
-msgid "Syslog"
-msgstr ""
+msgstr "Sync"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "Het veld mag alleen * of een door komma's gescheiden lijst met waarden bevatten."
 
 msgid "This will ensure that the rule path has a leading slash."
-msgstr ""
+msgstr "Dit zorgt ervoor dat het rpad van de regel een leidende schuine streep heeft."
 
 msgid "Tools"
-msgstr ""
+msgstr "Hulpmiddelen"
 
 msgid "Undelete"
-msgstr ""
+msgstr "Verwijdering ongedaan maken"
 
 msgid "Units in days."
-msgstr ""
+msgstr "Eenheid in dagen."
 
 msgid "Up"
-msgstr ""
+msgstr "Up"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "Drempelwaarde bijwerken"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "SnapRAID-instellingen bijgewerkt."
 
 msgid "Used to set number for multiple parity."
-msgstr ""
+msgstr "Wordt gebruikt om het aantal in te stellen voor meerdere pariteiten."
 
 msgid "Used to split parity across more than one drive."
-msgstr ""
-
-msgid "Write logs to syslog."
-msgstr ""
+msgstr "Wordt gebruikt om pariteit over meer dan één station te verdelen."
 
 msgid "n/a"
+msgstr "n.v.t."
+
+msgid "omv-extras wiki"
+msgstr ""
+
+msgid "snapraid"
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --audit-only fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname --filter-missing fix ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname check ..."
+msgstr ""
+
+msgid "snapraid --filter-disk diskname fix ..."
+msgstr ""
+
+msgid "snapraid --force-empty sync ..."
 msgstr ""
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid controle…"
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid apparaten…"
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid diff…"
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid repareren…"
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid scrub…"
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid stil…"
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart…"
 
 msgid "snapraid status ..."
+msgstr "snapraid status…"
+
+msgid "snapraid sync -F ..."
 msgstr ""
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h…"
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid sync…"
 
 msgid "snapraid undelete ..."
-msgstr ""
-
-msgid "snapraid-diff.conf"
-msgstr ""
-
-msgid "snapraid.conf"
-msgstr ""
+msgstr "snapraid verwijdering ongedaan maken…"
