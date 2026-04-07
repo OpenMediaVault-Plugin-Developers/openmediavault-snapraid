@@ -155,6 +155,10 @@
               },
               "paritysplit": {
                 "type": "boolean"
+              },
+              "emptydir": {
+                "type": "boolean",
+                "default": false
               }
             }
           }

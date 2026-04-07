@@ -52,6 +52,11 @@ data:
         flexGrow: 1
         sortable: true
         cellTemplateName: checkIcon
+      - name: _("Empty Dir")
+        prop: emptydir
+        flexGrow: 1
+        sortable: true
+        cellTemplateName: checkIcon
     actions:
       - template: create
         execute:
@@ -175,6 +180,44 @@ data:
                     stop:
                       hidden: true
                 successUrl: /services/snapraid/drives
+          - text: _("Set to empty dir")
+            icon: mdi:folder-remove-outline
+            enabledConstraints:
+              constraint:
+                - operator: falsy
+                  arg0:
+                    prop: parity
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to redirect this data drive to an empty directory in the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' on the array.")
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: setDriveEmpty
+                params:
+                  uuid: "{{ _selected[0].uuid }}"
+                  emptydir: true
+              successUrl: /services/snapraid/drives
+          - text: _("Restore drive path")
+            icon: mdi:folder-arrow-up-outline
+            enabledConstraints:
+              constraint:
+                - operator: falsy
+                  arg0:
+                    prop: parity
+            confirmationDialogConfig:
+              template: confirmation
+              message: _("Are you sure you want to restore this drive to its original mount path? Apply settings afterwards to update the snapraid config.")
+            execute:
+              type: request
+              request:
+                service: SnapRaid
+                method: setDriveEmpty
+                params:
+                  uuid: "{{ _selected[0].uuid }}"
+                  emptydir: false
+              successUrl: /services/snapraid/drives
       - type: menu
         icon: mdi:rotate-left
         tooltip: _("Spin")

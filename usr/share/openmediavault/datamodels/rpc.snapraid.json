@@ -208,13 +208,32 @@
             "smart",
             "devices",
             "undelete",
-            "silent"
+            "silent",
+            "force-empty-sync"
           ],
           "required": true
         },
         "file": {
           "type": "string",
           "required": false
+        }
+      }
+    }
+  },
+  {
+    "type": "rpc",
+    "id": "rpc.snapraid.setdriveempty",
+    "params": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuidv4",
+          "required": true
+        },
+        "emptydir": {
+          "type": "boolean",
+          "required": true
         }
       }
     }

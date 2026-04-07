@@ -104,6 +104,24 @@ data:
                       uuid: "{{ _selected[0].uuid }}"
                       command: "sync -F"
                 successUrl: /services/snapraid/arrays
+          - text: _("Force Empty Sync")
+            icon: mdi:sync-off
+            confirmationDialogConfig:
+              template: confirmation-danger
+              message: _("Are you sure you want to run Force Empty Sync? Use this after setting a data drive to an empty directory and applying settings. SnapRAID will update parity to reflect the now-empty drive.")
+            execute:
+              type: taskDialog
+              taskDialog:
+                config:
+                  title: _("snapraid --force-empty sync ...")
+                  startOnInit: true
+                  request:
+                    service: SnapRaid
+                    method: executeCommand
+                    params:
+                      uuid: "{{ _selected[0].uuid }}"
+                      command: "force-empty-sync"
+                successUrl: /services/snapraid/arrays
           - text: _("Scrub")
             icon: mdi:toothbrush
             execute:

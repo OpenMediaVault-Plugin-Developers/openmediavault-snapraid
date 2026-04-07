@@ -1,3 +1,11 @@
+openmediavault-snapraid (8.0.1) stable; urgency=low
+
+  * Add ability to redirect a data drive to an empty directory in the
+    snapraid config to support the drive removal workflow
+  * Add force empty sync command (snapraid --force-empty sync)
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 07 Apr 2026 00:00:00 +0000
+
 openmediavault-snapraid (8.0) stable; urgency=low
 
   * Add per drive commands

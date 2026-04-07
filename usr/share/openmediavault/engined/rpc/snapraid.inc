@@ -57,6 +57,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
 
         $this->registerMethod('executeCommand');
         $this->registerMethod('executeDriveCommand');
+        $this->registerMethod('setDriveEmpty');
         $this->registerMethod('getVersion');
     }
 
@@ -459,6 +460,10 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
                     $cmdArgs[] = $params['command'];
                     $cmdArgs[] = sprintf('-p %s', $object->get('percentscrub'));
                     break;
+                case "force-empty-sync":
+                    $cmdArgs[] = '--force-empty';
+                    $cmdArgs[] = 'sync';
+                    break;
                 case "silent":
                     // Fix known silent errors - snapraid -e fix && snapraid scrub -p0
                     $cmdArgs[] = '-e fix';
@@ -565,6 +570,37 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
                 return $output;
             }
         );
+    }
+
+    public function setDriveEmpty($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.snapraid.setdriveempty");
+        // Get the drive configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $object = $db->get("conf.service.snapraid.drive", $params['uuid']);
+        // Only data drives can be redirected to an empty directory.
+        if ($object->get("data") !== true) {
+            throw new \OMV\Exception(
+                gettext("Only data drives can be redirected to an empty directory.")
+            );
+        }
+        $emptyDir = sprintf('/var/lib/snapraid/empty/%s', $params['uuid']);
+        if ($params['emptydir']) {
+            // Create the empty directory if it does not exist.
+            if (!file_exists($emptyDir)) {
+                if (!mkdir($emptyDir, 0755, true)) {
+                    throw new \OMV\Exception(
+                        gettext("Failed to create empty directory: %s"), $emptyDir
+                    );
+                }
+            }
+        }
+        $object->set("emptydir", $params['emptydir']);
+        $db->set($object);
+        return $object->getAssoc();
     }
 
     function getVersion($params, $context)
