@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# Stephan Paternotte <stephan@paternottes.net>, 2025
+# Stephan Paternotte <stephan@paternottes.net>, 2025-2026
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025\n"
+"Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2025-2026\n"
 "Language-Team: Dutch (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,24 +27,24 @@ msgstr "Een gegevensstation kan geen pariteitsstation zijn."
 msgid ""
 "Are you sure you want to force a full sync? This will recompute all parity "
 "blocks from scratch and may take a very long time."
-msgstr ""
+msgstr "Weet u zeker dat u een volledige synchronisatie wilt forceren? Dit zal alle pariteitsblokken helemaal opnieuw berekenen en kan erg lang duren."
 
 msgid ""
 "Are you sure you want to redirect this data drive to an empty directory in "
 "the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
 "on the array."
-msgstr ""
+msgstr "Weet u zeker dat u deze gegevensschijf wilt omleiden naar een lege map in de snapraid-configuratie? Pas daarna instellingen toe en voer vervolgens 'Verse synchronisatie afdwingen' uit op de array."
 
 msgid ""
 "Are you sure you want to restore this drive to its original mount path? "
 "Apply settings afterwards to update the snapraid config."
-msgstr ""
+msgstr "Weet u zeker dat u deze schijf wilt herstellen naar het oorspronkelijke aankoppelingspad? Pas daarna instellingen toe om de snapraid-configuratie bij te werken."
 
 msgid ""
 "Are you sure you want to run Force Empty Sync? Use this after setting a data"
 " drive to an empty directory and applying settings. SnapRAID will update "
 "parity to reflect the now-empty drive."
-msgstr ""
+msgstr "Weet u zeker dat u Verse synchronisatie wilt afdwingen? Gebruik dit na het instellen van een gegevensstation op een lege map en het toepassen van instellingen. SnapRAID zal de pariteit bijwerken om de nu lege schijf weer te geven."
 
 msgid "Array"
 msgstr "Array"
@@ -73,7 +73,7 @@ msgid "Check"
 msgstr "Controleren"
 
 msgid "Check - Audit only"
-msgstr ""
+msgstr "Controleren - Alleen audit"
 
 msgid "Component"
 msgstr "Component"
@@ -134,7 +134,7 @@ msgid "Diff script settings"
 msgstr "Instellingen voor diff-script"
 
 msgid "Docs"
-msgstr ""
+msgstr "Docs"
 
 msgid "Down"
 msgstr "Down"
@@ -172,7 +172,7 @@ msgid "Edit scheduled diff."
 msgstr "Geplande diff bewerken."
 
 msgid "Empty Dir"
-msgstr ""
+msgstr "Lege map"
 
 msgid "Excludes hidden files and directories."
 msgstr "Exclusief verborgen bestanden en mappen."
@@ -181,28 +181,28 @@ msgid "Exclusion"
 msgstr "Uitsluiting"
 
 msgid "Failed to create empty directory: %s"
-msgstr ""
+msgstr "Aanmaken van lege map is mislukt: %s"
 
 msgid "Fix"
 msgstr "Repareren"
 
 msgid "Fix by drive"
-msgstr ""
+msgstr "Fix by drive"
 
 msgid "Fix by drive - Audit only"
-msgstr ""
+msgstr "Fix by drive - Alleen audit"
 
 msgid "Fix missing"
-msgstr ""
+msgstr "Fix missing"
 
 msgid "Fix silent"
 msgstr "In stilte repareren"
 
 msgid "Force Empty Sync"
-msgstr ""
+msgstr "Verse synchronisatie afdwingen"
 
 msgid "Force Sync"
-msgstr ""
+msgstr "Synchronisatie afdwingen"
 
 msgid "Hash size"
 msgstr "Hash-grootte"
@@ -232,7 +232,7 @@ msgid "No hidden"
 msgstr "Geen verborgen"
 
 msgid "Only data drives can be redirected to an empty directory."
-msgstr ""
+msgstr "Alleen datadrives kunnen worden omgeleid naar een lege map."
 
 msgid "Parity"
 msgstr "Pariteit"
@@ -253,7 +253,7 @@ msgid "Prepend"
 msgstr "Voorvoegen"
 
 msgid "Restore drive path"
-msgstr ""
+msgstr "Drive-pad terugzetten"
 
 msgid "Root ref"
 msgstr "Root ref"
@@ -306,7 +306,7 @@ msgid "Send mail"
 msgstr "E-mail versturen"
 
 msgid "Set to empty dir"
-msgstr ""
+msgstr "Instellen op lege map"
 
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr "Op waar instellen als u wilt scrub wilt uitvoeren na een succesvolle synchronisatie."
@@ -363,28 +363,28 @@ msgid "n/a"
 msgstr "n.v.t."
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras wiki"
 
 msgid "snapraid"
-msgstr ""
+msgstr "snapraid"
 
 msgid "snapraid --filter-disk diskname --audit-only check ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --audit-only check ..."
 
 msgid "snapraid --filter-disk diskname --audit-only fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --audit-only fix ..."
 
 msgid "snapraid --filter-disk diskname --filter-missing fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --filter-missing fix ..."
 
 msgid "snapraid --filter-disk diskname check ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname check ..."
 
 msgid "snapraid --filter-disk diskname fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname fix ..."
 
 msgid "snapraid --force-empty sync ..."
-msgstr ""
+msgstr "snapraid --force-empty sync ..."
 
 msgid "snapraid check ..."
 msgstr "snapraid controle…"
@@ -411,7 +411,7 @@ msgid "snapraid status ..."
 msgstr "snapraid status…"
 
 msgid "snapraid sync -F ..."
-msgstr ""
+msgstr "snapraid sync -F ..."
 
 msgid "snapraid sync -h ..."
 msgstr "snapraid sync -h…"

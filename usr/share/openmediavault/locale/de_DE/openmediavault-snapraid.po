@@ -4,26 +4,23 @@
 # 
 # Translators:
 # Dampflok_HD, 2021
-# Ettore Atalan <atalanttore@googlemail.com>, 2014-2016,2021-2022
-# Jan Neumann, 2014
-# Johannes Hell, 2024
-# Ruben Stein <ruben@rstein.de>, 2015
+# Ettore Atalan <atalanttore@googlemail.com>, 2021
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: Johannes Hell, 2024\n"
-"Language-Team: German (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/de/)\n"
+"Last-Translator: Dampflok_HD, 2021\n"
+"Language-Team: German (Germany) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "A config file for this array does not exist."
-msgstr "Für dieses Array existitiert keine Konfigurationsdatei."
+msgstr ""
 
 msgid "A data drive cannot be a parity drive."
 msgstr "Ein Datenlaufwerk kann nicht ein Paritätslaufwerk sein."
@@ -51,16 +48,16 @@ msgid ""
 msgstr ""
 
 msgid "Array"
-msgstr "Array"
+msgstr ""
 
 msgid "Array config."
-msgstr "Array Konfiguration"
+msgstr ""
 
 msgid "Arrays"
-msgstr "Arrays"
+msgstr ""
 
 msgid "Auto save"
-msgstr "Automatisches Speichern"
+msgstr ""
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
@@ -68,13 +65,13 @@ msgid ""
 msgstr "Automatische Synchronisierungsstatussicherung beim Erreichen der angegebenen Anzahl von verarbeiteten GiB. Voreinstellungswert ist 0; Damit ist die Automatik deaktiviert."
 
 msgid "Block size"
-msgstr "Blockgröße"
+msgstr ""
 
 msgid "Block size in KiB"
 msgstr "Blockgröße in KiB"
 
 msgid "Check"
-msgstr "Prüfen"
+msgstr "Überprüfen"
 
 msgid "Check - Audit only"
 msgstr ""
@@ -86,19 +83,19 @@ msgid "Config"
 msgstr "Konfiguration"
 
 msgid "Content"
-msgstr "Verzeichnis"
+msgstr "Inhalt"
 
 msgid "Create"
-msgstr "Erstellen"
+msgstr ""
 
 msgid "Created array."
-msgstr "Array erstellt."
+msgstr ""
 
 msgid "Created drive."
-msgstr "Laufwerk erstellt."
+msgstr ""
 
 msgid "Created rule."
-msgstr "Regel erstellt."
+msgstr ""
 
 msgid ""
 "Creates symlink from array config file to /etc/snapraid.conf allowing "
@@ -110,7 +107,7 @@ msgid "Data"
 msgstr "Daten"
 
 msgid "Date & Time"
-msgstr "Datum & Uhrzeit"
+msgstr "Datum & Zeit"
 
 msgid "Debug"
 msgstr "Fehlersuche"
@@ -118,15 +115,15 @@ msgstr "Fehlersuche"
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr "Schwellenwert für Anzahl gelöschter Dateien festlegen, über dem die Synchronisierung nicht gestartet wird. Der Standardwert 0 deaktiviert diese Prüfung und erlaubt die Synchronisierung immer."
+msgstr ""
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr "Schwellenwert für Anzahl aktualisierter Dateien festlegen, über dem die Synchronisierung nicht gestartet wird. Der Standardwert 0 deaktiviert diese Prüfung und erlaubt die Synchronisierung immer."
+msgstr ""
 
 msgid "Delete threshold"
-msgstr "Schwellenwert löschen"
+msgstr ""
 
 msgid "Devices"
 msgstr "Geräte"
@@ -135,7 +132,7 @@ msgid "Diff"
 msgstr "Diff"
 
 msgid "Diff script settings"
-msgstr "Diff-Skripteinstellungen"
+msgstr ""
 
 msgid "Docs"
 msgstr ""
@@ -147,30 +144,30 @@ msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr "Laufwerk auf dem eine Verzeichnisdatei gespeichert ist. Diese Datei ist eine Liste der gespeicherten Dateien und enthält die Details Ihrer Sicherung mit allen Prüfsummen um die Integrität zu verifizieren."
+msgstr "Laufwerk auf dem Verzeichnisdatei gespeichert ist. Diese datei enthält eine Liste von gespeicherten Dateien in Ihrer Sicherung und die Prüfsummen um deren Integrität sicherzustellen."
 
 msgid "Drive where data is stored."
-msgstr "Laufwerk, auf dem Daten gespeichert sind."
+msgstr ""
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr "Laufwerk auf dem Paritätsdateien gespeichert werden. Diese sind notwendig um einen Laufwerksverlust zu kompensieren. Für jedes Paritätslaufwerk kann ein Datenlaufwerk ausfallen, ohne dass es zu Datenverlust kommt."
+msgstr "Laufwerk auf dem Pariätsdateien gespeichert werden. Diese Dateien sind notwendig um einen Laufwerksverlust zu kompensieren. Für jedes Paritätslaufwerk kann ein anderes Laufwerk ohne Datenverlust ausfallen."
 
 msgid "Drives"
 msgstr "Laufwerke"
 
 msgid "Edit"
-msgstr "Bearbeiten"
+msgstr ""
 
 msgid "Edit array."
-msgstr "Array bearbeiten."
+msgstr ""
 
 msgid "Edit drive."
-msgstr "Laufwerk bearbeiten."
+msgstr ""
 
 msgid "Edit rule."
-msgstr "Regel bearbeiten."
+msgstr ""
 
 msgid "Edit scheduled diff."
 msgstr ""
@@ -182,7 +179,7 @@ msgid "Excludes hidden files and directories."
 msgstr "Schließt versteckte Dateien und Verzeichnisse aus."
 
 msgid "Exclusion"
-msgstr "Ausschließen"
+msgstr "Ausschluss"
 
 msgid "Failed to create empty directory: %s"
 msgstr ""
@@ -209,16 +206,16 @@ msgid "Force Sync"
 msgstr ""
 
 msgid "Hash size"
-msgstr "Hash-Größe"
+msgstr ""
 
 msgid "Hash size in bytes"
-msgstr "Hash-Größe in Bytes"
+msgstr ""
 
 msgid "Illegal rule - cannot end with /*"
 msgstr "Unzulässige Regel - darf nicht mit /* enden"
 
 msgid "Inclusion"
-msgstr "Einschließen"
+msgstr "Einbindung"
 
 msgid "Info"
 msgstr "Info"
@@ -227,13 +224,13 @@ msgid "Level"
 msgstr "Stufe"
 
 msgid "Message"
-msgstr "Mitteilung"
+msgstr "Nachricht"
 
 msgid "Name"
 msgstr "Name"
 
 msgid "No hidden"
-msgstr "Keine Versteckten"
+msgstr ""
 
 msgid "Only data drives can be redirected to an empty directory."
 msgstr ""
@@ -245,7 +242,7 @@ msgid "Parity Num"
 msgstr ""
 
 msgid "Parity number"
-msgstr "Paritätszahl"
+msgstr ""
 
 msgid "Pre-hash"
 msgstr ""
@@ -269,7 +266,7 @@ msgid "Rule Type"
 msgstr "Regeltyp"
 
 msgid "Rule type"
-msgstr "Regeltyp"
+msgstr ""
 
 msgid "Rules"
 msgstr "Regeln"
@@ -295,7 +292,7 @@ msgid "Scrub"
 msgstr "Bereinigung"
 
 msgid "Scrub frequency"
-msgstr "Bereinigungsfrequenz"
+msgstr ""
 
 msgid "Scrub percentage"
 msgstr ""
@@ -307,7 +304,7 @@ msgid "Scrub percentage used for scrub button on Drives tab."
 msgstr "Prozentanteil Bereinigung verwendet für \"Bereinigen\" Knopf im \"Laufwerke\" Menü"
 
 msgid "Send mail"
-msgstr "E-Mail senden"
+msgstr ""
 
 msgid "Set to empty dir"
 msgstr ""
@@ -352,10 +349,10 @@ msgid "Up"
 msgstr "Starten"
 
 msgid "Update threshold"
-msgstr "Schwellenwert aktualisieren"
+msgstr ""
 
 msgid "Updated SnapRAID settings."
-msgstr "SnapRAID-Einstellungen aktualisiert."
+msgstr ""
 
 msgid "Used to set number for multiple parity."
 msgstr ""
@@ -364,7 +361,7 @@ msgid "Used to split parity across more than one drive."
 msgstr ""
 
 msgid "n/a"
-msgstr "n/v"
+msgstr ""
 
 msgid "omv-extras wiki"
 msgstr ""
@@ -391,10 +388,10 @@ msgid "snapraid --force-empty sync ..."
 msgstr ""
 
 msgid "snapraid check ..."
-msgstr "snapraid-Prüfung ..."
+msgstr ""
 
 msgid "snapraid devices ..."
-msgstr "snapraid-Geräte ..."
+msgstr ""
 
 msgid "snapraid diff ..."
 msgstr ""
@@ -412,7 +409,7 @@ msgid "snapraid smart ..."
 msgstr ""
 
 msgid "snapraid status ..."
-msgstr "snapraid-Status ..."
+msgstr ""
 
 msgid "snapraid sync -F ..."
 msgstr ""

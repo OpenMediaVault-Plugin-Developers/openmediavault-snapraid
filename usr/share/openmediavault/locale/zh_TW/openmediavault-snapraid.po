@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the openmediavault-snapraid package.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024
+# kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2014-2017,2021-2022,2024,2026\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,24 +27,24 @@ msgstr "資料驅動器不可做為奇偶校驗驅動器。"
 msgid ""
 "Are you sure you want to force a full sync? This will recompute all parity "
 "blocks from scratch and may take a very long time."
-msgstr ""
+msgstr "您確定要強制做一次完全同步嗎？這將重頭計算全部的奇偶性區塊，可能會花很長的時間。"
 
 msgid ""
 "Are you sure you want to redirect this data drive to an empty directory in "
 "the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
 "on the array."
-msgstr ""
+msgstr "您確定要將此資料驅動器重導向至 snapraid 設置內的一個空白目錄嗎？完成後請套用設定，然後在陣列上執行 '強制空白同步'。"
 
 msgid ""
 "Are you sure you want to restore this drive to its original mount path? "
 "Apply settings afterwards to update the snapraid config."
-msgstr ""
+msgstr "您確定要復原此驅動器到它的原始裝載路徑嗎？完成後請套用設定以更新 snapraid 設置。"
 
 msgid ""
 "Are you sure you want to run Force Empty Sync? Use this after setting a data"
 " drive to an empty directory and applying settings. SnapRAID will update "
 "parity to reflect the now-empty drive."
-msgstr ""
+msgstr "您確定要執行 強制空白同步 嗎？在設定資料驅動器到空白目錄並套用了設定後，請使用此操作。SnapRAID 將更新奇偶性來反應目前空白的驅動器。"
 
 msgid "Array"
 msgstr "陣列"
@@ -73,7 +73,7 @@ msgid "Check"
 msgstr "檢查"
 
 msgid "Check - Audit only"
-msgstr ""
+msgstr "檢查 - 只做稽核"
 
 msgid "Component"
 msgstr "元件"
@@ -131,10 +131,10 @@ msgid "Diff"
 msgstr "差異"
 
 msgid "Diff script settings"
-msgstr "差異（Diff）腳本程式設定"
+msgstr "差異 (Diff) 腳本程式設定"
 
 msgid "Docs"
-msgstr ""
+msgstr "說明文件"
 
 msgid "Down"
 msgstr "停止"
@@ -172,7 +172,7 @@ msgid "Edit scheduled diff."
 msgstr "編輯定期差異作業"
 
 msgid "Empty Dir"
-msgstr ""
+msgstr "空白目錄"
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隱藏的檔案和目錄。"
@@ -181,28 +181,28 @@ msgid "Exclusion"
 msgstr "排除"
 
 msgid "Failed to create empty directory: %s"
-msgstr ""
+msgstr "建立空白目錄失敗：%s"
 
 msgid "Fix"
 msgstr "修復"
 
 msgid "Fix by drive"
-msgstr ""
+msgstr "修復驅動器"
 
 msgid "Fix by drive - Audit only"
-msgstr ""
+msgstr "修復驅動器 - 只做稽核"
 
 msgid "Fix missing"
-msgstr ""
+msgstr "修復遺失"
 
 msgid "Fix silent"
 msgstr "修復靜默錯誤"
 
 msgid "Force Empty Sync"
-msgstr ""
+msgstr "強制空白同步"
 
 msgid "Force Sync"
-msgstr ""
+msgstr "強制同步"
 
 msgid "Hash size"
 msgstr "散列大小"
@@ -232,7 +232,7 @@ msgid "No hidden"
 msgstr "不含隱藏"
 
 msgid "Only data drives can be redirected to an empty directory."
-msgstr ""
+msgstr "只有資料驅動器能被重導向去一個空白目錄。"
 
 msgid "Parity"
 msgstr "竒偶性"
@@ -253,7 +253,7 @@ msgid "Prepend"
 msgstr "前置"
 
 msgid "Restore drive path"
-msgstr ""
+msgstr "復原驅動器路徑"
 
 msgid "Root ref"
 msgstr "根檔案系統參考"
@@ -306,7 +306,7 @@ msgid "Send mail"
 msgstr "送出電子郵件"
 
 msgid "Set to empty dir"
-msgstr ""
+msgstr "設定到空白目錄"
 
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr "將它設定成 true，如果要在同步成功後做清理。"
@@ -363,43 +363,43 @@ msgid "n/a"
 msgstr "不適用 (n/a)"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras 維基"
 
 msgid "snapraid"
-msgstr ""
+msgstr "snapraid"
 
 msgid "snapraid --filter-disk diskname --audit-only check ..."
-msgstr ""
+msgstr "snapraid --filter-disk 碟盤名稱 --audit-only check ..."
 
 msgid "snapraid --filter-disk diskname --audit-only fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk 碟盤名稱 --audit-only fix ..."
 
 msgid "snapraid --filter-disk diskname --filter-missing fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk 碟盤名稱 --filter-missing fix ..."
 
 msgid "snapraid --filter-disk diskname check ..."
-msgstr ""
+msgstr "snapraid --filter-disk 碟盤名稱 check ..."
 
 msgid "snapraid --filter-disk diskname fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk 碟盤名稱 fix ..."
 
 msgid "snapraid --force-empty sync ..."
-msgstr ""
+msgstr "snapraid --force-empty sync ..."
 
 msgid "snapraid check ..."
-msgstr "snapraid 檢查 ..."
+msgstr "snapraid check ..."
 
 msgid "snapraid devices ..."
-msgstr "snapraid 裝置 ..."
+msgstr "snapraid devices ..."
 
 msgid "snapraid diff ..."
-msgstr "snapraid 差異 ..."
+msgstr "snapraid diff ..."
 
 msgid "snapraid fix ..."
-msgstr "snapraid 修復 ..."
+msgstr "snapraid fix ..."
 
 msgid "snapraid scrub ..."
-msgstr "snapraid 清理 ..."
+msgstr "snapraid scrub ..."
 
 msgid "snapraid silent ..."
 msgstr "snapraid 修復靜默錯誤 ..."
@@ -408,16 +408,16 @@ msgid "snapraid smart ..."
 msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr "snapraid 狀態 ..."
+msgstr "snapraid status ..."
 
 msgid "snapraid sync -F ..."
-msgstr ""
+msgstr "snapraid sync -F ..."
 
 msgid "snapraid sync -h ..."
-msgstr "snapraid 初步雜湊+同步（sync -h）..."
+msgstr "snapraid sync -h ..."
 
 msgid "snapraid sync ..."
-msgstr "snapraid 同步 ..."
+msgstr "snapraid sync ..."
 
 msgid "snapraid undelete ..."
 msgstr "snapraid 取消刪除 ..."
