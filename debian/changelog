@@ -1,3 +1,9 @@
+openmediavault-snapraid (8.0.2) stable; urgency=low
+
+  * Support more than one empty drive
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 09 Apr 2026 11:25:07 +0000
+
 openmediavault-snapraid (8.0.1) stable; urgency=low
 
   * Add ability to redirect a data drive to an empty directory in the
