@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Manage stale SnapRAID empty placeholder tmpfs mounts.
+
+EMPTY_BASE="/var/lib/snapraid/empty"
+
+[ -d "${EMPTY_BASE}" ] || exit 0
+
+keep=" $* "
+changed=0
+
+for emptydir in "${EMPTY_BASE}"/*/; do
+  [ -d "${emptydir}" ] || continue
+  uuid=$(basename "${emptydir}")
+  if ! echo "${keep}" | grep -q " ${uuid} "; then
+    unit=$(systemd-escape --path --suffix=mount "${emptydir%/}")
+    systemctl stop "${unit}" 2>/dev/null || true
+    systemctl disable "${unit}" 2>/dev/null || true
+    rm -f "/etc/systemd/system/${unit}"
+    umount "${emptydir%/}" 2>/dev/null || true
+    rmdir "${emptydir%/}" 2>/dev/null || true
+    changed=1
+  fi
+done
+
+[ "${changed}" = "1" ] && systemctl daemon-reload || true

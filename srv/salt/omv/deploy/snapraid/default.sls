@@ -96,3 +96,55 @@ configure_snapraid-diff:
     - user: root
     - group: root
     - mode: 644
+
+# Manage persistent tmpfs mounts for drives marked as empty placeholders.
+# Each empty drive needs its own device number so snapraid does not refuse
+# to sync when multiple drives are marked empty at the same time.
+{% set empty_uuids = [] %}
+{% for drive in config.drives.drive %}
+{%- if drive.emptydir is defined and drive.emptydir | to_bool %}
+{% set uuid_esc = drive.uuid | replace('-', '\\x2d') %}
+{% set unit = 'var-lib-snapraid-empty-' ~ uuid_esc ~ '.mount' %}
+{% do empty_uuids.append(drive.uuid) %}
+
+snapraid_empty_dir_{{ drive.uuid }}:
+  file.directory:
+    - name: /var/lib/snapraid/empty/{{ drive.uuid }}
+    - makedirs: True
+
+snapraid_empty_unit_{{ drive.uuid }}:
+  file.managed:
+    - name: /etc/systemd/system/{{ unit }}
+    - user: root
+    - group: root
+    - mode: 644
+    - contents: |
+        [Unit]
+        Description=SnapRAID empty placeholder for {{ drive.name }}
+        DefaultDependencies=no
+        Before=local-fs.target umount.target
+        Conflicts=umount.target
+
+        [Mount]
+        What=snapraid-empty-{{ drive.uuid }}
+        Where=/var/lib/snapraid/empty/{{ drive.uuid }}
+        Type=tmpfs
+        Options=size=1M,mode=755
+
+        [Install]
+        WantedBy=local-fs.target
+
+snapraid_empty_mount_{{ drive.uuid }}:
+  service.running:
+    - name: {{ unit }}
+    - enable: True
+    - require:
+      - file: snapraid_empty_dir_{{ drive.uuid }}
+      - file: snapraid_empty_unit_{{ drive.uuid }}
+
+{% endif %}
+{% endfor %}
+
+snapraid_cleanup_empty_mounts:
+  cmd.run:
+    - name: omv-snapraid-empty-mounts {{ empty_uuids | join(' ') }}

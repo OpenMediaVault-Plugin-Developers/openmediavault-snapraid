@@ -587,17 +587,6 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
                 gettext("Only data drives can be redirected to an empty directory.")
             );
         }
-        $emptyDir = sprintf('/var/lib/snapraid/empty/%s', $params['uuid']);
-        if ($params['emptydir']) {
-            // Create the empty directory if it does not exist.
-            if (!file_exists($emptyDir)) {
-                if (!mkdir($emptyDir, 0755, true)) {
-                    throw new \OMV\Exception(
-                        gettext("Failed to create empty directory: %s"), $emptyDir
-                    );
-                }
-            }
-        }
         $object->set("emptydir", $params['emptydir']);
         $db->set($object);
         return $object->getAssoc();
