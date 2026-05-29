@@ -4,14 +4,14 @@
 # 
 # Translators:
 # aoi summer, 2020
-# songming <by@songming.me>, 2013-2015,2017,2021-2022,2024
+# songming <by@songming.me>, 2013-2015,2017,2021-2022,2024,2026
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-07 22:08+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
-"Last-Translator: songming <by@songming.me>, 2013-2015,2017,2021-2022,2024\n"
+"Last-Translator: songming <by@songming.me>, 2013-2015,2017,2021-2022,2024,2026\n"
 "Language-Team: Chinese (China) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,24 +28,24 @@ msgstr "数据盘不能做校验盘"
 msgid ""
 "Are you sure you want to force a full sync? This will recompute all parity "
 "blocks from scratch and may take a very long time."
-msgstr ""
+msgstr "您确定要强制进行完整同步吗？这将从头重新计算所有校验块，这可能会花费很长时间。"
 
 msgid ""
 "Are you sure you want to redirect this data drive to an empty directory in "
 "the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
 "on the array."
-msgstr ""
+msgstr "您确定要将此数据驱动器重定向到 snapraid 配置中的空目录吗？应用设置后，然后在阵列上运行“强制空同步”。"
 
 msgid ""
 "Are you sure you want to restore this drive to its original mount path? "
 "Apply settings afterwards to update the snapraid config."
-msgstr ""
+msgstr "您确定要将此驱动器恢复到其原始挂载路径吗？应用设置后以更新 snapraid 配置。"
 
 msgid ""
 "Are you sure you want to run Force Empty Sync? Use this after setting a data"
 " drive to an empty directory and applying settings. SnapRAID will update "
 "parity to reflect the now-empty drive."
-msgstr ""
+msgstr "您确定要运行强制空同步吗？在将数据驱动器设置为空目录并应用设置后使用此功能。SnapRAID 将更新校验以反映现在为空的驱动器。"
 
 msgid "Array"
 msgstr "整列"
@@ -74,7 +74,7 @@ msgid "Check"
 msgstr "检查"
 
 msgid "Check - Audit only"
-msgstr ""
+msgstr "检查 - 仅审计"
 
 msgid "Component"
 msgstr "组成"
@@ -135,7 +135,7 @@ msgid "Diff script settings"
 msgstr "差异脚本设置"
 
 msgid "Docs"
-msgstr ""
+msgstr "文档"
 
 msgid "Down"
 msgstr "停转"
@@ -173,7 +173,7 @@ msgid "Edit scheduled diff."
 msgstr "编辑比较计划任务"
 
 msgid "Empty Dir"
-msgstr ""
+msgstr "空目录"
 
 msgid "Excludes hidden files and directories."
 msgstr "排除隐藏文件和隐藏文件夹"
@@ -182,28 +182,28 @@ msgid "Exclusion"
 msgstr "排除"
 
 msgid "Failed to create empty directory: %s"
-msgstr ""
+msgstr "创建空目录失败：%s"
 
 msgid "Fix"
 msgstr "修复"
 
 msgid "Fix by drive"
-msgstr ""
+msgstr "按磁盘修复"
 
 msgid "Fix by drive - Audit only"
-msgstr ""
+msgstr "按磁盘修复 - 仅审核"
 
 msgid "Fix missing"
-msgstr ""
+msgstr "修复丢失"
 
 msgid "Fix silent"
 msgstr "修复静默错误"
 
 msgid "Force Empty Sync"
-msgstr ""
+msgstr "强制空同步"
 
 msgid "Force Sync"
-msgstr ""
+msgstr "强制同步"
 
 msgid "Hash size"
 msgstr "哈希大小"
@@ -233,7 +233,7 @@ msgid "No hidden"
 msgstr "隐藏文件选项"
 
 msgid "Only data drives can be redirected to an empty directory."
-msgstr ""
+msgstr "仅数据磁盘可以重新定向到一个空目录。"
 
 msgid "Parity"
 msgstr "校验"
@@ -254,7 +254,7 @@ msgid "Prepend"
 msgstr "Prepend"
 
 msgid "Restore drive path"
-msgstr ""
+msgstr "恢复磁盘路径"
 
 msgid "Root ref"
 msgstr "Root ref"
@@ -307,7 +307,7 @@ msgid "Send mail"
 msgstr "发送邮件"
 
 msgid "Set to empty dir"
-msgstr ""
+msgstr "设置空目录"
 
 msgid "Set to true if you want to scrub after a successful sync."
 msgstr "更新校验成功后运行侦测。"
@@ -364,28 +364,28 @@ msgid "n/a"
 msgstr "n/a"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras 维基"
 
 msgid "snapraid"
-msgstr ""
+msgstr "snapraid"
 
 msgid "snapraid --filter-disk diskname --audit-only check ..."
-msgstr ""
+msgstr "snapraid --过滤器-磁盘名 --仅审计检查 ..."
 
 msgid "snapraid --filter-disk diskname --audit-only fix ..."
-msgstr ""
+msgstr "snapraid --过滤器-磁盘名 --审计-仅修复 ..."
 
 msgid "snapraid --filter-disk diskname --filter-missing fix ..."
-msgstr ""
+msgstr "snapraid --过滤器-磁盘名 --过滤器-丢失修复 ..."
 
 msgid "snapraid --filter-disk diskname check ..."
-msgstr ""
+msgstr "snapraid --过滤器-磁盘名 检查 ..."
 
 msgid "snapraid --filter-disk diskname fix ..."
-msgstr ""
+msgstr "snapraid --过滤器-磁盘名 修复 ..."
 
 msgid "snapraid --force-empty sync ..."
-msgstr ""
+msgstr "snapraid --强制-空同步 ..."
 
 msgid "snapraid check ..."
 msgstr "snapraid 检查 ..."
@@ -412,7 +412,7 @@ msgid "snapraid status ..."
 msgstr "snapraid 状态 ..."
 
 msgid "snapraid sync -F ..."
-msgstr ""
+msgstr "snapraid sync -F ..."
 
 msgid "snapraid sync -h ..."
 msgstr "snapraid sync -h ..."

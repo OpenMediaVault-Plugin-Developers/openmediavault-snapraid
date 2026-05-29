@@ -18,405 +18,405 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "A config file for this array does not exist."
-msgstr ""
+msgstr "ບໍ່ມີໄຟລ໌ກຳນົດຄ່າສຳລັບອາເຣນີ້."
 
 msgid "A data drive cannot be a parity drive."
-msgstr ""
+msgstr "ໄດຣຟ໌ຂໍ້ມູນບໍ່ສາມາດເປັນໄດຣຟ໌ພາຣິຕີ້ໄດ້."
 
 msgid ""
 "Are you sure you want to force a full sync? This will recompute all parity "
 "blocks from scratch and may take a very long time."
-msgstr ""
+msgstr "ເຈົ້າແນ່ໃຈບໍວ່າຕ້ອງການບັງຄັບໃຫ້ຊິງຄ໌ຂໍ້ມູນທັງໝົດ? ສິ່ງນີ້ຈະຄຳນວນບລັອກພາຣິຕີ້ໃໝ່ທັງໝົດແຕ່ເລີ່ມຕົ້ນ ແລະ ອາດຈະໃຊ້ເວລາດົນຫຼາຍ."
 
 msgid ""
 "Are you sure you want to redirect this data drive to an empty directory in "
 "the snapraid config? Apply settings afterwards, then run 'Force Empty Sync' "
 "on the array."
-msgstr ""
+msgstr "ເຈົ້າແນ່ໃຈບໍວ່າຕ້ອງການປ່ຽນເສັ້ນທາງໄດຣຟ໌ຂໍ້ມູນນີ້ໄປຫາໂຟນເດີວ່າງໃນການກຳນົດຄ່າ SnapRAID? ໃຫ້ກົດນຳໃຊ້ການຕັ້ງຄ່າຫຼັງຈາກນັ້ນ, ແລ້ວແລ່ນ 'Force Empty Sync' ໃນອາເຣ."
 
 msgid ""
 "Are you sure you want to restore this drive to its original mount path? "
 "Apply settings afterwards to update the snapraid config."
-msgstr ""
+msgstr "ເຈົ້າແນ່ໃຈບໍວ່າຕ້ອງການກູ້ຄືນໄດຣຟ໌ນີ້ໄປຫາເສັ້ນທາງການເມົາທ໌ (mount) ເດີມ? ໃຫ້ກົດນຳໃຊ້ການຕັ້ງຄ່າຫຼັງຈາກນັ້ນເພື່ອອັບເດດການກຳນົດຄ່າ SnapRAID."
 
 msgid ""
 "Are you sure you want to run Force Empty Sync? Use this after setting a data"
 " drive to an empty directory and applying settings. SnapRAID will update "
 "parity to reflect the now-empty drive."
-msgstr ""
+msgstr "ເຈົ້າແນ່ໃຈບໍວ່າຕ້ອງການແລ່ນ Force Empty Sync? ໃຊ້ສິ່ງນີ້ຫຼັງຈາກຕັ້ງຄ່າໄດຣຟ໌ຂໍ້ມູນໃຫ້ເປັນໂຟນເດີວ່າງ ແລະ ນຳໃຊ້ການຕັ້ງຄ່າແລ້ວ. SnapRAID ຈະອັບເດດພາຣິຕີ້ເພື່ອສະແດງໃຫ້ເຫັນວ່າໄດຣຟ໌ວ່າງແລ້ວ."
 
 msgid "Array"
-msgstr ""
+msgstr "ອາເຣ"
 
 msgid "Array config."
-msgstr ""
+msgstr "ການກຳນົດຄ່າອາເຣ."
 
 msgid "Arrays"
-msgstr ""
+msgstr "ອາເຣ"
 
 msgid "Auto save"
-msgstr ""
+msgstr "ບັນທຶກອັດຕະໂນມັດ"
 
 msgid ""
 "Automatically save the state when syncing after the specified amount of GiB "
 "is processed. Default value is 0, meaning disabled."
-msgstr ""
+msgstr "ບັນທຶກສະຖານະໂດຍອັດຕະໂນມັດເມື່ອຊິງຄ໌ຂໍ້ມູນຫຼັງຈາກປະມວນຜົນຕາມຈຳນວນ GiB ທີ່ກຳນົດ. ຄ່າເລີ່ມຕົ້ນແມ່ນ 0, ໝາຍເຖິງປິດການໃຊ້ງານ."
 
 msgid "Block size"
-msgstr ""
+msgstr "ຂະໜາດບລັອກ"
 
 msgid "Block size in KiB"
-msgstr ""
+msgstr "ຂະໜາດບລັອກເປັນ KiB"
 
 msgid "Check"
-msgstr ""
+msgstr "ກວດສອບ"
 
 msgid "Check - Audit only"
-msgstr ""
+msgstr "ກວດສອບ - ສະເພາະການກວດສອບບັນຊີ"
 
 msgid "Component"
-msgstr ""
+msgstr "ສ່ວນປະກອບ"
 
 msgid "Config"
-msgstr ""
+msgstr "ກຳນົດຄ່າ"
 
 msgid "Content"
-msgstr ""
+msgstr "ເນື້ອຫາ"
 
 msgid "Create"
-msgstr ""
+msgstr "ສ້າງ"
 
 msgid "Created array."
-msgstr ""
+msgstr "ສ້າງອາເຣແລ້ວ."
 
 msgid "Created drive."
-msgstr ""
+msgstr "ສ້າງໄດຣຟ໌ແລ້ວ."
 
 msgid "Created rule."
-msgstr ""
+msgstr "ສ້າງກົດແລ້ວ."
 
 msgid ""
 "Creates symlink from array config file to /etc/snapraid.conf allowing "
 "snapraid commands to work on default array without specifying the config "
 "file flag"
-msgstr ""
+msgstr "ສ້າງ symlink ຈາກໄຟລ໌ກຳນົດຄ່າອາເຣໄປຫາ /etc/snapraid.conf ເພື່ອໃຫ້ຄຳສັ່ງ snapraid ເຮັດວຽກກັບອາເຣເລີ່ມຕົ້ນໄດ້ໂດຍບໍ່ຕ້ອງລະບຸ flag ໄຟລ໌ກຳນົດຄ່າ"
 
 msgid "Data"
-msgstr ""
+msgstr "ຂໍ້ມູນ"
 
 msgid "Date & Time"
-msgstr ""
+msgstr "ວັນທີ ແລະ ເວລາ"
 
 msgid "Debug"
-msgstr ""
+msgstr "ດີບັກ"
 
 msgid ""
 "Define threshold of deleted files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "ກຳນົດເກນຂອງໄຟລ໌ທີ່ຖືກລຶບ ຫາກເກີນຄ່ານີ້ຈະບໍ່ເລີ່ມຂະບວນການຊິງຄ໌. ຄ່າເລີ່ມຕົ້ນ = 0 ເພື່ອປິດການກວດສອບນີ້ ແລະ ຊິງຄ໌ຕະຫຼອດ."
 
 msgid ""
 "Define threshold of updated files above which not to start the sync process."
 " default = 0 to disable this check and always sync."
-msgstr ""
+msgstr "ກຳນົດເກນຂອງໄຟລ໌ທີ່ຖືກອັບເດດ ຫາກເກີນຄ່ານີ້ຈະບໍ່ເລີ່ມຂະບວນການຊິງຄ໌. ຄ່າເລີ່ມຕົ້ນ = 0 ເພື່ອປິດການກວດສອບນີ້ ແລະ ຊິງຄ໌ຕະຫຼອດ."
 
 msgid "Delete threshold"
-msgstr ""
+msgstr "ເກນການລຶບ"
 
 msgid "Devices"
-msgstr ""
+msgstr "ອຸປະກອນ"
 
 msgid "Diff"
-msgstr ""
+msgstr "ດິຟ (Diff)"
 
 msgid "Diff script settings"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າສະຄຣິບ Diff"
 
 msgid "Docs"
-msgstr ""
+msgstr "ເອກະສານ"
 
 msgid "Down"
-msgstr ""
+msgstr "ລົງ"
 
 msgid ""
 "Drive where content file is stored.  This file is a list of saved files and "
 "contains the details of your backup with all the checksums to verify its "
 "integrity."
-msgstr ""
+msgstr "ໄດຣຟ໌ທີ່ເກັບໄຟລ໌ເນື້ອຫາ. ໄຟລ໌ນີ້ແມ່ນລາຍຊື່ຂອງໄຟລ໌ທີ່ບັນທຶກໄວ້ ແລະ ປະກອບມີລາຍລະອຽດຂອງການສຳຮອງຂໍ້ມູນຂອງທ່ານພ້ອມກັບ checksum ທັງໝົດເພື່ອຢືນຢັນຄວາມຖືກຕ້ອງ."
 
 msgid "Drive where data is stored."
-msgstr ""
+msgstr "ໄດຣຟ໌ທີ່ເກັບຂໍ້ມູນ."
 
 msgid ""
 "Drive where parity files are stored which are necessary to recover from disk"
 " failure.  For each parity drive, one data drive can fail without data loss."
-msgstr ""
+msgstr "ໄດຣຟ໌ທີ່ເກັບໄຟລ໌ພາຣິຕີ້ ເຊິ່ງຈຳເປັນສຳລັບການກູ້ຄືນຈາກຄວາມເສຍຫາຍຂອງດິສກ໌. ສຳລັບແຕ່ລະໄດຣຟ໌ພາຣິຕີ້, ໄດຣຟ໌ຂໍ້ມູນໜຶ່ງໜ່ວຍສາມາດເສຍຫາຍໄດ້ໂດຍຂໍ້ມູນບໍ່ສູນຫາຍ."
 
 msgid "Drives"
-msgstr ""
+msgstr "ໄດຣຟ໌"
 
 msgid "Edit"
-msgstr ""
+msgstr "ແກ້ໄຂ"
 
 msgid "Edit array."
-msgstr ""
+msgstr "ແກ້ໄຂອາເຣ."
 
 msgid "Edit drive."
-msgstr ""
+msgstr "ແກ້ໄຂໄດຣຟ໌."
 
 msgid "Edit rule."
-msgstr ""
+msgstr "ແກ້ໄຂກົດ."
 
 msgid "Edit scheduled diff."
-msgstr ""
+msgstr "ແກ້ໄຂການຕັ້ງເວລາ Diff."
 
 msgid "Empty Dir"
-msgstr ""
+msgstr "ໂຟນເດີວ່າງ"
 
 msgid "Excludes hidden files and directories."
-msgstr ""
+msgstr "ຍົກເວັ້ນໄຟລ໌ ແລະ ໂຟນເດີທີ່ຖືກເຊື່ອງໄວ້."
 
 msgid "Exclusion"
-msgstr ""
+msgstr "ການຍົກເວັ້ນ"
 
 msgid "Failed to create empty directory: %s"
-msgstr ""
+msgstr "ສ້າງໂຟນເດີວ່າງບໍ່ສຳເລັດ: %s"
 
 msgid "Fix"
-msgstr ""
+msgstr "ຊ່ອມແຊມ"
 
 msgid "Fix by drive"
-msgstr ""
+msgstr "ຊ່ອມແຊມຕາມໄດຣຟ໌"
 
 msgid "Fix by drive - Audit only"
-msgstr ""
+msgstr "ຊ່ອມແຊມຕາມໄດຣຟ໌ - ສະເພາະການກວດສອບບັນຊີ"
 
 msgid "Fix missing"
-msgstr ""
+msgstr "ຊ່ອມແຊມສ່ວນທີ່ຫາຍໄປ"
 
 msgid "Fix silent"
-msgstr ""
+msgstr "ຊ່ອມແຊມແບບງຽບ"
 
 msgid "Force Empty Sync"
-msgstr ""
+msgstr "ບັງຄັບໃຫ້ຊິງຄ໌ຂໍ້ມູນວ່າງ"
 
 msgid "Force Sync"
-msgstr ""
+msgstr "ບັງຄັບໃຫ້ຊິງຄ໌"
 
 msgid "Hash size"
-msgstr ""
+msgstr "ຂະໜາດແຮຊ"
 
 msgid "Hash size in bytes"
-msgstr ""
+msgstr "ຂະໜາດແຮຊເປັນໄບຕ໌"
 
 msgid "Illegal rule - cannot end with /*"
-msgstr ""
+msgstr "ກົດທີ່ບໍ່ຖືກຕ້ອງ - ບໍ່ສາມາດລົງທ້າຍດ້ວຍ /*"
 
 msgid "Inclusion"
-msgstr ""
+msgstr "ການລວມເອົາ"
 
 msgid "Info"
-msgstr ""
+msgstr "ຂໍ້ມູນ"
 
 msgid "Level"
-msgstr ""
+msgstr "ລະດັບ"
 
 msgid "Message"
-msgstr ""
+msgstr "ຂໍ້ຄວາມ"
 
 msgid "Name"
-msgstr ""
+msgstr "ຊື່"
 
 msgid "No hidden"
-msgstr ""
+msgstr "ບໍ່ເອົາໄຟລ໌ເຊື່ອງ"
 
 msgid "Only data drives can be redirected to an empty directory."
-msgstr ""
+msgstr "ສະເພາະໄດຣຟ໌ຂໍ້ມູນເທົ່ານັ້ນທີ່ສາມາດປ່ຽນເສັ້ນທາງໄປຫາໂຟນເດີວ່າງໄດ້."
 
 msgid "Parity"
-msgstr ""
+msgstr "ພາຣິຕີ້"
 
 msgid "Parity Num"
-msgstr ""
+msgstr "ເລກພາຣິຕີ້"
 
 msgid "Parity number"
-msgstr ""
+msgstr "ໝາຍເລກພາຣິຕີ້"
 
 msgid "Pre-hash"
-msgstr ""
+msgstr "ການເຮັດແຮຊລ່ວງໜ້າ"
 
 msgid "Prehash+Sync"
-msgstr ""
+msgstr "ເຮັດແຮຊລ່ວງໜ້າ+ຊິງຄ໌"
 
 msgid "Prepend"
-msgstr ""
+msgstr "ເພີ່ມໃສ່ຂ້າງໜ້າ"
 
 msgid "Restore drive path"
-msgstr ""
+msgstr "ກູ້ຄືນເສັ້ນທາງໄດຣຟ໌"
 
 msgid "Root ref"
-msgstr ""
+msgstr "ອ້າງອີງຮາກ (Root ref)"
 
 msgid "Rule"
-msgstr ""
+msgstr "ກົດ"
 
 msgid "Rule Type"
-msgstr ""
+msgstr "ປະເພດກົດ"
 
 msgid "Rule type"
-msgstr ""
+msgstr "ປະເພດກົດ"
 
 msgid "Rules"
-msgstr ""
+msgstr "ກົດ"
 
 msgid "Run scrub"
-msgstr ""
+msgstr "ແລ່ນການສະຄຣັບ"
 
 msgid ""
 "Runs a preliminary hashing phase of all the new data to have an additional "
 "verification before the parity computation."
-msgstr ""
+msgstr "ແລ່ນຂັ້ນຕອນການເຮັດແຮຊເບື້ອງຕົ້ນຂອງຂໍ້ມູນໃໝ່ທັງໝົດ ເພື່ອໃຫ້ມີການຢືນຢັນເພີ່ມເຕີມກ່ອນການຄຳນວນພາຣິຕີ້."
 
 msgid "SMART"
-msgstr ""
+msgstr "SMART"
 
 msgid "Scheduled Diff"
-msgstr ""
+msgstr "ຕັ້ງເວລາ Diff"
 
 msgid "Scheduled diff"
-msgstr ""
+msgstr "ຕັ້ງເວລາ Diff"
 
 msgid "Scrub"
-msgstr ""
+msgstr "ສະຄຣັບ"
 
 msgid "Scrub frequency"
-msgstr ""
+msgstr "ຄວາມຖີ່ໃນການສະຄຣັບ"
 
 msgid "Scrub percentage"
-msgstr ""
+msgstr "ເປີເຊັນການສະຄຣັບ"
 
 msgid "Scrub percentage used for diff script."
-msgstr ""
+msgstr "ເປີເຊັນການສະຄຣັບທີ່ໃຊ້ສຳລັບສະຄຣິບ diff."
 
 msgid "Scrub percentage used for scrub button on Drives tab."
-msgstr ""
+msgstr "ເປີເຊັນການສະຄຣັບທີ່ໃຊ້ສຳລັບປຸ່ມສະຄຣັບໃນແຖບໄດຣຟ໌."
 
 msgid "Send mail"
-msgstr ""
+msgstr "ສົ່ງອີເມວ"
 
 msgid "Set to empty dir"
-msgstr ""
+msgstr "ຕັ້ງເປັນໂຟນເດີວ່າງ"
 
 msgid "Set to true if you want to scrub after a successful sync."
-msgstr ""
+msgstr "ຕັ້ງເປັນ true ຫາກເຈົ້າຕ້ອງການສະຄຣັບຫຼັງຈາກຊິງຄ໌ສຳເລັດ."
 
 msgid "Settings"
-msgstr ""
+msgstr "ການຕັ້ງຄ່າ"
 
 msgid "SnapRAID"
-msgstr ""
+msgstr "SnapRAID"
 
 msgid "Spin"
-msgstr ""
+msgstr "ການໝຸນ (Spin)"
 
 msgid "Split Parity"
-msgstr ""
+msgstr "ແຍກພາຣິຕີ້"
 
 msgid "Status"
-msgstr ""
+msgstr "ສະຖານະ"
 
 msgid "Sync"
-msgstr ""
+msgstr "ຊິງຄ໌"
 
 msgid "The field should only contain * or a comma separated list of values."
-msgstr ""
+msgstr "ຊ່ອງນີ້ຄວນມີພຽງ * ຫຼື ລາຍການຄ່າທີ່ຂັ້ນດ້ວຍຈຸດ."
 
 msgid "This will ensure that the rule path has a leading slash."
-msgstr ""
+msgstr "ສິ່ງນີ້ຈະຮັບປະກັນວ່າເສັ້ນທາງຂອງກົດມີເຄື່ອງໝາຍ slash (/) ຢູ່ຂ້າງໜ້າ."
 
 msgid "Tools"
-msgstr ""
+msgstr "ເຄື່ອງມື"
 
 msgid "Undelete"
-msgstr ""
+msgstr "ກູ້ຄືນໄຟລ໌ທີ່ລຶບ"
 
 msgid "Units in days."
-msgstr ""
+msgstr "ຫົວໜ່ວຍເປັນມື້."
 
 msgid "Up"
-msgstr ""
+msgstr "ຂຶ້ນ"
 
 msgid "Update threshold"
-msgstr ""
+msgstr "ເກນການອັບເດດ"
 
 msgid "Updated SnapRAID settings."
-msgstr ""
+msgstr "ອັບເດດການຕັ້ງຄ່າ SnapRAID ແລ້ວ."
 
 msgid "Used to set number for multiple parity."
-msgstr ""
+msgstr "ໃຊ້ເພື່ອຕັ້ງໝາຍເລກສຳລັບພາຣິຕີ້ຫຼາຍໜ່ວຍ."
 
 msgid "Used to split parity across more than one drive."
-msgstr ""
+msgstr "ໃຊ້ເພື່ອແຍກພາຣິຕີ້ໄວ້ໃນຫຼາຍກວ່າໜຶ່ງໄດຣຟ໌."
 
 msgid "n/a"
-msgstr ""
+msgstr "ບໍ່ມີຂໍ້ມູນ"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "ວິກິ omv-extras"
 
 msgid "snapraid"
-msgstr ""
+msgstr "snapraid"
 
 msgid "snapraid --filter-disk diskname --audit-only check ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --audit-only check ..."
 
 msgid "snapraid --filter-disk diskname --audit-only fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --audit-only fix ..."
 
 msgid "snapraid --filter-disk diskname --filter-missing fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname --filter-missing fix ..."
 
 msgid "snapraid --filter-disk diskname check ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname check ..."
 
 msgid "snapraid --filter-disk diskname fix ..."
-msgstr ""
+msgstr "snapraid --filter-disk diskname fix ..."
 
 msgid "snapraid --force-empty sync ..."
-msgstr ""
+msgstr "snapraid --force-empty sync ..."
 
 msgid "snapraid check ..."
-msgstr ""
+msgstr "snapraid check ..."
 
 msgid "snapraid devices ..."
-msgstr ""
+msgstr "snapraid devices ..."
 
 msgid "snapraid diff ..."
-msgstr ""
+msgstr "snapraid diff ..."
 
 msgid "snapraid fix ..."
-msgstr ""
+msgstr "snapraid fix ..."
 
 msgid "snapraid scrub ..."
-msgstr ""
+msgstr "snapraid scrub ..."
 
 msgid "snapraid silent ..."
-msgstr ""
+msgstr "snapraid silent ..."
 
 msgid "snapraid smart ..."
-msgstr ""
+msgstr "snapraid smart ..."
 
 msgid "snapraid status ..."
-msgstr ""
+msgstr "snapraid status ..."
 
 msgid "snapraid sync -F ..."
-msgstr ""
+msgstr "snapraid sync -F ..."
 
 msgid "snapraid sync -h ..."
-msgstr ""
+msgstr "snapraid sync -h ..."
 
 msgid "snapraid sync ..."
-msgstr ""
+msgstr "snapraid sync ..."
 
 msgid "snapraid undelete ..."
-msgstr ""
+msgstr "snapraid undelete ..."
