@@ -549,9 +549,7 @@ class OMVRpcServiceSnapRaid extends \OMV\Rpc\ServiceAbstract
                     $cmdLine = $cmd->getCommandLine();
                     file_put_contents($bgOutputFilename, $cmdLine . PHP_EOL, FILE_APPEND);
                     // execute command
-                    if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename)) {
-                        throw new \OMV\ExecException($cmdLine, $output);
-                    }
+                    $this->exec($cmdLine, $output, $bgOutputFilename);
                     $this->finalizeBgProcStatus($bgStatusFilename, $output);
                     $log = sprintf("[%s] omv-snapraid-gui: INFO: %s - Finished\r\n",
                         date("Y-m-d H:i:s"), strtoupper($params['command'])
