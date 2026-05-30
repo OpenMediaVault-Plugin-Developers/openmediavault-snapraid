@@ -25,7 +25,7 @@ configure_snapraid_envvar_dir:
     - name: "{{ confDir }}"
     - user: root
     - group: root
-    - mode: 755
+    - mode: '0755'
 
 {% set keep_confs = [] %}
 {% for array in config.arrays.array %}
@@ -45,7 +45,7 @@ configure_snapraid_{{ array.uuid }}:
         drives: {{ drives | json }}
     - user: root
     - group: root
-    - mode: 644
+    - mode: '0644'
 
 symlink_snapraid_{{ array.uuid }}:
   file.symlink:
@@ -95,7 +95,7 @@ configure_snapraid-diff:
         config: {{ config | json }}
     - user: root
     - group: root
-    - mode: 644
+    - mode: '0644'
 
 # Manage persistent tmpfs mounts for drives marked as empty placeholders.
 # Each empty drive needs its own device number so snapraid does not refuse
@@ -117,7 +117,7 @@ snapraid_empty_unit_{{ drive.uuid }}:
     - name: /etc/systemd/system/{{ unit }}
     - user: root
     - group: root
-    - mode: 644
+    - mode: '0644'
     - contents: |
         [Unit]
         Description=SnapRAID empty placeholder for {{ drive.name }}
