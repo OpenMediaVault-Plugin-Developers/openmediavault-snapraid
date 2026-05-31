@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-07 22:08+0000\n"
+"POT-Creation-Date: 2026-05-31 01:27+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: ba445a6451a8788fc2cde279bf16c086_ad8d9e9, 2021\n"
 "Language-Team: French (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/fr/)\n"
@@ -181,9 +181,6 @@ msgstr "Exclut les fichiers et répertoires cachés."
 
 msgid "Exclusion"
 msgstr "Exclusion"
-
-msgid "Failed to create empty directory: %s"
-msgstr ""
 
 msgid "Fix"
 msgstr "Réparer"

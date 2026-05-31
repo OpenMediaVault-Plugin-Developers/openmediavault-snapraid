@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-07 22:08+0000\n"
+"POT-Creation-Date: 2026-05-31 01:27+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2014-2017,2021\n"
 "Language-Team: Danish (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/da/)\n"
@@ -179,9 +179,6 @@ msgstr "Ekskluder gemte filer og biblioteker."
 
 msgid "Exclusion"
 msgstr "Undtagelse"
-
-msgid "Failed to create empty directory: %s"
-msgstr ""
 
 msgid "Fix"
 msgstr "Ret"

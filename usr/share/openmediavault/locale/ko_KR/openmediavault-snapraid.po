@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-snapraid\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-07 22:08+0000\n"
+"POT-Creation-Date: 2026-05-31 01:27+0000\n"
 "PO-Revision-Date: 2013-11-12 16:13+0000\n"
 "Last-Translator: Hyeonkyu Chu <hyeonkyu@gmail.com>, 2014-2015\n"
 "Language-Team: Korean (Korea) (http://app.transifex.com/openmediavault-plugin-developers/openmediavault-snapraid/language/ko_KR/)\n"
@@ -179,9 +179,6 @@ msgstr "숨김 파일 및 디렉터리를 제외합니다."
 
 msgid "Exclusion"
 msgstr "제외"
-
-msgid "Failed to create empty directory: %s"
-msgstr ""
 
 msgid "Fix"
 msgstr "수리"
