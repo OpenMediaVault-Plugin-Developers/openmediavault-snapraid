@@ -52,6 +52,9 @@ declare -i UPDATE_COUNT=0
 
 declare -i PREHASH_VALUE=0
 
+# exit code of this script: 0 = OK, 1 = a snapraid command failed
+declare -i EXIT_CODE=0
+
 
 ARRAY_CONF="${1}"
 
@@ -158,6 +161,23 @@ _check_success() {
 	else
 		return 1
 	fi
+}
+
+################################################################
+#
+#   name      : _log_failure
+#   parameter   : $1 = name of the snapraid command, $2 = its exit code
+#				: $3 = line count of $TMP_OUTPUT before the command started
+#   return      : none
+#
+# writes the exit code and the last lines of the snapraid output to the log,
+# so the reason is visible even when the status mail can't be sent
+_log_failure() {
+	_log "ERROR: SnapRAID $1 failed with exit code $2"
+	tail -n +$(($3 + 1)) $TMP_OUTPUT | tr '\r' '\n' | grep -v -E -e '^ *$' -e '^-+$' -e ' finished - ' -e '^ *[0-9]+%' | tail -n 5 | while read line
+	do
+		_log "ERROR: $line"
+	done
 }
 
 ################################################################
@@ -361,12 +381,15 @@ done
 _log "INFO: SnapRAID DIFF started"
 echo "SnapRAID DIFF started - $(date)" >> $TMP_OUTPUT
 
+OUTPUT_START=$(wc -l < $TMP_OUTPUT)
 # run diff:
 # output: stdout: WARNINGS only (filtering 'Ignoring mount point') and $TMP_OUTPUT (all WARNINGS)
 /usr/bin/snapraid diff --conf ${SNAPRAID_CONF} 2>&1 | tee -a $TMP_OUTPUT | grep WARNING | grep -v 'WARNING! Ignoring mount point' | while read line
 do
 	_log "WARN: $line"
 done
+# exit code 2 only means a sync is needed, 1 is an error
+DIFF_RC=${PIPESTATUS[0]}
 
 # wait for the above cmd to finish
 wait
@@ -375,6 +398,13 @@ _log "INFO: SnapRAID DIFF finished"
 _log "INFO: ----------------------------------------"
 echo "SnapRAID DIFF finished - $(date)" >> $TMP_OUTPUT
 echo "----------------------------------------" >> $TMP_OUTPUT
+
+if [ $DIFF_RC -ne 0 ] && [ $DIFF_RC -ne 2 ]; then
+	_log_failure "DIFF" $DIFF_RC $OUTPUT_START
+	_send_email "$EMAIL_SUBJECT_PREFIX - ERROR: Diff Job FAILED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+	_rmtmp
+	exit 1
+fi
 
 # read the values of deleted, added, etc. files since the last sync
 DEL_COUNT=$(grep -w '^ \{1,\}[0-9]* removed$' $TMP_OUTPUT | sed 's/^ *//g' | cut -d ' ' -f1)
@@ -454,12 +484,14 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 		echo "SnapRAID SYNC Job started - $(date)" >> $TMP_OUTPUT
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
+		OUTPUT_START=$(wc -l < $TMP_OUTPUT)
 		# we should eventually grep %
 		if [ ${PREHASH_VALUE} -eq 1 ]; then
-			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >> $TMP_OUTPUT
+			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} --pre-hash >> $TMP_OUTPUT 2>&1
 		else
-			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >> $TMP_OUTPUT
+			/usr/bin/snapraid sync --conf ${SNAPRAID_CONF} >> $TMP_OUTPUT 2>&1
 		fi
+		SYNC_RC=$?
 		#wait for the job to finish
 		wait
 
@@ -468,8 +500,13 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 		echo "SnapRAID SYNC Job finished - $(date)" >> $TMP_OUTPUT
 		echo "----------------------------------------" >> $TMP_OUTPUT
 
+		if [ $SYNC_RC -ne 0 ]; then
+			# don't scrub against parity that is not up to date
+			_log_failure "SYNC" $SYNC_RC $OUTPUT_START
+			echo "SnapRAID SYNC Job FAILED with exit code $SYNC_RC. No scrub was run." >> $TMP_OUTPUT
+			EXIT_CODE=1
 		# start snapraid SCRUB
-		if [ $RUN_SCRUB = "true" ]; then
+		elif [ $RUN_SCRUB = "true" ]; then
 			if [ $COUNTER -lt $SCRUB_FREQUENCY_IN_DAYS ]; then
 				_log "INFO: SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run."
 				echo "SnapRAID SCRUB-Cycle count ($SCRUB_FREQUENCY_IN_DAYS) not met ($COUNTER). No scrub was run. - $(date)" >> $TMP_OUTPUT
@@ -479,10 +516,18 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 				_log "INFO: ----------------------------------------"
 				echo "SnapRAID SCRUB Job started - $(date)" >> $TMP_OUTPUT
 				echo "----------------------------------------" >> $TMP_OUTPUT
-				/usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${SCRUB_OLDER_THAN_DAYS} >> $TMP_OUTPUT
+				OUTPUT_START=$(wc -l < $TMP_OUTPUT)
+				/usr/bin/snapraid scrub --conf ${SNAPRAID_CONF} -p ${SCRUB_PERCENT} -o ${SCRUB_OLDER_THAN_DAYS} >> $TMP_OUTPUT 2>&1
+				SCRUB_RC=$?
 
 				# wait for the job to finish
 				wait
+
+				if [ $SCRUB_RC -ne 0 ]; then
+					_log_failure "SCRUB" $SCRUB_RC $OUTPUT_START
+					echo "SnapRAID SCRUB Job FAILED with exit code $SCRUB_RC." >> $TMP_OUTPUT
+					EXIT_CODE=1
+				fi
 
 				# Reset counter
 				echo "1" > $TMP_SCRUB_DIR/snapraid_scrub_counter
@@ -497,8 +542,12 @@ if [ $DEL_COUNT -gt 0 ] || [ $ADD_COUNT -gt 0 ] || [ $MOVE_COUNT -gt 0 ] || [ $C
 			   _log "INFO: Array scrubbing is not enabled.  If you would like to enable it, please set the RUN_SCRUB option to true."
 		fi
 		
-		# Send success email
-		_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		# Send status email
+		if [ $EXIT_CODE -eq 0 ]; then
+			_send_email "$EMAIL_SUBJECT_PREFIX - Sync/Scrub Job COMPLETED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		else
+			_send_email "$EMAIL_SUBJECT_PREFIX - ERROR: Sync/Scrub Job FAILED" "${TMP_OUTPUT}" "${EMAIL_SUBJECT_PREFIX}" "${OMV_MAIL_sender}"
+		fi
 	
 	# If update threshold exceeded
 	elif [ $UPD_DEL_CHECK -eq 1 ]; then
@@ -520,4 +569,4 @@ fi
 
 _log "INFO: SnapRAID Job ended."
 _rmtmp
-exit 0
+exit $EXIT_CODE
